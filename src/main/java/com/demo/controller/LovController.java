@@ -2,9 +2,15 @@ package com.demo.controller;
 
 import com.demo.model.City;
 import com.demo.model.Company;
+import com.demo.model.Costcenter;
+import com.demo.model.Country;
 import com.demo.service.CityService;
 import com.demo.service.CompanyService;
+import com.demo.service.CostcenterService;
+import com.demo.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,38 +22,43 @@ import java.util.List;
 public class LovController {
 
     @Autowired
+//    private CityComboBean cityComboBean;
     private CityService cityService;
 
     @Autowired
     private CompanyService companyService;
 
+    @Autowired
+    private CostcenterService costcenterService;
+
+    @Autowired
+    private CountryService countryService;
+
     @GetMapping(value = "/cities/{offset}/{limit}")
-    public @ResponseBody List<City> getAllCity(
+    public ResponseEntity<?> getAllCity(
         @PathVariable Integer offset,
         @PathVariable Integer limit
     ){
         List<City> cityList = cityService.findAll(offset,limit);
-        return cityList;
+        return new ResponseEntity<List<City>>(cityList,HttpStatus.OK);
     }
 
     @GetMapping(value = "/companies")
-    public @ResponseBody List<Company> getAllCompany(){
+    public ResponseEntity<?> getAllCompany(){
         List<Company> companyList = companyService.findAll();
-        return companyList;
+        return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
     }
 
+    @GetMapping(value = "/costcenters")
+    public ResponseEntity<?> getAllCostcenters(){
+        List<Costcenter> costcenterList = costcenterService.findAll();
+        return new ResponseEntity<List<Costcenter>>(costcenterList,HttpStatus.OK);
+    }
 
-
-
-
-//    public ResponseEntity<?> city() throws Exception{
-//        try{
-//            lovService.findAllCity();
-//            return ResponseEntity.ok("Success!");
-//        } catch (Exception e){
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-//        }
-//    }
-
+    @GetMapping(value = "/countries")
+    public ResponseEntity<?> getAllCountries(){
+        List<Country> countryList = countryService.findAll();
+        return new ResponseEntity<List<Country>>(countryList,HttpStatus.OK);
+    }
 
 }

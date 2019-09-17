@@ -1,0 +1,25 @@
+package com.demo.service;
+
+import com.demo.dao.CountryDao;
+import com.demo.model.Country;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class CountryService {
+
+    @Autowired
+    private CountryDao countryDao;
+
+    public List<Country> findAll(){
+        return countryDao.findAll();
+    }
+
+    public List<Country> findById(UUID id){
+        return countryDao.findById(id);
+    }
+
+}

@@ -3,6 +3,8 @@ package com.demo.controller;
 import com.demo.model.Company;
 import com.demo.service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +20,11 @@ public class CompanyController {
     private CompanyService companyService;
 
     @GetMapping(value = "/company/{id}")
-    public @ResponseBody List<Company> getCompanyById(
+    public ResponseEntity<?> getCompanyById(
             @PathVariable UUID id
     ){
         List<Company> companyId = companyService.findById(id);
-        return companyId;
+        return new ResponseEntity<List<Company>>(companyId, HttpStatus.OK);
     }
 
 }

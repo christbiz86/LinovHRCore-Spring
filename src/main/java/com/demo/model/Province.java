@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 @Entity
-@Table(name="provinces")
+@Table(name="core_provinces")
 public class Province {
 
     @Id

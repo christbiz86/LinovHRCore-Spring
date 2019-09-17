@@ -1,17 +1,15 @@
 package com.demo.model;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.UUID;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
-@Table(name="core_companies")
-public class Company {
+@Table(name="core_tenants")
+public class Tenant {
 
     @Id
     @Column(name = "id")
@@ -29,13 +27,8 @@ public class Company {
     @Column(name = "eff_end")
     private Timestamp effEnd;
 
-    @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
-    private List<Costcenter> costcenters;
-
-    @JsonIgnoreProperties(value = {"companies"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
-    @JoinColumn(name="tenant_id", referencedColumnName = "id")
-    private Tenant tenant;
+    @OneToMany(mappedBy = "tenant",fetch = FetchType.LAZY)
+    private List<Company> companies;
 
     public UUID getId(){
         return id;
@@ -69,20 +62,5 @@ public class Company {
         this.effEnd = effEnd;
     }
 
-    public List<Costcenter> getCostcenters() {
-        return costcenters;
-    }
-
-    public void setCostcenters(List<Costcenter> costcenters) {
-        this.costcenters = costcenters;
-    }
-
-    public Tenant getTenant() {
-        return tenant;
-    }
-
-    public void setTenant(Tenant tenant) {
-        this.tenant = tenant;
-    }
 
 }
