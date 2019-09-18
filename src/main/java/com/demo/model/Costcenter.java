@@ -62,7 +62,7 @@ public class Costcenter {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -70,7 +70,7 @@ public class Costcenter {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
@@ -94,7 +94,7 @@ public class Costcenter {
         return company;
     }
 
-    public void setCompany() {
+    public void setCompany(Company company) {
         this.company = company;
     }
 

@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public class CityDao extends ParentDao {
 
-    @Transactional
     public List<City> findAll(Integer offset, Integer limit){
         return super.entityManager.createQuery("FROM City")
                 .setFirstResult(offset).setMaxResults(limit).getResultList();

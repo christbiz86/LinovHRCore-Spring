@@ -62,7 +62,7 @@ public class Grade {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -70,7 +70,7 @@ public class Grade {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
@@ -110,7 +110,7 @@ public class Grade {
         return company;
     }
 
-    public void setCompany() {
+    public void setCompany(Company company) {
         this.company = company;
     }
 

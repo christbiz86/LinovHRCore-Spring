@@ -1,5 +1,6 @@
-package com.demo.model;
+package com.demo.dao;
 
+import com.demo.model.Company;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -8,8 +9,8 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Table(name="core_tenants")
-public class Tenant {
+@Table
+public class Location {
 
     @Id
     @Column(name = "id")
@@ -43,7 +44,7 @@ public class Tenant {
         return name;
     }
 
-    public void setName(String name){
+    public void setName(){
         this.name = name;
     }
 
