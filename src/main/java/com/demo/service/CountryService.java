@@ -18,8 +18,12 @@ public class CountryService {
         return countryDao.findAll();
     }
 
-    public List<Country> findById(UUID id){
+    public List<Country> findById(String id){
         return countryDao.findById(id);
+    }
+
+    public List<Country> findByCode(String code){
+        return countryDao.findByCode(code);
     }
 
 }

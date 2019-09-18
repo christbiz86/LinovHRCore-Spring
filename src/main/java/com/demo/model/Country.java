@@ -12,8 +12,7 @@ public class Country {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private String id;
 
     @Column(name = "code")
     private String code;

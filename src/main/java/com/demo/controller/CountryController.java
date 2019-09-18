@@ -24,10 +24,18 @@ public class CountryController {
 
     @GetMapping(value = "/country/{id}")
     public ResponseEntity<?> getCountryById(
-            @PathVariable UUID id
+            @PathVariable String id
     ){
         List<Country> countryId = countryService.findById(id);
         return new ResponseEntity<List<Country>>(countryId, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/country/code/{code}")
+    public ResponseEntity<?> getCountryCode(
+            @PathVariable String code
+    ){
+        List<Country> countryCode = countryService.findByCode(code);
+        return new ResponseEntity<List<Country>>(countryCode, HttpStatus.OK);
     }
 
 }

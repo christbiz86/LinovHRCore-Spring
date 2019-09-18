@@ -16,8 +16,14 @@ public class CountryDao extends ParentDao {
     }
 
     @Transactional
-    public List<Country> findById(UUID id){
+    public List<Country> findById(String id){
         return super.entityManager.createQuery("FROM Country WHERE id=:id").setParameter("id", id)
+                .getResultList();
+    }
+
+    @Transactional
+    public List<Country> findByCode(String code){
+        return super.entityManager.createQuery("From Country where code=:code").setParameter("code",code)
                 .getResultList();
     }
 

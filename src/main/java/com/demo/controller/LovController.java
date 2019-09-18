@@ -1,13 +1,7 @@
 package com.demo.controller;
 
-import com.demo.model.City;
-import com.demo.model.Company;
-import com.demo.model.Costcenter;
-import com.demo.model.Country;
-import com.demo.service.CityService;
-import com.demo.service.CompanyService;
-import com.demo.service.CostcenterService;
-import com.demo.service.CountryService;
+import com.demo.model.*;
+import com.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +28,9 @@ public class LovController {
     @Autowired
     private CountryService countryService;
 
+    @Autowired
+    private GradeService gradeService;
+
     @GetMapping(value = "/cities/{offset}/{limit}")
     public ResponseEntity<?> getAllCity(
         @PathVariable Integer offset,
@@ -59,6 +56,12 @@ public class LovController {
     public ResponseEntity<?> getAllCountries(){
         List<Country> countryList = countryService.findAll();
         return new ResponseEntity<List<Country>>(countryList,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/grades")
+    public ResponseEntity<?> getAllGrades(){
+        List<Grade> gradeList = gradeService.findall();
+        return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
     }
 
 }
