@@ -17,4 +17,12 @@ public class GradeService {
         return gradeDao.findAll();
     }
 
+    public List<Grade> findById(String id){
+        return gradeDao.findById(id);
+    }
+
+    public List<Grade> findByCode(String code){
+        return gradeDao.findByCode(code);
+    }
+
 }

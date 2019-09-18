@@ -1,11 +1,11 @@
 package com.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name="core_tenants")
@@ -13,8 +13,9 @@ public class Tenant {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -30,11 +31,11 @@ public class Tenant {
     @OneToMany(mappedBy = "tenant",fetch = FetchType.LAZY)
     private List<Company> companies;
 
-    public UUID getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(UUID id){
+    public void setId(String id){
         this.id = id;
     }
 
