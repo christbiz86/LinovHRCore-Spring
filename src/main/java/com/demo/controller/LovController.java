@@ -40,28 +40,28 @@ public class LovController {
         return new ResponseEntity<List<City>>(cityList,HttpStatus.OK);
     }
 
-//    @GetMapping(value = "/companies")
-//    public ResponseEntity<?> getAllCompany(){
-//        List<Company> companyList = companyService.findAll();
-//        return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
-//    }
-//
-//    @GetMapping(value = "/costcenters")
-//    public ResponseEntity<?> getAllCostcenters(){
-//        List<Costcenter> costcenterList = costcenterService.findAll();
-//        return new ResponseEntity<List<Costcenter>>(costcenterList,HttpStatus.OK);
-//    }
-//
-//    @GetMapping(value = "/countries")
-//    public ResponseEntity<?> getAllCountries(){
-//        List<Country> countryList = countryService.findAll();
-//        return new ResponseEntity<List<Country>>(countryList,HttpStatus.OK);
-//    }
-//
-//    @GetMapping(value = "/grades")
-//    public ResponseEntity<?> getAllGrades(){
-//        List<Grade> gradeList = gradeService.findall();
-//        return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
-//    }
+    @GetMapping(value = "/companies")
+    public ResponseEntity<?> getAllCompany(){
+        List<Company> companyList = companyService.findAll();
+        return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/costcenters")
+    public ResponseEntity<?> getAllCostcenters(){
+        List<Costcenter> costcenterList = costcenterService.findAll();
+        return new ResponseEntity<List<Costcenter>>(costcenterList,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/countries")
+    public ResponseEntity<?> getAllCountries(){
+        List<Country> countryList = countryService.findAll();
+        return new ResponseEntity<List<Country>>(countryList,HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/grades")
+    public ResponseEntity<?> getAllGrades(){
+        List<Grade> gradeList = gradeService.findall();
+        return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
+    }
 
 }
