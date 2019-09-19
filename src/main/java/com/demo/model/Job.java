@@ -13,7 +13,6 @@ public class Job {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 

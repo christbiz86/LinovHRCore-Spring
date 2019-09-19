@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -20,7 +19,6 @@ public class Country {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
@@ -66,7 +64,7 @@ public class Country {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 

@@ -7,7 +7,6 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,7 +24,6 @@ public class Company {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
