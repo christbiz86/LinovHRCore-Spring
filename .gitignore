@@ -1,2 +1,9 @@
 /target
 /src/main/resources/
+database.sql
+HELP.md
+modelReport.html
+modelReport.jasper
+mvnv
+mvnw.cmd
+pom.xml
