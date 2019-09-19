@@ -1,19 +1,23 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_lov_type")
-public class LovTypes {
+@Table(name = "core_lov_types")
+public class LovType {
 
 	@Id
     @Column(name = "id")
@@ -42,6 +46,9 @@ public class LovTypes {
 
     @Column(name = "arg1")
     private String arg1;
+    
+    @OneToMany(mappedBy = "lovType",fetch = FetchType.EAGER)
+    private List<Lov> lovs = new ArrayList<Lov>();
 
 	public String getId() {
 		return id;
@@ -106,4 +113,13 @@ public class LovTypes {
 	public void setArg1(String arg1) {
 		this.arg1 = arg1;
 	}
+
+	public List<Lov> getLovs() {
+		return lovs;
+	}
+
+	public void setLovs(List<Lov> lovs) {
+		this.lovs = lovs;
+	}
+	
 }

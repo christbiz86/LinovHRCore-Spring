@@ -4,27 +4,30 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "core_lovs")
-public class Lovs {
+public class Lov {
 
 	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
+    @JsonIgnoreProperties(value = {"lovs"})
     @JoinColumn(name = "lov_type_id", referencedColumnName = "id")
-    @OneToOne
-    private LovTypes lovTypes;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private LovType lovType;
     
     @Column(name = "key_data")
     private String keyData;
@@ -63,12 +66,12 @@ public class Lovs {
 		this.id = id;
 	}
 
-	public LovTypes getLovTypes() {
-		return lovTypes;
+	public LovType getLovType() {
+		return lovType;
 	}
 
-	public void setLovTypes(LovTypes lovTypes) {
-		this.lovTypes = lovTypes;
+	public void setLovType(LovType lovType) {
+		this.lovType = lovType;
 	}
 
 	public String getKeyData() {
