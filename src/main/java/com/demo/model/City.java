@@ -1,10 +1,18 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="core_cities")
@@ -37,7 +45,7 @@ public class City {
 
     @JoinColumn(name = "province_id", referencedColumnName = "id")
     @OneToOne
-    private Province provinceId;
+    private Province province;
 
     public UUID getId(){
         return id;
@@ -51,7 +59,7 @@ public class City {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -59,7 +67,7 @@ public class City {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
@@ -79,13 +87,12 @@ public class City {
         this.updatedAt = updatedAt;
     }
 
-    public Province getProvinceId() {
-        return provinceId;
+    public Province getProvince() {
+        return province;
     }
 
-    public void setProvinceId(Province provinceId) {
-        this.provinceId = provinceId;
+    public void setProvince(Province province) {
+        this.province = province;
     }
-
 
 }

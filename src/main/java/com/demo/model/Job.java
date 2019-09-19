@@ -61,7 +61,7 @@ public class Job {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -69,7 +69,7 @@ public class Job {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
@@ -109,7 +109,7 @@ public class Job {
         return company;
     }
 
-    public void setCompany() {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
