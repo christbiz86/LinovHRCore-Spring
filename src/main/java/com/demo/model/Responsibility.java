@@ -1,31 +1,38 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_responsibility_groups")
-public class ResponsibilityGroups {
+@Table(name="core_responsibilities")
+public class Responsibility {
 
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+	private String id;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
     @OneToOne
     private Company company;
 	
+    @ManyToOne(optional = false,fetch = FetchType.EAGER)
+    @JoinColumn(name="responsibility_group_id", referencedColumnName = "id")
+    private ResponsibilityGroup responsibilityGroup;
+    
     @Column(name = "code")
     private String code;
 
@@ -34,7 +41,13 @@ public class ResponsibilityGroups {
 
     @Column(name = "description")
     private String description;
-
+    
+    @Column(name = "eff_begin")
+	private Date effBegin;
+	
+	@Column(name = "eff_end")
+	private Date effEnd;
+    
     @Column(name = "created_by")
     private String createdBy;
 
@@ -48,6 +61,12 @@ public class ResponsibilityGroups {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+    
+    @Column(name = "used_for")
+    private String usedFor;
+    
+    @Column(name = "used_for_value")
+    private String usedForValue;
 
 	public String getId() {
 		return id;
@@ -63,6 +82,14 @@ public class ResponsibilityGroups {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+
+	public ResponsibilityGroup getResponsibilityGroup() {
+		return responsibilityGroup;
+	}
+
+	public void setResponsibilityGroup(ResponsibilityGroup responsibilityGroup) {
+		this.responsibilityGroup = responsibilityGroup;
 	}
 
 	public String getCode() {
@@ -120,4 +147,37 @@ public class ResponsibilityGroups {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
+	public String getUsedFor() {
+		return usedFor;
+	}
+
+	public void setUsedFor(String usedFor) {
+		this.usedFor = usedFor;
+	}
+
+	public String getUsedForValue() {
+		return usedForValue;
+	}
+
+	public void setUsedForValue(String usedForValue) {
+		this.usedForValue = usedForValue;
+	}
+
+	public Date getEffBegin() {
+		return effBegin;
+	}
+
+	public void setEffBegin(Date effBegin) {
+		this.effBegin = effBegin;
+	}
+
+	public Date getEffEnd() {
+		return effEnd;
+	}
+
+	public void setEffEnd(Date effEnd) {
+		this.effEnd = effEnd;
+	}
+    
 }

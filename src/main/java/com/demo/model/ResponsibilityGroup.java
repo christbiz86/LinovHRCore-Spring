@@ -1,16 +1,13 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -18,39 +15,46 @@ import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_lov_types")
-public class LovType {
+@Table(name = "core_responsibility_groups")
+public class ResponsibilityGroup {
 
 	@Id
     @Column(name = "id")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
 	private String id;
-
+	
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
+    @OneToOne
+    private Company company;
+	
     @Column(name = "code")
     private String code;
-    
+
     @Column(name = "name")
     private String name;
-    
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "eff_begin")
+	private Date effBegin;
+	
+	@Column(name = "eff_end")
+	private Date effEnd;
+	
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @Column(name = "arg1")
-    private String arg1;
-    
-    @OneToMany(mappedBy = "lovType",fetch = FetchType.EAGER)
-    private List<Lov> lovs = new ArrayList<Lov>();
 
 	public String getId() {
 		return id;
@@ -58,6 +62,14 @@ public class LovType {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
 	}
 
 	public String getCode() {
@@ -76,11 +88,19 @@ public class LovType {
 		this.name = name;
 	}
 
-	public Integer getCreatedBy() {
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -92,11 +112,11 @@ public class LovType {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -108,20 +128,20 @@ public class LovType {
 		this.updatedAt = updatedAt;
 	}
 
-	public String getArg1() {
-		return arg1;
+	public Date getEffBegin() {
+		return effBegin;
 	}
 
-	public void setArg1(String arg1) {
-		this.arg1 = arg1;
+	public void setEffBegin(Date effBegin) {
+		this.effBegin = effBegin;
 	}
 
-	public List<Lov> getLovs() {
-		return lovs;
+	public Date getEffEnd() {
+		return effEnd;
 	}
 
-	public void setLovs(List<Lov> lovs) {
-		this.lovs = lovs;
+	public void setEffEnd(Date effEnd) {
+		this.effEnd = effEnd;
 	}
 	
 }
