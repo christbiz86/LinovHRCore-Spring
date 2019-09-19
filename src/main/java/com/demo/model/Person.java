@@ -5,19 +5,20 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "core_persons")
 public class Person {
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 	
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
@@ -67,28 +68,28 @@ public class Person {
 	private String weakness;
 	
 	@JoinColumn(name = "country_id", referencedColumnName = "id")
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private Country country;
 	
 	@JoinColumn(name = "lov_ptyp", referencedColumnName = "id")
 	@OneToOne
-	private Lovs lovPtyp;
+	private Lov lovPtyp;
 	
 	@JoinColumn(name = "lov_blod", referencedColumnName = "id")
 	@OneToOne
-	private Lovs lovBlod;
+	private Lov lovBlod;
 	
 	@JoinColumn(name = "lov_gndr", referencedColumnName = "id")
 	@OneToOne
-	private Lovs lovGndr;
+	private Lov lovGndr;
 	
 	@JoinColumn(name = "lov_rlgn", referencedColumnName = "id")
 	@OneToOne
-	private Lovs lovRlgn;
+	private Lov lovRlgn;
 	
 	@JoinColumn(name = "lov_mars", referencedColumnName = "id")
 	@OneToOne
-	private Lovs lovMars;
+	private Lov lovMars;
 	
 	@Column(name = "created_by")
 	private Integer createdBy;
@@ -102,8 +103,8 @@ public class Person {
 	@Column(name = "updated_at")
 	private Timestamp updatedAt;
 	
-	@Column(name = "file_foto")
-	private String fileFoto;
+	@Column(name = "file_photo")
+	private String filePhoto;
 	
 	@Column(name = "vacancy_id")
 	private Integer vacancyId;
@@ -247,43 +248,43 @@ public class Person {
 		this.country = country;
 	}
 
-	public Lovs getLovPtyp() {
+	public Lov getLovPtyp() {
 		return lovPtyp;
 	}
 
-	public void setLovPtyp(Lovs lovPtyp) {
+	public void setLovPtyp(Lov lovPtyp) {
 		this.lovPtyp = lovPtyp;
 	}
 
-	public Lovs getLovBlod() {
+	public Lov getLovBlod() {
 		return lovBlod;
 	}
 
-	public void setLovBlod(Lovs lovBlod) {
+	public void setLovBlod(Lov lovBlod) {
 		this.lovBlod = lovBlod;
 	}
 
-	public Lovs getLovGndr() {
+	public Lov getLovGndr() {
 		return lovGndr;
 	}
 
-	public void setLovGndr(Lovs lovGndr) {
+	public void setLovGndr(Lov lovGndr) {
 		this.lovGndr = lovGndr;
 	}
 
-	public Lovs getLovRlgn() {
+	public Lov getLovRlgn() {
 		return lovRlgn;
 	}
 
-	public void setLovRlgn(Lovs lovRlgn) {
+	public void setLovRlgn(Lov lovRlgn) {
 		this.lovRlgn = lovRlgn;
 	}
 
-	public Lovs getLovMars() {
+	public Lov getLovMars() {
 		return lovMars;
 	}
 
-	public void setLovMars(Lovs lovMars) {
+	public void setLovMars(Lov lovMars) {
 		this.lovMars = lovMars;
 	}
 
@@ -319,12 +320,12 @@ public class Person {
 		this.updatedAt = updatedAt;
 	}
 
-	public String getFileFoto() {
-		return fileFoto;
+	public String getFilePhoto() {
+		return filePhoto;
 	}
 
-	public void setFileFoto(String fileFoto) {
-		this.fileFoto = fileFoto;
+	public void setFileFoto(String filePhoto) {
+		this.filePhoto = filePhoto;
 	}
 
 	public Integer getVacancyId() {

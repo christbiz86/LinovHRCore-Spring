@@ -7,24 +7,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_lov_type")
-public class LovTypes {
+@Table(name = "core_lovs")
+public class Lov {
 
 	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
-    @Column(name = "code")
-    private String code;
+    @JoinColumn(name = "lov_type_id", referencedColumnName = "id")
+    @OneToOne
+    private LovType lovTypes;
     
-    @Column(name = "name")
-    private String name;
+    @Column(name = "key_data")
+    private String keyData;
+
+    @Column(name = "val_data")
+    private String valData;
     
     @Column(name = "created_by")
     private Integer createdBy;
@@ -39,7 +45,13 @@ public class LovTypes {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
+    
+    @Column(name = "is_disableable")
+    private String isDisableable;
+    
+    @Column(name = "is_active")
+    private String isActive;
+    
     @Column(name = "arg1")
     private String arg1;
 
@@ -51,20 +63,28 @@ public class LovTypes {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
+	public LovType getLovTypes() {
+		return lovTypes;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setLovTypes(LovType lovTypes) {
+		this.lovTypes = lovTypes;
 	}
 
-	public String getName() {
-		return name;
+	public String getKeyData() {
+		return keyData;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setKeyData(String keyData) {
+		this.keyData = keyData;
+	}
+
+	public String getValData() {
+		return valData;
+	}
+
+	public void setValData(String valData) {
+		this.valData = valData;
 	}
 
 	public Integer getCreatedBy() {
@@ -99,6 +119,22 @@ public class LovTypes {
 		this.updatedAt = updatedAt;
 	}
 
+	public String getIsDisableable() {
+		return isDisableable;
+	}
+
+	public void setIsDisableable(String isDisableable) {
+		this.isDisableable = isDisableable;
+	}
+
+	public String getIsActive() {
+		return isActive;
+	}
+
+	public void setIsActive(String isActive) {
+		this.isActive = isActive;
+	}
+
 	public String getArg1() {
 		return arg1;
 	}
@@ -106,4 +142,5 @@ public class LovTypes {
 	public void setArg1(String arg1) {
 		this.arg1 = arg1;
 	}
+    
 }
