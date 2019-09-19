@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @Controller
@@ -24,7 +23,7 @@ public class CostcenterController {
 
     @GetMapping(value = "/costcenter/{id}")
     public ResponseEntity<?> getCostcenterById(
-            @PathVariable UUID id
+            @PathVariable String id
     ){
         List<Costcenter> companyId = costcenterService.findById(id);
         return new ResponseEntity<List<Costcenter>>(companyId, HttpStatus.OK);

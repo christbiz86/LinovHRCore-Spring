@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @Controller
@@ -21,7 +20,7 @@ public class CompanyController {
 
     @GetMapping(value = "/company/{id}")
     public ResponseEntity<?> getCompanyById(
-            @PathVariable UUID id
+            @PathVariable String id
     ){
         List<Company> companyId = companyService.findById(id);
         return new ResponseEntity<List<Company>>(companyId, HttpStatus.OK);

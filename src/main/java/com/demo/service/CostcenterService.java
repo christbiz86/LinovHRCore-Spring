@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class CostcenterService {
@@ -18,7 +17,7 @@ public class CostcenterService {
         return costcenterDao.findAll();
     }
 
-    public List<Costcenter> findById(UUID id){
+    public List<Costcenter> findById(String id){
         return costcenterDao.findById(id);
     }
 
