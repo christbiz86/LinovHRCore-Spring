@@ -1,20 +1,17 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "core_responsibility_groups")
@@ -23,11 +20,10 @@ public class ResponsibilityGroups {
 	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private String id;
 	
-	@JsonIgnoreProperties(value = {"responsibilityGroups"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
-    @JoinColumn(name="company_id", referencedColumnName = "id")
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
+    @OneToOne
     private Company company;
 	
     @Column(name = "code")
@@ -40,32 +36,24 @@ public class ResponsibilityGroups {
     private String description;
 
     @Column(name = "created_by")
-    private Integer createdBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -101,28 +89,12 @@ public class ResponsibilityGroups {
 		this.description = description;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
-	}
-
-	public Timestamp getEffBegin() {
-		return effBegin;
-	}
-
-	public void setEffBegin(Timestamp effBegin) {
-		this.effBegin = effBegin;
-	}
-
-	public Timestamp getEffEnd() {
-		return effEnd;
-	}
-
-	public void setEffEnd(Timestamp effEnd) {
-		this.effEnd = effEnd;
 	}
 
 	public Timestamp getCreatedAt() {
@@ -133,11 +105,11 @@ public class ResponsibilityGroups {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
