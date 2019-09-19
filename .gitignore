@@ -1,5 +1,6 @@
-/target
-/src/main/resources/
+/target/*
+/src/main/resources/*
+.gitignore
 database.sql
 HELP.md
 modelReport.html
@@ -7,3 +8,4 @@ modelReport.jasper
 mvnv
 mvnw.cmd
 pom.xml
+/target/
