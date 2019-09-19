@@ -2,10 +2,10 @@ package com.demo.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.UUID;
 
 @Entity
 @Table(name = "core_jobs")
@@ -13,8 +13,9 @@ public class Job {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -49,11 +50,11 @@ public class Job {
     @JoinColumn(name="company_id", referencedColumnName = "id")
     private Company company;
 
-    public UUID getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(UUID id){
+    public void setId(String id){
         this.id = id;
     }
 
@@ -61,7 +62,7 @@ public class Job {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -69,7 +70,7 @@ public class Job {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
@@ -109,7 +110,7 @@ public class Job {
         return company;
     }
 
-    public void setCompany() {
+    public void setCompany(Company company) {
         this.company = company;
     }
 

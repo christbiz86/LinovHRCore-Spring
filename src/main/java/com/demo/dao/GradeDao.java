@@ -11,7 +11,19 @@ public class GradeDao extends ParentDao {
 
     @Transactional
     public List<Grade> findAll(){
-        return super.entityManager.createQuery("From Grade").getResultList();
+        return super.entityManager.createQuery("FROM Grade").getResultList();
+    }
+
+    @Transactional
+    public List<Grade> findById(String id){
+        return super.entityManager.createQuery("FROM Grade where id=:id").setParameter("id",id)
+            .getResultList();
+    }
+
+    @Transactional
+    public List<Grade> findByCode(String code){
+        return super.entityManager.createQuery("FROM Grade where code=:code").setParameter("code",code)
+                .getResultList();
     }
 
 }

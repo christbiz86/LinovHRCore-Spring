@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class CostcenterDao extends ParentDao {
@@ -16,7 +15,7 @@ public class CostcenterDao extends ParentDao {
     }
 
     @Transactional
-    public List<Costcenter> findById(UUID id){
+    public List<Costcenter> findById(String id){
         return super.entityManager.createQuery("FROM Costcenter where id=:id").setParameter("id",id).getResultList();
     }
 
