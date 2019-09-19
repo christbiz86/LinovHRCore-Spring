@@ -16,7 +16,7 @@ public class Company {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -37,11 +37,11 @@ public class Company {
     @JoinColumn(name="tenant_id", referencedColumnName = "id")
     private Tenant tenant;
 
-    public UUID getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(UUID id){
+    public void setId(String id){
         this.id = id;
     }
 
@@ -49,7 +49,7 @@ public class Company {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
