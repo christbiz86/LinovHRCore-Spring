@@ -1,11 +1,19 @@
 package com.demo.model;
 
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.UUID;
 
 @Entity
 @Table(name = "core_grades")
@@ -13,7 +21,7 @@ public class Grade {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
     @Column(name = "name")
@@ -61,7 +69,7 @@ public class Grade {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -69,7 +77,7 @@ public class Grade {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
@@ -109,7 +117,7 @@ public class Grade {
         return company;
     }
 
-    public void setCompany() {
+    public void setCompany(Company company) {
         this.company = company;
     }
 
