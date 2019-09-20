@@ -1,16 +1,10 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -33,14 +27,14 @@ public class LovType {
     private String name;
     
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
@@ -49,9 +43,10 @@ public class LovType {
     @Column(name = "arg1")
     private String arg1;
     
-    @OneToMany(mappedBy = "lovType",fetch = FetchType.EAGER)
-    private List<Lov> lovs = new ArrayList<Lov>();
+    @Column(name = "version")
+    private Long version;
 
+    
 	public String getId() {
 		return id;
 	}
@@ -76,11 +71,11 @@ public class LovType {
 		this.name = name;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -92,11 +87,11 @@ public class LovType {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -116,12 +111,11 @@ public class LovType {
 		this.arg1 = arg1;
 	}
 
-	public List<Lov> getLovs() {
-		return lovs;
+	public Long getVersion() {
+		return version;
 	}
 
-	public void setLovs(List<Lov> lovs) {
-		this.lovs = lovs;
+	public void setVersion(Long version) {
+		this.version = version;
 	}
-	
 }

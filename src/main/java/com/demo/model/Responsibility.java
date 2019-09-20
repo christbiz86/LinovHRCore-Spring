@@ -1,7 +1,6 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,22 +40,16 @@ public class Responsibility {
 
     @Column(name = "description")
     private String description;
-    
-    @Column(name = "eff_begin")
-	private Date effBegin;
-	
-	@Column(name = "eff_end")
-	private Date effEnd;
-    
+        
     @Column(name = "created_by")
-    private String createdBy;
+    private Integer createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private String updatedBy;
+    private Integer updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
@@ -116,11 +109,11 @@ public class Responsibility {
 		this.description = description;
 	}
 
-	public String getCreatedBy() {
+	public Integer getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(String createdBy) {
+	public void setCreatedBy(Integer createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -132,11 +125,11 @@ public class Responsibility {
 		this.createdAt = createdAt;
 	}
 
-	public String getUpdatedBy() {
+	public Integer getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(String updatedBy) {
+	public void setUpdatedBy(Integer updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -162,22 +155,6 @@ public class Responsibility {
 
 	public void setUsedForValue(String usedForValue) {
 		this.usedForValue = usedForValue;
-	}
-
-	public Date getEffBegin() {
-		return effBegin;
-	}
-
-	public void setEffBegin(Date effBegin) {
-		this.effBegin = effBegin;
-	}
-
-	public Date getEffEnd() {
-		return effEnd;
-	}
-
-	public void setEffEnd(Date effEnd) {
-		this.effEnd = effEnd;
 	}
     
 }

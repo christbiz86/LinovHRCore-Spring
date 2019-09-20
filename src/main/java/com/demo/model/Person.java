@@ -17,8 +17,8 @@ import javax.persistence.Table;
 public class Person {
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 	
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
 	@OneToOne
@@ -26,12 +26,6 @@ public class Person {
 	
 	@Column(name = "id_card")
 	private String idCard;
-	
-	@Column(name = "eff_begin")
-	private Date effBegin;
-	
-	@Column(name = "eff_end")
-	private Date effEnd;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -102,8 +96,8 @@ public class Person {
 	@Column(name = "updated_at")
 	private Timestamp updatedAt;
 	
-	@Column(name = "file_foto")
-	private String fileFoto;
+	@Column(name = "file_photo")
+	private String filePhoto;
 	
 	@Column(name = "vacancy_id")
 	private Integer vacancyId;
@@ -133,22 +127,6 @@ public class Person {
 
 	public void setIdCard(String idCard) {
 		this.idCard = idCard;
-	}
-
-	public Date getEffBegin() {
-		return effBegin;
-	}
-
-	public void setEffBegin(Date effBegin) {
-		this.effBegin = effBegin;
-	}
-
-	public Date getEffEnd() {
-		return effEnd;
-	}
-
-	public void setEffEnd(Date effEnd) {
-		this.effEnd = effEnd;
 	}
 
 	public String getFirstName() {
@@ -319,12 +297,12 @@ public class Person {
 		this.updatedAt = updatedAt;
 	}
 
-	public String getFileFoto() {
-		return fileFoto;
+	public String getFilePhoto() {
+		return filePhoto;
 	}
 
-	public void setFileFoto(String fileFoto) {
-		this.fileFoto = fileFoto;
+	public void setFilePhoto(String filePhoto) {
+		this.filePhoto = filePhoto;
 	}
 
 	public Integer getVacancyId() {

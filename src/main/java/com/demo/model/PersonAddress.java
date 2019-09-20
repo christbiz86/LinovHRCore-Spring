@@ -1,16 +1,15 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -19,20 +18,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class PersonAddress {
 
 	@Id
-    @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-    private String id;
+	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private String id;
 
 	@JoinColumn(name = "person_id", referencedColumnName = "id")
     @OneToOne
     private Person person;
-	
-	@Column(name = "eff_begin")
-	private Date effBegin;
-	
-	@Column(name = "eff_end")
-	private Date effEnd;
-	
+		
 	@JoinColumn(name = "lov_rsty", referencedColumnName = "id")
 	@OneToOne
 	private Lov lovRsty;
@@ -76,6 +69,9 @@ public class PersonAddress {
     
 	@Column(name="is_default")
 	private boolean isDefault;
+	
+    @Column(name = "version")
+    private Long version;
 
 	public String getId() {
 		return id;
@@ -91,22 +87,6 @@ public class PersonAddress {
 
 	public void setPerson(Person person) {
 		this.person = person;
-	}
-
-	public Date getEffBegin() {
-		return effBegin;
-	}
-
-	public void setEffBegin(Date effBegin) {
-		this.effBegin = effBegin;
-	}
-
-	public Date getEffEnd() {
-		return effEnd;
-	}
-
-	public void setEffEnd(Date effEnd) {
-		this.effEnd = effEnd;
 	}
 
 	public Lov getLovRsty() {
@@ -213,4 +193,12 @@ public class PersonAddress {
 		this.isDefault = isDefault;
 	}
 
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+	
 }

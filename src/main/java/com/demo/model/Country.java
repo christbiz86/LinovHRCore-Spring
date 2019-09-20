@@ -5,8 +5,6 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -47,10 +45,6 @@ public class Country {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    @OneToOne
-    private Company companyId;
 
     public String getId(){
         return id;
@@ -98,14 +92,6 @@ public class Country {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Company getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
     }
 
 }
