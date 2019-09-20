@@ -93,5 +93,4 @@ public class Country {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-
 }

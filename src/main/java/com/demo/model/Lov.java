@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "core_lovs")
-public class Lov{
+public class Lov {
 
 	@Id
     @Column(name = "id")

@@ -1,4 +1,4 @@
-/target/
-/src/main/resources/
+target/
+src/main/resources/
 .dbeaver/
 .project

@@ -1,7 +1,6 @@
 package com.demo.model;
 
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,7 +14,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -29,14 +27,6 @@ public class Company {
 
     @Column(name = "name")
     private String name;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
 
     @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
     private List<Costcenter> costcenters;
@@ -60,22 +50,6 @@ public class Company {
 
     public void setName(String name){
         this.name = name;
-    }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
     }
 
     public List<Costcenter> getCostcenters() {
