@@ -4,25 +4,21 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "core_jobs")
 public class Job {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
 
@@ -36,32 +32,26 @@ public class Job {
     private String description;
     
     @Column(name = "ordinal")
-    private String ordinal;
+    private Integer ordinal;
 
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+    
+    @Column(name = "version")
+    private Long version;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
-
-    @JsonIgnoreProperties(value = {"jobs"})
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 
@@ -70,7 +60,7 @@ public class Job {
     }
 
     public void setId(String id){
-        this.id = id;
+		this.id = id;
     }
 
     public String getName(){
@@ -78,7 +68,11 @@ public class Job {
     }
 
     public void setName(String name) {
-		this.name = name;
+    	if(name == null) {
+    		this.name = new String();
+    	} else {
+    		this.name = name;
+    	}
 	}
 
     public String getCode(){
@@ -86,7 +80,11 @@ public class Job {
     }
 
     public void setCode(String code) {
-		this.code = code;
+    	if(code == null) {
+    		this.code = new String();
+    	} else {
+    		this.code = code;
+    	}
 	}    
 
     public String getDescription() {
@@ -94,15 +92,23 @@ public class Job {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description == null) {
+			this.description = new String();
+    	} else {
+    		this.description = description;
+    	}
 	}
 
-	public String getOrdinal() {
+	public Integer getOrdinal() {
 		return ordinal;
 	}
 
-	public void setOrdinal(String ordinal) {
-		this.ordinal = ordinal;
+	public void setOrdinal(Integer ordinal) {
+		if(ordinal == null) {
+			this.ordinal = 0;
+    	} else {
+    		this.ordinal = ordinal;
+    	}
 	}
 	
 	public Timestamp getCreatedAt() {
@@ -121,28 +127,52 @@ public class Job {
         this.updatedAt = updatedAt;
     }
 
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
+    public String getCreatedBy() {
+		return createdBy;
+	}
 
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
+	public void setCreatedBy(String createdBy) {
+		if(createdBy == null) {
+			this.createdBy = new String();
+    	} else {
+    		this.createdBy = createdBy;
+    	}
+	}
 
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
 
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
-    }
+	public void setUpdatedBy(String updatedBy) {
+		if(updatedBy == null) {
+			this.updatedBy = new String();
+    	} else {
+    		this.updatedBy = updatedBy;
+    	}
+	}
 
-    public Company getCompany() {
+    public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		if(version == null) {
+			this.version = new Long(0);
+    	} else {
+    		this.version = version;
+    	}
+	}
+
+	public Company getCompany() {
         return company;
     }
 
     public void setCompany(Company company) {
-        this.company = company;
+    	if(company == null) {
+    		this.company = new Company();
+    	} else {
+    		this.company = company;
+    	}
     }
 
 }
