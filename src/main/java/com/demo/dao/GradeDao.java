@@ -12,9 +12,14 @@ public class GradeDao extends ParentDao {
         return super.entityManager.createQuery("FROM Grade").getResultList();
     }
 
-    public List<Grade> findById(String id){
-        return super.entityManager.createQuery("FROM Grade where id=:id").setParameter("id",id)
+    public Grade findById(String id){
+        List<Grade> grade = super.entityManager.createQuery("FROM Grade where id=:id").setParameter("id",id)
             .getResultList();
+        if(grade.size() == 0){
+             return new Grade();
+        } else {
+            return grade.get(0);
+        }
     }
 
     public List<Grade> findByCode(String code){
@@ -22,8 +27,13 @@ public class GradeDao extends ParentDao {
                 .getResultList();
     }
 
-    public void insert(Grade grade){
+    public void save(Grade grade){
         super.entityManager.merge(grade);
+    }
+
+    public void delete(String id){
+        Grade grade = findById(id);
+        super.entityManager.remove(grade);
     }
 
 }

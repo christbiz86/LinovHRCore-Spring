@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.xml.bind.ValidationException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class GradeService {
         return gradeDao.findAll();
     }
 
-    public List<Grade> findById(String id){
+    public Grade findById(String id){
         return gradeDao.findById(id);
     }
 
@@ -32,10 +33,29 @@ public class GradeService {
         return gradeDao.findByCode(code);
     }
 
-    @Transactional
     public void insert(Grade grade) throws ValidationException{
         gradeValidation(grade);
-        gradeDao.insert(grade);
+        gradeDao.save(grade);
+    }
+
+    public void update(Grade grade) throws ValidationException{
+//        grade.setUpdatedBy("124a");
+        grade.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+        gradeValidId(grade);
+        gradeValidation(grade);
+        gradeDao.save(grade);
+    }
+
+    public void delete(String id) throws ValidationException{
+        gradeDao.delete(id);
+    }
+
+    private void gradeValidId(Grade grade) throws ValidationException{
+        if(grade.getId() == null){
+            throw new ValidationException("Grade ID null!");
+        } else if(gradeDao.findById(grade.getId()) == null){
+            throw new ValidationException("Grade ID not found!");
+        }
     }
 
     private void gradeValidation(Grade grade) throws ValidationException{
@@ -44,16 +64,25 @@ public class GradeService {
             throw new ValidationException("Company ID not found or empty!");
         }
         if(grade.getName() == null){
-            throw new ValidationException("Name is mandatory!");
+            throw new ValidationException("Object Name doesn't exist!");
+        }
+        if(grade.getName().isEmpty()){
+            throw new ValidationException("Name is empty!");
         }
         if(grade.getCode() == null){
-            throw new ValidationException("Code is mandatory!");
+            throw new ValidationException("Object Code doesn't exist!");
+        }
+        if(grade.getCode().isEmpty()){
+            throw new ValidationException("Code is empty!");
         }
         if(grade.getOrdinal() == null){
-            throw new ValidationException("Ordinal is mandatory!");
+            throw new ValidationException("Object Ordinal doesn't exist!");
         }
         if(grade.getCreatedBy() == null){
-            throw new ValidationException("CreatedBy is mandatory!");
+            throw new ValidationException("Object CreatedBy doesn't exist!");
+        }
+        if(grade.getCreatedBy().isEmpty()){
+            throw new ValidationException("CreatedBy is empty!");
         }
     }
 
