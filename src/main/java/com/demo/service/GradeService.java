@@ -39,7 +39,6 @@ public class GradeService {
     }
 
     public void update(Grade grade) throws ValidationException{
-//        grade.setUpdatedBy("124a");
         grade.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
         gradeValidId(grade);
         gradeValidation(grade);
