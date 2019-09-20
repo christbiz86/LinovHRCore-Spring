@@ -23,27 +23,18 @@ public class Grade {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "created_by")
-    private Integer createdBy;
+    @Column(name = "ordinal")
+    private Integer ordinal;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Column(name = "created_by")
+    private String createdBy;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
 
     @JsonIgnoreProperties(value = {"grades"})
     @ManyToOne(optional = false,fetch = FetchType.EAGER)
@@ -74,12 +65,28 @@ public class Grade {
         this.code = code;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Integer getOrdinal(){
+        return ordinal;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setOrdinal(Integer ordinal){
+        this.ordinal = ordinal;
+    }
+
+    public String getCreatedBy(){
+        return createdBy;
+    }
+
+    public void setCreatedBy(){
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy(){
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(){
+        this.updatedBy = updatedBy;
     }
 
     public Timestamp getUpdatedAt() {
@@ -88,22 +95,6 @@ public class Grade {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
     }
 
     public Company getCompany() {

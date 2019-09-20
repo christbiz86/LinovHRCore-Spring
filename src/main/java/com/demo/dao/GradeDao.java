@@ -22,4 +22,8 @@ public class GradeDao extends ParentDao {
                 .getResultList();
     }
 
+    public void insert(Grade grade){
+        super.entityManager.merge(grade);
+    }
+
 }

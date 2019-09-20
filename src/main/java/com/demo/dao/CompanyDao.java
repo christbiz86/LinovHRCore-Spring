@@ -12,7 +12,7 @@ public class CompanyDao extends ParentDao {
         return super.entityManager.createQuery("FROM Company").getResultList();
     }
 
-    public List<Company> findById(String  id){
+    public List<Company> findById(String id){
         return super.entityManager.createQuery("FROM Company WHERE id=:id").setParameter("id", id)
                 .getResultList();
     }

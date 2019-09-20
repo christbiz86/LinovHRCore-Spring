@@ -33,6 +33,16 @@ public class Company {
     @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
     private List<Costcenter> costcenters;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "updated_by")
+    private String updatedBy;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+
     @JsonIgnoreProperties(value = {"companies"})
     @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name="tenant_id", referencedColumnName = "id")
@@ -84,6 +94,30 @@ public class Company {
 
     public void setTenant(Tenant tenant) {
         this.tenant = tenant;
+    }
+
+    public String getCreatedBy(){
+        return createdBy;
+    }
+
+    public void setCreatedBy(){
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy(){
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(){
+        this.updatedBy = updatedBy;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }
