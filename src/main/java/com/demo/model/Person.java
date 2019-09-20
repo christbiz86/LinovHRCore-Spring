@@ -1,24 +1,33 @@
 package com.demo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_persons")
-public class Person {
+public class Person implements Serializable {
+	private static final long serialVersionUID = 1L;
+    
 	@Id
     @Column(name = "id")
-	@GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 	
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
@@ -27,12 +36,6 @@ public class Person {
 	
 	@Column(name = "id_card")
 	private String idCard;
-	
-	@Column(name = "eff_begin")
-	private Date effBegin;
-	
-	@Column(name = "eff_end")
-	private Date effEnd;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -43,6 +46,7 @@ public class Person {
 	@Column(name = "birth_place")
 	private String birthPlace;
 	
+	@JsonFormat(pattern="yyyy-MM-dd")
 	@Column(name = "birth_date")
 	private Date birthDate;
 	
@@ -68,7 +72,7 @@ public class Person {
 	private String weakness;
 	
 	@JoinColumn(name = "country_id", referencedColumnName = "id")
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
 	private Country country;
 	
 	@JoinColumn(name = "lov_ptyp", referencedColumnName = "id")
@@ -92,14 +96,16 @@ public class Person {
 	private Lov lovMars;
 	
 	@Column(name = "created_by")
-	private Integer createdBy;
+	private String createdBy;
 	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
 	@Column(name = "created_at")
 	private Timestamp createdAt;
 	
 	@Column(name = "updated_by")
-	private Integer updatedBy;
+	private String updatedBy;
 	
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
 	@Column(name = "updated_at")
 	private Timestamp updatedAt;
 	
@@ -111,6 +117,9 @@ public class Person {
 	
 	@Column(name = "candidate_ready_to_hire_id")
 	private Integer candidateReadyToHireId;
+	
+	@Column(name = "version")
+	private Long version;
 
 	public String getId() {
 		return id;
@@ -134,22 +143,6 @@ public class Person {
 
 	public void setIdCard(String idCard) {
 		this.idCard = idCard;
-	}
-
-	public Date getEffBegin() {
-		return effBegin;
-	}
-
-	public void setEffBegin(Date effBegin) {
-		this.effBegin = effBegin;
-	}
-
-	public Date getEffEnd() {
-		return effEnd;
-	}
-
-	public void setEffEnd(Date effEnd) {
-		this.effEnd = effEnd;
 	}
 
 	public String getFirstName() {
@@ -288,11 +281,11 @@ public class Person {
 		this.lovMars = lovMars;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -304,11 +297,11 @@ public class Person {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -324,7 +317,7 @@ public class Person {
 		return filePhoto;
 	}
 
-	public void setFileFoto(String filePhoto) {
+	public void setFilePhoto(String filePhoto) {
 		this.filePhoto = filePhoto;
 	}
 
@@ -342,5 +335,13 @@ public class Person {
 
 	public void setCandidateReadyToHireId(Integer candidateReadyToHireId) {
 		this.candidateReadyToHireId = candidateReadyToHireId;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
 	}
 }
