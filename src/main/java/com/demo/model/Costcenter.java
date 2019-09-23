@@ -2,19 +2,6 @@ package com.demo.model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 @Table(name="core_cost_centers")
 public class Costcenter {
@@ -31,7 +18,6 @@ public class Costcenter {
     private String name;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-<<<<<<< HEAD
     @Column(name = "eff_begin")
     private Timestamp effBegin;
 
@@ -41,10 +27,9 @@ public class Costcenter {
 
     @Column(name = "created_by")
     private String createdBy;
-=======
+
     @Column(name = "created_at")
     private Timestamp createdAt;
->>>>>>> 8ab925863f2c368ba460f81a85a2121eaae908ec
 
     @Column(name = "updated_by")
     private String updatedBy;

@@ -2,26 +2,6 @@ package com.demo.model;
 
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-
-<<<<<<< HEAD
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
-=======
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
->>>>>>> 8ab925863f2c368ba460f81a85a2121eaae908ec
-
 @Entity
 @Table(name = "core_grades")
 public class Grade {
@@ -96,7 +76,6 @@ public class Grade {
     public void setCreatedBy(){
         this.createdBy = createdBy;
     }
-<<<<<<< HEAD
 
     public String getUpdatedBy(){
         return updatedBy;
@@ -123,6 +102,3 @@ public class Grade {
     }
 
 }
-=======
-}
->>>>>>> 8ab925863f2c368ba460f81a85a2121eaae908ec
