@@ -1,13 +1,12 @@
 package com.demo.controller;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,25 +15,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.PersonAddress;
-import com.demo.service.PersonAddressService;
+import com.demo.model.UserRole;
+import com.demo.service.UserRoleService;
 
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class PersonAddressController {
+public class UserRoleController {
 
 	@Autowired
-	private PersonAddressService personAddressService;
+	private UserRoleService userRoleService;
 	
 	@Transactional
-	@GetMapping(value = "/person/{id}/addresses")
-    public ResponseEntity<?> getPersonAddress(@PathVariable String id)
+	@GetMapping(value = "user/role/{id}")
+    public ResponseEntity<?> getUserRole(@PathVariable String id)
 	{
 		try{
-				List<PersonAddress> listPersonAddress = personAddressService.findByPersonId(id);
+				UserRole userRole = userRoleService.findById(id);
 
-				return ResponseEntity.ok(listPersonAddress);
+				return ResponseEntity.ok(userRole);
 		}
 		catch(Exception e){
 			 
@@ -42,29 +41,41 @@ public class PersonAddressController {
 		}
     }
 	
-
-	@PostMapping(value = "/person/address")
 	@Transactional
-    public ResponseEntity<?> postPersonAddress(@RequestBody PersonAddress personAddress)
+	@PostMapping("/user/role")
+    public ResponseEntity<?> postUserRole(@RequestBody UserRole userRole)
 	{
 		try{	
-				personAddressService.save(personAddress);	
-				return ResponseEntity.ok("Save Success");
+			userRoleService.save(userRole);	
+			return ResponseEntity.ok("Save Success");
 		}
 		catch (Exception e) {
-			System.out.println(e);
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@PutMapping("/user/role")
+    public ResponseEntity<?> putUserRole(@RequestBody UserRole userRole)
+	{
+		try{	
+			userRoleService.update(userRole);	
+			return ResponseEntity.ok("Put Success");
+		}
+		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 
     }
 	
 	@Transactional
-	@PutMapping(value = "/person/{id}/address")
-    public ResponseEntity<?> putPersonAddress(@PathVariable String id,@RequestBody PersonAddress personAddress)
+	@DeleteMapping("/user/role/{id}")
+    public ResponseEntity<?> deleteUserRole(@PathVariable String id)
 	{
 		try{	
-				personAddressService.update(personAddress);	
-				return ResponseEntity.ok("Put Success");
+			userRoleService.delete(id);	
+			return ResponseEntity.ok("Delete Success");
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

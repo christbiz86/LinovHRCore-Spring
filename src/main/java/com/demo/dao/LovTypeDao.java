@@ -7,25 +7,16 @@ import org.springframework.stereotype.Repository;
 import com.demo.model.LovType;
 
 @Repository
-public class LovTypeDao extends ParentDao{
+public class LovTypeDao extends AbstractJpaDao<LovType>{
 
+	public LovTypeDao() {
+        setClazz(LovType.class);
+    }
+	
 	@SuppressWarnings("unchecked")
     public List<LovType> findAll(Integer offset, Integer limit){
         return super.entityManager.createQuery("FROM LovType ")
                 .setFirstResult(offset).setMaxResults(limit).getResultList();
-    }
-	
-	@SuppressWarnings("unchecked")
-	public LovType findById(String id){
-		List<LovType>list= super.entityManager.createQuery("FROM LovType WHERE id=:id").setParameter("id", id)
-                .getResultList();
-		
-		if (list.size() == 0) {
-			return new LovType();
-		}
-		else {
-			return (LovType)list.get(0);
-		}
     }
 	
 	@SuppressWarnings("unchecked")
@@ -41,23 +32,7 @@ public class LovTypeDao extends ParentDao{
 			return (LovType)list.get(0);
 		}
     }
-	
-	public void save(LovType lovType) {
-		entityManager.merge(lovType);
-	}
-	
-	public void delete(LovType lovType) {
-		entityManager.remove(lovType);
-	}
-	
-	public boolean isExist(String id) {
-		if (findById(id).getId().isEmpty()) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-	
+		
 	public boolean isBkExist(LovType lovType) {
 		
 		if(findByBk(lovType).getId().isEmpty()) {

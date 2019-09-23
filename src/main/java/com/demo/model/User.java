@@ -1,7 +1,9 @@
 package com.demo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_users")
-public class User {
-
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name = "core_users",uniqueConstraints = @UniqueConstraint(columnNames = {"tenant_id","username"}))
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -84,7 +92,12 @@ public class User {
 	}
 
 	public void setTenant(Tenant tenant) {
-		this.tenant = tenant;
+		if(tenant == null) {
+			this.tenant = new Tenant();
+    	} else {
+    		this.tenant = tenant;
+    	}
+
 	}
 
 	public String getEmail() {
@@ -92,7 +105,11 @@ public class User {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
+		if(email==null) {
+			this.email = new String();
+		}else {
+			this.email = email;
+		}
 	}
 
 	public String getPassword() {
@@ -100,7 +117,11 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		if(password==null) {
+			this.password=new String();
+		}else {
+			this.password = password;
+		}
 	}
 
 	public Boolean getIsDeleted() {
@@ -108,7 +129,11 @@ public class User {
 	}
 
 	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
+		if(isDeleted) {
+			this.isDeleted=false;
+		}else {
+			this.isDeleted = isDeleted;
+		}
 	}
 
 	public String getCreatedBy() {
@@ -148,7 +173,11 @@ public class User {
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		if(username==null) {
+			this.username=new String();
+		}else {
+			this.username = username;
+		}
 	}
 
 	public Boolean getIsSa() {
@@ -156,7 +185,11 @@ public class User {
 	}
 
 	public void setIsSa(Boolean isSa) {
-		this.isSa = isSa;
+		if(isSa==null) {
+			this.isSa=false;
+		}else {
+			this.isSa = isSa;
+		}
 	}
 
 	public Person getPerson() {
@@ -164,7 +197,11 @@ public class User {
 	}
 
 	public void setPerson(Person person) {
-		this.person = person;
+		if(person==null) {
+			this.person=new Person();
+		}else {
+			this.person = person;
+		}
 	}
 
 	public String getUrlForgotPassword() {
@@ -172,7 +209,11 @@ public class User {
 	}
 
 	public void setUrlForgotPassword(String urlForgotPassword) {
-		this.urlForgotPassword = urlForgotPassword;
+		if(urlForgotPassword==null) {
+			this.urlForgotPassword=new String();
+		}else {
+			this.urlForgotPassword = urlForgotPassword;
+		}
 	}
 
 	public Boolean getChangePassword() {
@@ -180,7 +221,11 @@ public class User {
 	}
 
 	public void setChangePassword(Boolean changePassword) {
-		this.changePassword = changePassword;
+		if(changePassword==null) {
+			this.changePassword=false;
+		}else {
+			this.changePassword = changePassword;
+		}
 	}
 
 	public Timestamp getActiveLink() {
@@ -196,6 +241,10 @@ public class User {
 	}
 
 	public void setVersion(Long version) {
-		this.version = version;
+		if(version == null) {
+			this.version = new Long(0);
+    	} else {
+    		this.version = version;
+    	}
 	}
 }

@@ -1,7 +1,9 @@
 package com.demo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name="core_person_addresses")
-public class PersonAddress {
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name="core_person_addresses",uniqueConstraints = @UniqueConstraint(columnNames = {"person_id","address"}))
+public class PersonAddress implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="id")
@@ -68,7 +76,7 @@ public class PersonAddress {
     private Timestamp updatedAt;
     
 	@Column(name="is_default")
-	private boolean isDefault;
+	private Boolean isDefault;
 	
     @Column(name = "version")
     private Long version;
@@ -86,7 +94,11 @@ public class PersonAddress {
 	}
 
 	public void setPerson(Person person) {
-		this.person = person;
+		if(person==null) {
+			this.person=new Person();
+		}else {
+			this.person = person;
+		}
 	}
 
 	public Lov getLovRsty() {
@@ -94,7 +106,11 @@ public class PersonAddress {
 	}
 
 	public void setLovRsty(Lov lovRsty) {
-		this.lovRsty = lovRsty;
+		if(lovRsty==null) {
+			this.lovRsty=new Lov();
+		}else {
+			this.lovRsty = lovRsty;
+		}
 	}
 
 	public Lov getLovRsow() {
@@ -102,7 +118,11 @@ public class PersonAddress {
 	}
 
 	public void setLovRsow(Lov lovRsow) {
-		this.lovRsow = lovRsow;
+		if(lovRsow==null) {
+			this.lovRsow=new Lov();
+		}else {
+			this.lovRsow = lovRsow;
+		}
 	}
 
 	public City getCity() {
@@ -110,7 +130,11 @@ public class PersonAddress {
 	}
 
 	public void setCity(City city) {
-		this.city = city;
+		if(city==null) {
+			this.city=new City();
+		}else {
+			this.city = city;
+		}
 	}
 
 	public String getAddress() {
@@ -118,7 +142,11 @@ public class PersonAddress {
 	}
 
 	public void setAddress(String address) {
-		this.address = address;
+		if(address==null) {
+			this.address=new String();
+		}else {
+			this.address = address;
+		}
 	}
 
 	public String getPostalCode() {
@@ -126,7 +154,11 @@ public class PersonAddress {
 	}
 
 	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
+		if(postalCode==null) {
+			this.postalCode=new String();
+		}else {
+			this.postalCode = postalCode;
+		}
 	}
 
 	public String getPhone() {
@@ -134,7 +166,11 @@ public class PersonAddress {
 	}
 
 	public void setPhone(String phone) {
-		this.phone = phone;
+		if(phone==null) {
+			this.phone=new String();
+		}else {
+			this.phone = phone;
+		}
 	}
 
 	public String getFax() {
@@ -142,7 +178,11 @@ public class PersonAddress {
 	}
 
 	public void setFax(String fax) {
-		this.fax = fax;
+		if(fax==null) {
+			this.fax=new String();
+		}else {
+			this.fax = fax;
+		}
 	}
 
 	public String getMapLocation() {
@@ -150,7 +190,11 @@ public class PersonAddress {
 	}
 
 	public void setMapLocation(String mapLocation) {
-		this.mapLocation = mapLocation;
+		if(mapLocation==null) {
+			this.mapLocation=new String();
+		}else {
+			this.mapLocation = mapLocation;
+		}
 	}
 
 	public String getCreatedBy() {
@@ -189,8 +233,12 @@ public class PersonAddress {
 		return isDefault;
 	}
 
-	public void setDefault(boolean isDefault) {
-		this.isDefault = isDefault;
+	public void setDefault(Boolean isDefault) {
+		if(isDefault==null) {
+			this.isDefault=false;
+		}else {
+			this.isDefault = isDefault;
+		}
 	}
 
 	public Long getVersion() {
@@ -198,7 +246,11 @@ public class PersonAddress {
 	}
 
 	public void setVersion(Long version) {
-		this.version = version;
+		if(version == null) {
+			this.version = new Long(0);
+    	} else {
+    		this.version = version;
+    	}
 	}
 	
 }

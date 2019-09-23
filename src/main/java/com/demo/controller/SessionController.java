@@ -15,25 +15,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.User;
-import com.demo.service.UserService;
+import com.demo.exception.ValidationException;
+import com.demo.model.Session;
+import com.demo.service.SessionService;
 
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class UserController {
-
+public class SessionController {
+	
 	@Autowired
-	private UserService userService;
-		
+	private SessionService sessionService;
+	
 	@Transactional
-	@GetMapping(value = "/user/{id}")
-    public ResponseEntity<?> getUser(@PathVariable String id)
+	@GetMapping(value = "session/{id}")
+    public ResponseEntity<?> getSession(@PathVariable String id)
 	{
 		try{
-				User user = userService.findById(id);
+			Session session = sessionService.findById(id);
 
-				return ResponseEntity.ok(user);
+				return ResponseEntity.ok(session);
 		}
 		catch(Exception e){
 			 
@@ -42,25 +43,27 @@ public class UserController {
     }
 	
 	@Transactional
-	@PostMapping("/user")
-    public ResponseEntity<?> postUser(@RequestBody User user)
+	@PostMapping("/session")
+    public ResponseEntity<?> postSession(@RequestBody Session session)
 	{
 		try{	
-			userService.save(user);	
+			sessionService.save(session);	
 			return ResponseEntity.ok("Save Success");
 		}
+		catch (ValidationException ex) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
+		}
 		catch (Exception e) {
-
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insert Failed");
 		}
     }
 	
 	@Transactional
-	@PutMapping("/user")
-    public ResponseEntity<?> putUser(@RequestBody User user)
+	@PutMapping("/session")
+    public ResponseEntity<?> putSession(@RequestBody Session session)
 	{
 		try{	
-			userService.update(user);	
+			sessionService.update(session);	
 			return ResponseEntity.ok("Put Success");
 		}
 		catch (Exception e) {
@@ -68,13 +71,13 @@ public class UserController {
 		}
 
     }
-	
+
 	@Transactional
-	@DeleteMapping("/user/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id)
+	@DeleteMapping("/session/{id}")
+    public ResponseEntity<?> deleteSession(@PathVariable String id)
 	{
 		try{	
-			userService.delete(id);	
+			sessionService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch (Exception e) {

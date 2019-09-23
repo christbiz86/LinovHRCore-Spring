@@ -20,7 +20,7 @@ public class LovTypeService {
     }
 	
 	public LovType findById(String id){
-        return lovTypeDao.findById(id);
+        return lovTypeDao.findOne(id);
     }
 	
 	public LovType findByBk(String code){
@@ -34,7 +34,7 @@ public class LovTypeService {
     	valBkNotNull(lovType);
 		valBkNotExist(lovType);
 		valNonBk(lovType);
-		lovTypeDao.save(lovType);
+		lovTypeDao.create(lovType);
     }
     
     public void update(LovType lovType) throws Exception {
@@ -45,17 +45,22 @@ public class LovTypeService {
 		valBkNotChange(lovType);
 		valNonBk(lovType);
 		valCreatedNotChange(lovType);
-		lovTypeDao.save(lovType);
+		lovTypeDao.update(lovType);
     }
-	
+
+    public void delete(String id) throws Exception {
+		valIdExist(id);
+		lovTypeDao.deleteById(id);
+	}
+
 	private void valIdExist(String id)throws Exception{
-		if(!lovTypeDao.isExist(id)) {
+		if(!lovTypeDao.isIdExist(id)) {
 			throw new Exception("Data tidak ada");
 		}
 	}
 	
 	private void valIdNotNull(LovType lovType)throws Exception {
-		if(lovType.getId().isEmpty()) {
+		if(lovType.getId()==null) {
 			throw new Exception("Id tidak boleh kosong");
 		}
 	}
@@ -64,7 +69,7 @@ public class LovTypeService {
 		StringBuilder sb=new StringBuilder();
 		int error=0;
 
-		if(lovType.getName().isEmpty()) {
+		if(lovType.getName()==null) {
 			sb.append("City cannot be null !");
 			error++;
 		}
@@ -92,7 +97,7 @@ public class LovTypeService {
 	}
 	
 	private void valBkNotNull(LovType lovType) throws Exception{
-		if(lovType.getCode().isEmpty()) {
+		if(lovType.getCode()==null) {
 			throw new Exception("Bk tidak boleh kosong");
 		}
 	}

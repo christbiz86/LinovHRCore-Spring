@@ -1,7 +1,9 @@
 package com.demo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,13 +13,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="core_responsibilities")
-public class Responsibility {
+public class Responsibility implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")

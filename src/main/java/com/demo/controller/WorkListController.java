@@ -1,13 +1,12 @@
 package com.demo.controller;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,25 +15,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.PersonAddress;
-import com.demo.service.PersonAddressService;
+import com.demo.model.WorkList;
+import com.demo.service.WorkListService;
 
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class PersonAddressController {
-
+public class WorkListController {
+	
 	@Autowired
-	private PersonAddressService personAddressService;
+	private WorkListService workListService;
 	
 	@Transactional
-	@GetMapping(value = "/person/{id}/addresses")
-    public ResponseEntity<?> getPersonAddress(@PathVariable String id)
+	@GetMapping(value = "worklist/{id}")
+    public ResponseEntity<?> getWorkList(@PathVariable String id)
 	{
 		try{
-				List<PersonAddress> listPersonAddress = personAddressService.findByPersonId(id);
+				WorkList workList = workListService.findById(id);
 
-				return ResponseEntity.ok(listPersonAddress);
+				return ResponseEntity.ok(workList);
 		}
 		catch(Exception e){
 			 
@@ -42,29 +41,41 @@ public class PersonAddressController {
 		}
     }
 	
-
-	@PostMapping(value = "/person/address")
 	@Transactional
-    public ResponseEntity<?> postPersonAddress(@RequestBody PersonAddress personAddress)
+	@PostMapping("/worklist")
+    public ResponseEntity<?> postWorkList(@RequestBody WorkList workList)
 	{
 		try{	
-				personAddressService.save(personAddress);	
-				return ResponseEntity.ok("Save Success");
+//			workListService.save(workList);	
+			return ResponseEntity.ok("Save Success");
 		}
 		catch (Exception e) {
-			System.out.println(e);
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@PutMapping("/worklist")
+    public ResponseEntity<?> putWorkList(@RequestBody WorkList workList)
+	{
+		try{	
+//			workListService.update(workList);	
+			return ResponseEntity.ok("Put Success");
+		}
+		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 
     }
-	
+
 	@Transactional
-	@PutMapping(value = "/person/{id}/address")
-    public ResponseEntity<?> putPersonAddress(@PathVariable String id,@RequestBody PersonAddress personAddress)
+	@DeleteMapping("/worklist/{id}")
+    public ResponseEntity<?> deleteWorkList(@PathVariable String id)
 	{
 		try{	
-				personAddressService.update(personAddress);	
-				return ResponseEntity.ok("Put Success");
+			workListService.delete(id);	
+			return ResponseEntity.ok("Delete Success");
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

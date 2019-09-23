@@ -21,7 +21,7 @@ public class UserService {
     }
 	
 	public User findById(String id){
-        return userDao.findById(id);
+        return userDao.findOne(id);
     }
 	
 	public User findByBk(String tenantId,String username){
@@ -38,7 +38,7 @@ public class UserService {
     	valBkNotNull(user);
 		valBkNotExist(user);
 		valNonBk(user);
-		userDao.save(user);
+		userDao.create(user);
 	}
 	
 	public void update(User user) throws Exception {
@@ -49,11 +49,16 @@ public class UserService {
 		valBkNotChange(user);
 		valNonBk(user);
 		valCreatedNotChange(user);
-		userDao.save(user);
+		userDao.update(user);
+	}
+	
+	public void delete(String id) throws Exception {
+		valIdExist(id);
+		userDao.deleteById(id);
 	}
 	
 	private void valIdExist(String id)throws Exception{
-		if(!userDao.isExist(id)) {
+		if(!userDao.isIdExist(id)) {
 			throw new Exception("Data tidak ada");
 		}
 	}
@@ -69,19 +74,19 @@ public class UserService {
 		int error=0;
 
 		if(user.getEmail()==null) {
-			sb.append("Email cannot be null !");
+			sb.append("Email tidak boleh kosong !");
 			error++;
 		}
 		if(user.getPassword()==null) {
-			sb.append("Password cannot be null !");
+			sb.append("Password tidak boleh kosong !");
 			error++;
 		}
 		if(user.getIsDeleted() == null) {
-			sb.append("IsDeleted cannot be null !");
+			sb.append("IsDeleted tidak boleh kosong !");
 			error++;
 		}
 		if(user.getIsSa() == null) {
-			sb.append("IsSa cannot be null !");
+			sb.append("IsSa tidak boleh kosong !");
 			error++;
 		}
 				

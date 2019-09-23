@@ -6,32 +6,39 @@ import java.sql.Timestamp;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_lov_types",uniqueConstraints = @UniqueConstraint(columnNames = {"code"}))
-public class LovType implements Serializable{
+@Table(name = "core_roles",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","name"}))
+public class Role implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
     @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
 
-    @Column(name = "code")
-    private String code;
-    
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
+    @OneToOne()
+    private Company company;
+	
     @Column(name = "name")
     private String name;
+    
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
     
     @Column(name = "created_by")
     private String createdBy;
@@ -46,14 +53,13 @@ public class LovType implements Serializable{
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @Column(name = "arg1")
-    private String arg1;
     
-    @Column(name = "version")
+    @Column(name = "description")
+    private String description;
+    
+	@Column(name = "version")
     private Long version;
 
-    
 	public String getId() {
 		return id;
 	}
@@ -62,12 +68,16 @@ public class LovType implements Serializable{
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
+	public Company getCompany() {
+		return company;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setCompany(Company company) {
+		if(company==null) {
+			this.company=new Company();
+		}else {
+			this.company = company;			
+		}
 	}
 
 	public String getName() {
@@ -75,7 +85,23 @@ public class LovType implements Serializable{
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name==null) {
+			this.name=new String();
+		}else {
+			this.name = name;			
+		}
+	}
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(Boolean isDeleted) {
+		if(isDeleted==null) {
+			this.isDeleted=false;
+		}else {
+			this.isDeleted = isDeleted;			
+		}
 	}
 
 	public String getCreatedBy() {
@@ -110,12 +136,17 @@ public class LovType implements Serializable{
 		this.updatedAt = updatedAt;
 	}
 
-	public String getArg1() {
-		return arg1;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setArg1(String arg1) {
-		this.arg1 = arg1;
+	public void setDescription(String description) {
+		if(description==null) {
+			this.description=new String();
+		}else {
+			this.description = description;
+		}
+
 	}
 
 	public Long getVersion() {
@@ -123,6 +154,11 @@ public class LovType implements Serializable{
 	}
 
 	public void setVersion(Long version) {
-		this.version = version;
+		if(version == null) {
+			this.version = new Long(0);
+    	} else {
+    		this.version = version;
+    	}
 	}
+
 }

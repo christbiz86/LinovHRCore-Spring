@@ -21,7 +21,7 @@ public class LovService {
     }
 	
 	public Lov findById(String id){
-        return lovDao.findById(id);
+        return lovDao.findOne(id);
     }
 	
 	public Lov findByBk(String lovTypeId,String keyData){
@@ -38,7 +38,7 @@ public class LovService {
     	valBkNotNull(lov);
 		valBkNotExist(lov);
 		valNonBk(lov);
-		lovDao.save(lov);
+		lovDao.create(lov);
 	}
 	
 	public void update(Lov lov) throws Exception {
@@ -49,11 +49,16 @@ public class LovService {
 		valBkNotChange(lov);
 		valNonBk(lov);
 		valCreatedNotChange(lov);
-		lovDao.save(lov);
+		lovDao.update(lov);
 	}
-	
+
+	public void delete(String id) throws Exception {
+		valIdExist(id);
+		lovDao.deleteById(id);
+	}
+
 	private void valIdExist(String id)throws Exception{
-		if(!lovDao.isExist(id)) {
+		if(!lovDao.isIdExist(id)) {
 			throw new Exception("Data tidak ada");
 		}
 	}

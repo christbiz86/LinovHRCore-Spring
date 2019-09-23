@@ -20,7 +20,7 @@ public class PersonAddressService {
     }
     
     public PersonAddress findById(String id){
-        return personAddressDao.findById(id);
+        return personAddressDao.findOne(id);
     }
     
     public List<PersonAddress> findByPersonId(String id){
@@ -32,7 +32,7 @@ public class PersonAddressService {
     	valBkNotNull(personAddress);
 		valBkNotExist(personAddress);
 		valNonBk(personAddress);
-    	personAddressDao.save(personAddress);
+    	personAddressDao.create(personAddress);
     }
     
     public void update(PersonAddress personAddress) throws Exception {
@@ -43,7 +43,7 @@ public class PersonAddressService {
 		valBkNotChange(personAddress);
 		valNonBk(personAddress);
 		valCreatedNotChange(personAddress);
-    	personAddressDao.save(personAddress);
+    	personAddressDao.update(personAddress);
     }
     
     public void delete(PersonAddress personAddress) {
@@ -51,7 +51,7 @@ public class PersonAddressService {
     }
     
 	private void valIdExist(String id)throws Exception{
-		if(!personAddressDao.isExist(id)) {
+		if(!personAddressDao.isIdExist(id)) {
 			throw new Exception("Data tidak ada");
 		}
 	}
