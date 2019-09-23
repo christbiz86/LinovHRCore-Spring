@@ -1,13 +1,20 @@
 package com.demo.model;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="core_companies")
@@ -15,20 +22,11 @@ public class Company {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
     @Column(name = "name")
     private String name;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
 
     @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
     private List<Costcenter> costcenters;
@@ -62,22 +60,6 @@ public class Company {
 
     public void setName(String name){
         this.name = name;
-    }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
     }
 
     public List<Costcenter> getCostcenters() {

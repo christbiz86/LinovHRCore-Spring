@@ -11,6 +11,11 @@ import javax.persistence.EntityManager;
 import com.demo.dao.ParentDao;
 import org.hibernate.internal.SessionImpl;
 
+<<<<<<< HEAD
+=======
+import com.demo.dao.ParentDao;
+
+>>>>>>> 8ab925863f2c368ba460f81a85a2121eaae908ec
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;

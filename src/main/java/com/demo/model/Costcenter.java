@@ -1,11 +1,19 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="core_cost_centers")
@@ -13,7 +21,6 @@ public class Costcenter {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
@@ -24,6 +31,7 @@ public class Costcenter {
     private String name;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+<<<<<<< HEAD
     @Column(name = "eff_begin")
     private Timestamp effBegin;
 
@@ -33,6 +41,10 @@ public class Costcenter {
 
     @Column(name = "created_by")
     private String createdBy;
+=======
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+>>>>>>> 8ab925863f2c368ba460f81a85a2121eaae908ec
 
     @Column(name = "updated_by")
     private String updatedBy;
@@ -100,21 +112,4 @@ public class Costcenter {
     public void setCompany(Company company) {
         this.company = company;
     }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
-    }
-
 }

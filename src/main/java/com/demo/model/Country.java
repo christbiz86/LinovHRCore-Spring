@@ -1,10 +1,15 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="core_countries")
@@ -12,7 +17,6 @@ public class Country {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
@@ -37,10 +41,6 @@ public class Country {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    @OneToOne
-    private Company companyId;
 
     public String getId(){
         return id;
@@ -97,13 +97,4 @@ public class Country {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    public Company getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(Company companyId) {
-        this.companyId = companyId;
-    }
-
 }

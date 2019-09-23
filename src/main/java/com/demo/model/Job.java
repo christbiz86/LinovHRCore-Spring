@@ -13,7 +13,6 @@ public class Job {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
@@ -32,14 +31,6 @@ public class Job {
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
 
     @JsonIgnoreProperties(value = {"jobs"})
     @ManyToOne(optional = false,fetch = FetchType.EAGER)
@@ -92,22 +83,6 @@ public class Job {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
     }
 
     public Company getCompany() {

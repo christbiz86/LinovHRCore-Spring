@@ -1,11 +1,15 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="core_tenants")
@@ -13,13 +17,13 @@ public class Tenant {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(generator = "UUID")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
     @Column(name = "name")
     private String name;
 
+<<<<<<< HEAD
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "eff_begin")
     private Timestamp effBegin;
@@ -38,6 +42,8 @@ public class Tenant {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
+=======
+>>>>>>> 8ab925863f2c368ba460f81a85a2121eaae908ec
     @OneToMany(mappedBy = "tenant",fetch = FetchType.LAZY)
     private List<Company> companies;
 
@@ -56,6 +62,7 @@ public class Tenant {
     public void setName(String name){
         this.name = name;
     }
+<<<<<<< HEAD
 
     public Timestamp getEffBegin() {
         return effBegin;
@@ -97,4 +104,6 @@ public class Tenant {
         this.updatedAt = updatedAt;
     }
 
+=======
+>>>>>>> 8ab925863f2c368ba460f81a85a2121eaae908ec
 }
