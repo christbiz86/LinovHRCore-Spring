@@ -1,5 +1,4 @@
 target/
-src/main/resources/
 .dbeaver/
 .project
 *.xml
