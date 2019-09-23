@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,21 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 		
+	@Transactional
+	@GetMapping(value = "/users")
+    public ResponseEntity<?> getAllUser()
+	{
+		try{
+				List<User> listUser = userService.findAll();
+
+				return ResponseEntity.ok(listUser);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
 	@Transactional
 	@GetMapping(value = "/user/{id}")
     public ResponseEntity<?> getUser(@PathVariable String id)

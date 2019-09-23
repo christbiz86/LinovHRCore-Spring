@@ -46,9 +46,10 @@ public class PersonAddressService {
     	personAddressDao.update(personAddress);
     }
     
-    public void delete(PersonAddress personAddress) {
-    	personAddressDao.delete(personAddress);
-    }
+	public void delete(String id) throws Exception {
+		valIdExist(id);
+		personAddressDao.deleteById(id);
+	}
     
 	private void valIdExist(String id)throws Exception{
 		if(!personAddressDao.isIdExist(id)) {

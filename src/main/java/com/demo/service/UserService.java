@@ -16,6 +16,10 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	
+	public List<User> findAll(){
+        return userDao.findAll();
+    }
+	
 	public List<User> findAll(Integer offset,Integer limit){
         return userDao.findAll(offset, limit);
     }
