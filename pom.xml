@@ -73,7 +73,7 @@
 				<configuration>
 					<url>http://149.129.236.79:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/linovhr</path>
+					<path>/linov</path>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<username>admin</username>
@@ -87,7 +87,7 @@
 				<configuration>
 					<url>http://149.129.236.79:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/linovhr</path>
+					<path>/linov</path>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<username>admin</username>
