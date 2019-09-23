@@ -1,6 +1,10 @@
 package com.demo.model;
 
 import java.sql.Timestamp;
+<<<<<<< HEAD
+=======
+import java.util.UUID;
+>>>>>>> 24521ffb1ab2274485cc5393175ffd2fb4af96b8
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +23,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "core_grades")
 public class Grade {
 
-    @Id
+	@Id
     @Column(name = "id")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
