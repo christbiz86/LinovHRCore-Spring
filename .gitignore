@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-target/
-src/main/resources/
-.dbeaver/
-.project
-=======
 /target/*
 /src/main/resources/*
 .gitignore
@@ -15,4 +9,3 @@ mvnv
 mvnw.cmd
 pom.xml
 /target/
->>>>>>> 43ec25dc82de188f83c1edfdfb360c6dc8232d66
