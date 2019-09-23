@@ -28,7 +28,7 @@ public class Person implements Serializable {
 	@Id
     @Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+	private String id;
 	
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
 	@OneToOne

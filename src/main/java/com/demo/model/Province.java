@@ -1,16 +1,23 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="core_provinces")
 public class Province {
 
-    @Id
+	@Id
     @Column(name = "id")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
@@ -23,6 +30,10 @@ public class Province {
 
     @Column(name = "created_by")
     private String createdBy;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+    @Column(name = "created_at")
+    private Timestamp createdAt;
 
     @Column(name = "updated_by")
     private String updatedBy;

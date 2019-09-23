@@ -6,9 +6,12 @@ import java.sql.Timestamp;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,48 +21,74 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_lov_types",uniqueConstraints = @UniqueConstraint(columnNames = {"code"}))
-public class LovType implements Serializable{
+@Table(name="core_responsibilities")
+public class Responsibility implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
 	private String id;
-
+	
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
+    @OneToOne
+    private Company company;
+	
+    @ManyToOne(optional = false,fetch = FetchType.EAGER)
+    @JoinColumn(name="responsibility_group_id", referencedColumnName = "id")
+    private ResponsibilityGroup responsibilityGroup;
+    
     @Column(name = "code")
     private String code;
-    
+
     @Column(name = "name")
     private String name;
-    
+
+    @Column(name = "description")
+    private String description;
+        
     @Column(name = "created_by")
-    private String createdBy;
+    private Integer createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private String updatedBy;
+    private Integer updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @Column(name = "arg1")
-    private String arg1;
     
-    @Column(name = "version")
-    private Long version;
-
+    @Column(name = "used_for")
+    private String usedFor;
     
+    @Column(name = "used_for_value")
+    private String usedForValue;
+
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+	public ResponsibilityGroup getResponsibilityGroup() {
+		return responsibilityGroup;
+	}
+
+	public void setResponsibilityGroup(ResponsibilityGroup responsibilityGroup) {
+		this.responsibilityGroup = responsibilityGroup;
 	}
 
 	public String getCode() {
@@ -78,11 +107,19 @@ public class LovType implements Serializable{
 		this.name = name;
 	}
 
-	public String getCreatedBy() {
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(String createdBy) {
+	public void setCreatedBy(Integer createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -94,11 +131,11 @@ public class LovType implements Serializable{
 		this.createdAt = createdAt;
 	}
 
-	public String getUpdatedBy() {
+	public Integer getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(String updatedBy) {
+	public void setUpdatedBy(Integer updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -110,19 +147,20 @@ public class LovType implements Serializable{
 		this.updatedAt = updatedAt;
 	}
 
-	public String getArg1() {
-		return arg1;
+	public String getUsedFor() {
+		return usedFor;
 	}
 
-	public void setArg1(String arg1) {
-		this.arg1 = arg1;
+	public void setUsedFor(String usedFor) {
+		this.usedFor = usedFor;
 	}
 
-	public Long getVersion() {
-		return version;
+	public String getUsedForValue() {
+		return usedForValue;
 	}
 
-	public void setVersion(Long version) {
-		this.version = version;
+	public void setUsedForValue(String usedForValue) {
+		this.usedForValue = usedForValue;
 	}
+    
 }

@@ -6,33 +6,38 @@ import java.sql.Timestamp;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_lov_types",uniqueConstraints = @UniqueConstraint(columnNames = {"code"}))
-public class LovType implements Serializable{
+@Table(name = "core_user_roles",uniqueConstraints = @UniqueConstraint(columnNames = {"user_id","role_id"}))
+public class UserRole implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
+	
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OneToOne()
+    private User user;
 
-    @Column(name = "code")
-    private String code;
-    
-    @Column(name = "name")
-    private String name;
-    
+	@JoinColumn(name = "role_id", referencedColumnName = "id")
+    @OneToOne()
+    private Role role;
+	
     @Column(name = "created_by")
     private String createdBy;
 
@@ -40,20 +45,12 @@ public class LovType implements Serializable{
     @Column(name = "created_at")
     private Timestamp createdAt;
 
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-
-    @Column(name = "arg1")
-    private String arg1;
-    
-    @Column(name = "version")
+	@Column(name = "is_active")
+    private Boolean isActive;
+	
+	@Column(name = "version")
     private Long version;
 
-    
 	public String getId() {
 		return id;
 	}
@@ -62,20 +59,28 @@ public class LovType implements Serializable{
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
+	public User getUser() {
+		return user;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setUser(User user) {
+		if(user==null) {
+			this.user=new User();
+		}else {
+			this.user = user;	
+		}
 	}
 
-	public String getName() {
-		return name;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setRole(Role role) {
+		if(role==null) {
+			this.role=new Role();
+		}else {
+			this.role = role;			
+		}
 	}
 
 	public String getCreatedBy() {
@@ -94,28 +99,16 @@ public class LovType implements Serializable{
 		this.createdAt = createdAt;
 	}
 
-	public String getUpdatedBy() {
-		return updatedBy;
+	public Boolean getIsActive() {
+		return isActive;
 	}
 
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	public String getArg1() {
-		return arg1;
-	}
-
-	public void setArg1(String arg1) {
-		this.arg1 = arg1;
+	public void setIsActive(Boolean isActive) {
+		if(isActive==null) {
+			this.isActive = false;
+		}else {
+			this.isActive = isActive;	
+		}
 	}
 
 	public Long getVersion() {
@@ -123,6 +116,11 @@ public class LovType implements Serializable{
 	}
 
 	public void setVersion(Long version) {
-		this.version = version;
+		if(version == null) {
+			this.version = new Long(0);
+    	} else {
+    		this.version = version;
+    	}
 	}
+	
 }

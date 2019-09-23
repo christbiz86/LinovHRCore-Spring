@@ -1,33 +1,35 @@
 package com.demo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.UUID;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_responsibility_groups")
-public class ResponsibilityGroups {
+public class ResponsibilityGroup implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+	private String id;
 	
-	@JsonIgnoreProperties(value = {"responsibilityGroups"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
-    @JoinColumn(name="company_id", referencedColumnName = "id")
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
+    @OneToOne
     private Company company;
 	
     @Column(name = "code")
@@ -40,24 +42,24 @@ public class ResponsibilityGroups {
     private String description;
 
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-	public UUID getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -93,11 +95,11 @@ public class ResponsibilityGroups {
 		this.description = description;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -109,11 +111,11 @@ public class ResponsibilityGroups {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 

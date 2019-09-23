@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name="core_cities")
 public class City {
 
-    @Id
+	@Id
     @Column(name = "id")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
@@ -30,6 +30,10 @@ public class City {
 
     @Column(name = "created_by")
     private String createdBy;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+    @Column(name = "created_at")
+    private Timestamp createdAt;
 
     @Column(name = "updated_by")
     private String updatedBy;

@@ -6,13 +6,13 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,9 +21,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name="core_companies")
 public class Company {
 
-    @Id
+	@Id
     @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     @Column(name = "name")
