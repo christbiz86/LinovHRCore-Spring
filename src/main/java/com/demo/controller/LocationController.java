@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,65 +15,60 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.UnitType;
-import com.demo.service.UnitTypeService;
+import com.demo.exception.ValidationException;
+import com.demo.model.Location;
+import com.demo.service.LocationService;
 
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class UnitTypeController {
+public class LocationController {
 	@Autowired
-	private UnitTypeService unitTypeService;
+	private LocationService locationService;
 	
-	@GetMapping(value = "/unit-types")
+	@GetMapping(value = "/location/{id}")
 	@Transactional
-	public ResponseEntity<?> findAll(){
+	public ResponseEntity<?> getLocationById(@PathVariable String id) {
 		try {
-			List<UnitType> unitType = unitTypeService.findAll();
-			return ResponseEntity.ok(unitType);
+			Location location = locationService.findById(id);
+			return ResponseEntity.ok(location);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
+		
 	}
 	
-	@GetMapping(value = "/unit-type/{id}")
+	@PostMapping(value = "/location")
 	@Transactional
-	public ResponseEntity<?> getUnitTypeById(@PathVariable String id) {
+	public ResponseEntity<?> submit(@RequestBody Location location) throws Exception {
 		try {
-			UnitType unitType = unitTypeService.findById(id);
-			return ResponseEntity.ok(unitType);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-	}
-	
-	@PostMapping(value = "/unit-type")
-	@Transactional
-	public ResponseEntity<?> submit(@RequestBody UnitType unitType) throws Exception {
-		try {
-			unitTypeService.save(unitType);
+			locationService.save(location);
 			return ResponseEntity.ok("Data Have Successfully Saved");
+		} catch (ValidationException ex) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/unit-type")
+	@PutMapping(value = "/location")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody UnitType unitType) throws Exception {
+	public ResponseEntity<?> update(@RequestBody Location location) throws Exception {
 		try {
-			unitTypeService.update(unitType);
+			locationService.update(location);
 			return ResponseEntity.ok("Data Have Successfully Updated");
+		} catch (ValidationException ex) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/unit-type/{id}")
+	@DeleteMapping(value = "/location/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			unitTypeService.delete(id);
+			locationService.delete(id);
 			return ResponseEntity.ok("Data Have Successfully Deleted");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

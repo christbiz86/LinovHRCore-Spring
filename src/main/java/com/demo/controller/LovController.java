@@ -1,14 +1,30 @@
 package com.demo.controller;
 
-import com.demo.model.*;
-import com.demo.service.*;
+import java.util.List;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.demo.model.City;
+import com.demo.model.Company;
+import com.demo.model.Costcenter;
+import com.demo.model.Country;
+import com.demo.model.Grade;
+import com.demo.model.Location;
+import com.demo.service.CityService;
+import com.demo.service.CompanyService;
+import com.demo.service.CostcenterService;
+import com.demo.service.CountryService;
+import com.demo.service.GradeService;
+import com.demo.service.LocationService;
 
 @RestController
 @Controller
@@ -30,6 +46,9 @@ public class LovController {
 
     @Autowired
     private GradeService gradeService;
+    
+    @Autowired
+    private LocationService locationService;
 
     @GetMapping(value = "/cities/{offset}/{limit}")
     public ResponseEntity<?> getAllCity(
@@ -62,6 +81,18 @@ public class LovController {
     public ResponseEntity<?> getAllGrades(){
         List<Grade> gradeList = gradeService.findall();
         return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
+    }
+    
+    @GetMapping(value = "/locations")
+    @Transactional
+    public ResponseEntity<?> getAllLocation() {
+    	try {
+    		List<Location> locationList = locationService.findAll();
+        	return new ResponseEntity<List<Location>>(locationList, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    	
     }
 
 }

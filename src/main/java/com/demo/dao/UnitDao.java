@@ -4,23 +4,23 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.demo.model.UnitType;
+import com.demo.model.Unit;
 
 @Repository
-public class UnitTypeDao extends AbstractJpaDao<UnitType>{
-	public UnitTypeDao() {
-		setClazz(UnitType.class);
+public class UnitDao extends AbstractJpaDao<Unit>{
+	public UnitDao() {
+		setClazz(Unit.class);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public UnitType findByCode(String code, String companyId) {
-		List<UnitType> list = super.entityManager.createQuery("FROM UnitType WHERE code=:code AND company.id =: companyId")
+	public Unit findByCode(String code, String companyId) {
+		List<Unit> list = super.entityManager.createQuery("FROM Unit WHERE code=:code AND company.id =: companyId")
 				.setParameter("code", code)
 				.setParameter("companyId", companyId)
 				.getResultList();
 		
 		if(list.size() == 0) {
-			return new UnitType();
+			return new Unit();
 		} else {
 			return list.get(0);
 		}

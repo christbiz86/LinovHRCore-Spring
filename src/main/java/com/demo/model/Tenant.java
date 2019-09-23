@@ -1,19 +1,27 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="core_tenants")
 public class Tenant {
 
-    @Id
+	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private UUID id;
 
     @Column(name = "name")

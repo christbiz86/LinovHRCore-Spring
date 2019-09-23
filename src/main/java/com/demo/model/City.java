@@ -1,19 +1,27 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="core_cities")
 public class City {
 
-    @Id
+	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @Column(name = "code")
     private String code;
@@ -39,11 +47,11 @@ public class City {
     @OneToOne
     private Province provinceId;
 
-    public UUID getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(UUID id){
+    public void setId(String id){
         this.id = id;
     }
 
@@ -51,7 +59,7 @@ public class City {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -59,7 +67,7 @@ public class City {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 

@@ -17,65 +17,65 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.UnitType;
-import com.demo.service.UnitTypeService;
+import com.demo.model.Unit;
+import com.demo.service.UnitService;
 
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class UnitTypeController {
+public class UnitController {
 	@Autowired
-	private UnitTypeService unitTypeService;
+	private UnitService unitService;
 	
-	@GetMapping(value = "/unit-types")
+	@GetMapping(value = "/units")
 	@Transactional
-	public ResponseEntity<?> findAll(){
+	public ResponseEntity<?> getAll(){
 		try {
-			List<UnitType> unitType = unitTypeService.findAll();
-			return ResponseEntity.ok(unitType);
+			List<Unit> unit = unitService.findAll();
+			return ResponseEntity.ok(unit);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/unit-type/{id}")
+	@GetMapping(value = "/unit/{id}")
 	@Transactional
-	public ResponseEntity<?> getUnitTypeById(@PathVariable String id) {
+	public ResponseEntity<?> getUnitById(@PathVariable String id) {
 		try {
-			UnitType unitType = unitTypeService.findById(id);
-			return ResponseEntity.ok(unitType);
+			Unit unit = unitService.findById(id);
+			return ResponseEntity.ok(unit);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PostMapping(value = "/unit-type")
+	@PostMapping(value = "/unit")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody UnitType unitType) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody Unit unit) throws Exception {
 		try {
-			unitTypeService.save(unitType);
+			unitService.save(unit);
 			return ResponseEntity.ok("Data Have Successfully Saved");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/unit-type")
+	@PutMapping(value = "/unit")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody UnitType unitType) throws Exception {
+	public ResponseEntity<?> update(@RequestBody Unit unit) throws Exception {
 		try {
-			unitTypeService.update(unitType);
+			unitService.update(unit);
 			return ResponseEntity.ok("Data Have Successfully Updated");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/unit-type/{id}")
+	@DeleteMapping(value = "/unit/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			unitTypeService.delete(id);
+			unitService.delete(id);
 			return ResponseEntity.ok("Data Have Successfully Deleted");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
