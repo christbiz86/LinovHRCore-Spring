@@ -17,7 +17,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 public class Module extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
-	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
+	@JoinColumn(name = "application_id", referencedColumnName = "id")
     @OneToOne()
     private Application application;
 	
