@@ -3,6 +3,7 @@ package com.demo.exception;
 import java.util.List;
 
 @SuppressWarnings("serial")
+
 public class ValidationException extends Exception {
 	private List<String> messages;
 

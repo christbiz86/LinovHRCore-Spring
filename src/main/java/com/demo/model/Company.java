@@ -20,8 +20,8 @@ public class Company extends BaseEntity {
     private String name;
 
     @JsonIgnoreProperties(value = {"companies"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
-    @JoinColumn(name="tenant_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tenant_id", referencedColumnName = "id")
     private Tenant tenant;
 
     public String getName(){

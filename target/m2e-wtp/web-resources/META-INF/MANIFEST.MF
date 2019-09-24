@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Implementation-Title: BasicMaven
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: User
+Built-By: USER
 Implementation-Vendor-Id: com.demo
-Build-Jdk: 1.8.0_121
+Build-Jdk: 1.8.0_31
 Created-By: Maven Integration for Eclipse
 
