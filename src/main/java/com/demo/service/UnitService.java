@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -103,6 +104,8 @@ public class UnitService {
 	}
 	
 	public void save(Unit unit) throws Exception {
+		unit.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valBkNotNull(unit);
 		valBkNotExist(unit);
 		valNonBk(unit);
@@ -110,6 +113,8 @@ public class UnitService {
 	}
 	
 	public void update(Unit unit) throws Exception {
+		unit.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valCreatedNotChange(unit);
 		
 		valIdNotNull(unit);

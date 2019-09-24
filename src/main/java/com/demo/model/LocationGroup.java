@@ -13,8 +13,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_unit_types", uniqueConstraints = @UniqueConstraint(columnNames = {"code", "company_id"}))
-public class UnitType extends BaseEntity{
+@Table(name = "core_location_groups", uniqueConstraints = @UniqueConstraint(columnNames = {"code", "company_id"}))
+public class LocationGroup extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "code")
@@ -23,8 +23,8 @@ public class UnitType extends BaseEntity{
 	@Column(name = "name")
 	private String name;
 	
-	@Column(name = "unit_level")
-	private Integer unitLevel;
+	@Column(name = "is_deleted")
+	private Boolean isDeleted;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
@@ -54,15 +54,15 @@ public class UnitType extends BaseEntity{
 		}
 	}
 
-	public Integer getUnitLevel() {
-		return unitLevel;
+	public Boolean isDeleted() {
+		return isDeleted;
 	}
 
-	public void setUnitLevel(Integer unitLevel) {
-		if(unitLevel == null) {
-			this.unitLevel = new Integer(0);
+	public void setDeleted(Boolean isDeleted) {
+		if(isDeleted == null) {
+			this.isDeleted = false;
 		} else {
-			this.unitLevel = unitLevel;
+			this.isDeleted = isDeleted;
 		}
 	}
 

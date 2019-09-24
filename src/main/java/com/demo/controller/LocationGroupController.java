@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,61 +18,66 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
-import com.demo.model.Location;
-import com.demo.service.LocationService;
+import com.demo.model.LocationGroup;
+import com.demo.service.LocationGroupService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class LocationController {
+public class LocationGroupController {
 	@Autowired
-	private LocationService locationService;
+	private LocationGroupService locationGroupService;
 	
-	@GetMapping(value = "/location/{id}")
+	@GetMapping(value = "/location-groups")
 	@Transactional
-	public ResponseEntity<?> getLocationById(@PathVariable String id) {
+	public ResponseEntity<?> getAllLocationGroup() {
 		try {
-			Location location = locationService.findById(id);
-			return ResponseEntity.ok(location);
+			List<LocationGroup> list = locationGroupService.findAll();
+			return ResponseEntity.ok(list);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
-		
 	}
 	
-	@PostMapping(value = "/location")
+	@GetMapping(value = "/location-group/{id}")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody Location location) throws Exception {
+	public ResponseEntity<?> getLocationGroupById(@PathVariable String id) {
 		try {
-			locationService.save(location);
+			LocationGroup locationGroup = locationGroupService.findById(id);
+			return ResponseEntity.ok(locationGroup);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+	}
+	
+	@PostMapping(value = "/location-group")
+	@Transactional
+	public ResponseEntity<?> submit(@RequestBody LocationGroup locationGroup) throws Exception {
+		try {
+			locationGroupService.save(locationGroup);
 			return ResponseEntity.ok("Data Have Successfully Saved");
-		} catch (ValidationException ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/location")
+	@PutMapping(value = "/location-group")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Location location) throws Exception {
+	public ResponseEntity<?> update(@RequestBody LocationGroup locationGroup) throws Exception {
 		try {
-			locationService.update(location);
-			return ResponseEntity.ok("Data Have Successfully Updated");
-		} catch (ValidationException ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
+			locationGroupService.update(locationGroup);
+			return ResponseEntity.ok("Data Have Successfull Updated");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/location/{id}")
+	@DeleteMapping(value = "/location-group/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			locationService.delete(id);
+			locationGroupService.delete(id);
 			return ResponseEntity.ok("Data Have Successfully Deleted");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
