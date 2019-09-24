@@ -21,24 +21,14 @@ public class PositionGradeService {
 	private PositionGradeDao positionGradeDao;
 
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (!positionGradeDao.isIdExist(id)) {
-			listErr.add("Data does not exist");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Data does not exist");
 		}
 	}
 
 	public void valIdNotNull(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (id.isEmpty()) {
-			listErr.add("Id cannot be emptied");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Id cannot be emptied");
 		}
 	}
 
@@ -46,74 +36,49 @@ public class PositionGradeService {
 		List<String> listErr = new ArrayList<String>();
 
 		if (positionGrade.getCreatedBy() == null || positionGrade.getCreatedBy().isEmpty()) {
-			listErr.add("created by cannot be emptied");
+			throw new Exception("created by cannot be emptied");
 		}
 		if (positionGrade.getCreatedAt() == null) {
-			listErr.add("created at cannot be emptied");
+			throw new Exception("created at cannot be emptied");
 		}
 		if (positionGrade.getVersion() == null || positionGrade.getVersion().toString().isEmpty()) {
-			listErr.add("version cannot be emptied");
-		}
-
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("version cannot be emptied");
 		}
 	}
 
 	public void valBkNotExist(PositionGrade positionGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (positionGradeDao.isBkExist(positionGrade.getPosition().getId(), positionGrade.getGrade().getId())) {
-			listErr.add("Data already exist");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Data already exist");
 		}
 	}
 
 	public void valBkNotChange(PositionGrade positionGrade) throws Exception {
 		Position position = findById(positionGrade.getId()).getPosition();
 		Grade grade = findById(positionGrade.getId()).getGrade();
-		List<String> listErr = new ArrayList<String>();
 
 		if (positionGrade.getPosition().getId().equals(position.getId()) && !positionGrade.getGrade().getId().equals(grade.getId()) ) {
-			listErr.add("position or grade cannot be changed");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("position or grade cannot be changed");
 		}
 	}
 
 	public void valBkNotNull(PositionGrade positionGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if (positionGrade.getPosition() == null) {
 			if (positionGrade.getPosition().getId().isEmpty()) {
-				listErr.add("position cannot be emptied");
-			}	
+				throw new Exception("position cannot be emptied");
+			}
 		}
 		if (positionGrade.getGrade() == null) {
 			if (positionGrade.getGrade().getId().trim().isEmpty()) {
-				listErr.add("grade cannot be emptied");
+				throw new Exception("grade cannot be emptied");
 			}
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
 		}
 	}
 	
 	public void valCreatedNotChange(PositionGrade positionGrade) throws Exception {
 		PositionGrade posDB = findById(positionGrade.getId());
-		List<String> listErr = new ArrayList<String>();
 		
 		if (posDB.getCreatedAt() != positionGrade.getCreatedAt() && !posDB.getCreatedBy().equals(positionGrade.getCreatedBy())) {
-			listErr.add("created at or created by cannot be changed");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("created at or created by cannot be changed");
 		}
 	}
 

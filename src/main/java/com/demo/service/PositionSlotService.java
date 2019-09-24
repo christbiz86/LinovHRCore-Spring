@@ -20,53 +20,32 @@ public class PositionSlotService {
 	private PositionSlotDao positionSlotDao;
 
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (!positionSlotDao.isIdExist(id)) {
-			listErr.add("Data does not exist");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Data does not exist");
 		}
 	}
 
 	public void valIdNotNull(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (id.isEmpty()) {
-			listErr.add("Id cannot be emptied");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Id cannot be emptied");
 		}
 	}
 
 	public void valNonBk(PositionSlot positionSlot) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-
 		if (positionSlot.getCreatedBy() == null || positionSlot.getCreatedBy().isEmpty()) {
-			listErr.add("created by cannot be emptied");
+			throw new Exception("created by cannot be emptied");
 		}
 		if (positionSlot.getCreatedAt() == null) {
-			listErr.add("created at cannot be emptied");
+			throw new Exception("created at cannot be emptied");
 		}
 		if (positionSlot.getVersion() == null || positionSlot.getVersion().toString().isEmpty()) {
-			listErr.add("version cannot be emptied");
-		}
-
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("version cannot be emptied");
 		}
 	}
 
 	public void valBkNotExist(PositionSlot positionSlot) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (positionSlotDao.isBkExist(positionSlot.getCompany().getId(), positionSlot.getPosition().getId(), positionSlot.getCode())) {
-			listErr.add("Data already exist");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Data already exist");
 		}
 	}
 
@@ -74,45 +53,29 @@ public class PositionSlotService {
 		Company company = findById(positionSlot.getId()).getCompany();
 		Position position = findById(positionSlot.getId()).getPosition();
 		String code = findById(positionSlot.getId()).getCode();
-		List<String> listErr = new ArrayList<String>();
 
 		if (!(positionSlot.getCompany() == company) && positionSlot.getPosition() == position && !positionSlot.getCode().equals(code)) {
-			listErr.add("company, position, or code cannot be changed");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("company, position, or code cannot be changed");
 		}
 	}
 
 	public void valBkNotNull(PositionSlot positionSlot) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if (positionSlot.getCompany().getId() == null || positionSlot.getCompany().getId().isEmpty()) {
-			listErr.add("company cannot be emptied");
+			throw new Exception("company cannot be emptied");
 		}
 		if (positionSlot.getPosition().getId() == null || positionSlot.getPosition().getId().isEmpty()) {
-			listErr.add("position cannot be emptied");
+			throw new Exception("position cannot be emptied");
 		}
 		if (positionSlot.getCode() == null || positionSlot.getCode().trim().isEmpty()) {
-			listErr.add("code cannot be emptied");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("code cannot be emptied");
 		}
 	}
 	
 	public void valCreatedNotChange(PositionSlot positionSlot) throws Exception {
 		PositionSlot posDB = findById(positionSlot.getId());
-		List<String> listErr = new ArrayList<String>();
-		
+
 		if (posDB.getCreatedAt() != positionSlot.getCreatedAt() && !posDB.getCreatedBy().equals(positionSlot.getCreatedBy())) {
-			listErr.add("created at or created by cannot be changed");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("created at or created by cannot be changed");
 		}
 	}
 
