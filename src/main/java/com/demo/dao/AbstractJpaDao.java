@@ -61,7 +61,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     			System.err.println(baseUpdate.getId());
     			System.err.println(baseUpdate.getCreatedBy());
     			baseUpdate.setVersion(baseUpdate.getVersion()+1);
-    			baseUpdate.setUpdatedBy("kosong");  
+    			baseUpdate.setUpdatedBy("kosong");
     			baseUpdate.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
     			o = entityManager.merge(entity);
     		}
