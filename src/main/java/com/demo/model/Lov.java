@@ -13,19 +13,11 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_lovs",uniqueConstraints = @UniqueConstraint(columnNames = {"lov_type_id","key_data"}))
 public class Lov extends BaseEntity{
-	private static final long serialVersionUID = 1L;
-
-	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
 
     @JoinColumn(name = "lov_type_id", referencedColumnName = "id")
     @OneToOne()
@@ -111,21 +103,11 @@ public class Lov extends BaseEntity{
 	}
 
 	public void setArg1(String arg1) {
-		this.arg1 = arg1;
-	}
-
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		this.version = version;
-	}	
 		if(arg1==null) {
 			this.arg1 = new String();
 		}else {
-			this.arg1 = arg1;			
+			this.arg1 = arg1;
 		}
 	}
-	
+
 }

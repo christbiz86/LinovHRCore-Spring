@@ -18,15 +18,11 @@ public class PositionResponsibilityService {
 	private PositionResponsibilityDao positionResponsibilityDao;
 
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		
 		if (!positionResponsibilityDao.isIdExist(id)) {
-			listErr.add("Data does not exist");
+			throw new Exception("Data does not exist");
 		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
-		}
+
 	}
 
 	public void valIdNotNull(String id) throws Exception {
