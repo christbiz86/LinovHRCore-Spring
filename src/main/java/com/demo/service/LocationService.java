@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import com.demo.exception.ValidationException;
 import com.demo.model.Location;
 
 @Service
-public class LocationService {
+public class 	LocationService {
 	@Autowired
 	private LocationDao locationDao;
 	
@@ -40,32 +41,31 @@ public class LocationService {
 		}
 	}
 	
-	private void valNonBk(Location location)throws ValidationException {
-		List<String> listErr = new ArrayList<String>();
-
-		if(location.getCompany() == null || location.getCompany().getId().isEmpty()) {
-			listErr.add("Location Company cannot be empty");
+	private void valNonBk(Location location) throws Exception {
+		if(location.getCompany() == null) {
+			if(location.getCompany().getId().isEmpty()) {
+				throw new Exception("Location Company cannot be empty");
+			}
 		}
-		if(location.getName().isEmpty() && location.getName() == null) {
-			listErr.add("Location Name cannot be empty");
+		if(location.getName().isEmpty()) {
+			throw new Exception("Location Name cannot be empty");
 		}
-		if(location.getCity() == null || location.getCity().getId().isEmpty()) {
-			listErr.add("City cannot be empty");
+		if(location.getCity() == null) {
+			if(location.getCity().getId().isEmpty()) {
+				throw new Exception("City cannot be empty");
+			}
 		}
-		if(location.getCreatedBy().isEmpty() && location.getCreatedBy() == null) {
-			listErr.add("Created By cannot be empty");
+		if(location.getCreatedBy().isEmpty()) {
+			throw new Exception("Created By cannot be empty");
 		}
 		if(location.getCreatedAt() == null) {
-			listErr.add("Created At cannot be empty");
+			throw new Exception("Created At cannot be empty");
 		}
-		if(location.getCode().isEmpty() && location.getCode() == null) {
-			listErr.add("Code cannot be empty");
+		if(location.getCode().isEmpty()) {
+			throw new Exception("Code cannot be empty");
 		}
 		if(location.getVersion() == null) {
-			listErr.add("Version cannot be empty");
-		}
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Version cannot be empty");
 		}
 	}
 	
@@ -101,12 +101,14 @@ public class LocationService {
 		Location tempLocation=findById(location.getId());
 			
 		if(tempLocation.getCreatedAt() != location.getCreatedAt() && !tempLocation.getCreatedBy().equals(location.getCreatedBy())) {
-			throw new Exception("Created cannot be change");
+			throw new Exception("Created cannot be changed");
 		}
 	
 	}
 	
 	public void save(Location location) throws Exception {
+		location.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valBkNotNull(location);
 		valNonBk(location);
 		valBkNotExist(location);
@@ -114,6 +116,8 @@ public class LocationService {
 	}
 	
 	public void update(Location location) throws Exception {
+		location.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valCreatedNotChange(location);
 		
 		valIdNotNull(location);

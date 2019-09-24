@@ -1,5 +1,8 @@
 package com.demo.model;
 
+import java.io.Serializable;
+
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,13 +11,24 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "core_job_grades")
-public class JobGrade {
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(
+		name = "core_job_grades", 
+		uniqueConstraints = @UniqueConstraint(
+				columnNames = {"job_id", "grade_id"}
+				)
+		)
+public class JobGrade implements Serializable {
+	private static final long serialVersionUID = 1L;
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private String id;
 	

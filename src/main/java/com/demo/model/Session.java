@@ -1,13 +1,8 @@
 package com.demo.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -18,14 +13,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_sessions")
-public class Session implements Serializable{
+public class Session extends BaseEntity{
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-    @Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
-	
+		
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
 	@OneToOne
 	private Tenant tenant; 
@@ -51,14 +41,6 @@ public class Session implements Serializable{
 	
 	@Column(name = "is_blocked")
 	private Boolean isBlocked;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public Tenant getTenant() {
 		return tenant;

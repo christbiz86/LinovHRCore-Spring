@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.DataAccessDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.DataAccess;
 
 @Service
@@ -17,64 +15,41 @@ public class DataAccessService {
 	@Autowired
 	private DataAccessDao dataAccessDao;
 
-	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
+	public void valIdExist(String id) throws Exception {	
 		if (!dataAccessDao.isIdExist(id)) {
-			listErr.add("Data does not exist");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Data does not exist");
 		}
 	}
 
 	public void valIdNotNull(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if (id.isEmpty()) {
-			listErr.add("Id cannot be emptied");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Id cannot be emptied");
 		}
 	}
 
 	public void valNonBk(DataAccess dataAccess) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-
 		if (dataAccess.getName().isEmpty()) {
-			listErr.add("name cannot be emptied");
+			throw new Exception("name cannot be emptied");
 		}
 		if (dataAccess.getCode().isEmpty()) {
-			listErr.add("code cannot be emptied");
+			throw new Exception("code cannot be emptied");
 		}
 		if (dataAccess.getCreatedBy().isEmpty()) {
-			listErr.add("created by cannot be emptied");
+			throw new Exception("created by cannot be emptied");
 		}
 		if (dataAccess.getCreatedAt() == null) {
-			listErr.add("created at cannot be emptied");
+			throw new Exception("created at cannot be emptied");
 		}
 		if (dataAccess.getVersion() == null) {
-			listErr.add("version cannot be emptied");
-		}
-
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("version cannot be emptied");
 		}
 	}
 	
 	public void valCreatedNotChange(DataAccess dataAccess) throws Exception {
-		DataAccess posDB = findById(dataAccess.getId());
-		List<String> listErr = new ArrayList<String>();
+		DataAccess dataAccDB = findById(dataAccess.getId());
 		
-		if (posDB.getCreatedAt() != dataAccess.getCreatedAt() || !posDB.getCreatedBy().equals(dataAccess.getCreatedBy())) {
-			listErr.add("created at or created by cannot be changed");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+		if (dataAccDB.getCreatedAt() != dataAccess.getCreatedAt() || !dataAccDB.getCreatedBy().equals(dataAccess.getCreatedBy())) {
+			throw new Exception("created at or created by cannot be changed");
 		}
 	}
 

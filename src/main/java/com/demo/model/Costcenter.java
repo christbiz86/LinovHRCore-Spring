@@ -1,17 +1,23 @@
 package com.demo.model;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "core_cost_centers")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name="core_cost_centers")
 public class Costcenter extends BaseEntity{
-
+	private static final long serialVersionUID = 1L;
+	
     @Column(name = "code")
     private String code;
 

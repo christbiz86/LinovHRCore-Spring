@@ -1,24 +1,17 @@
 package com.demo.model;
 
-import java.sql.Timestamp;
-
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="core_countries")
-public class Country {
-
-	@Id
-    @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-    private String id;
+public class Country extends BaseEntity {
 
     @Column(name = "code")
     private String code;
@@ -31,24 +24,6 @@ public class Country {
 
     @Column(name = "nationality")
     private String nationality;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;
@@ -74,35 +49,12 @@ public class Country {
 		this.dialCode = dialCode;
 	}
 
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
 	public String getNationality() {
 		return nationality;
 	}
 
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
-	}
 }

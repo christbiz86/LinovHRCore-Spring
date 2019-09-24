@@ -1,9 +1,11 @@
-target/
-src/main/resources/
+target/*
+src/main/resources/*
 .dbeaver/
 .project
 *.xml
 .gitignore
+.classpath
+.project
 database.sql
 HELP.md
 modelReport.html

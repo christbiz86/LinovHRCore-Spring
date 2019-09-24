@@ -20,11 +20,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name = "core_persons")
 public class Person extends BaseEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
-    
-//	@Id
-//    @Column(name = "id")
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private String id;
 	
 	@JoinColumn(name = "tenant_id",referencedColumnName = "id")
 	@OneToOne

@@ -1,11 +1,14 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +22,7 @@ import com.demo.exception.ValidationException;
 import com.demo.model.Session;
 import com.demo.service.SessionService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
@@ -28,7 +32,22 @@ public class SessionController {
 	private SessionService sessionService;
 	
 	@Transactional
-	@GetMapping(value = "session/{id}")
+	@GetMapping(value = "/sessions")
+    public ResponseEntity<?> getAllSession()
+	{
+		try{
+			List<Session> listSession = sessionService.findAll();
+
+				return ResponseEntity.ok(listSession);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@GetMapping(value = "/session/{id}")
     public ResponseEntity<?> getSession(@PathVariable String id)
 	{
 		try{
@@ -66,6 +85,10 @@ public class SessionController {
 			sessionService.update(session);	
 			return ResponseEntity.ok("Put Success");
 		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
+		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -79,6 +102,10 @@ public class SessionController {
 		try{	
 			sessionService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
+		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

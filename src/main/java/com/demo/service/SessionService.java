@@ -1,13 +1,11 @@
 package com.demo.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.SessionDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Session;
 
 @Service
@@ -16,11 +14,11 @@ public class SessionService {
 	@Autowired
 	private SessionDao sessionDao;
 	
-	public List<Session> findAll() throws Exception{
+	public List<Session> findAll(){
         return sessionDao.findAll();
     }
 	
-	public Session findById(String id) throws Exception{
+	public Session findById(String id){
 		if(sessionDao.isIdExist(id)) {
 			return sessionDao.findOne(id);
 		}else {
@@ -56,19 +54,14 @@ public class SessionService {
 	}
 	
 	private void valIdNotNull(Session session)throws Exception {
-		if(session.getId()==null) {
+		if(session.getId().isEmpty()) {
 			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
 	private void valBkNotNull(Session session) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		if(session.getUser().getId()==null) {
-			listErr.add("User tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+		if(session.getUser().getId().isEmpty()) {
+			throw new Exception("User tidak boleh kosong");
 		}
 	}
 	
@@ -79,13 +72,8 @@ public class SessionService {
 	}	
 
 	private void valNonBk(Session session) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		if(session.getTenant().getId()==null) {
-			listErr.add("Tenant tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+		if(session.getTenant().getId().isEmpty()) {
+			throw new Exception("Tenant tidak boleh kosong");
 		}
 	}	
 

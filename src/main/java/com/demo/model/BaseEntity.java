@@ -16,7 +16,7 @@ public abstract class BaseEntity implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+    private String id;
 
 	@Column(name = "created_by")
 	private String createdBy;
@@ -38,9 +38,13 @@ public abstract class BaseEntity implements Serializable {
 	}
 
 	public void setVersion(Long version) {
-		this.version = version;
+		if(version==null) {
+			version = new Long(0);
+		}else {
+			this.version = version;
+		}
 	}
-
+	    
 	public String getId() {
 		return id;
 	}

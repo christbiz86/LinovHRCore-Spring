@@ -18,61 +18,40 @@ public class PositionWorkingConditionService {
 	private PositionWorkingConditionDao positionWorkingConditionDao;
 
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (!positionWorkingConditionDao.isIdExist(id)) {
-			listErr.add("Data does not exist");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Data does not exist");
 		}
 	}
 
 	public void valIdNotNull(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if (id.isEmpty()) {
-			listErr.add("Id cannot be emptied");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Id cannot be emptied");
 		}
 	}
 
 	public void valNonBk(PositionWorkingCondition positionWorkingCondition) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-
 		if (positionWorkingCondition.getDescription().isEmpty()) {
-			listErr.add("description cannot be emptied");
+			throw new Exception("description cannot be emptied");
 		}
 		if (positionWorkingCondition.getCreatedBy().isEmpty()) {
-			listErr.add("created by cannot be emptied");
+			throw new Exception("created by cannot be emptied");
 		}
 		if (positionWorkingCondition.getCreatedAt() == null) {
-			listErr.add("created at cannot be emptied");
+			throw new Exception("created at cannot be emptied");
 		}
 		if (positionWorkingCondition.getIsEssential() == null) {
-			listErr.add("is essential cannot be emptied");
+			throw new Exception("is essential cannot be emptied");
 		}
 		if (positionWorkingCondition.getVersion() == null) {
-			listErr.add("version cannot be emptied");
-		}
-
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("version cannot be emptied");
 		}
 	}
 	
 	public void valCreatedNotChange(PositionWorkingCondition positionWorkingCondition) throws Exception {
 		PositionWorkingCondition posDB = findById(positionWorkingCondition.getId());
-		List<String> listErr = new ArrayList<String>();
 		
 		if (posDB.getCreatedAt() != positionWorkingCondition.getCreatedAt() || !posDB.getCreatedBy().equals(positionWorkingCondition.getCreatedBy())) {
-			listErr.add("created at or created by cannot be changed");
-		}
-		
-		if (!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("created at or created by cannot be changed");
 		}
 	}
 

@@ -7,46 +7,48 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 public abstract class AbstractJpaDao<T extends Serializable> {
-	private Class<T> clazz;
 
-	@PersistenceContext
-	protected EntityManager entityManager;
+    private Class<T> clazz;
 
-	public final void setClazz(final Class<T> clazzToSet) {
-		this.clazz = clazzToSet;
-	}
+    @PersistenceContext
+    protected EntityManager entityManager;
 
-	public T findOne(final String id) {
-		return entityManager.find(clazz, id);
-	}
+    public final void setClazz(final Class<T> clazzToSet) {
+        this.clazz = clazzToSet;
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<T> findAll() {
-		return entityManager.createQuery("from " + clazz.getName()).getResultList();
-	}
+    public T findOne(final String id) {
+        return entityManager.find(clazz, id);
+    }
 
-	public void create(final T entity) {
-		entityManager.persist(entity);
-	}
+    @SuppressWarnings("unchecked")
+    public List<T> findAll() {
+        return entityManager.createQuery("from " + clazz.getName()).getResultList();
+    }
 
-	public T update(final T entity) {
-		return entityManager.merge(entity);
-	}
+    public void create(final T entity) {
+        entityManager.persist(entity);
+    }
 
-	public void delete(final T entity) {
-		entityManager.remove(entity);
-	}
+    public T update(final T entity) {
+        return entityManager.merge(entity);
+    }
 
-	public void deleteById(final String entityId) {
-		final T entity = findOne(entityId);
-		delete(entity);
-	}
+    public void delete(final T entity) {
+        entityManager.remove(entity);
+    }
 
-	public boolean isIdExist(final String entityId) {
-		if (findOne(entityId) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
+    public void deleteById(final String entityId) {
+        final T entity = findOne(entityId);
+        delete(entity);
+    }
+
+    public boolean isIdExist(final String entityId) {
+        if(findOne(entityId) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

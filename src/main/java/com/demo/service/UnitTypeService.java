@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,90 +45,63 @@ public class UnitTypeService {
 	}
 	
 	private void valNonBk(UnitType unitType)throws Exception{
-		List<String> listErr = new ArrayList<String>();
-		
 		if(unitType.getCompany() == null || unitType.getCompany().getId() == null) {
-			listErr.add("Unit Type Company cannot be empty \n");
+			throw new Exception("Unit Type Company cannot be empty");
 		}
 		if(unitType.getName() == null && unitType.getName().isEmpty()) {
-			listErr.add("Unit Type Name cannot be empty \n");
+			throw new Exception("Unit Type Name cannot be empty");
 		}
 		if(unitType.getUnitLevel() == null) {
-			listErr.add("Type Unit Level cannot be empty \n");
+			throw new Exception("Type Unit Level cannot be empty");
 		}
 		if(unitType.getCreatedBy() == null && unitType.getCreatedBy().isEmpty()) {
-			listErr.add("Created By Unit Type cannot be empty \n");
+			throw new Exception("Created By Unit Type cannot be empty");
 		}
 		if(unitType.getCreatedAt() == null) {
-			listErr.add("Created At Unit Type cannot be empty \n");
+			throw new Exception("Created At Unit Type cannot be empty");
 		}
 		if(unitType.getVersion() == null) {
-			listErr.add("Version cannot be empty");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Version cannot be empty");
 		}
 	}
 	
 	private void valBkNotExist(UnitType unitType)throws Exception{
-		List<String> listErr = new ArrayList<String>();
-		
 		if(unitTypeDao.isBkExist(unitType.getCode(), unitType.getCompany().getId())) {
-			listErr.add("Data already exist");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Data already exist");
 		}
 	}
 	
 	private void valBkNotChange(UnitType unitType)throws Exception{
 		String company = findById(unitType.getId()).getCompany().getId();
 		String code = findById(unitType.getId()).getCode();
-		List<String> listErr = new ArrayList<String>();
-		
+
 		if(!unitType.getCompany().getId().equals(company)) {
-			listErr.add("Company is cannot be changed");
+			throw new Exception("Company is cannot be changed");
 		}
 		if(!unitType.getCode().equals(code)) {
-			listErr.add("Unit Type Code is cannot be changed");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Unit Type Code is cannot be changed");
 		}
 	}
 	
 	private void valBkNotNull(UnitType unitType) throws Exception{
-		List<String> listErr = new ArrayList<String>();
-		
 		if(unitType.getCompany() == null || unitType.getCompany().getId().isEmpty()) {
-			listErr.add("Unit Type Company cannot be empty");
+			throw new Exception("Unit Type Company cannot be empty");
 		}
 		if(unitType.getCode() == null) {
-			listErr.add("Unit Type Code cannot be empty");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Unit Type Code cannot be empty");
 		}
 	}
 	
 	private void valCreatedNotChange(UnitType unitType)throws Exception {
 		UnitType tempUnitType = findById(unitType.getId());
-		List<String> listErr = new ArrayList<String>();
-			
 		if(tempUnitType.getCreatedAt() != unitType.getCreatedAt() && !tempUnitType.getCreatedBy().equals(unitType.getCreatedBy())) {
-			listErr.add("Created cannot be change");
-		}
-	
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created cannot be change");
 		}
 	}
 	
 	public void save(UnitType unitType) throws Exception {
+		unitType.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valBkNotNull(unitType);
 		valBkNotExist(unitType);
 		valNonBk(unitType);
@@ -135,6 +109,8 @@ public class UnitTypeService {
 	}
 	
 	public void update(UnitType unitType) throws Exception {
+		unitType.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valCreatedNotChange(unitType);
 		
 		valIdNotNull(unitType);
