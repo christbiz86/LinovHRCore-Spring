@@ -5,6 +5,7 @@ src/main/resources/
 *.xml
 .gitignore
 .classpath
+.project
 database.sql
 HELP.md
 modelReport.html
