@@ -19,7 +19,7 @@ public class LocationGroupService {
 	public List<LocationGroup> findAll(){
 		return locationGroupDao.findAll();
 	}
-	
+
 	public LocationGroup findById(String id) {
 		return locationGroupDao.findOne(id);
 	}
@@ -95,7 +95,7 @@ public class LocationGroupService {
 			throw new Exception("Creator cannot be changed");
 		}
 	}
-	
+
 	public void save(LocationGroup locationGroup) throws Exception {
 		locationGroup.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -104,7 +104,7 @@ public class LocationGroupService {
 		valBkNotExist(locationGroup);
 		locationGroupDao.create(locationGroup);
 	}
-	
+
 	public void update(LocationGroup locationGroup) throws Exception {
 		locationGroup.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -117,7 +117,7 @@ public class LocationGroupService {
 		valNonBk(locationGroup);
 		locationGroupDao.update(locationGroup);
 	}
-	
+
 	public void delete(String id) throws Exception {
 		locationGroupDao.deleteById(id);
 	}
