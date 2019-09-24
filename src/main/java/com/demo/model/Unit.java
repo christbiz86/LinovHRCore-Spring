@@ -10,6 +10,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.sql.Timestamp;
+
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -22,6 +24,18 @@ public class Unit extends BaseEntity {
 	
 	@Column(name = "name")
 	private String name;
+	
+	@Column(name = "created_by")
+	private String createdBy;
+	
+	@Column(name = "created_at")
+	private Timestamp createdAt;
+	
+	@Column(name = "updated_by")
+	private String updatedBy;
+	
+	@Column(name = "updated_at")
+	private Timestamp updatedAt;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne

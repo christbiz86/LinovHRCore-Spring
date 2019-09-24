@@ -17,14 +17,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="core_companies")
 public class Company extends BaseEntity {
+
 	private static final long serialVersionUID = 1L;
 
     @Column(name = "name")
     private String name;
 
     @JsonIgnoreProperties(value = {"companies"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
-    @JoinColumn(name="tenant_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tenant_id", referencedColumnName = "id")
     private Tenant tenant;
 
     public String getName(){

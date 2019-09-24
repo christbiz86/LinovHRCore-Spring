@@ -12,7 +12,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name="core_countries")
 public class Country extends BaseEntity {
-	private static final long serialVersionUID = 1L;
 
     @Column(name = "code")
     private String code;
@@ -34,27 +33,28 @@ public class Country extends BaseEntity {
 		this.code = code;
 	}
 
-    public String getName(){
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name){
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getDialCode() {
-        return dialCode;
-    }
+	public String getDialCode() {
+		return dialCode;
+	}
 
-    public void setDialCode(String dialCode) {
-        this.dialCode = dialCode;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
+	public void setDialCode(String dialCode) {
+		this.dialCode = dialCode;
+	}
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+
+	public String getNationality() {
+		return nationality;
+	}
+
 }

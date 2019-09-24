@@ -10,9 +10,9 @@
 	</parent>
 	
 	<groupId>com.demo</groupId>
-	<artifactId>minimarket</artifactId>
+	<artifactId>linov</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>BasicMaven</name>
+	<name>Linov</name>
 	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 
@@ -72,9 +72,9 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.2</version>
 				<configuration>
-					<url>http://localhost:8080/manager/text</url>
+					<url>http://149.129.236.79:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/myWebApp</path>
+					<path>/linov</path>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<username>admin</username>
@@ -86,9 +86,9 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
 				<configuration>
-					<url>http://localhost:8080/manager/text</url>
+					<url>http://149.129.236.79:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/myWebApp</path>
+					<path>/linov</path>
 					<warSourceDirectory>WebContent</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
 					<username>admin</username>

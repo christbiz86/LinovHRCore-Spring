@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.RoleDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Role;
 
 @Service
@@ -16,6 +14,10 @@ public class RoleService {
 
 	@Autowired
 	private RoleDao roleDao;
+	
+	public List<Role> findAll(){
+        return roleDao.findAll();
+    }
 	
 	public List<Role> findAll(Integer offset,Integer limit){
         return roleDao.findAll(offset, limit);
@@ -61,22 +63,17 @@ public class RoleService {
 	}
 	
 	private void valIdNotNull(Role role)throws Exception {
-		if(role.getId()==null) {
+		if(role.getId().isEmpty()) {
 			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
 	private void valNonBk(Role role)throws Exception{
-		List<String> listErr = new ArrayList<String>();
 		if(role.getIsDeleted() == null) {
-			listErr.add("IsDeleted tidak boleh kosong");
+			throw new Exception("IsDeleted tidak boleh kosong");
 		}
 		if(role.getVersion() == null) {
-			listErr.add("Version tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Version tidak boleh kosong");
 		}
 	}
 	
@@ -95,7 +92,7 @@ public class RoleService {
 	}
 	
 	private void valBkNotNull(Role role) throws Exception{
-		if(role.getCompany().getId() == null || role.getName() == null) {
+		if(role.getCompany().getId().isEmpty() || role.getName().isEmpty()) {
 			throw new Exception("Bk tidak boleh kosong");
 		}
 	}

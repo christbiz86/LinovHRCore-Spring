@@ -86,7 +86,7 @@ public class LocationGroupDetailService {
 		valNonBk(locationGroupDetail);
 		locationGroupDetailDao.update(locationGroupDetail);
 	}
-	@Transactional
+
 	public void delete(String id) throws Exception {
 		locationGroupDetailDao.deleteById(id);
 	}

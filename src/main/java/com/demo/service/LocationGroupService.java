@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.LocationGroupDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.LocationGroup;
 
 @Service
@@ -40,24 +38,18 @@ public class LocationGroupService {
 		}
 	}
 	
-	private void valNonBk(LocationGroup locationGroup) throws ValidationException {
-		List<String> listErr = new ArrayList<String>();
-		
+	private void valNonBk(LocationGroup locationGroup) throws Exception {
 		if(locationGroup.getName().isEmpty()) {
-			listErr.add("Location Group Name cannot be empty");
+			throw new Exception("Location Group Name Cannot be empty");
 		}
 		if(locationGroup.getCreatedAt() == null) {
-			listErr.add("Time Created Data cannot be empty");
+			throw new Exception("Time Created Data Cannot be empty");
 		}
 		if(locationGroup.getCreatedBy().isEmpty()) {
-			listErr.add("Creator Data cannot be empty");
+			throw new Exception("Creator Data Cannot be empty");
 		}
 		if(locationGroup.getVersion() == null) {
-			listErr.add("Version Cannot be empty");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Version Cannot be empty");
 		}
 	}
 	

@@ -9,4 +9,4 @@ WITH (
 TABLESPACE pg_default;
 
 INSERT INTO tbl_model values ('1A', 'Test 1');
-INSERT INTO tbl_model values ('2B', 'Test 2');
+INSERT INTO tbl_model values ('2B', 'Test 2a');

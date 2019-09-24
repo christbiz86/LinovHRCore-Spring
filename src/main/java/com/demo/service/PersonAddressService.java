@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.PersonAddressDao;
+import com.demo.exception.ValidationException;
 import com.demo.model.PersonAddress;
 
 @Service
@@ -27,7 +28,7 @@ public class PersonAddressService {
         return personAddressDao.findByPersonId(id);
     }
     
-    public void save(PersonAddress personAddress) throws Exception {
+    public void save(PersonAddress personAddress) throws ValidationException {
     	personAddress.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(personAddress);
 		valBkNotExist(personAddress);
@@ -35,7 +36,7 @@ public class PersonAddressService {
     	personAddressDao.create(personAddress);
     }
     
-    public void update(PersonAddress personAddress) throws Exception {
+    public void update(PersonAddress personAddress) throws ValidationException {
     	personAddress.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
     	valIdNotNull(personAddress);
 		valIdExist(personAddress.getId());
@@ -46,24 +47,24 @@ public class PersonAddressService {
     	personAddressDao.update(personAddress);
     }
     
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		personAddressDao.deleteById(id);
 	}
     
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!personAddressDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(PersonAddress personAddress)throws Exception {
+	private void valIdNotNull(PersonAddress personAddress)throws ValidationException {
 		if(personAddress.getId().isEmpty()) {
-			throw new Exception("Id tidak boleh kosong");
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(PersonAddress personAddress)throws Exception{
+	private void valNonBk(PersonAddress personAddress)throws ValidationException{
 		StringBuilder sb=new StringBuilder();
 		int error=0;
 
@@ -85,33 +86,33 @@ public class PersonAddressService {
 		}
 				
 		if(error>0) {
-			throw new Exception(sb.toString());
+			throw new ValidationException(sb.toString());
 		}
 	}
 	
-	private void valBkNotExist(PersonAddress personAddress)throws Exception{
+	private void valBkNotExist(PersonAddress personAddress)throws ValidationException{
 		if(personAddressDao.isBkExist(personAddress)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(PersonAddress personAddress)throws Exception{
+	private void valBkNotChange(PersonAddress personAddress)throws ValidationException{
 		PersonAddress tempPersonAddress=findById(personAddress.getId());
 		if(!tempPersonAddress.getPerson().getId().equals(personAddress.getPerson().getId()) || !tempPersonAddress.getAddress().equals(personAddress.getAddress())) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(PersonAddress personAddress) throws Exception{
+	private void valBkNotNull(PersonAddress personAddress) throws ValidationException{
 		if(personAddress.getPerson().getId()==null || personAddress.getAddress()==null) {
-			throw new Exception("Kode tidak boleh kosong");
+			throw new ValidationException("Kode tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(PersonAddress personAddress)throws Exception {
+	private void valCreatedNotChange(PersonAddress personAddress)throws ValidationException {
 		PersonAddress tempPersonAddress=findById(personAddress.getId());
 		if(!tempPersonAddress.getCreatedAt().equals(personAddress.getCreatedAt()) || !tempPersonAddress.getCreatedBy().equals(personAddress.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
+			throw new ValidationException("created tidak boleh berubah");
 		}
 	}
 }

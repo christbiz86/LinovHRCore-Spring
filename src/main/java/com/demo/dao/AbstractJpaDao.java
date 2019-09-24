@@ -6,7 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public abstract class AbstractJpaDao<T extends Serializable>  {
+public abstract class AbstractJpaDao<T extends Serializable> {
+
     private Class<T> clazz;
 
     @PersistenceContext
@@ -49,4 +50,5 @@ public abstract class AbstractJpaDao<T extends Serializable>  {
             return true;
         }
     }
+
 }

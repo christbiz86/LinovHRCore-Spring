@@ -1,13 +1,8 @@
 package com.demo.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -17,14 +12,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_widget_type",uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-public class WidgetType implements Serializable {
+public class WidgetType extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
-		
+			
 	@Column(name = "name")
     private String name;
 	
@@ -34,17 +24,6 @@ public class WidgetType implements Serializable {
 	@Column(name = "row_size")
     private Integer rowSize;
 	
-	@Column(name = "version")
-    private Long version;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -81,15 +60,4 @@ public class WidgetType implements Serializable {
 		}
 	}
 
-	public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		if(version == null) {
-			this.version = new Long(0);
-    	} else {
-    		this.version = version;
-    	}
-	}
 }

@@ -12,7 +12,7 @@ import com.demo.exception.ValidationException;
 import com.demo.model.Location;
 
 @Service
-public class LocationService {
+public class 	LocationService {
 	@Autowired
 	private LocationDao locationDao;
 	
@@ -41,36 +41,31 @@ public class LocationService {
 		}
 	}
 	
-	private void valNonBk(Location location)throws ValidationException {
-		List<String> listErr = new ArrayList<String>();
-
+	private void valNonBk(Location location) throws Exception {
 		if(location.getCompany() == null) {
 			if(location.getCompany().getId().isEmpty()) {
-				listErr.add("Location Company cannot be empty");
+				throw new Exception("Location Company cannot be empty");
 			}
 		}
 		if(location.getName().isEmpty()) {
-			listErr.add("Location Name cannot be empty");
+			throw new Exception("Location Name cannot be empty");
 		}
 		if(location.getCity() == null) {
 			if(location.getCity().getId().isEmpty()) {
-				listErr.add("City cannot be empty");
+				throw new Exception("City cannot be empty");
 			}
 		}
 		if(location.getCreatedBy().isEmpty()) {
-			listErr.add("Created By cannot be empty");
+			throw new Exception("Created By cannot be empty");
 		}
 		if(location.getCreatedAt() == null) {
-			listErr.add("Created At cannot be empty");
+			throw new Exception("Created At cannot be empty");
 		}
 		if(location.getCode().isEmpty()) {
-			listErr.add("Code cannot be empty");
+			throw new Exception("Code cannot be empty");
 		}
 		if(location.getVersion() == null) {
-			listErr.add("Version cannot be empty");
-		}
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Version cannot be empty");
 		}
 	}
 	
