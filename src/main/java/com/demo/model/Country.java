@@ -26,6 +26,24 @@ public class Country extends BaseEntity {
     @Column(name = "nationality")
     private String nationality;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "updated_by")
+    private String updatedBy;
+
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getCode() {
 		return code;
 	}
@@ -34,27 +52,56 @@ public class Country extends BaseEntity {
 		this.code = code;
 	}
 
-    public String getName(){
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name){
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getDialCode() {
-        return dialCode;
-    }
+	public String getDialCode() {
+		return dialCode;
+	}
 
-    public void setDialCode(String dialCode) {
-        this.dialCode = dialCode;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
+	public void setDialCode(String dialCode) {
+		this.dialCode = dialCode;
+	}
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
     }
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
+	public Timestamp getUpdatedAt() {
+		return updatedAt;
+	}
+
+	public void setUpdatedAt(Timestamp updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 }

@@ -29,15 +29,26 @@ public class UnitService {
 	}
 	
 	private void valIdExist(String id)throws Exception{
+		List<String> listErr = new ArrayList<String>();
+		
 		if(!unitDao.isIdExist(id)) {
-			throw new ValidationException("Data is Not Found");
+			listErr.add("Data is Not Found");
+		}
+		
+		if(!listErr.isEmpty()) {
+			throw new ValidationException(listErr);
 		}
 	}
 	
 	private void valIdNotNull(Unit unit)throws Exception {
+		List<String> listErr = new ArrayList<String>();
 		
 		if(unit.getId() == null) {
-			throw new ValidationException("Id Cannot be empty \n");
+			listErr.add("Id Cannot be empty");
+		}
+		
+		if(!listErr.isEmpty()) {
+			throw new ValidationException(listErr);
 		}
 	}
 	
@@ -66,41 +77,61 @@ public class UnitService {
 	}
 	
 	private void valBkNotExist(Unit unit)throws Exception{
+		List<String> listErr = new ArrayList<String>();
+		
 		if(unitDao.isBkExist(unit.getCode(), unit.getCompany().getId())) {
-			throw new ValidationException("Data already exist");
+			listErr.add("Data already exist");
+		}
+		
+		if(!listErr.isEmpty()) {
+			throw new ValidationException(listErr);
 		}
 	}
 	
 	private void valBkNotChange(Unit unit)throws Exception{
 		String company = findById(unit.getId()).getCompany().getId();
 		String code = findById(unit.getId()).getCode();
+		List<String> listErr = new ArrayList<String>();
+		
 		if(!unit.getCompany().getId().equals(company)) {
-			throw new ValidationException("Company is cannot be changed");
+			listErr.add("Company is cannot be changed");
 		}
 		if(!unit.getCode().equals(code)) {
-			throw new ValidationException("Unit Code is cannot be changed");
+			listErr.add("Unit Code is cannot be changed");
+		}
+		
+		if(!listErr.isEmpty()) {
+			throw new ValidationException(listErr);
 		}
 	}
 	
 	private void valBkNotNull(Unit unit) throws Exception{
+		List<String> listErr = new ArrayList<String>();
 		
 		if(unit.getCompany() == null || unit.getCompany().getId().isEmpty()) {
 
-			throw new ValidationException("Unit Company cannot be empty");
+			listErr.add("Unit Company cannot be empty");
+		}
+		if(unit.getCode() == null) {
+			listErr.add("Unit Code cannot be empty");
 		}
 		
-		if(unit.getCode() == null) {
-			throw new ValidationException("Unit Code cannot be empty");
+		if(!listErr.isEmpty()) {
+			throw new ValidationException(listErr);
 		}
 	}
 	
 	private void valCreatedNotChange(Unit unit)throws Exception {
 		Unit tempUnit=findById(unit.getId());
+		List<String> listErr = new ArrayList<String>();
 			
 		if(tempUnit.getCreatedAt() != unit.getCreatedAt() && !tempUnit.getCreatedBy().equals(unit.getCreatedBy())) {
-			throw new ValidationException("Created cannot be change");
+			listErr.add("Created cannot be change");
 		}
 	
+		if(!listErr.isEmpty()) {
+			throw new ValidationException(listErr);
+		}
 	}
 	
 	public void save(Unit unit) throws Exception {

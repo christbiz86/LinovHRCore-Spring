@@ -6,9 +6,6 @@ import java.util.Date;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -275,38 +272,6 @@ public class Person extends BaseEntity implements Serializable{
 		this.lovMars = lovMars;
 	}
 
-//	public String getCreatedBy() {
-//		return createdBy;
-//	}
-//
-//	public void setCreatedBy(String createdBy) {
-//		this.createdBy = createdBy;
-//	}
-//
-//	public Timestamp getCreatedAt() {
-//		return createdAt;
-//	}
-//
-//	public void setCreatedAt(Timestamp createdAt) {
-//		this.createdAt = createdAt;
-//	}
-//
-//	public String getUpdatedBy() {
-//		return updatedBy;
-//	}
-//
-//	public void setUpdatedBy(String updatedBy) {
-//		this.updatedBy = updatedBy;
-//	}
-//
-//	public Timestamp getUpdatedAt() {
-//		return updatedAt;
-//	}
-//
-//	public void setUpdatedAt(Timestamp updatedAt) {
-//		this.updatedAt = updatedAt;
-//	}
-
 	public String getFilePhoto() {
 		return filePhoto;
 	}
@@ -330,12 +295,4 @@ public class Person extends BaseEntity implements Serializable{
 	public void setCandidateReadyToHireId(Integer candidateReadyToHireId) {
 		this.candidateReadyToHireId = candidateReadyToHireId;
 	}
-
-//	public Long getVersion() {
-//		return version;
-//	}
-//
-//	public void setVersion(Long version) {
-//		this.version = version;
-//	}
 }

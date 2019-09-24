@@ -10,35 +10,35 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class BaseEntity implements Serializable{
+public abstract class BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-    @Column(name = "id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-	
-	 @Column(name = "created_by")
-    private String createdBy;
-    
-    @Column(name = "created_at")
-    private Timestamp createdAt;
 
-    @Column(name = "updated_by")
-    private String updatedBy;
+	@Column(name = "created_by")
+	private String createdBy;
 
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
+	@Column(name = "created_at")
+	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
-    @Column(name = "version")
+	@Column(name = "updated_by")
+	private String updatedBy;
+
+	@Column(name = "updated_at")
+	private Timestamp updatedAt;
+
+	@Column(name = "version")
 	private Long version = 0L;
-    
+
 	public Long getVersion() {
 		return version;
 	}
 
 	public void setVersion(Long version) {
-		this.version = version; 
+		this.version = version;
 	}
 	    
 	public String getId() {
@@ -80,6 +80,5 @@ public abstract class BaseEntity implements Serializable{
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-	    
-	    
+
 }

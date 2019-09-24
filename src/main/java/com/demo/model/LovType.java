@@ -6,12 +6,13 @@ import java.sql.Timestamp;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -24,7 +25,7 @@ public class LovType implements Serializable{
 
 	@Id
     @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private String id;
 
     @Column(name = "code")
@@ -53,7 +54,6 @@ public class LovType implements Serializable{
     @Column(name = "version")
     private Long version;
 
-    
 	public String getId() {
 		return id;
 	}
@@ -125,4 +125,6 @@ public class LovType implements Serializable{
 	public void setVersion(Long version) {
 		this.version = version;
 	}
+
 }
+

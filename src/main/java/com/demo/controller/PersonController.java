@@ -25,8 +25,7 @@ public class PersonController {
 	private PersonService personService;
 	
 	@GetMapping(value = "/persons")
-    public ResponseEntity<?> getAllPerson()
-	{
+    public ResponseEntity<?> getAllPerson() {
         try {
 			return ResponseEntity.ok(personService.findAllPerson());
 		} catch (Exception e) {
@@ -35,8 +34,7 @@ public class PersonController {
     }
 	
 	@GetMapping(value = "/person/{id}")
-    public ResponseEntity<?> getPersonById(@PathVariable String id)
-	{
+    public ResponseEntity<?> getPersonById(@PathVariable String id) {
         try {
 			return ResponseEntity.ok(personService.findPersonById(id));
 		} catch (Exception e) {
@@ -45,8 +43,7 @@ public class PersonController {
     }
 	
 	@PostMapping(value = "/person")
-    public ResponseEntity<?> savePerson(@RequestBody Person person)
-	{
+    public ResponseEntity<?> savePerson(@RequestBody Person person) {
         try {
         	personService.savePerson(person);
 			return ResponseEntity.status(HttpStatus.CREATED).body("Data Have Succesfully Saved");

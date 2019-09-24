@@ -23,6 +23,18 @@ public class Unit extends BaseEntity {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "created_by")
+	private String createdBy;
+	
+	@Column(name = "created_at")
+	private Timestamp createdAt;
+	
+	@Column(name = "updated_by")
+	private String updatedBy;
+	
+	@Column(name = "updated_at")
+	private Timestamp updatedAt;
+	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
 	private Company company;
