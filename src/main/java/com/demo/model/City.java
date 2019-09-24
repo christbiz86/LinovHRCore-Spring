@@ -1,19 +1,37 @@
 package com.demo.model;
 
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.UUID;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="core_cities")
 public class City {
 
-    @Id
+	@Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    private String id;
 
     @Column(name = "code")
     private String code;
@@ -22,14 +40,14 @@ public class City {
     private String name;
 
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
@@ -37,13 +55,13 @@ public class City {
 
     @JoinColumn(name = "province_id", referencedColumnName = "id")
     @OneToOne
-    private Province provinceId;
+    private Province province;
 
-    public UUID getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(UUID id){
+    public void setId(String id){
         this.id = id;
     }
 
@@ -51,7 +69,7 @@ public class City {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -59,16 +77,24 @@ public class City {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public String getCreatedBy(){
+        return createdBy;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedBy(){
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy(){
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(){
+        this.updatedBy = updatedBy;
     }
 
     public Timestamp getUpdatedAt() {
@@ -79,13 +105,12 @@ public class City {
         this.updatedAt = updatedAt;
     }
 
-    public Province getProvinceId() {
-        return provinceId;
+    public Province getProvince() {
+        return province;
     }
 
-    public void setProvinceId(Province provinceId) {
-        this.provinceId = provinceId;
+    public void setProvince(Province province) {
+        this.province = province;
     }
-
 
 }

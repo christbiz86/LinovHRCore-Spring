@@ -1,90 +1,45 @@
 package com.demo.model;
 
 
-import java.sql.Timestamp;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="core_companies")
-public class Company {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+public class Company extends BaseEntity{
 
     @Column(name = "name")
     private String name;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
-
-    @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
-    private List<Costcenter> costcenters;
+//    @OneToOne(mappedBy = "company",fetch = FetchType.EAGER)
+//    private Costcenter costcenters;
 
     @JsonIgnoreProperties(value = {"companies"})
     @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name="tenant_id", referencedColumnName = "id")
     private Tenant tenant;
 
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id){
-        this.id = id;
-    }
-
     public String getName(){
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
-    }
-
-    public List<Costcenter> getCostcenters() {
-        return costcenters;
-    }
-
-    public void setCostcenters(List<Costcenter> costcenters) {
-        this.costcenters = costcenters;
-    }
+//    public Costcenter getCostcenters() {
+//        return costcenters;
+//    }
+//
+//    public void setCostcenters(Costcenter costcenters) {
+//        this.costcenters = costcenters;
+//    }
 
     public Tenant getTenant() {
         return tenant;

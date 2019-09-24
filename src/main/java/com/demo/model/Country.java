@@ -1,17 +1,23 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name="core_countries")
 public class Country {
 
-    @Id
+	@Id
     @Column(name = "id")
+    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
 
     @Column(name = "code")
@@ -27,22 +33,14 @@ public class Country {
     private String nationality;
 
     @Column(name = "created_by")
-    private Integer createdBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    private String createdBy;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    @OneToOne
-    private Company companyId;
 
 	public String getId() {
 		return id;
@@ -84,27 +82,19 @@ public class Country {
 		this.nationality = nationality;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -115,13 +105,4 @@ public class Country {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-	public Company getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Company companyId) {
-		this.companyId = companyId;
-	}
-
 }

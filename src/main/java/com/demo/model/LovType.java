@@ -1,19 +1,27 @@
 package com.demo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_lov_types")
-public class LovType {
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name = "core_lov_types",uniqueConstraints = @UniqueConstraint(columnNames = {"code"}))
+public class LovType implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
@@ -27,14 +35,14 @@ public class LovType {
     private String name;
     
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
@@ -42,6 +50,9 @@ public class LovType {
 
     @Column(name = "arg1")
     private String arg1;
+    
+    @Column(name = "version")
+    private Long version;
 
 	public String getId() {
 		return id;
@@ -67,11 +78,11 @@ public class LovType {
 		this.name = name;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -83,11 +94,11 @@ public class LovType {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -106,4 +117,14 @@ public class LovType {
 	public void setArg1(String arg1) {
 		this.arg1 = arg1;
 	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
 }
+

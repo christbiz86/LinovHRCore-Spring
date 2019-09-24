@@ -1,7 +1,9 @@
 package com.demo.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_lovs")
-public class Lov {
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name = "core_lovs",uniqueConstraints = @UniqueConstraint(columnNames = {"lov_type_id","key_data"}))
+public class Lov implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
@@ -23,8 +31,8 @@ public class Lov {
 	private String id;
 
     @JoinColumn(name = "lov_type_id", referencedColumnName = "id")
-    @OneToOne
-    private LovType lovTypes;
+    @OneToOne()
+    private LovType lovType;
     
     @Column(name = "key_data")
     private String keyData;
@@ -33,27 +41,30 @@ public class Lov {
     private String valData;
     
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
     
     @Column(name = "is_disableable")
-    private String isDisableable;
+    private Boolean isDisableable;
     
     @Column(name = "is_active")
-    private String isActive;
+    private Boolean isActive;
     
     @Column(name = "arg1")
     private String arg1;
+    
+    @Column(name = "version")
+    private Long version;
 
 	public String getId() {
 		return id;
@@ -63,12 +74,12 @@ public class Lov {
 		this.id = id;
 	}
 
-	public LovType getLovTypes() {
-		return lovTypes;
+	public LovType getLovType() {
+		return lovType;
 	}
 
-	public void setLovTypes(LovType lovTypes) {
-		this.lovTypes = lovTypes;
+	public void setLovType(LovType lovType) {
+		this.lovType = lovType;
 	}
 
 	public String getKeyData() {
@@ -87,11 +98,11 @@ public class Lov {
 		this.valData = valData;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -103,11 +114,11 @@ public class Lov {
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -119,19 +130,19 @@ public class Lov {
 		this.updatedAt = updatedAt;
 	}
 
-	public String getIsDisableable() {
+	public Boolean getIsDisableable() {
 		return isDisableable;
 	}
 
-	public void setIsDisableable(String isDisableable) {
+	public void setIsDisableable(Boolean isDisableable) {
 		this.isDisableable = isDisableable;
 	}
 
-	public String getIsActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(String isActive) {
+	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
@@ -142,5 +153,12 @@ public class Lov {
 	public void setArg1(String arg1) {
 		this.arg1 = arg1;
 	}
-    
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}	
 }

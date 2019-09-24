@@ -4,21 +4,34 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.io.Serializable;
+import java.sql.Timestamp;
+
+import javax.persistence.Cacheable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "core_unit_types")
-public class UnitType {
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(name = "core_unit_types", uniqueConstraints = @UniqueConstraint(columnNames = {"code", "company_id"}))
+public class UnitType implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
     @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String id;
 	
 	@Column(name = "code")
@@ -64,7 +77,11 @@ public class UnitType {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -72,7 +89,11 @@ public class UnitType {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public Integer getUnitLevel() {
@@ -80,7 +101,11 @@ public class UnitType {
 	}
 
 	public void setUnitLevel(Integer unitLevel) {
-		this.unitLevel = unitLevel;
+		if(unitLevel == null) {
+			this.unitLevel = new Integer(0);
+		} else {
+			this.unitLevel = unitLevel;
+		}
 	}
 
 	public String getCreatedBy() {
@@ -88,7 +113,11 @@ public class UnitType {
 	}
 
 	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
+		if(createdBy == null) {
+			this.createdBy = new String();
+		} else {
+			this.createdBy = createdBy;
+		}
 	}
 
 	public Timestamp getCreatedAt() {
@@ -120,7 +149,11 @@ public class UnitType {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Long getVersion() {
@@ -128,6 +161,10 @@ public class UnitType {
 	}
 
 	public void setVersion(Long version) {
-		this.version = version;
+		if(version == null) {
+			this.version = new Long(0);
+		} else {
+			this.version = version;
+		}
 	}
 }
