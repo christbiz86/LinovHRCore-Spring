@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.PositionSlotDao;
 import com.demo.exception.ValidationException;
@@ -125,7 +124,6 @@ public class PositionSlotService {
 		return positionSlotDao.findOne(id);
 	}
 
-	@Transactional
 	public void save(PositionSlot positionSlot) throws Exception {
 		positionSlot.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		valBkNotNull(positionSlot);

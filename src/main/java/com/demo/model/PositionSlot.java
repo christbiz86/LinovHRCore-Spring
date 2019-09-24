@@ -1,13 +1,8 @@
 package com.demo.model;
 
-import java.sql.Timestamp;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,9 +27,6 @@ public class PositionSlot extends BaseEntity {
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
 	private Company company;
-	
-	@Column(name = "version")
-	private Long version;
 
 	public Position getPosition() {
 		return position;

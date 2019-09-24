@@ -24,7 +24,7 @@ public class PositionResponsibility extends BaseEntity {
 	private String description;
 	
 	@Column(name = "is_appraisal")
-	private Boolean isAppraisal;
+	private Boolean isAppraisal = false;
 
 	public Position getPosition() {
 		return position;

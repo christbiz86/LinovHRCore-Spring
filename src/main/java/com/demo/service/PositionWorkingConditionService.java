@@ -85,7 +85,7 @@ public class PositionWorkingConditionService {
 	}
 
 	public void save(PositionWorkingCondition positionWorkingCondition) throws Exception {
-		positionWorkingCondition.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+//		positionWorkingCondition.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		valNonBk(positionWorkingCondition);
 
 		positionWorkingConditionDao.create(positionWorkingCondition);

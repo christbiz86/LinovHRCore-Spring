@@ -22,7 +22,7 @@ public abstract class BaseEntity implements Serializable {
 	private String createdBy;
 
 	@Column(name = "created_at")
-	private Timestamp createdAt;
+	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "updated_by")
 	private String updatedBy;
@@ -31,14 +31,13 @@ public abstract class BaseEntity implements Serializable {
 	private Timestamp updatedAt;
 
 	@Column(name = "version")
-	private Long version;
+	private Long version = 0L;
 
 	public Long getVersion() {
 		return version;
 	}
 
 	public void setVersion(Long version) {
-		version = 0L;
 		this.version = version;
 	}
 

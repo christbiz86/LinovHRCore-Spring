@@ -1,14 +1,8 @@
 package com.demo.model;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,10 +24,7 @@ public class PositionWorkingCondition extends BaseEntity {
 	private String description;
 	
 	@Column(name = "is_essential")
-	private Boolean isEssential;
-	
-	@Column(name = "version")
-	private Long version;
+	private Boolean isEssential = false;
 
 	public Position getPosition() {
 		return position;

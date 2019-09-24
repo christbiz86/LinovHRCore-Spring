@@ -18,37 +18,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.PositionSlot;
-import com.demo.service.PositionSlotService;
+import com.demo.model.PositionGrade;
+import com.demo.service.PositionGradeService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({ "/api/v1" })
-public class PositionSlotController {
+public class PositionGradeController {
 
 	@Autowired
-	private PositionSlotService positionSlotService;
+	private PositionGradeService positionGradeService;
 
-	@GetMapping(value = "/position-slots")
+	@GetMapping(value = "/position-grades")
 	@Transactional
 	public ResponseEntity<?> getPositionSlots() {
-		List<PositionSlot> positionList = positionSlotService.findAll();
+		List<PositionGrade> positionList = positionGradeService.findAll();
 		return ResponseEntity.ok(positionList);
 	}
 
-	@GetMapping(value = "/position-slot/{id}")
+	@GetMapping(value = "/position-grade/{id}")
 	@Transactional
 	public ResponseEntity<?> getPositionSlotById(@PathVariable String id) {
-		PositionSlot position = positionSlotService.findById(id);
+		PositionGrade position = positionGradeService.findById(id);
 		return ResponseEntity.ok(position);
 	}
 
-	@PostMapping(value = "/position-slot")
+	@PostMapping(value = "/position-grade")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody PositionSlot position) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody PositionGrade position) throws Exception {
 		try {
-			positionSlotService.save(position);
+			positionGradeService.save(position);
 			return ResponseEntity.ok(HttpStatus.CREATED);
 		} catch (ValidationException ex) {
 			System.out.println(ex);
@@ -59,24 +59,30 @@ public class PositionSlotController {
 		} 
 	}
 	
-	@PutMapping(value = "/position-slot")
+	@PutMapping(value = "/position-grade")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody PositionSlot position) throws Exception {
+	public ResponseEntity<?> update(@RequestBody PositionGrade position) throws Exception {
 		try {
-			positionSlotService.update(position);
+			positionGradeService.update(position);
 			return ResponseEntity.ok(HttpStatus.OK);
+		} catch (ValidationException ex) {
+			System.out.println(ex);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
 		} catch (Exception e) {
 			System.out.println(e);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Update Failed!");
 		}
 	}
 	
-	@DeleteMapping(value = "/position-slot/{id}")
+	@DeleteMapping(value = "/position-grade/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			positionSlotService.delete(id);
+			positionGradeService.delete(id);
 			return ResponseEntity.ok(HttpStatus.OK);
+		} catch (ValidationException ex) {
+			System.out.println(ex);
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
 		} catch (Exception e) {
 			System.out.println(e);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete Failed!");
