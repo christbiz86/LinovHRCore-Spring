@@ -106,7 +106,7 @@ public class LocationService {
 		Location tempLocation=findById(location.getId());
 			
 		if(tempLocation.getCreatedAt() != location.getCreatedAt() && !tempLocation.getCreatedBy().equals(location.getCreatedBy())) {
-			throw new Exception("Created cannot be change");
+			throw new Exception("Created cannot be changed");
 		}
 	
 	}
