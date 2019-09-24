@@ -1,66 +1,45 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import javax.persistence.*;
-import java.sql.Timestamp;
+import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="core_tenants")
-public class Tenant {
+public class Tenant extends BaseEntity implements Serializable{
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+//    @Id
+//    @Column(name = "id")
+//    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+//    private String id;
 
     @Column(name = "name")
     private String name;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
-
     @OneToMany(mappedBy = "tenant",fetch = FetchType.LAZY)
     private List<Company> companies;
 
-    public UUID getId(){
-        return id;
-    }
-
-    public void setId(UUID id){
-        this.id = id;
-    }
+//    public String getId(){
+//        return id;
+//    }
+//
+//    public void setId(String id){
+//        this.id = id;
+//    }
 
     public String getName(){
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
-    }
-
-
 }

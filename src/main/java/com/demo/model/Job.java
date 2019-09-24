@@ -16,6 +16,19 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -69,7 +82,7 @@ public class Job implements Serializable {
     }
 
     public void setId(String id){
-		this.id = id;
+        this.id = id;
     }
 
     public String getName(){
@@ -88,16 +101,14 @@ public class Job implements Serializable {
         return code;
     }
 
-    public void setCode(String code) {
-    	System.out.println(code);
-    	if(code == null) {
-    		System.out.println("111");
-    		this.code = new String();
-    	} else {
-    		this.code = code;
-    	}
+	public void setCode(String code) {
+		if(code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;
+		}
 	}
-
+	
     public String getDescription() {
 		return description;
 	}
@@ -138,7 +149,7 @@ public class Job implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public String getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 

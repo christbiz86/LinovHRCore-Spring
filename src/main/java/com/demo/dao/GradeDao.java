@@ -2,16 +2,38 @@ package com.demo.dao;
 
 import com.demo.model.Grade;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
 public class GradeDao extends ParentDao {
 
-    @Transactional
     public List<Grade> findAll(){
-        return super.entityManager.createQuery("From Grade").getResultList();
+        return super.entityManager.createQuery("FROM Grade").getResultList();
+    }
+
+    public Grade findById(String id){
+        List<Grade> grade = super.entityManager.createQuery("FROM Grade where id=:id").setParameter("id",id)
+            .getResultList();
+        if(grade.size() == 0){
+             return new Grade();
+        } else {
+            return grade.get(0);
+        }
+    }
+
+    public List<Grade> findByCode(String code){
+        return super.entityManager.createQuery("FROM Grade where code=:code").setParameter("code",code)
+                .getResultList();
+    }
+
+    public void save(Grade grade){
+        super.entityManager.merge(grade);
+    }
+
+    public void delete(String id){
+        Grade grade = findById(id);
+        super.entityManager.remove(grade);
     }
 
 }

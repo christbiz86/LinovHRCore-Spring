@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @Controller
+@Transactional
 @RequestMapping({"/api/v1"})
 public class CompanyController {
 
@@ -21,7 +22,7 @@ public class CompanyController {
 
     @GetMapping(value = "/company/{id}")
     public ResponseEntity<?> getCompanyById(
-            @PathVariable UUID id
+            @PathVariable String id
     ){
         List<Company> companyId = companyService.findById(id);
         return new ResponseEntity<List<Company>>(companyId, HttpStatus.OK);

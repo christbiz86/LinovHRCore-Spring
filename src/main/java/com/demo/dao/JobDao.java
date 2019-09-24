@@ -2,8 +2,8 @@ package com.demo.dao;
 
 import com.demo.model.Job;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository

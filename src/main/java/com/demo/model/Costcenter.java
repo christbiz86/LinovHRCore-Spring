@@ -1,20 +1,21 @@
 package com.demo.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
-import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.UUID;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="core_cost_centers")
-public class Costcenter {
+public class Costcenter extends BaseEntity{
 
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+//    @Id
+//    @Column(name = "id")
+//    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+//    private String id;
 
     @Column(name = "code")
     private String code;
@@ -22,46 +23,38 @@ public class Costcenter {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "created_by")
-    private Integer createdBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "created_at")
-    private Timestamp createdAt;
-
-    @Column(name = "updated_by")
-    private Integer updatedBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
+//    @Column(name = "created_by")
+//    private Integer createdBy;
+//
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+//    @Column(name = "created_at")
+//    private Timestamp createdAt;
+//
+//    @Column(name = "updated_by")
+//    private Integer updatedBy;
+//
+//    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+//    @Column(name = "updated_at")
+//    private Timestamp updatedAt;
 
     @JsonIgnoreProperties(value = {"costcenters"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
+    @OneToOne
     @JoinColumn(name="company_id", referencedColumnName = "id")
     private Company company;
 
-    public UUID getId(){
-        return id;
-    }
-
-    public void setId(UUID id){
-        this.id = id;
-    }
+//    public String getId(){
+//        return id;
+//    }
+//
+//    public void setId(String id){
+//        this.id = id;
+//    }
 
     public String getName(){
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name = name;
     }
 
@@ -69,48 +62,31 @@ public class Costcenter {
         return code;
     }
 
-    public void setCode(){
+    public void setCode(String code){
         this.code = code;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+//    public Timestamp getCreatedAt() {
+//        return createdAt;
+//    }
+//
+//    public void setCreatedAt(Timestamp createdAt) {
+//        this.createdAt = createdAt;
+//    }
+//
+//    public Timestamp getUpdatedAt() {
+//        return updatedAt;
+//    }
+//
+//    public void setUpdatedAt(Timestamp updatedAt) {
+//        this.updatedAt = updatedAt;
+//    }
 
     public Company getCompany() {
         return company;
     }
 
-    public void setCompany() {
+    public void setCompany(Company company) {
         this.company = company;
     }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
-    }
-
 }
