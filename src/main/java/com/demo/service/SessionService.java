@@ -20,7 +20,7 @@ public class SessionService {
         return sessionDao.findAll();
     }
 	
-	public Session findById(String id) throws Exception{
+	public Session findById(String id) throws ValidationException{
 		if(sessionDao.isIdExist(id)) {
 			return sessionDao.findOne(id);
 		}else {
@@ -28,14 +28,14 @@ public class SessionService {
 		}
     }
 	
-	public void save(Session session) throws Exception{
+	public void save(Session session) throws ValidationException{
 		valBkNotNull(session);
 		valBkNotExist(session);
 		valNonBk(session);
 		sessionDao.create(session);
 	}
 	
-	public void update(Session session) throws Exception {
+	public void update(Session session) throws ValidationException {
 		valIdNotNull(session);
 		valIdExist(session.getId());
 		valBkNotNull(session);
@@ -44,43 +44,51 @@ public class SessionService {
 		sessionDao.update(session);
 	}
 	
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		sessionDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!sessionDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Session session)throws Exception {
-		if(session.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+	private void valIdNotNull(Session session)throws ValidationException {
+//		if(session.getId()==null) {
+//			throw new Exception("Id tidak boleh kosong");
+//		}
+		if(session.getId().isEmpty()) {
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valBkNotNull(Session session) throws Exception {
+	private void valBkNotNull(Session session) throws ValidationException {
 		List<String> listErr = new ArrayList<String>();
-		if(session.getUser().getId()==null) {
+//		if(session.getUser().getId()==null) {
+//			listErr.add("User tidak boleh kosong");
+//		}
+		if(session.getUser().getId().isEmpty()) {
 			listErr.add("User tidak boleh kosong");
 		}
-		
 		if(!listErr.isEmpty()) {
 			throw new ValidationException(listErr);
 		}
 	}
 	
-	private void valBkNotExist(Session session)throws Exception{
+	private void valBkNotExist(Session session)throws ValidationException{
 		if(sessionDao.isBkExist(session)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 
-	private void valNonBk(Session session) throws Exception {
+	private void valNonBk(Session session) throws ValidationException {
 		List<String> listErr = new ArrayList<String>();
-		if(session.getTenant().getId()==null) {
+//		if(session.getTenant().getId()==null) {
+//			listErr.add("Tenant tidak boleh kosong");
+//		}
+		if(session.getTenant().getId().isEmpty()) {
 			listErr.add("Tenant tidak boleh kosong");
 		}
 		
@@ -89,11 +97,11 @@ public class SessionService {
 		}
 	}	
 
-	private void valBkNotChange(Session session)throws Exception{
+	private void valBkNotChange(Session session)throws ValidationException{
 		Session tempSession=findById(session.getId());
 
 		if(!tempSession.getUser().getId().equals(session.getUser().getId()) ) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 }

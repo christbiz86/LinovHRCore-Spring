@@ -28,14 +28,14 @@ public class WidgetTypeService {
 		return widgetTypeDao.findByBk(name);
     }
 	
-	public void save(WidgetType widgetType) throws Exception {
+	public void save(WidgetType widgetType) throws ValidationException {
 		valBkNotNull(widgetType);
 		valBkNotExist(widgetType);
 		valNonBk(widgetType);
 		widgetTypeDao.create(widgetType);
 	}
 	
-	public void update(WidgetType widgetType) throws Exception {
+	public void update(WidgetType widgetType) throws ValidationException {
 		valIdNotNull(widgetType);
 		valIdExist(widgetType.getId());
 		valBkNotNull(widgetType);
@@ -44,24 +44,24 @@ public class WidgetTypeService {
 		widgetTypeDao.update(widgetType);
 	}
 	
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		widgetTypeDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!widgetTypeDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(WidgetType widgetType)throws Exception {
+	private void valIdNotNull(WidgetType widgetType)throws ValidationException {
 		if(widgetType.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(WidgetType widgetType)throws Exception{
+	private void valNonBk(WidgetType widgetType)throws ValidationException{
 		List<String> listErr = new ArrayList<String>();
 		if(widgetType.getColSize() == null) {
 			listErr.add("Column tidak boleh kosong");
@@ -75,23 +75,23 @@ public class WidgetTypeService {
 		}
 	}
 	
-	private void valBkNotExist(WidgetType widgetType)throws Exception{
+	private void valBkNotExist(WidgetType widgetType)throws ValidationException{
 		if(widgetTypeDao.isBkExist(widgetType)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(WidgetType widgetType)throws Exception{
+	private void valBkNotChange(WidgetType widgetType)throws ValidationException{
 		WidgetType tempWidgetType=findById(widgetType.getId());
 
 		if(!tempWidgetType.getName().equals(widgetType.getName()) ) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(WidgetType widgetType) throws Exception{
-		if(widgetType.getName() == null ) {
-			throw new Exception("Bk tidak boleh kosong");
+	private void valBkNotNull(WidgetType widgetType) throws ValidationException{
+		if(widgetType.getName().isEmpty() ) {
+			throw new ValidationException("Bk tidak boleh kosong");
 		}
 	}
 	

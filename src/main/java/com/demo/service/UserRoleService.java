@@ -17,6 +17,10 @@ public class UserRoleService {
 	@Autowired
 	private UserRoleDao userRoleDao;
 	
+	public List<UserRole> findAll(){
+        return userRoleDao.findAll();
+    }
+	
 	public List<UserRole> findAll(Integer offset,Integer limit){
         return userRoleDao.findAll(offset, limit);
     }
@@ -32,7 +36,7 @@ public class UserRoleService {
 		return userRoleDao.findByBk(userRole);
     }
 	
-	public void save(UserRole userRole) throws Exception {
+	public void save(UserRole userRole) throws ValidationException {
 		userRole.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(userRole);
 		valBkNotExist(userRole);
@@ -40,7 +44,7 @@ public class UserRoleService {
 		userRoleDao.create(userRole);
 	}
 	
-	public void update(UserRole userRole) throws Exception {
+	public void update(UserRole userRole) throws ValidationException {
 		valIdNotNull(userRole);
 		valIdExist(userRole.getId());
 		valBkNotNull(userRole);
@@ -50,25 +54,25 @@ public class UserRoleService {
 		userRoleDao.update(userRole);
 	}
 	
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		userRoleDao.deleteById(id);
 	}
 
 	
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!userRoleDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(UserRole userRole)throws Exception {
-		if(userRole.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+	private void valIdNotNull(UserRole userRole)throws ValidationException {
+		if(userRole.getId().isEmpty()) {
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(UserRole userRole)throws Exception{
+	private void valNonBk(UserRole userRole)throws ValidationException{
 		List<String> listErr = new ArrayList<String>();
 		if(userRole.getIsActive()==null) {
 			listErr.add("isActive tidak boleh kosong");
@@ -79,31 +83,31 @@ public class UserRoleService {
 		}
 	}
 	
-	private void valBkNotExist(UserRole userRole)throws Exception{
+	private void valBkNotExist(UserRole userRole)throws ValidationException{
 		if(userRoleDao.isBkExist(userRole)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(UserRole userRole)throws Exception{
+	private void valBkNotChange(UserRole userRole)throws ValidationException{
 		UserRole tempUserRole=findById(userRole.getId());
 
 		if(!tempUserRole.getUser().getId().equals(userRole.getUser().getId()) || !tempUserRole.getRole().getId().equals(userRole.getRole().getId())) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(UserRole userRole) throws Exception{
-		if(userRole.getUser().getId() == null || userRole.getRole().getId() == null) {
-			throw new Exception("Bk tidak boleh kosong");
+	private void valBkNotNull(UserRole userRole) throws ValidationException{
+		if(userRole.getUser().getId().isEmpty() || userRole.getRole().getId().isEmpty()) {
+			throw new ValidationException("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(UserRole userRole)throws Exception {
+	private void valCreatedNotChange(UserRole userRole)throws ValidationException {
 		UserRole tempUserRole=findById(userRole.getId());
 		
 		if(!tempUserRole.getCreatedAt().equals(userRole.getCreatedAt()) || !tempUserRole.getCreatedBy().equals(userRole.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
+			throw new ValidationException("created tidak boleh berubah");
 		}
 	}
 }

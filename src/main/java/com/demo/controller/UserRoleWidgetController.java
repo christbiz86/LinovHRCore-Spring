@@ -19,26 +19,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.User;
-import com.demo.service.UserService;
+import com.demo.model.UserRoleWidget;
+import com.demo.service.UserRoleWidgetService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class UserController {
+public class UserRoleWidgetController {
 
 	@Autowired
-	private UserService userService;
-		
+	private UserRoleWidgetService userRoleWidgetService;
+	
 	@Transactional
-	@GetMapping(value = "/users")
-    public ResponseEntity<?> getAllUser()
+	@GetMapping(value = "/userrole/widgets")
+    public ResponseEntity<?> getAllUserRoleWidget()
 	{
 		try{
-				List<User> listUser = userService.findAll();
+				List<UserRoleWidget> listUserRoleWidgets = userRoleWidgetService.findAll();
 
-				return ResponseEntity.ok(listUser);
+				return ResponseEntity.ok(listUserRoleWidgets);
 		}
 		catch(Exception e){
 			 
@@ -47,13 +47,13 @@ public class UserController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/user/{id}")
-    public ResponseEntity<?> getUser(@PathVariable String id)
+	@GetMapping(value = "/userrole/widget/{id}")
+    public ResponseEntity<?> getUserRoleWidget(@PathVariable String id)
 	{
 		try{
-				User user = userService.findById(id);
+				UserRoleWidget userRoleWidget = userRoleWidgetService.findById(id);
 
-				return ResponseEntity.ok(user);
+				return ResponseEntity.ok(userRoleWidget);
 		}
 		catch(Exception e){
 			 
@@ -62,17 +62,18 @@ public class UserController {
     }
 	
 	@Transactional
-	@PostMapping("/user")
-    public ResponseEntity<?> postUser(@RequestBody User user)
+	@PostMapping("/userrole/widget")
+    public ResponseEntity<?> postUserRoleWidget(@RequestBody UserRoleWidget userRoleWidget)
 	{
 		try{	
-			userService.save(user);	
+			userRoleWidgetService.save(userRoleWidget);	
 			return ResponseEntity.ok("Save Success");
 		}
 		catch(ValidationException val){
 			 
 		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
+
 		catch (Exception e) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -80,17 +81,18 @@ public class UserController {
     }
 	
 	@Transactional
-	@PutMapping("/user")
-    public ResponseEntity<?> putUser(@RequestBody User user)
+	@PutMapping("/userrole/widget")
+    public ResponseEntity<?> putUserRoleWidget(@RequestBody UserRoleWidget userRoleWidget)
 	{
 		try{	
-			userService.update(user);	
+			userRoleWidgetService.update(userRoleWidget);	
 			return ResponseEntity.ok("Put Success");
 		}
 		catch(ValidationException val){
 			 
 		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
+
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -98,17 +100,18 @@ public class UserController {
     }
 	
 	@Transactional
-	@DeleteMapping("/user/{id}")
+	@DeleteMapping("/userrole/widget/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable String id)
 	{
 		try{	
-			userService.delete(id);	
+			userRoleWidgetService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch(ValidationException val){
 			 
 		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
+
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}

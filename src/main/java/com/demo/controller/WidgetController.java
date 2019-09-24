@@ -19,26 +19,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.User;
-import com.demo.service.UserService;
+import com.demo.model.Widget;
+import com.demo.service.WidgetService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class UserController {
-
+public class WidgetController {
+	
 	@Autowired
-	private UserService userService;
-		
+	private WidgetService widgetService;
+	
 	@Transactional
-	@GetMapping(value = "/users")
-    public ResponseEntity<?> getAllUser()
+	@GetMapping(value = "/widgets")
+    public ResponseEntity<?> getAllWidget()
 	{
 		try{
-				List<User> listUser = userService.findAll();
+				List<Widget> listWidget = widgetService.findAll();
 
-				return ResponseEntity.ok(listUser);
+				return ResponseEntity.ok(listWidget);
 		}
 		catch(Exception e){
 			 
@@ -47,13 +47,13 @@ public class UserController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/user/{id}")
-    public ResponseEntity<?> getUser(@PathVariable String id)
+	@GetMapping(value = "/widget/{id}")
+    public ResponseEntity<?> getWidget(@PathVariable String id)
 	{
 		try{
-				User user = userService.findById(id);
+				Widget widget = widgetService.findById(id);
 
-				return ResponseEntity.ok(user);
+				return ResponseEntity.ok(widget);
 		}
 		catch(Exception e){
 			 
@@ -62,11 +62,11 @@ public class UserController {
     }
 	
 	@Transactional
-	@PostMapping("/user")
-    public ResponseEntity<?> postUser(@RequestBody User user)
+	@PostMapping("/widget")
+    public ResponseEntity<?> postWidget(@RequestBody Widget widget)
 	{
 		try{	
-			userService.save(user);	
+			widgetService.save(widget);	
 			return ResponseEntity.ok("Save Success");
 		}
 		catch(ValidationException val){
@@ -80,11 +80,11 @@ public class UserController {
     }
 	
 	@Transactional
-	@PutMapping("/user")
-    public ResponseEntity<?> putUser(@RequestBody User user)
+	@PutMapping("/widget")
+    public ResponseEntity<?> putWidget(@RequestBody Widget widget)
 	{
 		try{	
-			userService.update(user);	
+			widgetService.update(widget);	
 			return ResponseEntity.ok("Put Success");
 		}
 		catch(ValidationException val){
@@ -98,11 +98,11 @@ public class UserController {
     }
 	
 	@Transactional
-	@DeleteMapping("/user/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id)
+	@DeleteMapping("/widget/{id}")
+    public ResponseEntity<?> deleteWidget(@PathVariable String id)
 	{
 		try{	
-			userService.delete(id);	
+			widgetService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch(ValidationException val){

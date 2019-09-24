@@ -1,8 +1,5 @@
 package com.demo.model;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_lov_types",uniqueConstraints = @UniqueConstraint(columnNames = {"code"}))
-public class LovType implements Serializable{
+public class LovType extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,20 +31,6 @@ public class LovType implements Serializable{
     @Column(name = "name")
     private String name;
     
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "created_at")
-    private Timestamp createdAt;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-
     @Column(name = "arg1")
     private String arg1;
     
@@ -67,7 +50,11 @@ public class LovType implements Serializable{
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code==null) {
+			this.code = new String();			
+		}else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -75,39 +62,11 @@ public class LovType implements Serializable{
 	}
 
 	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
+		if(name==null) {
+			this.name = new String();
+		}else {
+			this.name = name;			
+		}
 	}
 
 	public String getArg1() {
@@ -115,11 +74,11 @@ public class LovType implements Serializable{
 	}
 
 	public void setArg1(String arg1) {
-		this.arg1 = arg1;
-	}
-
-	public Long getVersion() {
-		return version;
+		if(arg1==null) {
+			this.arg1 = new String();
+		}else {
+			this.arg1 = arg1;			
+		}
 	}
 
 	public void setVersion(Long version) {

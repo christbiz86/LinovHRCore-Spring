@@ -17,6 +17,10 @@ public class RoleService {
 	@Autowired
 	private RoleDao roleDao;
 	
+	public List<Role> findAll(){
+        return roleDao.findAll();
+    }
+	
 	public List<Role> findAll(Integer offset,Integer limit){
         return roleDao.findAll(offset, limit);
     }
@@ -30,7 +34,7 @@ public class RoleService {
 		return roleDao.findByBk(companyId, name);
     }
 	
-	public void save(Role role) throws Exception {
+	public void save(Role role) throws ValidationException {
 		role.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(role);
 		valBkNotExist(role);
@@ -38,7 +42,7 @@ public class RoleService {
 		roleDao.create(role);
 	}
 	
-	public void update(Role role) throws Exception {
+	public void update(Role role) throws ValidationException {
 		role.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(role);
 		valIdExist(role.getId());
@@ -49,24 +53,24 @@ public class RoleService {
 		roleDao.update(role);
 	}
 		
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		roleDao.deleteById(id);
 	}
 
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!roleDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Role role)throws Exception {
-		if(role.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+	private void valIdNotNull(Role role)throws ValidationException {
+		if(role.getId().isEmpty()) {
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(Role role)throws Exception{
+	private void valNonBk(Role role)throws ValidationException{
 		List<String> listErr = new ArrayList<String>();
 		if(role.getIsDeleted() == null) {
 			listErr.add("IsDeleted tidak boleh kosong");
@@ -80,31 +84,31 @@ public class RoleService {
 		}
 	}
 	
-	private void valBkNotExist(Role role)throws Exception{
+	private void valBkNotExist(Role role)throws ValidationException{
 		if(roleDao.isBkExist(role)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(Role role)throws Exception{
+	private void valBkNotChange(Role role)throws ValidationException{
 		Role tempRole=findById(role.getId());
 
 		if(!tempRole.getCompany().getId().equals(role.getCompany().getId()) || !tempRole.getName().equals(role.getName())) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(Role role) throws Exception{
-		if(role.getCompany().getId() == null || role.getName() == null) {
-			throw new Exception("Bk tidak boleh kosong");
+	private void valBkNotNull(Role role) throws ValidationException{
+		if(role.getCompany().getId().isEmpty() || role.getName().isEmpty()) {
+			throw new ValidationException("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(Role role)throws Exception {
+	private void valCreatedNotChange(Role role)throws ValidationException {
 		Role tempRole=findById(role.getId());
 		
 		if(!tempRole.getCreatedAt().equals(role.getCreatedAt()) || !tempRole.getCreatedBy().equals(role.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
+			throw new ValidationException("created tidak boleh berubah");
 		}
 	}
 }

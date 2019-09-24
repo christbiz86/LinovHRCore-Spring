@@ -19,26 +19,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.User;
-import com.demo.service.UserService;
+import com.demo.model.ResponsibilityGroup;
+import com.demo.service.ResponsibilityGroupService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class UserController {
-
+public class ResponsibilityGroupController {
+	
 	@Autowired
-	private UserService userService;
-		
+	private ResponsibilityGroupService responsibilityGroupService;
+
 	@Transactional
-	@GetMapping(value = "/users")
-    public ResponseEntity<?> getAllUser()
+	@GetMapping(value = "/responsibility/groups")
+    public ResponseEntity<?> getAllResponsibilityGroup()
 	{
 		try{
-				List<User> listUser = userService.findAll();
+				List<ResponsibilityGroup> listResponsibilityGroup = responsibilityGroupService.findAll();
 
-				return ResponseEntity.ok(listUser);
+				return ResponseEntity.ok(listResponsibilityGroup);
 		}
 		catch(Exception e){
 			 
@@ -47,13 +47,13 @@ public class UserController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/user/{id}")
-    public ResponseEntity<?> getUser(@PathVariable String id)
+	@GetMapping(value = "/responsibility/group/{id}")
+    public ResponseEntity<?> getResponsibilityGroup(@PathVariable String id)
 	{
 		try{
-				User user = userService.findById(id);
+			ResponsibilityGroup responsibilityGroup = responsibilityGroupService.findById(id);
 
-				return ResponseEntity.ok(user);
+			return ResponseEntity.ok(responsibilityGroup);
 		}
 		catch(Exception e){
 			 
@@ -62,11 +62,11 @@ public class UserController {
     }
 	
 	@Transactional
-	@PostMapping("/user")
-    public ResponseEntity<?> postUser(@RequestBody User user)
+	@PostMapping("/responsibility/group")
+    public ResponseEntity<?> postResponsibilityGroup(@RequestBody ResponsibilityGroup responsibilityGroup)
 	{
 		try{	
-			userService.save(user);	
+			responsibilityGroupService.save(responsibilityGroup);	
 			return ResponseEntity.ok("Save Success");
 		}
 		catch(ValidationException val){
@@ -80,11 +80,11 @@ public class UserController {
     }
 	
 	@Transactional
-	@PutMapping("/user")
-    public ResponseEntity<?> putUser(@RequestBody User user)
+	@PutMapping("/responsibility/group")
+    public ResponseEntity<?> putResponsibilityGroup(@RequestBody ResponsibilityGroup responsibilityGroup)
 	{
 		try{	
-			userService.update(user);	
+			responsibilityGroupService.update(responsibilityGroup);	
 			return ResponseEntity.ok("Put Success");
 		}
 		catch(ValidationException val){
@@ -98,11 +98,11 @@ public class UserController {
     }
 	
 	@Transactional
-	@DeleteMapping("/user/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id)
+	@DeleteMapping("/responsibility/group/{id}")
+    public ResponseEntity<?> deleteResponsibilityGroup(@PathVariable String id)
 	{
 		try{	
-			userService.delete(id);	
+			responsibilityGroupService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch(ValidationException val){
