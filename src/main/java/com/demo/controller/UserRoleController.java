@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.exception.ValidationException;
 import com.demo.model.UserRole;
 import com.demo.service.UserRoleService;
 
@@ -49,6 +50,10 @@ public class UserRoleController {
 			userRoleService.save(userRole);	
 			return ResponseEntity.ok("Save Success");
 		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
+		}
 		catch (Exception e) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -63,6 +68,11 @@ public class UserRoleController {
 			userRoleService.update(userRole);	
 			return ResponseEntity.ok("Put Success");
 		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
+		}
+
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -76,6 +86,10 @@ public class UserRoleController {
 		try{	
 			userRoleService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
+		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

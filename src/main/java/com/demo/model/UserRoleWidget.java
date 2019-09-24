@@ -1,13 +1,7 @@
 package com.demo.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Cacheable;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,14 +13,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_user_role_widget",uniqueConstraints = @UniqueConstraint(columnNames = {"user_role_id","widget_id"}))
-public class UserRoleWidget implements Serializable{
+public class UserRoleWidget extends BaseEntity{
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
-	
+		
 	@JoinColumn(name = "user_role_id", referencedColumnName = "id")
     @OneToOne()
     private UserRole userRole;
@@ -35,20 +24,16 @@ public class UserRoleWidget implements Serializable{
     @OneToOne()
     private Widget widget;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public UserRole getUserRole() {
 		return userRole;
 	}
 
 	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
+		if(userRole==null) {
+			this.userRole = new UserRole();
+		}else {
+			this.userRole = userRole;			
+		}
 	}
 
 	public Widget getWidget() {
@@ -56,7 +41,11 @@ public class UserRoleWidget implements Serializable{
 	}
 
 	public void setWidget(Widget widget) {
-		this.widget = widget;
+		if(widget==null) {
+			this.widget = new Widget();
+		}else {
+			this.widget = widget;			
+		}
 	}
 	
 }

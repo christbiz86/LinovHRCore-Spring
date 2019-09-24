@@ -34,43 +34,44 @@ public class ApplicationService {
 		return applicationDao.findByBk(application);
     }
 	
-	public void save(Application application) throws Exception {
+	public void save(Application application) throws ValidationException {
 		valBkNotNull(application);
 		valBkNotExist(application);
 		valNonBk(application);
 		applicationDao.create(application);
 	}
 	
-	public void update(Application application) throws Exception {
+	public void update(Application application) throws ValidationException {
 		valIdNotNull(application);
 		valIdExist(application.getId());
 		valBkNotNull(application);
 		valBkNotChange(application);
 		valNonBk(application);
+		valCreatedNotChange(application);
 		applicationDao.update(application);
 	}
 	
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		applicationDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!applicationDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Application application)throws Exception {
-		if(application.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+	private void valIdNotNull(Application application)throws ValidationException {
+		if(application.getId().isEmpty()) {
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(Application application)throws Exception{
+	private void valNonBk(Application application)throws ValidationException{
 		List<String> listErr = new ArrayList<String>();
 	
-		if(application.getName() == null) {
+		if(application.getName().isEmpty()) {
 			listErr.add("Nama tidak boleh kosong");
 		}
 		if(application.getUserAccess() == null) {
@@ -82,24 +83,31 @@ public class ApplicationService {
 		}
 	}
 	
-	private void valBkNotExist(Application application)throws Exception{
+	private void valBkNotExist(Application application)throws ValidationException{
 		if(applicationDao.isBkExist(application)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(Application application)throws Exception{
+	private void valBkNotChange(Application application)throws ValidationException{
 		Application tempApplication=findById(application.getId());
 
 		if(!tempApplication.getCode().equals(application.getCode())) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(Application application) throws Exception{
-		if(application.getCode() == null ) {
-			throw new Exception("Bk tidak boleh kosong");
+	private void valBkNotNull(Application application) throws ValidationException{
+		if(application.getCode().isEmpty() ) {
+			throw new ValidationException("Bk tidak boleh kosong");
 		}
 	}
 	
+	private void valCreatedNotChange(Application application)throws ValidationException {
+		Application tempApplication=findById(application.getId());
+		
+		if(!tempApplication.getCreatedAt().equals(application.getCreatedAt()) || !tempApplication.getCreatedBy().equals(application.getCreatedBy())) {
+			throw new ValidationException("created tidak boleh berubah");
+		}
+	}
 }

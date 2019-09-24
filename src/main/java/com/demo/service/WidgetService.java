@@ -34,14 +34,14 @@ public class WidgetService {
 		return widgetDao.findByBk(widget);
     }
 	
-	public void save(Widget widget) throws Exception {
+	public void save(Widget widget) throws ValidationException {
     	valBkNotNull(widget);
 		valBkNotExist(widget);
 		valNonBk(widget);
 		widgetDao.create(widget);
 	}
 	
-	public void update(Widget widget) throws Exception {
+	public void update(Widget widget) throws ValidationException {
 		valIdNotNull(widget);
 		valIdExist(widget.getId());
 		valBkNotNull(widget);
@@ -50,38 +50,38 @@ public class WidgetService {
 		widgetDao.update(widget);
 	}
 	
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		widgetDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!widgetDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Widget widget)throws Exception {
+	private void valIdNotNull(Widget widget)throws ValidationException {
 		if(widget.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(Widget widget)throws Exception{
+	private void valNonBk(Widget widget)throws ValidationException{
 		List<String> listErr = new ArrayList<String>();
-		if(widget.getDescription() == null) {
+		if(widget.getDescription().isEmpty()) {
 			listErr.add("Description tidak boleh kosong");
 		}
-		if(widget.getAppCode()==null) {
+		if(widget.getAppCode().isEmpty()) {
 			listErr.add("Appcode tidak boleh kosong");
 		}
-		if(widget.getWidgetType().getId()==null) {
+		if(widget.getWidgetType().getId().isEmpty()) {
 			listErr.add("widget type id tidak boleh kosong");
 		}
-		if(widget.getParamIn()==null) {
+		if(widget.getParamIn().isEmpty()) {
 			listErr.add("Param In tidak boleh kosong");
 		}
-		if(widget.getParamOut()==null) {
+		if(widget.getParamOut().isEmpty()) {
 			listErr.add("Param Out tidak boleh kosong");
 		}
 		
@@ -90,23 +90,23 @@ public class WidgetService {
 		}
 	}
 	
-	private void valBkNotExist(Widget widget)throws Exception{
+	private void valBkNotExist(Widget widget)throws ValidationException{
 		if(widgetDao.isBkExist(widget)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(Widget widget)throws Exception{
+	private void valBkNotChange(Widget widget)throws ValidationException{
 		Widget tempWidget=findById(widget.getId());
 
 		if(!tempWidget.getName().equals(widget.getName())) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(Widget widget) throws Exception{
-		if(widget.getName() == null ) {
-			throw new Exception("Bk tidak boleh kosong");
+	private void valBkNotNull(Widget widget) throws ValidationException{
+		if(widget.getName().isEmpty() ) {
+			throw new ValidationException("Bk tidak boleh kosong");
 		}
 	}
 	

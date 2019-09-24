@@ -29,7 +29,11 @@ public class LovType extends BaseEntity{
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code==null) {
+			this.code = new String();			
+		}else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -37,7 +41,11 @@ public class LovType extends BaseEntity{
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name==null) {
+			this.name = new String();
+		}else {
+			this.name = name;			
+		}
 	}
 
 	public String getArg1() {
@@ -45,7 +53,11 @@ public class LovType extends BaseEntity{
 	}
 
 	public void setArg1(String arg1) {
-		this.arg1 = arg1;
+		if(arg1==null) {
+			this.arg1 = new String();
+		}else {
+			this.arg1 = arg1;			
+		}
 	}
 
 }

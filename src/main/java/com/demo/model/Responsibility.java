@@ -45,7 +45,11 @@ public class Responsibility extends BaseEntity{
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company==null) {
+			this.company = new Company();
+		}else {
+			this.company = company;			
+		}
 	}
 
 	public ResponsibilityGroup getResponsibilityGroup() {
@@ -53,7 +57,11 @@ public class Responsibility extends BaseEntity{
 	}
 
 	public void setResponsibilityGroup(ResponsibilityGroup responsibilityGroup) {
-		this.responsibilityGroup = responsibilityGroup;
+		if(responsibilityGroup==null) {
+			this.responsibilityGroup = new ResponsibilityGroup();
+		}else {
+			this.responsibilityGroup = responsibilityGroup;			
+		}
 	}
 
 	public String getCode() {
@@ -61,7 +69,11 @@ public class Responsibility extends BaseEntity{
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code==null) {
+			this.code = new String();			
+		}else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -69,7 +81,11 @@ public class Responsibility extends BaseEntity{
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name==null) {
+			this.name = new String();			
+		}else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -77,7 +93,11 @@ public class Responsibility extends BaseEntity{
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description==null) {
+			this.description = new String();			
+		}else {
+			this.description = description;
+		}
 	}
 
 	public String getUsedFor() {
@@ -85,7 +105,11 @@ public class Responsibility extends BaseEntity{
 	}
 
 	public void setUsedFor(String usedFor) {
-		this.usedFor = usedFor;
+		if(usedFor==null) {
+			this.usedFor = new String();
+		}else {
+			this.usedFor = usedFor;			
+		}
 	}
 
 	public String getUsedForValue() {
@@ -93,7 +117,11 @@ public class Responsibility extends BaseEntity{
 	}
 
 	public void setUsedForValue(String usedForValue) {
-		this.usedForValue = usedForValue;
+		if(usedForValue==null) {
+			this.usedForValue = new String();			
+		}else {
+			this.usedForValue = usedForValue;
+		}
 	}
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.exception.ValidationException;
 import com.demo.model.Responsibility;
 import com.demo.service.ResponsibilityService;
 
@@ -66,6 +67,10 @@ public class ResponsibilityController {
 			responsibilityService.save(responsibility);	
 			return ResponseEntity.ok("Save Success");
 		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
+		}
 		catch (Exception e) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -80,6 +85,10 @@ public class ResponsibilityController {
 			responsibilityService.update(responsibility);	
 			return ResponseEntity.ok("Put Success");
 		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
+		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -93,6 +102,10 @@ public class ResponsibilityController {
 		try{	
 			responsibilityService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
+		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

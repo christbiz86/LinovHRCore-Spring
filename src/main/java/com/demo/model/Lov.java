@@ -41,7 +41,11 @@ public class Lov extends BaseEntity{
 	}
 
 	public void setLovType(LovType lovType) {
-		this.lovType = lovType;
+		if(lovType==null) {
+			this.lovType = new LovType();
+		}else {
+			this.lovType = lovType;			
+		}
 	}
 
 	public String getKeyData() {
@@ -49,7 +53,11 @@ public class Lov extends BaseEntity{
 	}
 
 	public void setKeyData(String keyData) {
-		this.keyData = keyData;
+		if(keyData==null) {
+			this.keyData = new String();
+		}else {
+			this.keyData = keyData;			
+		}
 	}
 
 	public String getValData() {
@@ -57,7 +65,11 @@ public class Lov extends BaseEntity{
 	}
 
 	public void setValData(String valData) {
-		this.valData = valData;
+		if(valData==null) {
+			this.valData = new String();
+		}else {
+			this.valData = valData;			
+		}
 	}
 
 	public Boolean getIsDisableable() {
@@ -65,7 +77,11 @@ public class Lov extends BaseEntity{
 	}
 
 	public void setIsDisableable(Boolean isDisableable) {
-		this.isDisableable = isDisableable;
+		if(isDisableable==null) {
+			this.isDisableable = false;
+		}else {
+			this.isDisableable = isDisableable;			
+		}
 	}
 
 	public Boolean getIsActive() {
@@ -73,7 +89,11 @@ public class Lov extends BaseEntity{
 	}
 
 	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
+		if(isActive==null) {
+			this.isActive = true;
+		}else {
+			this.isActive = isActive;			
+		}
 	}
 
 	public String getArg1() {
@@ -81,7 +101,11 @@ public class Lov extends BaseEntity{
 	}
 
 	public void setArg1(String arg1) {
-		this.arg1 = arg1;
+		if(arg1==null) {
+			this.arg1 = new String();
+		}else {
+			this.arg1 = arg1;			
+		}
 	}
 	
 }

@@ -50,9 +50,6 @@ public class WorkList extends BaseEntity{
 	
 	@Column(name = "description")
     private String description;
-
-	@Column(name = "version")
-    private Long version;
 	
 	public Company getCompany() {
 		return company;

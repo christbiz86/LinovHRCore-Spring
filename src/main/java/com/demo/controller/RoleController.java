@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.exception.ValidationException;
 import com.demo.model.Role;
 import com.demo.service.RoleService;
 
@@ -26,6 +29,21 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 
+	@Transactional
+	@GetMapping(value = "roles")
+    public ResponseEntity<?> getAllRole()
+	{
+		try{
+				List<Role> listRole = roleService.findAll();
+
+				return ResponseEntity.ok(listRole);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
 	@Transactional
 	@GetMapping(value = "role/{id}")
     public ResponseEntity<?> getRole(@PathVariable String id)
@@ -49,6 +67,10 @@ public class RoleController {
 			roleService.save(role);	
 			return ResponseEntity.ok("Save Success");
 		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
+		}
 		catch (Exception e) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -63,6 +85,10 @@ public class RoleController {
 			roleService.update(role);	
 			return ResponseEntity.ok("Put Success");
 		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
+		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -76,6 +102,10 @@ public class RoleController {
 		try{	
 			roleService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
+		}
+		catch(ValidationException val){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

@@ -1,13 +1,8 @@
 package com.demo.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,14 +14,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_widget",uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-public class Widget implements Serializable {
+public class Widget extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private String id;
-
 	@Column(name = "name")
     private String name;
 	
@@ -46,23 +36,16 @@ public class Widget implements Serializable {
 	@Column(name = "param_out")
     private String paramOut;
 
-	@Column(name = "version")
-    private Integer version;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name==null) {
+			this.name = new String();
+		}else {
+			this.name = name;			
+		}
 	}
 
 	public String getDescription() {
@@ -70,7 +53,11 @@ public class Widget implements Serializable {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description==null) {
+			this.description = new String();
+		}else {
+			this.description = description;			
+		}
 	}
 
 	public String getAppCode() {
@@ -78,7 +65,11 @@ public class Widget implements Serializable {
 	}
 
 	public void setAppCode(String appCode) {
-		this.appCode = appCode;
+		if(appCode==null) {
+			this.appCode = new String();
+		}else {
+			this.appCode = appCode;			
+		}
 	}
 
 	public WidgetType getWidgetType() {
@@ -86,7 +77,11 @@ public class Widget implements Serializable {
 	}
 
 	public void setWidgetType(WidgetType widgetType) {
-		this.widgetType = widgetType;
+		if(widgetType==null) {
+			this.widgetType = new WidgetType();
+		}else {
+			this.widgetType = widgetType;			
+		}
 	}
 
 	public String getParamIn() {
@@ -94,7 +89,11 @@ public class Widget implements Serializable {
 	}
 
 	public void setParamIn(String paramIn) {
-		this.paramIn = paramIn;
+		if(paramIn==null) {
+			this.paramIn = new String();
+		}else {
+			this.paramIn = paramIn;			
+		}
 	}
 
 	public String getParamOut() {
@@ -102,15 +101,11 @@ public class Widget implements Serializable {
 	}
 
 	public void setParamOut(String paramOut) {
-		this.paramOut = paramOut;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
+		if(paramOut==null) {
+			this.paramOut = new String();
+		}else {
+			this.paramOut = paramOut;			
+		}
 	}
 
 }

@@ -39,7 +39,7 @@ public class ResponsibilityService {
 		return responsibilityDao.findByBk(responsibility);
     }
 	
-	public void save(Responsibility responsibility) throws Exception {
+	public void save(Responsibility responsibility) throws ValidationException {
 		responsibility.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(responsibility);
 		valBkNotExist(responsibility);
@@ -47,7 +47,7 @@ public class ResponsibilityService {
 		responsibilityDao.create(responsibility);
 	}
 	
-	public void update(Responsibility responsibility) throws Exception {
+	public void update(Responsibility responsibility) throws ValidationException {
 		responsibility.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(responsibility);
 		valIdExist(responsibility.getId());
@@ -58,26 +58,26 @@ public class ResponsibilityService {
 		responsibilityDao.update(responsibility);
 	}
 	
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		responsibilityDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!responsibilityDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Responsibility responsibility)throws Exception {
-		if(responsibility.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+	private void valIdNotNull(Responsibility responsibility)throws ValidationException {
+		if(responsibility.getId().isEmpty()) {
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(Responsibility responsibility)throws Exception{
+	private void valNonBk(Responsibility responsibility)throws ValidationException{
 		List<String> listErr = new ArrayList<String>();
-		if(responsibility.getName() == null) {
+		if(responsibility.getName().isEmpty()) {
 			listErr.add("Nama tidak boleh kosong");
 		}
 		
@@ -86,31 +86,31 @@ public class ResponsibilityService {
 		}
 	}
 	
-	private void valBkNotExist(Responsibility responsibility)throws Exception{
+	private void valBkNotExist(Responsibility responsibility)throws ValidationException{
 		if(responsibilityDao.isBkExist(responsibility)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(Responsibility responsibility)throws Exception{
+	private void valBkNotChange(Responsibility responsibility)throws ValidationException{
 		Responsibility tempResponsibility=findById(responsibility.getId());
 
 		if(!tempResponsibility.getCompany().getId().equals(responsibility.getCompany().getId()) || !tempResponsibility.getCode().equals(responsibility.getCode())) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(Responsibility responsibility) throws Exception{
-		if(responsibility.getCompany().getId() == null || responsibility.getCode() == null) {
-			throw new Exception("Bk tidak boleh kosong");
+	private void valBkNotNull(Responsibility responsibility) throws ValidationException{
+		if(responsibility.getCompany().getId().isEmpty() || responsibility.getCode().isEmpty()) {
+			throw new ValidationException("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(Responsibility responsibility)throws Exception {
+	private void valCreatedNotChange(Responsibility responsibility)throws ValidationException {
 		Responsibility tempResponsibility=findById(responsibility.getId());
 		
 		if(!tempResponsibility.getCreatedAt().equals(responsibility.getCreatedAt()) || !tempResponsibility.getCreatedBy().equals(responsibility.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
+			throw new ValidationException("created tidak boleh berubah");
 		}
 	}
 }
