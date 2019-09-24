@@ -67,7 +67,7 @@ public class PositionWorkingConditionService {
 		PositionWorkingCondition posDB = findById(positionWorkingCondition.getId());
 		List<String> listErr = new ArrayList<String>();
 		
-		if (posDB.getCreatedAt() != positionWorkingCondition.getCreatedAt() && posDB.getCreatedBy() != positionWorkingCondition.getCreatedBy()) {
+		if (posDB.getCreatedAt() != positionWorkingCondition.getCreatedAt() || !posDB.getCreatedBy().equals(positionWorkingCondition.getCreatedBy())) {
 			listErr.add("created at or created by cannot be changed");
 		}
 		

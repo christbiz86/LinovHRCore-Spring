@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.demo.dao.PositionSlotDao;
 import com.demo.exception.ValidationException;
-import com.demo.model.Company;
-import com.demo.model.Position;
 import com.demo.model.PositionSlot;
 
 @Service
@@ -71,12 +69,12 @@ public class PositionSlotService {
 	}
 
 	public void valBkNotChange(PositionSlot positionSlot) throws Exception {
-		Company company = findById(positionSlot.getId()).getCompany();
-		Position position = findById(positionSlot.getId()).getPosition();
+		String company = findById(positionSlot.getId()).getCompany().getId();
+		String position = findById(positionSlot.getId()).getPosition().getId();
 		String code = findById(positionSlot.getId()).getCode();
 		List<String> listErr = new ArrayList<String>();
 
-		if (!(positionSlot.getCompany() == company) && positionSlot.getPosition() == position && !positionSlot.getCode().equals(code)) {
+		if (!positionSlot.getCompany().getId().equals(company) || !positionSlot.getPosition().getId().equals(position) || !positionSlot.getCode().equals(code)) {
 			listErr.add("company, position, or code cannot be changed");
 		}
 		
@@ -107,7 +105,7 @@ public class PositionSlotService {
 		PositionSlot posDB = findById(positionSlot.getId());
 		List<String> listErr = new ArrayList<String>();
 		
-		if (posDB.getCreatedAt() != positionSlot.getCreatedAt() && !posDB.getCreatedBy().equals(positionSlot.getCreatedBy())) {
+		if (posDB.getCreatedAt() != positionSlot.getCreatedAt() || !posDB.getCreatedBy().equals(positionSlot.getCreatedBy())) {
 			listErr.add("created at or created by cannot be changed");
 		}
 		
@@ -125,7 +123,7 @@ public class PositionSlotService {
 	}
 
 	public void save(PositionSlot positionSlot) throws Exception {
-		positionSlot.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+//		positionSlot.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		valBkNotNull(positionSlot);
 		valBkNotExist(positionSlot);
 		valNonBk(positionSlot);

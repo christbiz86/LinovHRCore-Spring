@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.PositionGradeDao;
 import com.demo.exception.ValidationException;
-import com.demo.model.Grade;
-import com.demo.model.Position;
 import com.demo.model.PositionGrade;
 
 @Service
@@ -72,11 +70,11 @@ public class PositionGradeService {
 	}
 
 	public void valBkNotChange(PositionGrade positionGrade) throws Exception {
-		Position position = findById(positionGrade.getId()).getPosition();
-		Grade grade = findById(positionGrade.getId()).getGrade();
+		String position = findById(positionGrade.getId()).getPosition().getId();
+		String grade = findById(positionGrade.getId()).getGrade().getId();
 		List<String> listErr = new ArrayList<String>();
 
-		if (positionGrade.getPosition().getId().equals(position.getId()) && !positionGrade.getGrade().getId().equals(grade.getId()) ) {
+		if (!positionGrade.getPosition().getId().equals(position) || !positionGrade.getGrade().getId().equals(grade)) {
 			listErr.add("position or grade cannot be changed");
 		}
 		
@@ -108,7 +106,7 @@ public class PositionGradeService {
 		PositionGrade posDB = findById(positionGrade.getId());
 		List<String> listErr = new ArrayList<String>();
 		
-		if (posDB.getCreatedAt() != positionGrade.getCreatedAt() && !posDB.getCreatedBy().equals(positionGrade.getCreatedBy())) {
+		if (posDB.getCreatedAt() != positionGrade.getCreatedAt() || !posDB.getCreatedBy().equals(positionGrade.getCreatedBy())) {
 			listErr.add("created at or created by cannot be changed");
 		}
 		

@@ -69,7 +69,7 @@ public class PositionResponsibilityService {
 		PositionResponsibility posDB = findById(positionResponsibility.getId());
 		List<String> listErr = new ArrayList<String>();
 		
-		if (posDB.getCreatedAt() != positionResponsibility.getCreatedAt() && posDB.getCreatedBy() != positionResponsibility.getCreatedBy()) {
+		if (posDB.getCreatedAt() != positionResponsibility.getCreatedAt() || !posDB.getCreatedBy().equals(positionResponsibility.getCreatedBy())) {
 			listErr.add("created at or created by cannot be changed");
 		}
 		
