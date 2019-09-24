@@ -7,13 +7,13 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-
 public class JobDao extends AbstractJpaDao<Job> {
 
 	public JobDao() {
         setClazz(Job.class);
     }
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public Job findByCode(String code) {
 		List<Job> list = super.entityManager
@@ -29,6 +29,7 @@ public class JobDao extends AbstractJpaDao<Job> {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Transactional
 	public Job findByBk(String code, String company) {
 		List<Job> list = super.entityManager

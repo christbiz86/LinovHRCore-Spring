@@ -97,6 +97,10 @@ public class Job implements Serializable {
     	}
 	}
 
+    public String getCode(){
+        return code;
+    }
+
 	public void setCode(String code) {
 		if(code == null) {
 			this.code = new String();
@@ -105,6 +109,10 @@ public class Job implements Serializable {
 		}
 	}
 	
+    public String getDescription() {
+		return description;
+	}
+
 	public void setDescription(String description) {
 		if(description == null) {
 			this.description = new String();
