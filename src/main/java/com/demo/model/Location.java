@@ -83,7 +83,7 @@ public class Location implements Serializable {
 	private Integer longitude;
 	
 	@Column(name = "version")
-	private Long version;
+	private Long version = 0L;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
