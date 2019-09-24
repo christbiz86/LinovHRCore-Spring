@@ -27,8 +27,8 @@ public class Company extends BaseEntity{
 //    private Costcenter costcenters;
 
     @JsonIgnoreProperties(value = {"companies"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
-    @JoinColumn(name="tenant_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @JoinColumn(name = "tenant_id", referencedColumnName = "id")
     private Tenant tenant;
 
 //    public String getId(){
