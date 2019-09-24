@@ -16,77 +16,63 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
-import com.demo.model.Job;
-import com.demo.service.JobService;
+import com.demo.model.JobResponsibility;
+import com.demo.model.JobWorkingCondition;
+import com.demo.service.JobWorkingConditionService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping(value = "/api/v1")
-public class JobController {
+public class JobWorkingConditionController {
 	
 	@Autowired
-	private JobService jobService;
+	private JobWorkingConditionService jwcService;
 	
-	@GetMapping(value = "/lov/jobs")
+	@GetMapping(value = "/lov/jobworkingconds")
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
-			List<Job> list = jobService.findAll();
-			return new ResponseEntity<List<Job>>(list, HttpStatus.OK);
+			List<JobWorkingCondition> list = jwcService.findAll();
+			return new ResponseEntity<List<JobWorkingCondition>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@GetMapping(value = "/job/{uuid}")
+	@GetMapping(value = "/jobworkingcond/{uuid}")
 	public ResponseEntity<?> findById(@PathVariable String uuid) throws Exception {
 		try {
-			Job job = jobService.findById(uuid);
-			return new ResponseEntity<Job>(job, HttpStatus.OK);
+			JobWorkingCondition jobWorkingCond = jwcService.findById(uuid);
+			return new ResponseEntity<JobWorkingCondition>(jobWorkingCond, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@GetMapping(value = "/job/code/{code}")
-	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
+	@PostMapping(value = "/jobworkingcond")
+	public ResponseEntity<?> insert(@RequestBody JobWorkingCondition jobWorkingCond) throws Exception {
 		try {
-			Job job = jobService.findByCode(code);
-			return new ResponseEntity<Job>(job, HttpStatus.OK);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
-		}
-	}
-	
-	@PostMapping(value = "/job")
-	public ResponseEntity<?> insert(@RequestBody Job job) throws Exception {
-		try {
-			jobService.insert(job);
-			return ResponseEntity.ok("Insert success with job name: "+job.getName());
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
+			jwcService.insert(jobWorkingCond);
+			return ResponseEntity.ok("Insert success!");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/job")
-	public ResponseEntity<?> update(@RequestBody Job job) throws Exception {
+	@PutMapping(value = "/jobworkingcond")
+	public ResponseEntity<?> update(@RequestBody JobWorkingCondition jobWorkingCond) throws Exception {
 		try {
-			jobService.update(job);
-			return ResponseEntity.ok("Update success with job ID: "+job.getId());
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
+			jwcService.update(jobWorkingCond);
+			return ResponseEntity.ok("Update success with job working condition ID: "+jobWorkingCond.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/job/{uuid}")
+	@DeleteMapping(value = "/jobworkingcond/{uuid}")
 	public ResponseEntity<?> delete(@PathVariable String uuid) throws Exception {
 		try {
-			jobService.delete(uuid);
+			jwcService.delete(uuid);
 			return ResponseEntity.ok("Delete success with ID: "+uuid);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
