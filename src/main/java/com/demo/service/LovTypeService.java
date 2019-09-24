@@ -15,6 +15,10 @@ public class LovTypeService {
 	@Autowired
 	private LovTypeDao lovTypeDao;
 	
+	public List<LovType> findAll(){
+        return lovTypeDao.findAll();
+    }
+	
 	public List<LovType> findAll(Integer offset,Integer limit){
         return lovTypeDao.findAll(offset, limit);
     }

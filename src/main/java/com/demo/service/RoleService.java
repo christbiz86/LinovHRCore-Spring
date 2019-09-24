@@ -17,6 +17,10 @@ public class RoleService {
 	@Autowired
 	private RoleDao roleDao;
 	
+	public List<Role> findAll(){
+        return roleDao.findAll();
+    }
+	
 	public List<Role> findAll(Integer offset,Integer limit){
         return roleDao.findAll(offset, limit);
     }

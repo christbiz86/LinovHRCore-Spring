@@ -6,26 +6,28 @@ import java.sql.Timestamp;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_responsibility_groups")
+@Table(name = "core_responsibility_groups",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
 public class ResponsibilityGroup implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
@@ -54,6 +56,9 @@ public class ResponsibilityGroup implements Serializable{
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
     private Timestamp updatedAt;
+    
+	@Column(name = "version")
+    private Long version;
 
 	public String getId() {
 		return id;
@@ -125,5 +130,17 @@ public class ResponsibilityGroup implements Serializable{
 
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+	
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		if(version == null) {
+			this.version = new Long(0);
+    	} else {
+    		this.version = version;
+    	}
 	}
 }

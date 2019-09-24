@@ -6,36 +6,36 @@ import java.sql.Timestamp;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name="core_responsibilities")
+@Table(name="core_responsibilities",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
 public class Responsibility implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
     @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
     @OneToOne
     private Company company;
 	
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name="responsibility_group_id", referencedColumnName = "id")
+    @OneToOne
     private ResponsibilityGroup responsibilityGroup;
     
     @Column(name = "code")
@@ -48,14 +48,14 @@ public class Responsibility implements Serializable{
     private String description;
         
     @Column(name = "created_by")
-    private Integer createdBy;
+    private String createdBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "created_at")
     private Timestamp createdAt;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
@@ -66,6 +66,9 @@ public class Responsibility implements Serializable{
     
     @Column(name = "used_for_value")
     private String usedForValue;
+    
+	@Column(name = "version")
+    private Long version;
 
 	public String getId() {
 		return id;
@@ -115,11 +118,11 @@ public class Responsibility implements Serializable{
 		this.description = description;
 	}
 
-	public Integer getCreatedBy() {
+	public String getCreatedBy() {
 		return createdBy;
 	}
 
-	public void setCreatedBy(Integer createdBy) {
+	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
 
@@ -131,11 +134,11 @@ public class Responsibility implements Serializable{
 		this.createdAt = createdAt;
 	}
 
-	public Integer getUpdatedBy() {
+	public String getUpdatedBy() {
 		return updatedBy;
 	}
 
-	public void setUpdatedBy(Integer updatedBy) {
+	public void setUpdatedBy(String updatedBy) {
 		this.updatedBy = updatedBy;
 	}
 
@@ -162,5 +165,13 @@ public class Responsibility implements Serializable{
 	public void setUsedForValue(String usedForValue) {
 		this.usedForValue = usedForValue;
 	}
-    
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
 }
