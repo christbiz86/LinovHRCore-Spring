@@ -13,6 +13,17 @@ import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table(name="core_provinces")
 public class Province {
@@ -62,12 +73,20 @@ public class Province {
         this.name = name;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public String getCreatedBy(){
+        return createdBy;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedBy(){
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy(){
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(){
+        this.updatedBy = updatedBy;
     }
 
     public Timestamp getUpdatedAt() {

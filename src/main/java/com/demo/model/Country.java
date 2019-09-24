@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name="core_countries")
 public class Country {
 
-    @Id
+	@Id
     @Column(name = "id")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
@@ -33,14 +33,10 @@ public class Country {
     private String nationality;
 
     @Column(name = "created_by")
-    private Integer createdBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    private String createdBy;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
@@ -53,6 +49,14 @@ public class Country {
     public void setId(String id){
         this.id = id;
     }
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
 
     public String getName(){
         return name;
@@ -78,12 +82,20 @@ public class Country {
         this.nationality = nationality;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public String getCreatedBy(){
+        return createdBy;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setCreatedBy(){
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy(){
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(){
+        this.updatedBy = updatedBy;
     }
 
     public Timestamp getUpdatedAt() {
@@ -93,4 +105,5 @@ public class Country {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 }

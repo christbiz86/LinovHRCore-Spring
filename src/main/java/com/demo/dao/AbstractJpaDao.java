@@ -6,8 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-public abstract class AbstractJpaDao<T extends Serializable> {
-
+public abstract class AbstractJpaDao<T extends Serializable>  {
     private Class<T> clazz;
 
     @PersistenceContext
@@ -42,12 +41,12 @@ public abstract class AbstractJpaDao<T extends Serializable> {
         final T entity = findOne(entityId);
         delete(entity);
     }
-    
+
     public boolean isIdExist(final String entityId) {
-		if(findOne(entityId) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	} 
+        if(findOne(entityId) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

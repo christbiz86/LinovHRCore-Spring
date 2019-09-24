@@ -1,48 +1,43 @@
 package com.demo.model;
 
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="core_companies")
-public class Company {
+public class Company extends BaseEntity{
 
-	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private String id;
+//    @Id
+//    @Column(name = "id")
+//    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
+//    private String id;
 
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
-    private List<Costcenter> costcenters;
+//    @OneToOne(mappedBy = "company",fetch = FetchType.EAGER)
+//    private Costcenter costcenters;
 
     @JsonIgnoreProperties(value = {"companies"})
     @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name="tenant_id", referencedColumnName = "id")
     private Tenant tenant;
 
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id){
-        this.id = id;
-    }
+//    public String getId(){
+//        return id;
+//    }
+//
+//    public void setId(String id){
+//        this.id = id;
+//    }
 
     public String getName(){
         return name;
@@ -52,13 +47,13 @@ public class Company {
         this.name = name;
     }
 
-    public List<Costcenter> getCostcenters() {
-        return costcenters;
-    }
-
-    public void setCostcenters(List<Costcenter> costcenters) {
-        this.costcenters = costcenters;
-    }
+//    public Costcenter getCostcenters() {
+//        return costcenters;
+//    }
+//
+//    public void setCostcenters(Costcenter costcenters) {
+//        this.costcenters = costcenters;
+//    }
 
     public Tenant getTenant() {
         return tenant;

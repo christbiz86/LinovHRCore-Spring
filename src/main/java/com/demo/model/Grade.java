@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name = "core_grades")
 public class Grade {
 
-    @Id
+	@Id
     @Column(name = "id")
     @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
     private String id;
@@ -30,15 +30,14 @@ public class Grade {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "created_by")
-    private Integer createdBy;
+    @Column(name = "ordinal")
+    private Integer ordinal;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "created_at")
-    private Timestamp createdAt;
+    @Column(name = "created_by")
+    private String createdBy;
 
     @Column(name = "updated_by")
-    private Integer updatedBy;
+    private String updatedBy;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
     @Column(name = "updated_at")
@@ -73,12 +72,28 @@ public class Grade {
         this.code = code;
     }
 
-    public Timestamp getCreatedAt() {
-        return createdAt;
+    public Integer getOrdinal(){
+        return ordinal;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
+    public void setOrdinal(Integer ordinal){
+        this.ordinal = ordinal;
+    }
+
+    public String getCreatedBy(){
+        return createdBy;
+    }
+
+    public void setCreatedBy(){
+        this.createdBy = createdBy;
+    }
+
+    public String getUpdatedBy(){
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(){
+        this.updatedBy = updatedBy;
     }
 
     public Timestamp getUpdatedAt() {
@@ -88,4 +103,13 @@ public class Grade {
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
 }

@@ -2,15 +2,13 @@ package com.demo.dao;
 
 import com.demo.model.Job;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.UUID;
 
 @Repository
 public class JobDao extends ParentDao {
 
-	@SuppressWarnings("unchecked")
     @Transactional
     public List<Job> findAll(){
         return super.entityManager.createQuery("FROM Job").getResultList();
@@ -43,7 +41,6 @@ public class JobDao extends ParentDao {
 		}	 
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Transactional
 	public Job findById(String id) {	
 		List<Job> list = super.entityManager
@@ -59,7 +56,6 @@ public class JobDao extends ParentDao {
 		}
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Transactional
 	public Job findByBk(String code) {	
 		List<Job> list = super.entityManager
