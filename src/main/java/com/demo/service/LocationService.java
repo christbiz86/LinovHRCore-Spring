@@ -1,5 +1,6 @@
 package com.demo.service;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -111,6 +112,8 @@ public class LocationService {
 	}
 	
 	public void save(Location location) throws Exception {
+		location.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valBkNotNull(location);
 		valNonBk(location);
 		valBkNotExist(location);
@@ -118,6 +121,8 @@ public class LocationService {
 	}
 	
 	public void update(Location location) throws Exception {
+		location.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		
 		valCreatedNotChange(location);
 		
 		valIdNotNull(location);
