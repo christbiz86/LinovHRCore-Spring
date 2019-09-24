@@ -1,2 +1,12 @@
-/target
-/src/main/resources/
+target/
+src/main/resources/
+.dbeaver/
+.project
+*.xml
+.gitignore
+database.sql
+HELP.md
+modelReport.html
+modelReport.jasper
+mvnv
+mvnw.cmd

@@ -14,7 +14,7 @@ public class Job {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -36,24 +36,16 @@ public class Job {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_begin")
-    private Timestamp effBegin;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "eff_end")
-    private Timestamp effEnd;
-
     @JsonIgnoreProperties(value = {"jobs"})
     @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name="company_id", referencedColumnName = "id")
     private Company company;
 
-    public UUID getId(){
+    public String getId(){
         return id;
     }
 
-    public void setId(UUID id){
+    public void setId(String id){
         this.id = id;
     }
 
@@ -87,22 +79,6 @@ public class Job {
 
     public void setUpdatedAt(Timestamp updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Timestamp getEffBegin() {
-        return effBegin;
-    }
-
-    public void setEffBegin(Timestamp effBegin) {
-        this.effBegin = effBegin;
-    }
-
-    public Timestamp getEffEnd() {
-        return effEnd;
-    }
-
-    public void setEffEnd(Timestamp effEnd) {
-        this.effEnd = effEnd;
     }
 
     public Company getCompany() {
