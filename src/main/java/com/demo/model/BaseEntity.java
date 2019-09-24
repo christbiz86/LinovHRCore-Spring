@@ -38,8 +38,12 @@ public abstract class BaseEntity implements Serializable{
 		}
 
 	public void setVersion(Long version) {
-		version = 0L;
-		this.version = version; 
+		if(version==null) {
+			version = new Long(0);
+		}else {
+			this.version = version;
+		}
+		 
 	}
 	    
 		public String getId() {
