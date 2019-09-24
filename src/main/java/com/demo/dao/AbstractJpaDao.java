@@ -51,12 +51,4 @@ public abstract class AbstractJpaDao<T extends Serializable> {
         }
     }
 
-    public boolean isIdExist(final String entityId) {
-		if(findOne(entityId) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
-
 }
