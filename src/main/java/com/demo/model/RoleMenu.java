@@ -12,24 +12,24 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_role_menus",uniqueConstraints = @UniqueConstraint(columnNames = {"",""}))
+@Table(name = "core_role_menus",uniqueConstraints = @UniqueConstraint(columnNames = {"tenant_id","role_id","menu_id"}))
 public class RoleMenu extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
-    @OneToOne()
+    @OneToOne
     private Tenant tenant;
 
 	@JoinColumn(name = "role_id", referencedColumnName = "id")
-    @OneToOne()
+    @OneToOne
     private Role role;
 
 	@JoinColumn(name = "menu_action_id", referencedColumnName = "id")
-    @OneToOne()
+    @OneToOne
     private MenuAction menuAction;
 	
 	@JoinColumn(name = "menu_id", referencedColumnName = "id")
-    @OneToOne()
+    @OneToOne
     private Menu menu;
 
 	public Tenant getTenant() {
