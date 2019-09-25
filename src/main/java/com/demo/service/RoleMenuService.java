@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.RoleMenuDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Menu;
 import com.demo.model.Role;
 import com.demo.model.RoleMenu;
@@ -46,7 +44,7 @@ public class RoleMenuService {
 		return roleMenuDao.findByBk(roleMenu);
     }
 	
-	public void save(RoleMenu roleMenu) throws ValidationException {
+	public void save(RoleMenu roleMenu) throws Exception {
 		roleMenu.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(roleMenu);
 		valBkNotExist(roleMenu);
@@ -54,7 +52,7 @@ public class RoleMenuService {
 		roleMenuDao.create(roleMenu);
 	}
 	
-	public void update(RoleMenu roleMenu) throws ValidationException {
+	public void update(RoleMenu roleMenu) throws Exception {
 		roleMenu.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(roleMenu);
 		valIdExist(roleMenu.getId());
@@ -65,57 +63,57 @@ public class RoleMenuService {
 		roleMenuDao.update(roleMenu);
 	}
 	
-	public void delete(String id) throws ValidationException {
+	public void delete(String id) throws Exception {
 		valIdExist(id);
 		roleMenuDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws ValidationException{
+	private void valIdExist(String id)throws Exception{
 		if(!roleMenuDao.isIdExist(id)) {
-			throw new ValidationException("Data tidak ada");
+			throw new Exception("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(RoleMenu roleMenu)throws ValidationException {
+	private void valIdNotNull(RoleMenu roleMenu)throws Exception {
 		if(roleMenu.getId().isEmpty()) {
-			throw new ValidationException("Id tidak boleh kosong");
+			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(RoleMenu roleMenu)throws ValidationException{
+	private void valNonBk(RoleMenu roleMenu)throws Exception{
 		
 		if(roleMenu.getMenuAction().getId().isEmpty()) {
-			throw new ValidationException("Menu Action tidak boleh kosong");
+			throw new Exception("Menu Action tidak boleh kosong");
 		}
 		
 		
 	}
 	
-	private void valBkNotExist(RoleMenu roleMenu)throws ValidationException{
+	private void valBkNotExist(RoleMenu roleMenu)throws Exception{
 		if(roleMenuDao.isBkExist(roleMenu)) {
-			throw new ValidationException("Data sudah ada");
+			throw new Exception("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(RoleMenu roleMenu)throws ValidationException{
+	private void valBkNotChange(RoleMenu roleMenu)throws Exception{
 		RoleMenu tempRoleMenu=findById(roleMenu.getId());
 
 		if(!tempRoleMenu.getTenant().getId().equals(roleMenu.getTenant().getId())) {
-			throw new ValidationException("BK tidak boleh berubah");
+			throw new Exception("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(RoleMenu roleMenu) throws ValidationException{
+	private void valBkNotNull(RoleMenu roleMenu) throws Exception{
 		if(roleMenu.getTenant().getId().isEmpty()) {
-			throw new ValidationException("Bk tidak boleh kosong");
+			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(RoleMenu roleMenu)throws ValidationException {
+	private void valCreatedNotChange(RoleMenu roleMenu)throws Exception {
 		RoleMenu tempRoleMenu=findById(roleMenu.getId());
 		
 		if(!tempRoleMenu.getCreatedAt().equals(roleMenu.getCreatedAt()) || !tempRoleMenu.getCreatedBy().equals(roleMenu.getCreatedBy())) {
-			throw new ValidationException("created tidak boleh berubah");
+			throw new Exception("created tidak boleh berubah");
 		}
 	}
 }

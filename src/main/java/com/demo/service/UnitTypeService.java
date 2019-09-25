@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.UnitTypeDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.UnitType;
 
 @Service

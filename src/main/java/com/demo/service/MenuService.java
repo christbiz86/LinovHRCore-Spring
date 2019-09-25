@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.MenuDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Menu;
 
 @Service
@@ -34,7 +33,7 @@ public class MenuService {
 		return menuDao.findByBk(menu);
     }
 	
-	public void save(Menu menu) throws ValidationException {
+	public void save(Menu menu) throws Exception {
 		menu.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(menu);
 		valBkNotExist(menu);
@@ -42,7 +41,7 @@ public class MenuService {
 		menuDao.create(menu);
 	}
 	
-	public void update(Menu menu) throws ValidationException {
+	public void update(Menu menu) throws Exception {
 		menu.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(menu);
 		valIdExist(menu.getId());
@@ -53,65 +52,65 @@ public class MenuService {
 		menuDao.update(menu);
 	}
 	
-	public void delete(String id) throws ValidationException {
+	public void delete(String id) throws Exception {
 		valIdExist(id);
 		menuDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws ValidationException{
+	private void valIdExist(String id)throws Exception{
 		if(!menuDao.isIdExist(id)) {
-			throw new ValidationException("Data tidak ada");
+			throw new Exception("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Menu menu)throws ValidationException {
+	private void valIdNotNull(Menu menu)throws Exception {
 		if(menu.getId().isEmpty()) {
-			throw new ValidationException("Id tidak boleh kosong");
+			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(Menu menu)throws ValidationException{
+	private void valNonBk(Menu menu)throws Exception{
 
 		if(menu.getModule().getId().isEmpty()) {
-			throw new ValidationException("Module tidak boleh kosong");
+			throw new Exception("Module tidak boleh kosong");
 		}
 		if(menu.getName().isEmpty()) {
-			throw new ValidationException("Name tidak boleh kosong");
+			throw new Exception("Name tidak boleh kosong");
 		}
 		if(menu.getSortOrder()==null) {
-			throw new ValidationException("Sort Order tidak boleh kosong");
+			throw new Exception("Sort Order tidak boleh kosong");
 		}
 		if(menu.getLevel()==null) {
-			throw new ValidationException("Level tidak boleh kosong");
+			throw new Exception("Level tidak boleh kosong");
 		}
 		
 	}
 	
-	private void valBkNotExist(Menu menu)throws ValidationException{
+	private void valBkNotExist(Menu menu)throws Exception{
 		if(menuDao.isBkExist(menu)) {
-			throw new ValidationException("Data sudah ada");
+			throw new Exception("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(Menu menu)throws ValidationException{
+	private void valBkNotChange(Menu menu)throws Exception{
 		Menu tempMenu=findById(menu.getId());
 
 		if(!tempMenu.getCode().equals(menu.getCode())) {
-			throw new ValidationException("BK tidak boleh berubah");
+			throw new Exception("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(Menu menu) throws ValidationException{
+	private void valBkNotNull(Menu menu) throws Exception{
 		if(menu.getCode().isEmpty() ) {
-			throw new ValidationException("Bk tidak boleh kosong");
+			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(Menu menu)throws ValidationException {
+	private void valCreatedNotChange(Menu menu)throws Exception {
 		Menu tempMenu=findById(menu.getId());
 		
 		if(!tempMenu.getCreatedAt().equals(menu.getCreatedAt()) || !tempMenu.getCreatedBy().equals(menu.getCreatedBy())) {
-			throw new ValidationException("created tidak boleh berubah");
+			throw new Exception("created tidak boleh berubah");
 		}
 	}
 }

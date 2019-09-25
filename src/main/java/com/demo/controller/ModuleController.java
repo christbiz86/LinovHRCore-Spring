@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
 import com.demo.model.Module;
 import com.demo.service.ModuleService;
 
@@ -69,10 +68,6 @@ public class ModuleController {
 			moduleService.save(module);	
 			return ResponseEntity.ok("Save Success");
 		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessages());
-		}
 		catch (Exception e) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -87,10 +82,6 @@ public class ModuleController {
 			moduleService.update(module);	
 			return ResponseEntity.ok("Put Success");
 		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
-		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -104,10 +95,6 @@ public class ModuleController {
 		try{	
 			moduleService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
-		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
