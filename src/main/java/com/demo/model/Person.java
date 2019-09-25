@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_persons")
+
 public class Person extends BaseEntity{
 	
 	@JoinColumn(name = "tenant_id", referencedColumnName = "id")

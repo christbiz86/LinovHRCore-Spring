@@ -23,245 +23,245 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_locations", uniqueConstraints = @UniqueConstraint(columnNames = {"code", "company_id"}))
 public class Location implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	@Id
+    private static final long serialVersionUID = 1L;
+
+    @Id
     @Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-	
-	@Column(name = "name")
-	private String name;
-	
-	@Column(name = "description")
-	private String description;
-	
-	@JoinColumn(name = "tax_office_id", referencedColumnName = "id")
-	@OneToOne
-	private TaxOffice taxOffice;
-	
-	@Column(name = "calendar_id")
-	private Integer calendar;
-	
-	@JoinColumn(name = "city_id", referencedColumnName = "id")
-	@OneToOne
-	private City city;
-	
-	@Column(name = "address")
-	private String address;
-	
-	@Column(name = "postal_code")
-	private String postalCode;
-	
-	@Column(name = "phone")
-	private String phone;
-	
-	@Column(name = "fax")
-	private String fax;
-	
-	@Column(name = "created_by")
-	private String createdBy;
-	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-	@Column(name = "created_at")
-	private Timestamp createdAt;
-	
-	@Column(name = "updated_by")
-	private String updatedBy;
-	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-	@Column(name = "updated_at")
-	private Timestamp updatedAt;
-	
-	@Column(name = "code")
-	private String code;
-	
-	@Column(name = "latitude")
-	private Integer latitude;
-	
-	@Column(name = "longitude")
-	private Integer longitude;
-	
-	@Column(name = "version")
-	private Long version;
-	
-	@JoinColumn(name = "company_id", referencedColumnName = "id")
-	@OneToOne
-	private Company company;
 
-	public String getId() {
-		return id;
-	}
+    @Column(name = "name")
+    private String name;
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    @Column(name = "description")
+    private String description;
 
-	public String getName() {
-		return name;
-	}
+    @JoinColumn(name = "tax_office_id", referencedColumnName = "id")
+    @OneToOne
+    private TaxOffice taxOffice;
 
-	public void setName(String name) {
-		if(name == null) {
-			this.name = new String();
-		} else {
-			this.name = name;
-		}
-	}
+    @Column(name = "calendar_id")
+    private Integer calendar;
 
-	public String getDescription() {
-		return description;
-	}
+    @JoinColumn(name = "city_id", referencedColumnName = "id")
+    @OneToOne
+    private City city;
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    @Column(name = "address")
+    private String address;
 
-	public TaxOffice getTaxOffice() {
-		return taxOffice;
-	}
+    @Column(name = "postal_code")
+    private String postalCode;
 
-	public void setTaxOffice(TaxOffice taxOffice) {
-		this.taxOffice = taxOffice;
-	}
+    @Column(name = "phone")
+    private String phone;
 
-	public String getAddress() {
-		return address;
-	}
+    @Column(name = "fax")
+    private String fax;
 
-	public Integer getCalendar() {
-		return calendar;
-	}
+    @Column(name = "created_by")
+    private String createdBy;
 
-	public void setCalendar(Integer calendar) {
-		this.calendar = calendar;
-	}
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+    @Column(name = "created_at")
+    private Timestamp createdAt;
 
-	public City getCity() {
-		return city;
-	}
+    @Column(name = "updated_by")
+    private String updatedBy;
 
-	public void setCity(City city) {
-		if(city == null) {
-			this.city = new City();
-		} else {
-			this.city = city;
-		}
-	}
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    @Column(name = "code")
+    private String code;
 
-	public String getPostalCode() {
-		return postalCode;
-	}
+    @Column(name = "latitude")
+    private Integer latitude;
 
-	public void setPostalCode(String postalCode) {
-		this.postalCode = postalCode;
-	}
+    @Column(name = "longitude")
+    private Integer longitude;
 
-	public String getPhone() {
-		return phone;
-	}
+    @Column(name = "version")
+    private Long version;
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    @OneToOne
+    private Company company;
 
-	public String getFax() {
-		return fax;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getCreatedBy() {
-		return createdBy;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setCreatedBy(String createdBy) {
-		if(createdBy == null) {
-			this.createdBy = new String();
-		} else {
-			this.createdBy = createdBy;
-		}
-	}
+    public void setName(String name) {
+        if(name == null) {
+            this.name = new String();
+        } else {
+            this.name = name;
+        }
+    }
 
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
+    public TaxOffice getTaxOffice() {
+        return taxOffice;
+    }
 
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
+    public void setTaxOffice(TaxOffice taxOffice) {
+        this.taxOffice = taxOffice;
+    }
 
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+    public Integer getCalendar() {
+        return calendar;
+    }
 
-	public String getCode() {
-		return code;
-	}
+    public void setCalendar(Integer calendar) {
+        this.calendar = calendar;
+    }
 
-	public void setCode(String code) {
-		if(code == null) {
-			this.code = new String();
-		} else {
-			this.code = code;
-		}
-	}
+    public City getCity() {
+        return city;
+    }
 
-	public Integer getLatitude() {
-		return latitude;
-	}
+    public void setCity(City city) {
+        if(city == null) {
+            this.city = new City();
+        } else {
+            this.city = city;
+        }
+    }
 
-	public void setLatitude(Integer latitude) {
-		this.latitude = latitude;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public Integer getLongitude() {
-		return longitude;
-	}
+    public String getPostalCode() {
+        return postalCode;
+    }
 
-	public void setLongitude(Integer longitude) {
-		this.longitude = longitude;
-	}
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
 
-	public Company getCompany() {
-		return company;
-	}
+    public String getPhone() {
+        return phone;
+    }
 
-	public void setCompany(Company company) {
-		if(company == null) {
-			this.company = new Company();
-		} else {
-			this.company = company;
-		}
-	}
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
-	public Long getVersion() {
-		return version;
-	}
+    public String getFax() {
+        return fax;
+    }
 
-	public void setVersion(Long version) {
-		if(version == null) {
-			this.version = new Long(0);
-		} else {
-			this.version = version;
-		}
-	}
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        if(createdBy == null) {
+            this.createdBy = new String();
+        } else {
+            this.createdBy = createdBy;
+        }
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        if(code == null) {
+            this.code = new String();
+        } else {
+            this.code = code;
+        }
+    }
+
+    public Integer getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Integer latitude) {
+        this.latitude = latitude;
+    }
+
+    public Integer getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Integer longitude) {
+        this.longitude = longitude;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        if(company == null) {
+            this.company = new Company();
+        } else {
+            this.company = company;
+        }
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        if(version == null) {
+            this.version = new Long(0);
+        } else {
+            this.version = version;
+        }
+    }
 }

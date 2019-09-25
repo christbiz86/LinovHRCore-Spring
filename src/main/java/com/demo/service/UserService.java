@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.UserDao;
+import com.demo.exception.ValidationException;
 import com.demo.model.Tenant;
 import com.demo.model.User;
 
@@ -37,7 +38,7 @@ public class UserService {
 		return userDao.findByBk(user);
     }
 	
-	public void save(User user) throws Exception {
+	public void save(User user) throws ValidationException {
 		user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(user);
 		valBkNotExist(user);
@@ -45,7 +46,7 @@ public class UserService {
 		userDao.create(user);
 	}
 	
-	public void update(User user) throws Exception {
+	public void update(User user) throws ValidationException {
 		user.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(user);
 		valIdExist(user.getId());
@@ -56,32 +57,32 @@ public class UserService {
 		userDao.update(user);
 	}
 	
-	public void delete(String id) throws Exception {
+	public void delete(String id) throws ValidationException {
 		valIdExist(id);
 		userDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws Exception{
+	private void valIdExist(String id)throws ValidationException{
 		if(!userDao.isIdExist(id)) {
-			throw new Exception("Data tidak ada");
+			throw new ValidationException("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(User user)throws Exception {
-		if(user.getId()==null) {
-			throw new Exception("Id tidak boleh kosong");
+	private void valIdNotNull(User user)throws ValidationException {
+		if(user.getId().isEmpty()) {
+			throw new ValidationException("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(User user)throws Exception{
+	private void valNonBk(User user)throws ValidationException{
 		StringBuilder sb=new StringBuilder();
 		int error=0;
 
-		if(user.getEmail()==null) {
+		if(user.getEmail().isEmpty()) {
 			sb.append("Email tidak boleh kosong !");
 			error++;
 		}
-		if(user.getPassword()==null) {
+		if(user.getPassword().isEmpty()) {
 			sb.append("Password tidak boleh kosong !");
 			error++;
 		}
@@ -95,35 +96,35 @@ public class UserService {
 		}
 				
 		if(error>0) {
-			throw new Exception(sb.toString());
+			throw new ValidationException(sb.toString());
 		}
 	}
 	
-	private void valBkNotExist(User user)throws Exception{
+	private void valBkNotExist(User user)throws ValidationException{
 		if(userDao.isBkExist(user)) {
-			throw new Exception("Data sudah ada");
+			throw new ValidationException("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(User user)throws Exception{
+	private void valBkNotChange(User user)throws ValidationException{
 		User tempUser=findById(user.getId());
 
 		if(!tempUser.getTenant().getId().equals(user.getTenant().getId()) || !tempUser.getUsername().equals(user.getUsername())) {
-			throw new Exception("BK tidak boleh berubah");
+			throw new ValidationException("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(User user) throws Exception{
-		if(user.getTenant().getId() == null || user.getUsername() == null) {
-			throw new Exception("Bk tidak boleh kosong");
+	private void valBkNotNull(User user) throws ValidationException{
+		if(user.getTenant().getId().isEmpty() || user.getUsername().isEmpty()) {
+			throw new ValidationException("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(User user)throws Exception {
+	private void valCreatedNotChange(User user)throws ValidationException {
 		User tempUser=findById(user.getId());
 		
 		if(!tempUser.getCreatedAt().equals(user.getCreatedAt()) || !tempUser.getCreatedBy().equals(user.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
+			throw new ValidationException("created tidak boleh berubah");
 		}
 	}
 }

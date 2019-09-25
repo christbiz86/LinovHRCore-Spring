@@ -10,11 +10,11 @@
 	</parent>
 	
 	<groupId>com.demo</groupId>
-	<artifactId>LinovHR</artifactId>
+	<artifactId>linov</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Linov</name>
 	<packaging>war</packaging>
-	<description>Powerful HRIS apps</description>
+	<description>LinovHR - Core Module</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -58,6 +58,7 @@
 		    <artifactId>jasperreports</artifactId>
 		    <version>6.4.0</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -65,9 +66,6 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<mainClass>com.demo.MainSpringBoot</mainClass>
-				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>

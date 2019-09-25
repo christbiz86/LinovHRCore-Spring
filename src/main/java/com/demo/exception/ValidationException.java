@@ -5,22 +5,18 @@ import java.util.List;
 @SuppressWarnings("serial")
 
 public class ValidationException extends Exception {
-	private List<String> messages;
 
-	public ValidationException(List<String> messages){
+	private String messages;
+
+	public ValidationException(String messages) {
 		this.messages = messages;
 	}
-
-	public ValidationException(String message) {
-		super(message);
-	}
-
-	public List<String> getMessages() {
+	
+	public String getMessages() {
 		return messages;
 	}
 
-	public void setMessages(List<String> messages) {
+	public void setMessages(String messages) {
 		this.messages = messages;
 	}
-
 }
