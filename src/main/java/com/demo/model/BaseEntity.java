@@ -31,15 +31,18 @@ public abstract class BaseEntity implements Serializable{
 	    private Timestamp updatedAt;
 
 	    @Column(name = "version")
-		private Long version;
+		private Long version=0L;
 	    
 		public Long getVersion() {
 		return version;
 		}
 
 	public void setVersion(Long version) {
-		version = 0L;
-		this.version = version; 
+		if(version==null) {
+			version = new Long(0);
+		}else {
+			this.version = version;
+		} 
 	}
 	    
 		public String getId() {
