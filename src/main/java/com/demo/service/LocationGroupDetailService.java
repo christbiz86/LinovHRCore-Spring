@@ -34,7 +34,7 @@ public class LocationGroupDetailService {
 	}
 	
 	public void valIdNotNull(LocationGroupDetail locationGroupDetail) throws Exception {
-		if(locationGroupDetail.getId() == null) {
+		if(locationGroupDetail.getId() == null || locationGroupDetail.getId().isEmpty()) {
 			throw new Exception("Data is Not Found");
 		}
 	}

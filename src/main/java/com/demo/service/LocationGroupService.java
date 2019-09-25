@@ -33,7 +33,7 @@ public class LocationGroupService {
 	}
 	
 	private void valIdNotNull(LocationGroup locationGroup) throws Exception {
-		if(locationGroup.getId() == null) {
+		if(locationGroup.getId() == null || locationGroup.getId().isEmpty()) {
 			throw new Exception("Id Cannot be empty");
 		}
 	}

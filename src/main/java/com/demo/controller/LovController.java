@@ -48,12 +48,10 @@ public class LovController {
     @Autowired
     private LocationService locationService;
 
-    @GetMapping(value = "/cities/{offset}/{limit}")
-    public ResponseEntity<?> getAllCity(
-        @PathVariable Integer offset,
-        @PathVariable Integer limit
-    ){
-        List<City> cityList = cityService.findAll(offset,limit);
+    @GetMapping(value = "/cities")
+    @Transactional
+    public ResponseEntity<?> getAllCity(){
+        List<City> cityList = cityService.findAll();
         return new ResponseEntity<List<City>>(cityList,HttpStatus.OK);
     }
 

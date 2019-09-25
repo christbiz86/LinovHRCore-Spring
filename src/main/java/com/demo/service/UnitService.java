@@ -35,8 +35,8 @@ public class UnitService {
 	}
 	
 	private void valIdNotNull(Unit unit)throws Exception {
-		if(unit.getId() == null) {
-			throw new Exception("Cannot be empty");
+		if(unit.getId() == null || unit.getId().isEmpty()) {
+			throw new Exception("Id Cannot be empty");
 		}
 	}
 	

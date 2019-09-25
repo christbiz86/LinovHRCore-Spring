@@ -36,8 +36,8 @@ public class 	LocationService {
 	
 	private void valIdNotNull(Location location)throws Exception {
 		
-		if(location.getId() == null) {
-			throw new Exception("Id Cannot be empty \n");
+		if(location.getId() == null || location.getId().isEmpty()) {
+			throw new Exception("Id Cannot be empty");
 		}
 	}
 	
@@ -59,7 +59,7 @@ public class 	LocationService {
 			throw new Exception("Created By cannot be empty");
 		}
 		if(location.getCreatedAt() == null) {
-			throw new Exception("Created At cannot be empty");
+			throw new Exception("Time of Create Data cannot be empty");
 		}
 		if(location.getCode().isEmpty()) {
 			throw new Exception("Code cannot be empty");

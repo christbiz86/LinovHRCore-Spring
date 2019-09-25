@@ -37,10 +37,8 @@ public class UnitTypeService {
 	}
 	
 	private void valIdNotNull(UnitType unitType)throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
-		if(unitType.getId() == null) {
-			listErr.add("Id Cannot be empty \n");
+		if(unitType.getId() == null || unitType.getId().isEmpty()) {
+			throw new Exception("Id Cannot be empty");
 		}
 	}
 	
