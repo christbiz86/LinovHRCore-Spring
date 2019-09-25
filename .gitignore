@@ -12,6 +12,3 @@ modelReport.html
 modelReport.jasper
 mvnv
 mvnw.cmd
-
-/target/
-target/classes/
