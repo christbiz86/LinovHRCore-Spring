@@ -56,6 +56,7 @@ public class LovController {
     }
 
     @GetMapping(value = "/companies")
+    @Transactional
     public ResponseEntity<?> getAllCompany(){
         List<Company> companyList = companyService.findAll();
         return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);

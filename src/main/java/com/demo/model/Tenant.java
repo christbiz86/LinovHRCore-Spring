@@ -14,7 +14,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name="core_tenants")
-public class Tenant extends BaseEntity implements Serializable{
+public class Tenant extends BaseEntity {
 
 //    @Id
 //    @Column(name = "id")

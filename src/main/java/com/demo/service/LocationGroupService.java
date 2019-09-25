@@ -100,7 +100,7 @@ public class LocationGroupService {
 	public void update(LocationGroup locationGroup) throws Exception {
 		locationGroup.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		
-		valCreatedNotChange(locationGroup);
+//		valCreatedNotChange(locationGroup);
 		
 		valIdNotNull(locationGroup);
 		validExist(locationGroup.getId());
