@@ -1,7 +1,6 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.PositionGradeDao;
-import com.demo.model.Grade;
-import com.demo.model.Position;
 import com.demo.model.PositionGrade;
 
 @Service
@@ -32,8 +29,6 @@ public class PositionGradeService {
 	}
 
 	public void valNonBk(PositionGrade positionGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-
 		if (positionGrade.getCreatedBy() == null || positionGrade.getCreatedBy().isEmpty()) {
 			throw new Exception("created by cannot be emptied");
 		}
@@ -52,10 +47,10 @@ public class PositionGradeService {
 	}
 
 	public void valBkNotChange(PositionGrade positionGrade) throws Exception {
-		Position position = findById(positionGrade.getId()).getPosition();
-		Grade grade = findById(positionGrade.getId()).getGrade();
+		String position = findById(positionGrade.getId()).getPosition().getId();
+		String grade = findById(positionGrade.getId()).getGrade().getId();
 
-		if (positionGrade.getPosition().getId().equals(position.getId()) && !positionGrade.getGrade().getId().equals(grade.getId()) ) {
+		if (!positionGrade.getPosition().getId().equals(position) || !positionGrade.getGrade().getId().equals(grade)) {
 			throw new Exception("position or grade cannot be changed");
 		}
 	}
@@ -76,7 +71,7 @@ public class PositionGradeService {
 	public void valCreatedNotChange(PositionGrade positionGrade) throws Exception {
 		PositionGrade posDB = findById(positionGrade.getId());
 		
-		if (posDB.getCreatedAt() != positionGrade.getCreatedAt() && !posDB.getCreatedBy().equals(positionGrade.getCreatedBy())) {
+		if (posDB.getCreatedAt() != positionGrade.getCreatedAt() || !posDB.getCreatedBy().equals(positionGrade.getCreatedBy())) {
 			throw new Exception("created at or created by cannot be changed");
 		}
 	}

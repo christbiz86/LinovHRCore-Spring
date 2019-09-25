@@ -30,7 +30,6 @@ import com.demo.service.LocationService;
 public class LovController {
 
     @Autowired
-//    private CityComboBean cityComboBean;
     private CityService cityService;
 
     @Autowired
@@ -70,9 +69,13 @@ public class LovController {
     }
 
     @GetMapping(value = "/countries")
-    public ResponseEntity<?> getAllCountries(){
-        List<Country> countryList = countryService.findAll();
-        return new ResponseEntity<List<Country>>(countryList,HttpStatus.OK);
+    public ResponseEntity<?> getAllCountries() throws Exception {
+    	try {
+			List<Country> list = countryService.findAll();
+			return new ResponseEntity<List<Country>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
     }
 
     @GetMapping(value = "/grades")

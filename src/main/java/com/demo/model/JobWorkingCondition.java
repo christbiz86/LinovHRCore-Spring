@@ -55,16 +55,16 @@ public class JobWorkingCondition extends BaseEntity {
     	}
 	}
 
-	public Boolean isEssential() {
+	public Boolean getIsEssential() {
 		return isEssential;
 	}
 
-	public void setEssential(Boolean isEssential) {
+	public void setIsEssential(Boolean isEssential) {
 		if(isEssential == null) {
 			this.isEssential = false;
     	} else {
     		this.isEssential = isEssential;
     	}
 	}
-
+	
 }

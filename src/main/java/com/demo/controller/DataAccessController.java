@@ -18,52 +18,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.PositionWorkingCondition;
-import com.demo.service.PositionWorkingConditionService;
+import com.demo.model.DataAccess;
+import com.demo.service.DataAccessService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({ "/api/v1" })
-public class PositionWorkingConditionController {
+public class DataAccessController {
 
 	@Autowired
-	private PositionWorkingConditionService posWCSvc;
-	
-	@GetMapping(value = "/position-working-conditions")
+	private DataAccessService dataAccessService;
+
+	@GetMapping(value = "/data-accesses")
 	@Transactional
-	public ResponseEntity<?> getPositionWorkConditions() {
-		List<PositionWorkingCondition> positionList = posWCSvc.findAll();
+	public ResponseEntity<?> getDataAccesses() {
+		List<DataAccess> positionList = dataAccessService.findAll();
 		return ResponseEntity.ok(positionList);
 	}
 
-	@GetMapping(value = "/position-working-condition/{id}")
+	@GetMapping(value = "/data-access/{id}")
 	@Transactional
-	public ResponseEntity<?> getPositionWorkConditionById(@PathVariable String id) {
-		PositionWorkingCondition position = posWCSvc.findById(id);
-		return ResponseEntity.ok(position);
+	public ResponseEntity<?> getDataAccessById(@PathVariable String id) {
+		DataAccess dataAccess = dataAccessService.findById(id);
+		return ResponseEntity.ok(dataAccess);
 	}
 
-	@PostMapping(value = "/position-working-condition")
+	@PostMapping(value = "/data-access")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody PositionWorkingCondition position) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody DataAccess dataAccess) throws Exception {
 		try {
-			posWCSvc.save(position);
+			dataAccessService.save(dataAccess);
 			return ResponseEntity.ok(HttpStatus.CREATED);
 		} catch (ValidationException ex) {
 			System.out.println(ex);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
 		} catch (Exception e) {
 			System.out.println(e);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insert Failed!");
-		}
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		} 
 	}
 	
-	@PutMapping(value = "/position-working-condition")
+	@PutMapping(value = "/data-access")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody PositionWorkingCondition position) throws Exception {
+	public ResponseEntity<?> update(@RequestBody DataAccess dataAccess) throws Exception {
 		try {
-			posWCSvc.update(position);
+			dataAccessService.update(dataAccess);
 			return ResponseEntity.ok(HttpStatus.OK);
 		} catch (ValidationException ex) {
 			System.out.println(ex);
@@ -74,11 +74,11 @@ public class PositionWorkingConditionController {
 		}
 	}
 	
-	@DeleteMapping(value = "/position-working-condition/{id}")
+	@DeleteMapping(value = "/data-access/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			posWCSvc.delete(id);
+			dataAccessService.delete(id);
 			return ResponseEntity.ok(HttpStatus.OK);
 		} catch (ValidationException ex) {
 			System.out.println(ex);

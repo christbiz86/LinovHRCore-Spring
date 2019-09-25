@@ -2,7 +2,6 @@ package com.demo.dao;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,15 +16,12 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     @PersistenceContext
     protected EntityManager entityManager;
     
-    private String entityId;
-
     public final void setClazz(final Class<T> clazzToSet) {
         this.clazz = clazzToSet;
     }
 
     public T findOne(final String id) {
-    	entityId = id;
-        return entityManager.find(clazz, id);
+    	return entityManager.find(clazz, id);
     }
 
     @SuppressWarnings("unchecked")
@@ -35,42 +31,37 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     public void create(final T entity) {
     	try {
-    		
-    			if(entity instanceof Object) {
-    				BaseEntity insertBase = (BaseEntity)entity;
-    				insertBase.setVersion(new Long(0));
-    				insertBase.setCreatedBy("kosong");
-    				insertBase.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-    				entityManager.persist(entity);
-    			}
-    			
-    			
+			if(entity instanceof Object) {
+				BaseEntity insertBase = (BaseEntity) entity;
+				insertBase.setVersion(new Long(0));
+				insertBase.setCreatedBy("kosong");
+				insertBase.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+				entityManager.persist(entity);
+			}	
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.err.println(e.getMessage());
 		}
         
     }
 
     public T update(final T entity) {
-    	T o = null;
-    	try {
-    		if(entity instanceof Class) {
-    			System.err.println(entity.toString());
-    			BaseEntity baseUpdate = (BaseEntity)entity;
-    			System.err.println(baseUpdate.getId());
-    			System.err.println(baseUpdate.getCreatedBy());
-    			baseUpdate.setVersion(baseUpdate.getVersion()+1);
-    			baseUpdate.setUpdatedBy("kosong");
-    			baseUpdate.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-    			o = entityManager.merge(entity);
-    		}
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.err.println(e.getMessage());
-		}
+//    	T o = null;
+//    	try {
+//    		if(entity instanceof Class) {
+//    			System.err.println(entity.toString());
+//    			BaseEntity baseUpdate = (BaseEntity) entity;
+//    			System.err.println(baseUpdate.getId());
+//    			System.err.println(baseUpdate.getCreatedBy());
+//    			baseUpdate.setVersion(baseUpdate.getVersion() + 1);
+//    			baseUpdate.setUpdatedBy("kosong");
+//    			baseUpdate.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+//    			o = entityManager.merge(entity);
+//    		}
+//		} catch (Exception e) {
+//			System.err.println(e.getMessage());
+//		}
     	
-        return o;
+        return entityManager.merge(entity);
     }
 
     public void delete(final T entity) {

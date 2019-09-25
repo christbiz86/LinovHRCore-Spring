@@ -55,17 +55,18 @@ public class JobResponsibility extends BaseEntity {
     	}
 	}
 
-	public Boolean isAppraisal() {
+	public Boolean getIsAppraisal() {
 		return isAppraisal;
 	}
 
-	public void setAppraisal(Boolean isAppraisal) {
-		System.out.println(isAppraisal);
+	public void setIsAppraisal(Boolean isAppraisal) {
 		if(isAppraisal == null) {
 			this.isAppraisal = false;
     	} else {
     		this.isAppraisal = isAppraisal;
     	}
 	}
+	
+	
 
 }

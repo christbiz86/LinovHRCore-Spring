@@ -32,14 +32,14 @@ public class PositionGradeController {
 
 	@GetMapping(value = "/position-grades")
 	@Transactional
-	public ResponseEntity<?> getPositionSlots() {
+	public ResponseEntity<?> getPositionGrades() {
 		List<PositionGrade> positionList = positionGradeService.findAll();
 		return ResponseEntity.ok(positionList);
 	}
 
 	@GetMapping(value = "/position-grade/{id}")
 	@Transactional
-	public ResponseEntity<?> getPositionSlotById(@PathVariable String id) {
+	public ResponseEntity<?> getPositionGradeById(@PathVariable String id) {
 		PositionGrade position = positionGradeService.findById(id);
 		return ResponseEntity.ok(position);
 	}

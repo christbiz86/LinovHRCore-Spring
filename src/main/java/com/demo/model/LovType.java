@@ -62,10 +62,5 @@ public class LovType extends BaseEntity{
 			this.arg1 = arg1;			
 		}
 	}
-
-	public void setVersion(Long version) {
-		this.version = version;
-	}
-
 }
 

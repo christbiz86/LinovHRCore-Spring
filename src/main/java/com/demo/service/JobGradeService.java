@@ -58,14 +58,14 @@ public class JobGradeService {
 		String job = findById(jobGrade.getId()).getJob().getId();
 		String grade = findById(jobGrade.getId()).getGrade().getId();
 		
-		if(!(jobGrade.getJob().getId().equals(job.toString()) && jobGrade.getGrade().getId().equals(grade.toString()))) {
+		if(!(jobGrade.getJob().getId().equals(job) && jobGrade.getGrade().getId().equals(grade))) {
 			throw new Exception("BK can't be changed!");
 		}
 	}
 	
 	public void valNonBk(JobGrade jobGrade) throws Exception {
 		if(jobGrade.getCreatedBy() == null) {
-			throw new Exception("Created by can't empty!\n");
+			throw new Exception("Created by can't empty!");
 		}
 	}
 	
