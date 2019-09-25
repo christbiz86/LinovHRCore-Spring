@@ -39,12 +39,6 @@ public class LocationGroupDetailService {
 		}
 	}
 	
-	public void valNonBk(LocationGroupDetail locationGroupDetail) throws Exception {
-		if(locationGroupDetail.getVersion() == null) {
-			throw new Exception("Version cannot be empty");
-		}
-	}
-	
 	private void valBkNotExist(LocationGroupDetail locationGroupDetail) throws Exception {
 		if(locationGroupDetailDao.isBkExist(locationGroupDetail.getLocation().getId(), locationGroupDetail.getLocationGroup().getId())) {
 			throw new Exception("Data already Exist");
@@ -73,7 +67,6 @@ public class LocationGroupDetailService {
 
 	public void save(LocationGroupDetail locationGroupDetail) throws Exception {
 		valBkNotNull(locationGroupDetail);
-		valNonBk(locationGroupDetail);
 		valBkNotExist(locationGroupDetail);
 		locationGroupDetailDao.create(locationGroupDetail);
 	}
@@ -83,7 +76,6 @@ public class LocationGroupDetailService {
 		valIdExist(locationGroupDetail.getId());
 		valBkNotNull(locationGroupDetail);
 		valBkNotChange(locationGroupDetail);
-		valNonBk(locationGroupDetail);
 		locationGroupDetailDao.update(locationGroupDetail);
 	}
 

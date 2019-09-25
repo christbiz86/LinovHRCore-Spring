@@ -42,15 +42,6 @@ public class LocationGroupService {
 		if(locationGroup.getName().isEmpty()) {
 			throw new Exception("Location Group Name Cannot be empty");
 		}
-		if(locationGroup.getCreatedAt() == null) {
-			throw new Exception("Time Created Data Cannot be empty");
-		}
-		if(locationGroup.getCreatedBy().isEmpty()) {
-			throw new Exception("Creator Data Cannot be empty");
-		}
-		if(locationGroup.getVersion() == null) {
-			throw new Exception("Version Cannot be empty");
-		}
 	}
 	
 	private void valBkNotExist(LocationGroup locationGroup) throws Exception {
@@ -79,14 +70,6 @@ public class LocationGroupService {
 			throw new Exception("Location Group Code cannot be empty");
 		}
 	}
-	
-	private void valCreatedNotChange(LocationGroup locationGroup) throws Exception {
-		LocationGroup temp = findById(locationGroup.getId());
-		
-		if(temp.getCreatedAt() != locationGroup.getCreatedAt() && !temp.getCreatedBy().equals(locationGroup.getCreatedBy())) {
-			throw new Exception("Creator cannot be changed");
-		}
-	}
 
 	public void save(LocationGroup locationGroup) throws Exception {
 		locationGroup.setCreatedAt(new Timestamp(System.currentTimeMillis()));
@@ -99,8 +82,6 @@ public class LocationGroupService {
 
 	public void update(LocationGroup locationGroup) throws Exception {
 		locationGroup.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-		
-//		valCreatedNotChange(locationGroup);
 		
 		valIdNotNull(locationGroup);
 		validExist(locationGroup.getId());

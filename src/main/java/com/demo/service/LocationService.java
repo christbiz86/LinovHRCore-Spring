@@ -88,15 +88,6 @@ public class LocationService {
 		}
 	}
 	
-	private void valCreatedNotChange(Location location)throws Exception {
-		Location tempLocation=findById(location.getId());
-			
-		if(tempLocation.getCreatedAt() != location.getCreatedAt() && !tempLocation.getCreatedBy().equals(location.getCreatedBy())) {
-			throw new Exception("Created cannot be changed");
-		}
-	
-	}
-	
 	public void save(Location location) throws Exception {
 		location.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -108,8 +99,6 @@ public class LocationService {
 	
 	public void update(Location location) throws Exception {
 		location.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-		
-		valCreatedNotChange(location);
 		
 		valIdNotNull(location);
 		valIdExist(location.getId());
