@@ -1,8 +1,8 @@
 package com.demo.dao;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -53,24 +53,21 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     }
 
     public T update(final T entity) {
-    	T o = null;
     	try {
-    		if(entity instanceof Class) {
-    			System.err.println(entity.toString());
-    			BaseEntity baseUpdate = (BaseEntity)entity;
-    			System.err.println(baseUpdate.getId());
-    			System.err.println(baseUpdate.getCreatedBy());
-    			baseUpdate.setVersion(baseUpdate.getVersion()+1);
-    			baseUpdate.setUpdatedBy("kosong");
-    			baseUpdate.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-    			o = entityManager.merge(entity);
+    		if(entity instanceof Object) {
+    			int pointer = 0;
+    			Field[] listField = BaseEntity.class.getDeclaredFields();
+    			for(Field updateField: listField) {
+    				System.err.println("jumlah field: "+pointer);
+    				pointer++;
+    			}
     		}
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println(e.getMessage());
 		}
     	
-        return o;
+        return entityManager.merge(entity);
     }
 
     public void delete(final T entity) {
