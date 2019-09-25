@@ -32,14 +32,14 @@ public class PositionResponsibilityController {
 	
 	@GetMapping(value = "/position-responsibilities")
 	@Transactional
-	public ResponseEntity<?> getPositionSlots() {
+	public ResponseEntity<?> getPositionResponsibilities() {
 		List<PositionResponsibility> positionList = posRespService.findAll();
 		return ResponseEntity.ok(positionList);
 	}
 
 	@GetMapping(value = "/position-responsibility/{id}")
 	@Transactional
-	public ResponseEntity<?> getPositionSlotById(@PathVariable String id) {
+	public ResponseEntity<?> getPositionResponsibilityById(@PathVariable String id) {
 		PositionResponsibility position = posRespService.findById(id);
 		return ResponseEntity.ok(position);
 	}
