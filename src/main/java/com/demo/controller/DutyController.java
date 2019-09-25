@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
 import com.demo.model.Duty;
 import com.demo.service.DutyService;
 
@@ -58,8 +57,6 @@ public class DutyController {
 		try {
 			dutyService.insert(duty);
 			return ResponseEntity.ok("Insert success!");
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -71,8 +68,6 @@ public class DutyController {
 		try {
 			dutyService.update(duty);
 			return ResponseEntity.ok("Update success with job responsibility ID: "+duty.getId());
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}

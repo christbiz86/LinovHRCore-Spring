@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class CostcenterDao extends ParentDao {
+public class CostcenterDao extends AbstractJpaDao<Costcenter> {
 
     public List<Costcenter> findAll(){
         return super.entityManager.createQuery("FROM Costcenter").getResultList();

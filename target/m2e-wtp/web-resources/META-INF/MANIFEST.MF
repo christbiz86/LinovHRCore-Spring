@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Implementation-Title: BasicMaven
+Implementation-Title: Linov
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: USER
 Implementation-Vendor-Id: com.demo

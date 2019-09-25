@@ -1,13 +1,11 @@
 package com.demo.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.PersonDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Person;
 
 @Service
@@ -15,11 +13,11 @@ public class PersonService {
 	@Autowired
 	private PersonDao personDao;
 	
-	public List<Person> findAllPerson() throws Exception{
+	public List<Person> findAllPerson(){
         return personDao.findAll();
     }
 	
-	public Person findPersonById(String id) throws Exception{
+	public Person findPersonById(String id){
 		if(personDao.isIdExist(id)) {
 			return personDao.findOne(id);
 		}else {
@@ -34,57 +32,47 @@ public class PersonService {
 	}
 	
 	private void valBkNotNull(Person person) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if(person.getTenant() == null) {
-			listErr.add("Must Have Tenant");
+			throw new Exception("Must Have Tenant");
 		}
 		if(person.getFirstName() == null) {
-			listErr.add("Must Have First Name");
+			throw new Exception("Must Have First Name");
 		}
 		if(person.getLastName() == null) {
-			listErr.add("Must Have Last Name");
+			throw new Exception("Must Have Last Name");
 		}
 		if(person.getBirthDate() == null) {
-			listErr.add("Must Have Birth Date");
+			throw new Exception("Must Have Birth Date");
 		}
 		if(person.getPhone() == null) {
-			listErr.add("Must Have Phone Number");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Must Have Phone Number");
 		}
 	}
 	
 	private void valNonBk(Person person) throws Exception {
-		List<String> listErr = new ArrayList<String>();
 		if(!person.getEmail().matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$")) {
-			listErr.add("Illegal Email Format");
+			throw new Exception("Illegal Email Format");
 		}
 		if(person.getCountry().getId() == null) {
-			listErr.add("Must Choose Country");
+			throw new Exception("Must Choose Country");
 		}
 		if(person.getLovPtyp().getId() == null) {
-			listErr.add("Must Have Type");
+			throw new Exception("Must Have Type");
 		}
 		if(person.getLovGndr().getId() == null) {
-			listErr.add("Must Have Gender");
+			throw new Exception("Must Have Gender");
 		}
 		if(person.getLovRlgn().getId() == null) {
-			listErr.add("Must Have Religion");
+			throw new Exception("Must Have Religion");
 		}
 		if(person.getLovMars().getId() == null) {
-			listErr.add("Must Have Status");
+			throw new Exception("Must Have Status");
 		}
 		if(person.getCreatedBy() == null) {
-			listErr.add("Must Have Creator");
+			throw new Exception("Must Have Creator");
 		}
 		if(person.getCreatedAt() == null) {
-			listErr.add("Must Have Time Created");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Must Have Time Created");
 		}
 	}
 }

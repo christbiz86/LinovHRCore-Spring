@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.JobDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Job;
 
 @Service
@@ -22,26 +20,14 @@ public class JobService {
 	}
 	
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(!jobDao.isIdExist(id)) {
-			listErr.add("Job not found!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Job not found!");
 		}
 	}
 	
 	public void valIdNotNull(Job job) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(job.getId().isEmpty()) {
-			listErr.add("Job ID can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Job ID can't empty!");
 		}
 	}
 	
@@ -58,75 +44,45 @@ public class JobService {
 	}
 	
 	public void valBkNotNull(Job job) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(job.getCompany().getId().isEmpty()) {
-			listErr.add("Company can't empty!");
+			throw new Exception("Company can't empty!");
 		}
 		if(job.getCode().isEmpty()) {
-			listErr.add("Code can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Code can't empty!");
 		}
 	}
 	
 	public void valBkNotExist(Job job) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(jobDao.isBkExist(job.getCode(), job.getCompany().getId())) {
-			listErr.add("Job already exists!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Job already exists!");
 		}
 	}
 	
 	public void valBkNotChange(Job job) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		String code = findById(job.getId()).getCode();
 		String company = findById(job.getId()).getCompany().getId();
 		
 		if(!(job.getCode().equals(code) && job.getCompany().getId().equals(company))) {
-			listErr.add("BK can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("BK can't be changed!");
 		}
 	}
 	
 	public void valNonBk(Job job) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(job.getName().isEmpty()) {
-			listErr.add("Job name can't empty!");
+			throw new Exception("Job name can't empty!");
 		}
 		if(job.getOrdinal() == null) {
-			listErr.add("Ordinal can't empty!");
+			throw new Exception("Ordinal can't empty!");
 		}
 		if(job.getCreatedBy().isEmpty()) {
-			listErr.add("Created by can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created by can't empty!");
 		}
 	}
 	
 	public void valCreatedAtNotChange(Job job) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		Timestamp createdAt = findById(job.getId()).getCreatedAt();
 		if(!job.getCreatedAt().equals(createdAt)) {
-			listErr.add("Created at can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created at can't be changed!");
 		}
 	}
 	

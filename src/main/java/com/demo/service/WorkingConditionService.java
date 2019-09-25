@@ -1,15 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.WorkingConditionDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.WorkingCondition;
 
 @Service
@@ -23,26 +20,14 @@ public class WorkingConditionService {
 	}
 	
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(!wcDao.isIdExist(id)) {
-			listErr.add("Working Condition not found!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Working Condition not found!");
 		}
 	}
 	
 	public void valIdNotNull(WorkingCondition wc) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(wc.getId().isEmpty()) {
-			listErr.add("Working Condition ID can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Working Condition ID can't empty!");
 		}
 	}
 	
@@ -59,72 +44,42 @@ public class WorkingConditionService {
 	}
 	
 	public void valBkNotNull(WorkingCondition wc) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(wc.getWorkingConditionType().getId().isEmpty()) {
-			listErr.add("Working Condition Type can't empty!");
+			throw new Exception("Working Condition Type can't empty!");
 		}
 		if(wc.getCode().isEmpty()) {
-			listErr.add("Code can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Code can't empty!");
 		}
 	}
 	
 	public void valBkNotExist(WorkingCondition wc) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(wcDao.isBkExist(wc.getCode(), wc.getWorkingConditionType().getId())) {
-			listErr.add("Working Condition already exists!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Working Condition already exists!");
 		}
 	}
 	
 	public void valBkNotChange(WorkingCondition wc) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		String code = findById(wc.getId()).getCode();
 		String wct = findById(wc.getId()).getWorkingConditionType().getId();
 		
 		if(!(wc.getCode().equals(code) && wc.getWorkingConditionType().getId().equals(wct))) {
-			listErr.add("BK can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("BK can't be changed!");
 		}
 	}
 	
 	public void valNonBk(WorkingCondition wc) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(wc.getName().isEmpty()) {
-			listErr.add("Working Condition name can't empty!");
+			throw new Exception("Working Condition name can't empty!");
 		}
 		if(wc.getCreatedBy().isEmpty()) {
-			listErr.add("Created by can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created by can't empty!");
 		}
 	}
 	
 	public void valCreatedAtNotChange(WorkingCondition wc) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		Timestamp createdAt = findById(wc.getId()).getCreatedAt();
 		if(!wc.getCreatedAt().equals(createdAt)) {
-			listErr.add("Created at can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created at can't be changed!");
 		}
 	}
 	

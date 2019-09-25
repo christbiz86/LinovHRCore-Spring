@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.JobGradeDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.JobGrade;
 
 @Service
@@ -22,26 +20,14 @@ public class JobGradeService {
 	}
 	
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if (!jobGradeDao.isIdExist(id)) {
-			listErr.add("Job Grade not found!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Job Grade not found!");
 		}
 	}
 	
 	public void valIdNotNull(JobGrade jobGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if (jobGrade.getId().isEmpty()) {
-			listErr.add("Job Grade ID can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Job Grade ID can't empty!");
 		}
 	}
 	
@@ -54,69 +40,39 @@ public class JobGradeService {
 	}
 	
 	public void valBkNotNull(JobGrade jobGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(jobGrade.getJob().getId().isEmpty()) {
-			listErr.add("Job can't empty!");
+			throw new Exception("Job can't empty!");
 		}
 		if(jobGrade.getGrade().getId().isEmpty()) {
-			listErr.add("Grade can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Grade can't empty!");
 		}
 	}
 	
 	public void valBkNotExist(JobGrade jobGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(jobGradeDao.isBkExist(jobGrade.getJob().getId(), jobGrade.getGrade().getId())) {
-			listErr.add("Job already exists!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Job Grade already exists!");
 		}
 	}
 	
 	public void valBkNotChange(JobGrade jobGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		String job = findById(jobGrade.getId()).getJob().getId();
 		String grade = findById(jobGrade.getId()).getGrade().getId();
 		
 		if(!(jobGrade.getJob().getId().equals(job.toString()) && jobGrade.getGrade().getId().equals(grade.toString()))) {
-			listErr.add("BK can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("BK can't be changed!");
 		}
 	}
 	
 	public void valNonBk(JobGrade jobGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(jobGrade.getCreatedBy() == null) {
-			listErr.add("Created by can't empty!\n");
+			throw new Exception("Created by can't empty!\n");
 		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
-		}	
 	}
 	
 	public void valCreatedAtNotChange(JobGrade jobGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		Timestamp createdAt = findById(jobGrade.getId()).getCreatedAt();
 		if(!jobGrade.getCreatedAt().equals(createdAt)) {
-			listErr.add("Created at can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created at can't be changed!");
 		}
 	}
 	

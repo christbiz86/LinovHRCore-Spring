@@ -1,16 +1,11 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.WorkListDao;
-import com.demo.exception.ValidationException;
-import com.demo.model.Tenant;
-import com.demo.model.User;
 import com.demo.model.WorkList;
 
 @Service
@@ -18,6 +13,10 @@ public class WorkListService {
 
 	@Autowired
 	private WorkListDao workListDao;
+	
+	public List<WorkList> findAll(){
+        return workListDao.findAll();
+    }
 	
 	public WorkList findById(String id){
         return workListDao.findOne(id);

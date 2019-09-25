@@ -58,8 +58,6 @@ public class JobResponsibilityController {
 		try {
 			jobRespService.insert(jobResponsibility);
 			return ResponseEntity.ok("Insert success!");
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -71,8 +69,6 @@ public class JobResponsibilityController {
 		try {
 			jobRespService.update(jobResponsibility);
 			return ResponseEntity.ok("Update success with job responsibility ID: "+jobResponsibility.getId());
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}

@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.DutyDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Duty;
 
 @Service
@@ -22,26 +20,14 @@ public class DutyService {
 	}
 	
 	public void valIdNotNull(Duty duty) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(duty.getId().isEmpty()) {
-			listErr.add("Duty ID can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Duty ID can't empty!");
 		}
 	}
 	
 	public void valIdExist(String id) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(!dutyDao.isIdExist(id)) {
-			listErr.add("Duty not found!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Duty not found!");
 		}
 	}
 	
@@ -54,69 +40,39 @@ public class DutyService {
 	}
 	
 	public void valBkNotNull(Duty duty) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(duty.getCompany().getId().isEmpty()) {
-			listErr.add("Company can't empty!");
+			throw new Exception("Company can't empty!");
 		}
 		if(duty.getResponsibility().getId().isEmpty()) {
-			listErr.add("Responsibility can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Responsibility can't empty!");
 		}
 	}
 	
 	public void valBkNotExist(Duty duty) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(dutyDao.isBkExist(duty.getCompany().getId(), duty.getResponsibility().getId())) {
-			listErr.add("Duty already exists!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Duty already exists!");
 		}
 	}
 	
 	public void valBkNotChange(Duty duty) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		String company = findById(duty.getId()).getCompany().getId();
 		String responsibility = findById(duty.getId()).getResponsibility().getId();
 		
 		if(!(duty.getCompany().getId().equals(company) && duty.getResponsibility().getId().equals(responsibility))) {
-			listErr.add("BK can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("BK can't be changed!");
 		}
 	}
 	
 	public void valNonBk(Duty duty) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		if(duty.getCreatedBy().isEmpty()) {
-			listErr.add("Created by can't empty!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created by can't empty!");
 		}
 	}
 	
 	public void valCreatedAtNotChange(Duty duty) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
 		Timestamp createdAt = findById(duty.getId()).getCreatedAt();
 		if(!duty.getCreatedAt().equals(createdAt)) {
-			listErr.add("Created at can't be changed!");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Created at can't be changed!");
 		}
 	}
 	

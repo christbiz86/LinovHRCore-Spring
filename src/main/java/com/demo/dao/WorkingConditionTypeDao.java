@@ -31,7 +31,7 @@ public class WorkingConditionTypeDao extends AbstractJpaDao<WorkingConditionType
 	@SuppressWarnings("unchecked")
 	public WorkingConditionType findByBk(String code, String company) {
 		List<WorkingConditionType> list = super.entityManager
-                .createQuery("FROM Job WHERE code = :code AND company.id = :company")
+                .createQuery("FROM WorkingConditionType WHERE code = :code AND company.id = :company")
                 .setParameter("code", code)
                 .setParameter("company", company)
                 .getResultList();

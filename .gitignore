@@ -1,18 +1,15 @@
-<<<<<<< HEAD
-/target/*
-/src/main/resources/application.properties
-/src/main/resources/modelReport.jrxml
-=======
-target/
-src/main/resources/
+target/*
+src/main/resources/*
 .dbeaver/
 .project
 *.xml
->>>>>>> a23a82c9dcda7862efc6044f2bee384fb9a845ad
 .gitignore
+.classpath
+.project
 database.sql
 HELP.md
 modelReport.html
 modelReport.jasper
 mvnv
 mvnw.cmd
+/target/

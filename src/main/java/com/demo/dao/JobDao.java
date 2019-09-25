@@ -1,14 +1,16 @@
 package com.demo.dao;
 
-import com.demo.model.Job;
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
 import javax.transaction.Transactional;
-import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.demo.model.Job;
 
 @Repository
 public class JobDao extends AbstractJpaDao<Job> {
-	
+
 	public JobDao() {
         setClazz(Job.class);
     }
@@ -59,4 +61,5 @@ public class JobDao extends AbstractJpaDao<Job> {
 			return true;
 		}
 	}
+
 }

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
 import com.demo.model.Job;
 import com.demo.service.JobService;
 
@@ -69,8 +68,6 @@ public class JobController {
 		try {
 			jobService.insert(job);
 			return ResponseEntity.ok("Insert success with Job name: "+job.getName());
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -82,8 +79,6 @@ public class JobController {
 		try {
 			jobService.update(job);
 			return ResponseEntity.ok("Update success with Job ID: "+job.getId());
-		} catch (ValidationException ve) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}

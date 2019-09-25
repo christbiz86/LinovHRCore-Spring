@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.WidgetTypeDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.WidgetType;
 
 @Service
@@ -64,14 +63,10 @@ public class WidgetTypeService {
 	private void valNonBk(WidgetType widgetType)throws Exception{
 		List<String> listErr = new ArrayList<String>();
 		if(widgetType.getColSize() == null) {
-			listErr.add("Column tidak boleh kosong");
+			throw new Exception("Column tidak boleh kosong");
 		}
 		if(widgetType.getRowSize() == null) {
-			listErr.add("Row tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Row tidak boleh kosong");
 		}
 	}
 	
@@ -90,7 +85,7 @@ public class WidgetTypeService {
 	}
 	
 	private void valBkNotNull(WidgetType widgetType) throws Exception{
-		if(widgetType.getName() == null ) {
+		if(widgetType.getName().isEmpty() ) {
 			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
