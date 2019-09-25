@@ -1,8 +1,8 @@
 package com.demo.dao;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -55,16 +55,22 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     public T update(final T entity) {
     	T o = null;
     	try {
-    		if(entity instanceof Class) {
-    			System.err.println(entity.toString());
-    			BaseEntity baseUpdate = (BaseEntity)entity;
-    			System.err.println(baseUpdate.getId());
-    			System.err.println(baseUpdate.getCreatedBy());
-    			baseUpdate.setVersion(baseUpdate.getVersion()+1);
-    			baseUpdate.setUpdatedBy("kosong");
-    			baseUpdate.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-    			o = entityManager.merge(entity);
+    		if(entity instanceof Object) {
+//    			System.err.println(entity.getClass().getField("updatedBy"));
+//        		if(entity.getClass().getField("updatedBy").equals(null)) {
+//        		Field setUpdatedBy = entity.getClass().getField("updatedBy");
+//        		setUpdatedBy.set(entity, "kosong");
+//        		}else if(entity.getClass().getField("updatedAt").equals(null)) {
+//        			Field setUpdatedAt = entity.getClass().getField("updatedAt");
+//            		setUpdatedAt.set(entity,new Timestamp(System.currentTimeMillis()));
+//        		}else if(entity.getClass().getField("version").equals(null)) {
+//        			Field setVersion = entity.getClass().getField("version");
+//            		setVersion.set(entity,setVersion.getLong("version")+1);
+//        		}
+        		o = entityManager.merge(entity);
     		}
+    		
+    		
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println(e.getMessage());
