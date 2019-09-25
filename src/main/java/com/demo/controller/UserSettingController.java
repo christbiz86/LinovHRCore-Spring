@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.PersonAddress;
-import com.demo.service.PersonAddressService;
+import com.demo.model.UserSetting;
+import com.demo.service.UserSettingService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class PersonAddressController {
+public class UserSettingController {
 
 	@Autowired
-	private PersonAddressService personAddressService;
+	private UserSettingService userSettingService;
 	
 	@Transactional
-	@GetMapping(value = "/person/{id}/addresses")
-    public ResponseEntity<?> getPersonAddress(@PathVariable String id)
+	@GetMapping(value = "/user/settings")
+    public ResponseEntity<?> getAllUserSetting()
 	{
 		try{
-				List<PersonAddress> listPersonAddress = personAddressService.findByPersonId(id);
+				List<UserSetting> listUserSetting = userSettingService.findAll();
 
-				return ResponseEntity.ok(listPersonAddress);
+				return ResponseEntity.ok(listUserSetting);
 		}
 		catch(Exception e){
 			 
@@ -45,42 +45,55 @@ public class PersonAddressController {
 		}
     }
 	
-
-	@PostMapping(value = "/person/address")
 	@Transactional
-    public ResponseEntity<?> postPersonAddress(@RequestBody PersonAddress personAddress)
+	@GetMapping(value = "/user/setting/{id}")
+    public ResponseEntity<?> getUserSetting(@PathVariable String id)
+	{
+		try{
+			UserSetting userSetting = userSettingService.findById(id);
+
+			return ResponseEntity.ok(userSetting);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@PostMapping("/user/setting")
+    public ResponseEntity<?> postUserSetting(@RequestBody UserSetting userSetting)
 	{
 		try{	
-				personAddressService.save(personAddress);	
-				return ResponseEntity.ok("Save Success");
+			userSettingService.save(userSetting);	
+			return ResponseEntity.ok("Save Success");
 		}
 		catch (Exception e) {
-			System.out.println(e);
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@PutMapping("/user/setting")
+    public ResponseEntity<?> putUserSetting(@RequestBody UserSetting userSetting)
+	{
+		try{	
+			userSettingService.update(userSetting);	
+			return ResponseEntity.ok("Put Success");
+		}
+		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 
     }
 	
 	@Transactional
-	@PutMapping(value = "/person/address")
-    public ResponseEntity<?> putPersonAddress(@RequestBody PersonAddress personAddress)
+	@DeleteMapping("/user/setting/{id}")
+    public ResponseEntity<?> deleteUserSetting(@PathVariable String id)
 	{
 		try{	
-				personAddressService.update(personAddress);	
-				return ResponseEntity.ok("Put Success");
-		}
-		catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-
-    }
-	
-	@Transactional
-	@DeleteMapping("/person/address/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id)
-	{
-		try{	
-			personAddressService.delete(id);	
+			userSettingService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch (Exception e) {

@@ -1,6 +1,5 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +27,6 @@ public class PersonAddressService {
     }
     
     public void save(PersonAddress personAddress) throws Exception {
-    	personAddress.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(personAddress);
 		valBkNotExist(personAddress);
 		valNonBk(personAddress);
@@ -36,13 +34,11 @@ public class PersonAddressService {
     }
     
     public void update(PersonAddress personAddress) throws Exception {
-    	personAddress.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
     	valIdNotNull(personAddress);
 		valIdExist(personAddress.getId());
 		valBkNotNull(personAddress);
 		valBkNotChange(personAddress);
 		valNonBk(personAddress);
-		valCreatedNotChange(personAddress);
     	personAddressDao.update(personAddress);
     }
     
@@ -64,13 +60,13 @@ public class PersonAddressService {
 	}
 	
 	private void valNonBk(PersonAddress personAddress)throws Exception{
-		if(personAddress.getCity().getId()==null) {
+		if(personAddress.getCity().getId().isEmpty()) {
 			throw new Exception("City cannot be null !");
 		}
-		if(personAddress.getLovRsty().getId()==null) {
+		if(personAddress.getLovRsty().getId().isEmpty()) {
 			throw new Exception("cannot be null!");
 		}
-		if(personAddress.getLovRsow().getId()==null) {
+		if(personAddress.getLovRsow().getId().isEmpty()) {
 			throw new Exception("cannot be null!");
 		}
 	}
@@ -89,15 +85,9 @@ public class PersonAddressService {
 	}
 	
 	private void valBkNotNull(PersonAddress personAddress) throws Exception{
-		if(personAddress.getPerson().getId()==null || personAddress.getAddress()==null) {
+		if(personAddress.getPerson().getId().isEmpty() || personAddress.getAddress().isEmpty()) {
 			throw new Exception("Kode tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(PersonAddress personAddress)throws Exception {
-		PersonAddress tempPersonAddress=findById(personAddress.getId());
-		if(!tempPersonAddress.getCreatedAt().equals(personAddress.getCreatedAt()) || !tempPersonAddress.getCreatedBy().equals(personAddress.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
-		}
-	}
 }

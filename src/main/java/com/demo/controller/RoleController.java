@@ -31,7 +31,7 @@ public class RoleController {
 	private RoleService roleService;
 
 	@Transactional
-	@GetMapping(value = "roles")
+	@GetMapping(value = "/roles")
     public ResponseEntity<?> getAllRole()
 	{
 		try{
@@ -46,13 +46,13 @@ public class RoleController {
     }
 	
 	@Transactional
-	@GetMapping(value = "role/{id}")
+	@GetMapping(value = "/role/{id}")
     public ResponseEntity<?> getRole(@PathVariable String id)
 	{
 		try{
-				Role role = roleService.findById(id);
+			Role role = roleService.findById(id);
 
-				return ResponseEntity.ok(role);
+			return ResponseEntity.ok(role);
 		}
 		catch(Exception e){
 			 

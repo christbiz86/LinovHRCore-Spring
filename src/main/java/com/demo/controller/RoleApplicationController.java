@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.PersonAddress;
-import com.demo.service.PersonAddressService;
+import com.demo.model.RoleApplication;
+import com.demo.service.RoleApplicationService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class PersonAddressController {
+public class RoleApplicationController {
 
 	@Autowired
-	private PersonAddressService personAddressService;
+	private RoleApplicationService roleApplicationService;
 	
 	@Transactional
-	@GetMapping(value = "/person/{id}/addresses")
-    public ResponseEntity<?> getPersonAddress(@PathVariable String id)
+	@GetMapping(value = "/role/applications")
+    public ResponseEntity<?> getAllRoleApplication()
 	{
 		try{
-				List<PersonAddress> listPersonAddress = personAddressService.findByPersonId(id);
+				List<RoleApplication> listRoleApplication = roleApplicationService.findAll();
 
-				return ResponseEntity.ok(listPersonAddress);
+				return ResponseEntity.ok(listRoleApplication);
 		}
 		catch(Exception e){
 			 
@@ -45,14 +45,28 @@ public class PersonAddressController {
 		}
     }
 	
-
-	@PostMapping(value = "/person/address")
 	@Transactional
-    public ResponseEntity<?> postPersonAddress(@RequestBody PersonAddress personAddress)
+	@GetMapping(value = "/role/application/{id}")
+    public ResponseEntity<?> getRoleApplication(@PathVariable String id)
+	{
+		try{
+			RoleApplication roleApplication = roleApplicationService.findById(id);
+
+			return ResponseEntity.ok(roleApplication);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+
+	@PostMapping(value = "/role/application")
+	@Transactional
+    public ResponseEntity<?> postRoleApplication(@RequestBody RoleApplication roleApplication)
 	{
 		try{	
-				personAddressService.save(personAddress);	
-				return ResponseEntity.ok("Save Success");
+			roleApplicationService.save(roleApplication);	
+			return ResponseEntity.ok("Save Success");
 		}
 		catch (Exception e) {
 			System.out.println(e);
@@ -62,12 +76,12 @@ public class PersonAddressController {
     }
 	
 	@Transactional
-	@PutMapping(value = "/person/address")
-    public ResponseEntity<?> putPersonAddress(@RequestBody PersonAddress personAddress)
+	@PutMapping(value = "/role/application")
+    public ResponseEntity<?> putRoleApplication(@RequestBody RoleApplication roleApplication)
 	{
 		try{	
-				personAddressService.update(personAddress);	
-				return ResponseEntity.ok("Put Success");
+			roleApplicationService.update(roleApplication);	
+			return ResponseEntity.ok("Put Success");
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -76,11 +90,11 @@ public class PersonAddressController {
     }
 	
 	@Transactional
-	@DeleteMapping("/person/address/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id)
+	@DeleteMapping("/role/application/{id}")
+    public ResponseEntity<?> deleteRoleApplication(@PathVariable String id)
 	{
 		try{	
-			personAddressService.delete(id);	
+			roleApplicationService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch (Exception e) {

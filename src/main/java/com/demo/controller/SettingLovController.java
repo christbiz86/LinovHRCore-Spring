@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.PersonAddress;
-import com.demo.service.PersonAddressService;
+import com.demo.model.SettingLov;
+import com.demo.service.SettingLovService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class PersonAddressController {
+public class SettingLovController {
 
 	@Autowired
-	private PersonAddressService personAddressService;
+	private SettingLovService settingLovService;
 	
 	@Transactional
-	@GetMapping(value = "/person/{id}/addresses")
-    public ResponseEntity<?> getPersonAddress(@PathVariable String id)
+	@GetMapping(value = "/setting/lovs")
+    public ResponseEntity<?> getAllSettingLov()
 	{
 		try{
-				List<PersonAddress> listPersonAddress = personAddressService.findByPersonId(id);
+				List<SettingLov> listSettingLov = settingLovService.findAll();
 
-				return ResponseEntity.ok(listPersonAddress);
+				return ResponseEntity.ok(listSettingLov);
 		}
 		catch(Exception e){
 			 
@@ -45,42 +45,55 @@ public class PersonAddressController {
 		}
     }
 	
-
-	@PostMapping(value = "/person/address")
 	@Transactional
-    public ResponseEntity<?> postPersonAddress(@RequestBody PersonAddress personAddress)
+	@GetMapping(value = "/setting/lov/{id}")
+    public ResponseEntity<?> getSettingLov(@PathVariable String id)
+	{
+		try{
+			SettingLov settingLov = settingLovService.findById(id);
+
+			return ResponseEntity.ok(settingLov);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@PostMapping("/setting/lov")
+    public ResponseEntity<?> postSettingLov(@RequestBody SettingLov settingLov)
 	{
 		try{	
-				personAddressService.save(personAddress);	
-				return ResponseEntity.ok("Save Success");
+			settingLovService.save(settingLov);	
+			return ResponseEntity.ok("Save Success");
 		}
 		catch (Exception e) {
-			System.out.println(e);
+
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@PutMapping("/setting/lov")
+    public ResponseEntity<?> putRole(@RequestBody SettingLov settingLov)
+	{
+		try{	
+			settingLovService.update(settingLov);	
+			return ResponseEntity.ok("Put Success");
+		}
+		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 
     }
 	
 	@Transactional
-	@PutMapping(value = "/person/address")
-    public ResponseEntity<?> putPersonAddress(@RequestBody PersonAddress personAddress)
+	@DeleteMapping("/setting/lov/{id}")
+    public ResponseEntity<?> deleteRole(@PathVariable String id)
 	{
 		try{	
-				personAddressService.update(personAddress);	
-				return ResponseEntity.ok("Put Success");
-		}
-		catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-
-    }
-	
-	@Transactional
-	@DeleteMapping("/person/address/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable String id)
-	{
-		try{	
-			personAddressService.delete(id);	
+			settingLovService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch (Exception e) {
