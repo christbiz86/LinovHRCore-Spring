@@ -18,6 +18,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     protected EntityManager entityManager;
     
     private String entityId;
+    private BaseEntity base;
 
     public final void setClazz(final Class<T> clazzToSet) {
         this.clazz = clazzToSet;
@@ -37,10 +38,26 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	try {
     		
     			if(entity instanceof Object) {
-    				BaseEntity insertBase = (BaseEntity)entity;
-    				insertBase.setVersion(new Long(0));
-    				insertBase.setCreatedBy("kosong");
-    				insertBase.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+    				int pointer = 0;
+    				BaseEntity base = (BaseEntity)entity;
+        			Field[] listField = entity.getClass().getFields();
+        			System.err.println(listField.length);
+        			for(Field updateField: listField) {
+        				if(updateField.getName().equals("createdAt")) {
+        					Object o2 = updateField.get(entity);
+        					updateField.set(base, new Timestamp(System.currentTimeMillis()));
+        					System.err.println(o2);
+        				}else if(updateField.getName().equals("createdBy")) {
+        					Object o3 = updateField.get(entity);
+        					updateField.set(base, "kosong");
+        					System.err.println(o3);
+        				}else if(updateField.getName().equals("version")) {
+        					Object o6 = updateField.get(entity);
+        					updateField.set(base, new Long(0));
+        					System.err.println(o6);
+        				}
+        				pointer++;
+        			}
     				entityManager.persist(entity);
     			}
     			
@@ -56,9 +73,23 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	try {
     		if(entity instanceof Object) {
     			int pointer = 0;
-    			Field[] listField = BaseEntity.class.getDeclaredFields();
+				BaseEntity base = (BaseEntity)entity;
+    			Field[] listField = entity.getClass().getFields();
+    			System.err.println(listField.length);
     			for(Field updateField: listField) {
-    				System.err.println("jumlah field: "+pointer);
+    				if(updateField.getName().equals("updatedAt")) {
+    					Object o2 = updateField.get(entity);
+    					updateField.set(base, new Timestamp(System.currentTimeMillis()));
+    					System.err.println(o2);
+    				}else if(updateField.getName().equals("updatedBy")) {
+    					Object o3 = updateField.get(entity);
+    					updateField.set(base, "kosong");
+    					System.err.println(o3);
+    				}else if(updateField.getName().equals("version")) {
+    					Object o6 = updateField.get(entity);
+    					updateField.set(base, Long.parseLong(String.valueOf(o6)));
+    					System.err.println(o6);
+    				}
     				pointer++;
     			}
     		}
