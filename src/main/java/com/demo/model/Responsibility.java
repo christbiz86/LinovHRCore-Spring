@@ -1,41 +1,28 @@
 package com.demo.model;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name="core_responsibilities")
-public class Responsibility implements Serializable{
+@Table(name="core_responsibilities",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","code"}))
+public class Responsibility extends BaseEntity{
 	private static final long serialVersionUID = 1L;
-
-	@Id
-    @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-	private String id;
 	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
     @OneToOne
     private Company company;
 	
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
     @JoinColumn(name="responsibility_group_id", referencedColumnName = "id")
+    @OneToOne
     private ResponsibilityGroup responsibilityGroup;
     
     @Column(name = "code")
@@ -46,41 +33,23 @@ public class Responsibility implements Serializable{
 
     @Column(name = "description")
     private String description;
-        
-    @Column(name = "created_by")
-    private Integer createdBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "created_at")
-    private Timestamp createdAt;
-
-    @Column(name = "updated_by")
-    private Integer updatedBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-    
+            
     @Column(name = "used_for")
     private String usedFor;
     
     @Column(name = "used_for_value")
     private String usedForValue;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
+    
 	public Company getCompany() {
 		return company;
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company==null) {
+			this.company = new Company();
+		}else {
+			this.company = company;			
+		}
 	}
 
 	public ResponsibilityGroup getResponsibilityGroup() {
@@ -88,7 +57,11 @@ public class Responsibility implements Serializable{
 	}
 
 	public void setResponsibilityGroup(ResponsibilityGroup responsibilityGroup) {
-		this.responsibilityGroup = responsibilityGroup;
+		if(responsibilityGroup==null) {
+			this.responsibilityGroup = new ResponsibilityGroup();
+		}else {
+			this.responsibilityGroup = responsibilityGroup;			
+		}
 	}
 
 	public String getCode() {
@@ -96,7 +69,11 @@ public class Responsibility implements Serializable{
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code==null) {
+			this.code = new String();			
+		}else {
+			this.code = code;
+		}
 	}
 
 	public String getName() {
@@ -104,7 +81,11 @@ public class Responsibility implements Serializable{
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name==null) {
+			this.name = new String();			
+		}else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -112,39 +93,11 @@ public class Responsibility implements Serializable{
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Integer getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(Integer createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public Timestamp getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Timestamp createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Integer getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(Integer updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-
-	public Timestamp getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
+		if(description==null) {
+			this.description = new String();			
+		}else {
+			this.description = description;
+		}
 	}
 
 	public String getUsedFor() {
@@ -152,7 +105,11 @@ public class Responsibility implements Serializable{
 	}
 
 	public void setUsedFor(String usedFor) {
-		this.usedFor = usedFor;
+		if(usedFor==null) {
+			this.usedFor = new String();
+		}else {
+			this.usedFor = usedFor;			
+		}
 	}
 
 	public String getUsedForValue() {
@@ -160,7 +117,11 @@ public class Responsibility implements Serializable{
 	}
 
 	public void setUsedForValue(String usedForValue) {
-		this.usedForValue = usedForValue;
+		if(usedForValue==null) {
+			this.usedForValue = new String();			
+		}else {
+			this.usedForValue = usedForValue;
+		}
 	}
-    
+
 }

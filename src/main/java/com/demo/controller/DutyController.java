@@ -18,45 +18,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.JobGrade;
-import com.demo.service.JobGradeService;
+import com.demo.model.Duty;
+import com.demo.service.DutyService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping(value = "/api/v1")
-public class JobGradeController {
+public class DutyController {
 	
 	@Autowired
-	private JobGradeService jobGradeService;
+	private DutyService dutyService;
 	
-	@GetMapping(value = "/lov/job-grades")
+	@GetMapping(value = "/lov/duties")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
-			List<JobGrade> list = jobGradeService.findAll();
-			return new ResponseEntity<List<JobGrade>>(list, HttpStatus.OK);
+			List<Duty> list = dutyService.findAll();
+			return new ResponseEntity<List<Duty>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@GetMapping(value = "/job-grade/{id}")
+	@GetMapping(value = "/duty/{id}")
 	@Transactional
 	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			JobGrade jobGrade = jobGradeService.findById(id);
-			return new ResponseEntity<JobGrade>(jobGrade, HttpStatus.OK);
+			Duty duty = dutyService.findById(id);
+			return new ResponseEntity<Duty>(duty, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/job-grade")
+	@PostMapping(value = "/duty")
 	@Transactional
-	public ResponseEntity<?> insert(@RequestBody JobGrade jobGrade) throws Exception {
+	public ResponseEntity<?> insert(@RequestBody Duty duty) throws Exception {
 		try {
-			jobGradeService.insert(jobGrade);
+			dutyService.insert(duty);
 			return ResponseEntity.ok("Insert success!");
 		} catch (ValidationException ve) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
@@ -65,12 +65,12 @@ public class JobGradeController {
 		}
 	}
 	
-	@PutMapping(value = "/job-grade")
+	@PutMapping(value = "/duty")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody JobGrade jobGrade) throws Exception {
+	public ResponseEntity<?> update(@RequestBody Duty duty) throws Exception {
 		try {
-			jobGradeService.update(jobGrade);
-			return ResponseEntity.ok("Update success with job grade ID: "+jobGrade.getId());
+			dutyService.update(duty);
+			return ResponseEntity.ok("Update success with job responsibility ID: "+duty.getId());
 		} catch (ValidationException ve) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
@@ -78,11 +78,11 @@ public class JobGradeController {
 		}
 	}
 	
-	@DeleteMapping(value = "/job-grade/{id}")
+	@DeleteMapping(value = "/duty/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			jobGradeService.delete(id);
+			dutyService.delete(id);
 			return ResponseEntity.ok("Delete success with ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");

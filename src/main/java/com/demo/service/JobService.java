@@ -4,8 +4,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,10 +85,17 @@ public class JobService {
 	}
 	
 	public void valBkNotChange(Job job) throws Exception {
+		List<String> listErr = new ArrayList<String>();
+		
 		String code = findById(job.getId()).getCode();
 		String company = findById(job.getId()).getCompany().getId();
-		if(!(job.getCode().equals(code.toString()) && job.getCompany().getId().equals(company.toString()))) {
-			throw new ValidationException("BK can't be changed!");
+		
+		if(!(job.getCode().equals(code) && job.getCompany().getId().equals(company))) {
+			listErr.add("BK can't be changed!");
+		}
+		
+		if(!listErr.isEmpty()) {
+			throw new ValidationException(listErr);
 		}
 	}
 	
@@ -100,11 +105,11 @@ public class JobService {
 		if(job.getName().isEmpty()) {
 			listErr.add("Job name can't empty!");
 		}
-		if(job.getName() == null) {
-			listErr.add("Job name doesn't exists!");
-		}
 		if(job.getOrdinal() == null) {
 			listErr.add("Ordinal can't empty!");
+		}
+		if(job.getCreatedBy().isEmpty()) {
+			listErr.add("Created by can't empty!");
 		}
 		
 		if(!listErr.isEmpty()) {
@@ -125,7 +130,6 @@ public class JobService {
 		}
 	}
 	
-	@Transactional
 	public void insert(Job job) throws Exception {
 		job.setCreatedAt(getTime());
 		valBkNotNull(job);
@@ -134,7 +138,6 @@ public class JobService {
 		jobDao.create(job);
 	}
 	
-	@Transactional
 	public void update(Job job) throws Exception {
 		job.setUpdatedAt(getTime());
 		valIdNotNull(job);
@@ -146,7 +149,6 @@ public class JobService {
 		jobDao.update(job);
 	}
 	
-	@Transactional
 	public void delete(String id) throws Exception {
 		valIdExist(id);
 		jobDao.deleteById(id);

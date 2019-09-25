@@ -18,46 +18,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.JobGrade;
-import com.demo.service.JobGradeService;
+import com.demo.model.WorkingCondition;
+import com.demo.service.WorkingConditionService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping(value = "/api/v1")
-public class JobGradeController {
+public class WorkingConditionController {
 	
 	@Autowired
-	private JobGradeService jobGradeService;
+	private WorkingConditionService wcService;
 	
-	@GetMapping(value = "/lov/job-grades")
+	@GetMapping(value = "/lov/working-conditions")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
-			List<JobGrade> list = jobGradeService.findAll();
-			return new ResponseEntity<List<JobGrade>>(list, HttpStatus.OK);
+			List<WorkingCondition> list = wcService.findAll();
+			return new ResponseEntity<List<WorkingCondition>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@GetMapping(value = "/job-grade/{id}")
+	@GetMapping(value = "/working-condition/{id}")
 	@Transactional
 	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			JobGrade jobGrade = jobGradeService.findById(id);
-			return new ResponseEntity<JobGrade>(jobGrade, HttpStatus.OK);
+			WorkingCondition wc = wcService.findById(id);
+			return new ResponseEntity<WorkingCondition>(wc, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/job-grade")
+	@GetMapping(value = "/working-condition/code/{code}")
 	@Transactional
-	public ResponseEntity<?> insert(@RequestBody JobGrade jobGrade) throws Exception {
+	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
 		try {
-			jobGradeService.insert(jobGrade);
-			return ResponseEntity.ok("Insert success!");
+			WorkingCondition wc = wcService.findByCode(code);
+			return new ResponseEntity<WorkingCondition>(wc, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
+	}
+	
+	@PostMapping(value = "/working-condition")
+	@Transactional
+	public ResponseEntity<?> insert(@RequestBody WorkingCondition wc) throws Exception {
+		try {
+			wcService.insert(wc);
+			return ResponseEntity.ok("Insert success with Working Condition name: "+wc.getName());
 		} catch (ValidationException ve) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
@@ -65,12 +76,12 @@ public class JobGradeController {
 		}
 	}
 	
-	@PutMapping(value = "/job-grade")
+	@PutMapping(value = "/working-condition")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody JobGrade jobGrade) throws Exception {
+	public ResponseEntity<?> update(@RequestBody WorkingCondition wc) throws Exception {
 		try {
-			jobGradeService.update(jobGrade);
-			return ResponseEntity.ok("Update success with job grade ID: "+jobGrade.getId());
+			wcService.update(wc);
+			return ResponseEntity.ok("Update success with Working Condition ID: "+wc.getId());
 		} catch (ValidationException ve) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
@@ -78,12 +89,12 @@ public class JobGradeController {
 		}
 	}
 	
-	@DeleteMapping(value = "/job-grade/{id}")
+	@DeleteMapping(value = "/working-condition/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			jobGradeService.delete(id);
-			return ResponseEntity.ok("Delete success with ID: "+id);
+			wcService.delete(id);
+			return ResponseEntity.ok("Delete success with Working Condition ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}

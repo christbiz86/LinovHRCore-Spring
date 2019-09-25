@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.JobResponsibility;
 import com.demo.model.JobWorkingCondition;
 import com.demo.service.JobWorkingConditionService;
 
@@ -29,7 +29,8 @@ public class JobWorkingConditionController {
 	@Autowired
 	private JobWorkingConditionService jwcService;
 	
-	@GetMapping(value = "/lov/jobworkingconds")
+	@GetMapping(value = "/lov/job-working-conditions")
+	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
 			List<JobWorkingCondition> list = jwcService.findAll();
@@ -39,17 +40,19 @@ public class JobWorkingConditionController {
 		}
 	}
 	
-	@GetMapping(value = "/jobworkingcond/{uuid}")
-	public ResponseEntity<?> findById(@PathVariable String uuid) throws Exception {
+	@GetMapping(value = "/job-working-condition/{id}")
+	@Transactional
+	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			JobWorkingCondition jobWorkingCond = jwcService.findById(uuid);
+			JobWorkingCondition jobWorkingCond = jwcService.findById(id);
 			return new ResponseEntity<JobWorkingCondition>(jobWorkingCond, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/jobworkingcond")
+	@PostMapping(value = "/job-working-condition")
+	@Transactional
 	public ResponseEntity<?> insert(@RequestBody JobWorkingCondition jobWorkingCond) throws Exception {
 		try {
 			jwcService.insert(jobWorkingCond);
@@ -59,7 +62,8 @@ public class JobWorkingConditionController {
 		}
 	}
 	
-	@PutMapping(value = "/jobworkingcond")
+	@PutMapping(value = "/job-working-condition")
+	@Transactional
 	public ResponseEntity<?> update(@RequestBody JobWorkingCondition jobWorkingCond) throws Exception {
 		try {
 			jwcService.update(jobWorkingCond);
@@ -69,11 +73,12 @@ public class JobWorkingConditionController {
 		}
 	}
 	
-	@DeleteMapping(value = "/jobworkingcond/{uuid}")
-	public ResponseEntity<?> delete(@PathVariable String uuid) throws Exception {
+	@DeleteMapping(value = "/job-working-condition/{id}")
+	@Transactional
+	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			jwcService.delete(uuid);
-			return ResponseEntity.ok("Delete success with ID: "+uuid);
+			jwcService.delete(id);
+			return ResponseEntity.ok("Delete success with ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}

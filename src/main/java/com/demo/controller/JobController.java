@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +31,7 @@ public class JobController {
 	private JobService jobService;
 	
 	@GetMapping(value = "/lov/jobs")
+	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
 			List<Job> list = jobService.findAll();
@@ -39,10 +41,11 @@ public class JobController {
 		}
 	}
 	
-	@GetMapping(value = "/job/{uuid}")
-	public ResponseEntity<?> findById(@PathVariable String uuid) throws Exception {
+	@GetMapping(value = "/job/{id}")
+	@Transactional
+	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			Job job = jobService.findById(uuid);
+			Job job = jobService.findById(id);
 			return new ResponseEntity<Job>(job, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
@@ -50,6 +53,7 @@ public class JobController {
 	}
 	
 	@GetMapping(value = "/job/code/{code}")
+	@Transactional
 	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
 		try {
 			Job job = jobService.findByCode(code);
@@ -60,10 +64,11 @@ public class JobController {
 	}
 	
 	@PostMapping(value = "/job")
+	@Transactional
 	public ResponseEntity<?> insert(@RequestBody Job job) throws Exception {
 		try {
 			jobService.insert(job);
-			return ResponseEntity.ok("Insert success with job name: "+job.getName());
+			return ResponseEntity.ok("Insert success with Job name: "+job.getName());
 		} catch (ValidationException ve) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
@@ -72,10 +77,11 @@ public class JobController {
 	}
 	
 	@PutMapping(value = "/job")
+	@Transactional
 	public ResponseEntity<?> update(@RequestBody Job job) throws Exception {
 		try {
 			jobService.update(job);
-			return ResponseEntity.ok("Update success with job ID: "+job.getId());
+			return ResponseEntity.ok("Update success with Job ID: "+job.getId());
 		} catch (ValidationException ve) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ve.getMessages());
 		} catch (Exception e) {
@@ -83,11 +89,12 @@ public class JobController {
 		}
 	}
 	
-	@DeleteMapping(value = "/job/{uuid}")
-	public ResponseEntity<?> delete(@PathVariable String uuid) throws Exception {
+	@DeleteMapping(value = "/job/{id}")
+	@Transactional
+	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			jobService.delete(uuid);
-			return ResponseEntity.ok("Delete success with ID: "+uuid);
+			jobService.delete(id);
+			return ResponseEntity.ok("Delete success with Job ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}

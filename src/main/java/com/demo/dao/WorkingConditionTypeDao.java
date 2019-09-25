@@ -1,27 +1,27 @@
 package com.demo.dao;
 
-import com.demo.model.Job;
-import org.springframework.stereotype.Repository;
-
-import javax.transaction.Transactional;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import com.demo.model.WorkingConditionType;
+
 @Repository
-public class JobDao extends AbstractJpaDao<Job> {
+public class WorkingConditionTypeDao extends AbstractJpaDao<WorkingConditionType>{
 	
-	public JobDao() {
-        setClazz(Job.class);
+	public WorkingConditionTypeDao() {
+        setClazz(WorkingConditionType.class);
     }
 	
 	@SuppressWarnings("unchecked")
-	public Job findByCode(String code) {
-		List<Job> list = super.entityManager
-                .createQuery("FROM Job WHERE code = :code")
+	public WorkingConditionType findByCode(String code) {
+		List<WorkingConditionType> list = super.entityManager
+                .createQuery("FROM WorkingConditionType WHERE code = :code")
                 .setParameter("code", code)
                 .getResultList();
 
 		if (list.size() == 0) {
-			return new Job();
+			return new WorkingConditionType();
 		}
 		else {
 			return list.get(0);
@@ -29,15 +29,15 @@ public class JobDao extends AbstractJpaDao<Job> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Job findByBk(String code, String company) {
-		List<Job> list = super.entityManager
+	public WorkingConditionType findByBk(String code, String company) {
+		List<WorkingConditionType> list = super.entityManager
                 .createQuery("FROM Job WHERE code = :code AND company.id = :company")
                 .setParameter("code", code)
                 .setParameter("company", company)
                 .getResultList();
 
 		if (list.size() == 0) {
-			return new Job();
+			return new WorkingConditionType();
 		}
 		else {
 			return list.get(0);
@@ -59,4 +59,5 @@ public class JobDao extends AbstractJpaDao<Job> {
 			return true;
 		}
 	}
+
 }
