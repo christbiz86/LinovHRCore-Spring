@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.ResponsibilityGroupDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Company;
 import com.demo.model.ResponsibilityGroup;
 
@@ -39,7 +37,7 @@ public class ResponsibilityGroupService {
 		return responsibilityGroupDao.findByBk(responsibilityGroup);
     }
 	
-	public void save(ResponsibilityGroup responsibilityGroup) throws ValidationException {
+	public void save(ResponsibilityGroup responsibilityGroup) throws Exception {
 		responsibilityGroup.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(responsibilityGroup);
 		valBkNotExist(responsibilityGroup);
@@ -47,7 +45,7 @@ public class ResponsibilityGroupService {
 		responsibilityGroupDao.create(responsibilityGroup);
 	}
 	
-	public void update(ResponsibilityGroup responsibilityGroup) throws ValidationException {
+	public void update(ResponsibilityGroup responsibilityGroup) throws Exception {
 		responsibilityGroup.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(responsibilityGroup);
 		valIdExist(responsibilityGroup.getId());
@@ -58,59 +56,54 @@ public class ResponsibilityGroupService {
 		responsibilityGroupDao.update(responsibilityGroup);
 	}
 	
-	public void delete(String id) throws ValidationException {
+	public void delete(String id) throws Exception {
 		valIdExist(id);
 		responsibilityGroupDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws ValidationException{
+	private void valIdExist(String id)throws Exception{
 		if(!responsibilityGroupDao.isIdExist(id)) {
-			throw new ValidationException("Data tidak ada");
+			throw new Exception("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(ResponsibilityGroup responsibilityGroup)throws ValidationException {
+	private void valIdNotNull(ResponsibilityGroup responsibilityGroup)throws Exception {
 		if(responsibilityGroup.getId().isEmpty()) {
-			throw new ValidationException("Id tidak boleh kosong");
+			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(ResponsibilityGroup responsibilityGroup)throws ValidationException{
-		List<String> listErr = new ArrayList<String>();
+	private void valNonBk(ResponsibilityGroup responsibilityGroup)throws Exception{
 		if(responsibilityGroup.getName().isEmpty()) {
-			listErr.add("Nama tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Nama tidak boleh kosong");
 		}
 	}
 	
-	private void valBkNotExist(ResponsibilityGroup responsibilityGroup)throws ValidationException{
+	private void valBkNotExist(ResponsibilityGroup responsibilityGroup)throws Exception{
 		if(responsibilityGroupDao.isBkExist(responsibilityGroup)) {
-			throw new ValidationException("Data sudah ada");
+			throw new Exception("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(ResponsibilityGroup responsibilityGroup)throws ValidationException{
+	private void valBkNotChange(ResponsibilityGroup responsibilityGroup)throws Exception{
 		ResponsibilityGroup tempResponsibilityGroup=findById(responsibilityGroup.getId());
 
 		if(!tempResponsibilityGroup.getCompany().getId().equals(responsibilityGroup.getCompany().getId()) || !tempResponsibilityGroup.getCode().equals(responsibilityGroup.getCode())) {
-			throw new ValidationException("BK tidak boleh berubah");
+			throw new Exception("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(ResponsibilityGroup responsibilityGroup) throws ValidationException{
+	private void valBkNotNull(ResponsibilityGroup responsibilityGroup) throws Exception{
 		if(responsibilityGroup.getCompany().getId().isEmpty() || responsibilityGroup.getCode().isEmpty()) {
-			throw new ValidationException("Bk tidak boleh kosong");
+			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(ResponsibilityGroup responsibilityGroup)throws ValidationException {
+	private void valCreatedNotChange(ResponsibilityGroup responsibilityGroup)throws Exception {
 		ResponsibilityGroup tempResponsibilityGroup=findById(responsibilityGroup.getId());
 		
 		if(!tempResponsibilityGroup.getCreatedAt().equals(responsibilityGroup.getCreatedAt()) || !tempResponsibilityGroup.getCreatedBy().equals(responsibilityGroup.getCreatedBy())) {
-			throw new ValidationException("created tidak boleh berubah");
+			throw new Exception("created tidak boleh berubah");
 		}
 	}
 }

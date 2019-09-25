@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.ModuleDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Module;
 
 @Service
@@ -35,7 +33,7 @@ public class ModuleService {
 		return moduleDao.findByBk(module);
     }
 	
-	public void save(Module module) throws ValidationException {
+	public void save(Module module) throws Exception {
 		module.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(module);
 		valBkNotExist(module);
@@ -43,7 +41,7 @@ public class ModuleService {
 		moduleDao.create(module);
 	}
 	
-	public void update(Module module) throws ValidationException {
+	public void update(Module module) throws Exception {
 		module.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(module);
 		valIdExist(module.getId());
@@ -54,66 +52,60 @@ public class ModuleService {
 		moduleDao.update(module);
 	}
 	
-	public void delete(String id) throws ValidationException {
+	public void delete(String id) throws Exception {
 		valIdExist(id);
 		moduleDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws ValidationException{
+	private void valIdExist(String id)throws Exception{
 		if(!moduleDao.isIdExist(id)) {
-			throw new ValidationException("Data tidak ada");
+			throw new Exception("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Module module)throws ValidationException {
+	private void valIdNotNull(Module module)throws Exception {
 		if(module.getId().isEmpty()) {
-			throw new ValidationException("Id tidak boleh kosong");
+			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(Module module)throws ValidationException{
-		List<String> listErr = new ArrayList<String>();
-
+	private void valNonBk(Module module)throws Exception{
 		if(module.getName().isEmpty()) {
-			listErr.add("Name tidak boleh kosong");
+		    throw new Exception("Name tidak boleh kosong");
 		}
 		if(module.getApplication().getId().isEmpty()) {
-			listErr.add("Application tidak boleh kosong");
+            throw new Exception("Application tidak boleh kosong");
 		}
 		if(module.getSortOrder()==null) {
-			listErr.add("Sort order tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+            throw new Exception("Sort order tidak boleh kosong");
 		}
 	}
 	
-	private void valBkNotExist(Module module)throws ValidationException{
+	private void valBkNotExist(Module module)throws Exception{
 		if(moduleDao.isBkExist(module)) {
-			throw new ValidationException("Data sudah ada");
+			throw new Exception("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(Module module)throws ValidationException{
+	private void valBkNotChange(Module module)throws Exception{
 		Module tempModule=findById(module.getId());
 
 		if(!tempModule.getCode().equals(module.getCode())) {
-			throw new ValidationException("BK tidak boleh berubah");
+			throw new Exception("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(Module module) throws ValidationException{
+	private void valBkNotNull(Module module) throws Exception{
 		if(module.getCode().isEmpty()) {
-			throw new ValidationException("Bk tidak boleh kosong");
+			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(Module module)throws ValidationException {
+	private void valCreatedNotChange(Module module)throws Exception {
 		Module tempModule=findById(module.getId());
 		
 		if(!tempModule.getCreatedAt().equals(module.getCreatedAt()) || !tempModule.getCreatedBy().equals(module.getCreatedBy())) {
-			throw new ValidationException("created tidak boleh berubah");
+			throw new Exception("created tidak boleh berubah");
 		}
 	}
 }

@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
     <wb-module deploy-name="linov-0.0.1-SNAPSHOT">
+=======
+    <wb-module deploy-name="LinovHR-0.0.1-SNAPSHOT">
+>>>>>>> c7825291e3095bcf86ee4cb547cce57d6b766bea
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <property name="java-output-path" value="/SpringMinimarket/target/classes"/>
+<<<<<<< HEAD
         <property name="context-root" value="linov"/>
+=======
+        <property name="context-root" value="LinovHR"/>
+>>>>>>> c7825291e3095bcf86ee4cb547cce57d6b766bea
     </wb-module>
 </project-modules>

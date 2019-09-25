@@ -3,6 +3,9 @@ package com.demo.model;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -15,8 +18,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_lovs",uniqueConstraints = @UniqueConstraint(columnNames = {"lov_type_id","key_data"}))
 public class Lov extends BaseEntity{
-	private static final long serialVersionUID = 1L;
-	
+
     @JoinColumn(name = "lov_type_id", referencedColumnName = "id")
     @OneToOne()
     private LovType lovType;
@@ -104,8 +106,8 @@ public class Lov extends BaseEntity{
 		if(arg1==null) {
 			this.arg1 = new String();
 		}else {
-			this.arg1 = arg1;			
+			this.arg1 = arg1;
 		}
 	}
-	
+
 }

@@ -83,15 +83,12 @@ public class RoleMenuService {
 	}
 	
 	private void valNonBk(RoleMenu roleMenu)throws ValidationException{
-		List<String> listErr = new ArrayList<String>();
 		
 		if(roleMenu.getMenuAction().getId().isEmpty()) {
-			listErr.add("Menu Action tidak boleh kosong");
+			throw new ValidationException("Menu Action tidak boleh kosong");
 		}
 		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
-		}
+		
 	}
 	
 	private void valBkNotExist(RoleMenu roleMenu)throws ValidationException{

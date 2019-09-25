@@ -72,17 +72,12 @@ public class MenuActionService {
 	}
 	
 	private void valNonBk(MenuAction menuAction)throws ValidationException{
-		List<String> listErr = new ArrayList<String>();
 		
 		if(menuAction.getMenu().getId().isEmpty()) {
-			listErr.add("Menu tidak boleh kosong");
+			throw new ValidationException("Menu tidak boleh kosong");
 		}
 		if(menuAction.getName().isEmpty()) {
-			listErr.add("Nama tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new ValidationException("Nama tidak boleh kosong");
 		}
 
 	}

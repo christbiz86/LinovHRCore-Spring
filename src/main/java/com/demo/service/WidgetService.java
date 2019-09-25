@@ -1,13 +1,11 @@
 package com.demo.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.WidgetDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Widget;
 
 @Service
@@ -34,14 +32,14 @@ public class WidgetService {
 		return widgetDao.findByBk(widget);
     }
 	
-	public void save(Widget widget) throws ValidationException {
+	public void save(Widget widget) throws Exception {
     	valBkNotNull(widget);
 		valBkNotExist(widget);
 		valNonBk(widget);
 		widgetDao.create(widget);
 	}
 	
-	public void update(Widget widget) throws ValidationException {
+	public void update(Widget widget) throws Exception {
 		valIdNotNull(widget);
 		valIdExist(widget.getId());
 		valBkNotNull(widget);
@@ -50,63 +48,58 @@ public class WidgetService {
 		widgetDao.update(widget);
 	}
 	
-	public void delete(String id) throws ValidationException {
+	public void delete(String id) throws Exception {
 		valIdExist(id);
 		widgetDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws ValidationException{
+	private void valIdExist(String id)throws Exception{
 		if(!widgetDao.isIdExist(id)) {
-			throw new ValidationException("Data tidak ada");
+			throw new Exception("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(Widget widget)throws ValidationException {
+	private void valIdNotNull(Widget widget)throws Exception {
 		if(widget.getId()==null) {
-			throw new ValidationException("Id tidak boleh kosong");
+			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(Widget widget)throws ValidationException{
-		List<String> listErr = new ArrayList<String>();
+	private void valNonBk(Widget widget)throws Exception{
 		if(widget.getDescription().isEmpty()) {
-			listErr.add("Description tidak boleh kosong");
+			throw new Exception("Description tidak boleh kosong");
 		}
 		if(widget.getAppCode().isEmpty()) {
-			listErr.add("Appcode tidak boleh kosong");
+			throw new Exception("Appcode tidak boleh kosong");
 		}
 		if(widget.getWidgetType().getId().isEmpty()) {
-			listErr.add("widget type id tidak boleh kosong");
+			throw new Exception("widget type id tidak boleh kosong");
 		}
 		if(widget.getParamIn().isEmpty()) {
-			listErr.add("Param In tidak boleh kosong");
+			throw new Exception("Param In tidak boleh kosong");
 		}
 		if(widget.getParamOut().isEmpty()) {
-			listErr.add("Param Out tidak boleh kosong");
-		}
-		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
+			throw new Exception("Param Out tidak boleh kosong");
 		}
 	}
 	
-	private void valBkNotExist(Widget widget)throws ValidationException{
+	private void valBkNotExist(Widget widget)throws Exception{
 		if(widgetDao.isBkExist(widget)) {
-			throw new ValidationException("Data sudah ada");
+			throw new Exception("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(Widget widget)throws ValidationException{
+	private void valBkNotChange(Widget widget)throws Exception{
 		Widget tempWidget=findById(widget.getId());
 
 		if(!tempWidget.getName().equals(widget.getName())) {
-			throw new ValidationException("BK tidak boleh berubah");
+			throw new Exception("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(Widget widget) throws ValidationException{
+	private void valBkNotNull(Widget widget) throws Exception{
 		if(widget.getName().isEmpty() ) {
-			throw new ValidationException("Bk tidak boleh kosong");
+			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
 	

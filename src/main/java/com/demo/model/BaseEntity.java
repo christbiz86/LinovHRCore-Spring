@@ -10,80 +10,80 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class BaseEntity implements Serializable{
+public abstract class BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-    @Column(name = "id")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
-	
-	 @Column(name = "created_by")
-	    private String createdBy;
-	    
-	    @Column(name = "created_at")
-	    private Timestamp createdAt;
 
-	    @Column(name = "updated_by")
-	    private String updatedBy;
+	@Column(name = "created_by")
+	private String createdBy;
 
-	    @Column(name = "updated_at")
-	    private Timestamp updatedAt;
+	@Column(name = "created_at")
+	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
-	    @Column(name = "version")
-		private Long version=0L;
-	    
-		public Long getVersion() {
+	@Column(name = "updated_by")
+	private String updatedBy;
+
+	@Column(name = "updated_at")
+	private Timestamp updatedAt;
+
+	@Column(name = "version")
+	private Long version = 0L;
+
+	public Long getVersion() {
 		return version;
-		}
+	}
 
 	public void setVersion(Long version) {
 		if(version==null) {
 			version = new Long(0);
 		}else {
 			this.version = version;
-		} 
+		}
+
 	}
 	    
-		public String getId() {
-			return id;
-		}
+	public String getId() {
+		return id;
+	}
 
-		public void setId(String id) {
-			this.id = id;
-		}
+	public void setId(String id) {
+		this.id = id;
+	}
 
-		public String getCreatedBy() {
-			return createdBy;
-		}
+	public String getCreatedBy() {
+		return createdBy;
+	}
 
-		public void setCreatedBy(String createdBy) {
-			this.createdBy = createdBy;
-		}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
 
-		public Timestamp getCreatedAt() {
-			return createdAt;
-		}
+	public Timestamp getCreatedAt() {
+		return createdAt;
+	}
 
-		public void setCreatedAt(Timestamp createdAt) {
-			this.createdAt = createdAt;
-		}
+	public void setCreatedAt(Timestamp createdAt) {
+		this.createdAt = createdAt;
+	}
 
-		public String getUpdatedBy() {
-			return updatedBy;
-		}
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
 
-		public void setUpdatedBy(String updatedBy) {
-			this.updatedBy = updatedBy;
-		}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
 
-		public Timestamp getUpdatedAt() {
-			return updatedAt;
-		}
+	public Timestamp getUpdatedAt() {
+		return updatedAt;
+	}
 
-		public void setUpdatedAt(Timestamp updatedAt) {
-			this.updatedAt = updatedAt;
-		}
-	    
-	    
+	public void setUpdatedAt(Timestamp updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+
 }

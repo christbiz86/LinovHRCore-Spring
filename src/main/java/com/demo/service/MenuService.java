@@ -1,7 +1,6 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,24 +71,20 @@ public class MenuService {
 	}
 	
 	private void valNonBk(Menu menu)throws ValidationException{
-		List<String> listErr = new ArrayList<String>();
 
 		if(menu.getModule().getId().isEmpty()) {
-			listErr.add("Module tidak boleh kosong");
+			throw new ValidationException("Module tidak boleh kosong");
 		}
 		if(menu.getName().isEmpty()) {
-			listErr.add("Name tidak boleh kosong");
+			throw new ValidationException("Name tidak boleh kosong");
 		}
 		if(menu.getSortOrder()==null) {
-			listErr.add("Sort Order tidak boleh kosong");
+			throw new ValidationException("Sort Order tidak boleh kosong");
 		}
 		if(menu.getLevel()==null) {
-			listErr.add("Level tidak boleh kosong");
+			throw new ValidationException("Level tidak boleh kosong");
 		}
 		
-		if(!listErr.isEmpty()) {
-			throw new ValidationException(listErr);
-		}
 	}
 	
 	private void valBkNotExist(Menu menu)throws ValidationException{
