@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class CompanyDao extends ParentDao {
+public class CompanyDao extends AbstractJpaDao<Company> {
 
     public List<Company> findAll(){
         return super.entityManager.createQuery("FROM Company").getResultList();

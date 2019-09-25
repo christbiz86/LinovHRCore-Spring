@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public class CityDao extends ParentDao {
+public class CityDao extends AbstractJpaDao<City> {
 
     public List<City> findAll(Integer offset, Integer limit){
         return super.entityManager.createQuery("FROM City")

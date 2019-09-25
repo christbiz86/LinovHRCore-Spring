@@ -1,39 +1,22 @@
 package com.demo.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-
 @Entity
 @Table(name="core_tenants")
-public class Tenant extends BaseEntity implements Serializable{
-
-//    @Id
-//    @Column(name = "id")
-//    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-//    private String id;
+public class Tenant extends BaseEntity {
 
     @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "tenant",fetch = FetchType.LAZY)
     private List<Company> companies;
-
-//    public String getId(){
-//        return id;
-//    }
-//
-//    public void setId(String id){
-//        this.id = id;
-//    }
 
     public String getName(){
         return name;

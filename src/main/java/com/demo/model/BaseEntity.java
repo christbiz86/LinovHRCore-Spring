@@ -43,6 +43,7 @@ public abstract class BaseEntity implements Serializable {
 		}else {
 			this.version = version;
 		}
+
 	}
 	    
 	public String getId() {

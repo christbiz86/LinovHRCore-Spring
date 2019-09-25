@@ -38,13 +38,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 				columnNames = {"company_id", "code"}
 				)
 		)
-public class Job implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Job extends BaseEntity {
+	
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private String id;
 
     @Column(name = "name")
     private String name;
@@ -58,32 +54,11 @@ public class Job implements Serializable {
     @Column(name = "ordinal")
     private Integer ordinal;
 
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "created_at")
-    private Timestamp createdAt;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-    
-    @Column(name = "version")
-    private Long version;
-
-    @OneToOne
+      @OneToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
 
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id){
-        this.id = id;
-    }
+    
 
     public String getName(){
         return name;
@@ -133,57 +108,6 @@ public class Job implements Serializable {
     	}
 	}
 	
-	public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-	public String getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(String createdBy) {
-		if(createdBy == null) {
-			this.createdBy = new String();
-    	} else {
-    		this.createdBy = createdBy;
-    	}
-	}
-
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-
-	public void setUpdatedBy(String updatedBy) {
-		if(updatedBy == null) {
-			this.updatedBy = new String();
-    	} else {
-    		this.updatedBy = updatedBy;
-    	}
-	}
-
-    public Long getVersion() {
-		return version;
-	}
-
-	public void setVersion(Long version) {
-		if(version == null) {
-			this.version = new Long(0);
-    	} else {
-    		this.version = version;
-    	}
-	}
 
 	public Company getCompany() {
         return company;
