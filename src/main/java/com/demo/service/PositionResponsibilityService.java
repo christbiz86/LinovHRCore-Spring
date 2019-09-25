@@ -19,7 +19,6 @@ public class PositionResponsibilityService {
 		if (!positionResponsibilityDao.isIdExist(id)) {
 			throw new Exception("Data does not exist");
 		}
-
 	}
 
 	public void valIdNotNull(String id) throws Exception {
