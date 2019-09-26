@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_rating_scale_details", uniqueConstraints = @UniqueConstraint(columnNames = {"rating_scale_id", "code"}))
+@Table(name = "compt_rating_scale_details", uniqueConstraints = @UniqueConstraint(columnNames = {"rating_scale_id", "code"}))
 public class RatingScaleDetail extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	

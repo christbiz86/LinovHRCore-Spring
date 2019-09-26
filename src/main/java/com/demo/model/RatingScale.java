@@ -19,7 +19,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_rating_scales", uniqueConstraints = @UniqueConstraint(columnNames = { "company_id", "code" }))
+@Table(name = "compt_rating_scales", uniqueConstraints = @UniqueConstraint(columnNames = { "company_id", "code" }))
 public class RatingScale extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
