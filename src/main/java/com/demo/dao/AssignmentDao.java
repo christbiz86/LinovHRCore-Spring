@@ -25,7 +25,6 @@ public class AssignmentDao extends AbstractJpaDao<Assignment>{
 				.setParameter("companyId", companyId)
 				.setParameter("positionSlotId", positionSlotId)
 				.getResultList();
-		
 		if (list.size() == 0) {
 			return new Assignment();
 		}

@@ -26,9 +26,9 @@ public class AssignmentService {
         return assignmentDao.findOne(id);
     }
 	
-	public Assignment findByBk(String companyId,String name){
+	public Assignment findByBk(String companyId,String positionSlotId){
 		
-		return assignmentDao.findByBk(companyId, name);
+		return assignmentDao.findByBk(companyId, positionSlotId);
     }
 	
 	public void save(Assignment assignment) throws Exception {
@@ -66,7 +66,7 @@ public class AssignmentService {
 	
 	private void valNonBk(Assignment assignment)throws Exception{
 		if(assignment.getEmployeeStatus().getId().isEmpty()) {
-			throw new Exception("IsDeleted tidak boleh kosong");
+			throw new Exception("Employee status tidak boleh kosong");
 		}
 		if(assignment.getAssignmentReason().getId().isEmpty()){
 			throw new Exception("Assignment Reason tidak boleh kosong");
