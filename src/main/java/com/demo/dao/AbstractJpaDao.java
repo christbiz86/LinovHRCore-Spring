@@ -61,21 +61,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     }
 
     public T update(final T entity) {
-//    	T o = null;
-//    	try {
-//    		if(entity instanceof Class) {
-//    			System.err.println(entity.toString());
-//    			BaseEntity baseUpdate = (BaseEntity) entity;
-//    			System.err.println(baseUpdate.getId());
-//    			System.err.println(baseUpdate.getCreatedBy());
-//    			baseUpdate.setVersion(baseUpdate.getVersion() + 1);
-//    			baseUpdate.setUpdatedBy("kosong");
-//    			baseUpdate.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-//    			o = entityManager.merge(entity);
-//    		}
-//		} catch (Exception e) {
-//			System.err.println(e.getMessage());
-//		}
     	try {
     		if(entity instanceof Object) {
     			int pointer = 0;

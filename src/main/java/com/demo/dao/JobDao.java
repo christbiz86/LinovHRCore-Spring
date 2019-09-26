@@ -62,5 +62,13 @@ public class JobDao extends AbstractJpaDao<Job> {
             return true;
         }
     }
+    
+    public void insertToDao(Job job) {
+    	create(job);
+    }
+    
+    public void updateToDao(Job job) {
+    	update(job);
+    }
 
 }

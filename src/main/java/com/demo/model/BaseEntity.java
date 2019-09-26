@@ -19,19 +19,19 @@ public abstract class BaseEntity implements Serializable {
     public String id;
 
 	@Column(name = "created_by")
-	public String createdBy = "kosong";
+	public String createdBy;
 
 	@Column(name = "created_at")
-	public Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+	public Timestamp createdAt;
 
 	@Column(name = "updated_by")
-	public String updatedBy = "kosong";
+	public String updatedBy;
 
 	@Column(name = "updated_at")
-	public Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
+	public Timestamp updatedAt;
 
 	@Column(name = "version")
-	public Long version = new Long(0);
+	public Long version;
 
 	public Long getVersion() {
 		return version;
