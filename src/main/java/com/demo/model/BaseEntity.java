@@ -42,8 +42,9 @@ public abstract class BaseEntity implements Serializable {
 			version = new Long(0);
 		}else {
 			this.version = version;
+		}
 	}
-	    
+
 	public String getId() {
 		return id;
 	}
