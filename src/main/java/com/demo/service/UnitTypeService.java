@@ -36,10 +36,8 @@ public class UnitTypeService {
 	}
 	
 	private void valIdNotNull(UnitType unitType)throws Exception {
-		List<String> listErr = new ArrayList<String>();
-		
-		if(unitType.getId() == null) {
-			listErr.add("Id Cannot be empty \n");
+		if(unitType.getId() == null || unitType.getId().isEmpty()) {
+			throw new Exception("Id Cannot be empty");
 		}
 	}
 	
@@ -52,15 +50,6 @@ public class UnitTypeService {
 		}
 		if(unitType.getUnitLevel() == null) {
 			throw new Exception("Type Unit Level cannot be empty");
-		}
-		if(unitType.getCreatedBy() == null && unitType.getCreatedBy().isEmpty()) {
-			throw new Exception("Created By Unit Type cannot be empty");
-		}
-		if(unitType.getCreatedAt() == null) {
-			throw new Exception("Created At Unit Type cannot be empty");
-		}
-		if(unitType.getVersion() == null) {
-			throw new Exception("Version cannot be empty");
 		}
 	}
 	
@@ -91,13 +80,6 @@ public class UnitTypeService {
 		}
 	}
 	
-	private void valCreatedNotChange(UnitType unitType)throws Exception {
-		UnitType tempUnitType = findById(unitType.getId());
-		if(tempUnitType.getCreatedAt() != unitType.getCreatedAt() && !tempUnitType.getCreatedBy().equals(unitType.getCreatedBy())) {
-			throw new Exception("Created cannot be change");
-		}
-	}
-	
 	public void save(UnitType unitType) throws Exception {
 		unitType.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -109,8 +91,6 @@ public class UnitTypeService {
 	
 	public void update(UnitType unitType) throws Exception {
 		unitType.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-		
-		valCreatedNotChange(unitType);
 		
 		valIdNotNull(unitType);
 		valIdExist(unitType.getId());
