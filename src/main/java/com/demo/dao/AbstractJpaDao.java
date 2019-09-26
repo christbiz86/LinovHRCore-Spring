@@ -55,11 +55,9 @@ public abstract class AbstractJpaDao<T extends Serializable> {
                     pointer++;
                 }
                 entityManager.persist(entity);
-            }
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-        
     }
 
     public T update(final T entity) {
