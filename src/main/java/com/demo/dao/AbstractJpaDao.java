@@ -1,6 +1,7 @@
 package com.demo.dao;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 				insertBase.setCreatedBy("kosong");
 				insertBase.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 				entityManager.persist(entity);
-			}	
+			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -60,7 +61,32 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 //		} catch (Exception e) {
 //			System.err.println(e.getMessage());
 //		}
-    	
+    	try {
+    		System.err.println(entity.toString());
+    		if(entity instanceof Object) {
+    			
+    			Field[] listField = BaseEntity.class.getDeclaredFields();
+    			int pointer=0;
+    			for(Field f: listField) {
+    				System.out.println(pointer);
+    				if(f.get("updated_at").equals(null)) {
+    					f.set("updated_at", new Timestamp(System.currentTimeMillis()));
+    				}else if(f.get("updated_by").equals(null)) {
+    					f.set("updated_by", "kosong");
+    				}else if(!f.get("version").equals(null)) {
+    					f.set("version",f.getLong("version")+1);
+    				}
+    				pointer++;
+    			}
+    			
+    		} 
+    		
+    		
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e.getMessage());
+		}
+
         return entityManager.merge(entity);
     }
 
