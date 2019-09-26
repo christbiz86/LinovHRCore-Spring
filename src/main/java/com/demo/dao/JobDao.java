@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import com.demo.model.Job;
 
+import javax.transaction.Transactional;
+
 @Repository
 public class JobDao extends AbstractJpaDao<Job> {
 

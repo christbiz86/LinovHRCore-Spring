@@ -13,12 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(
-		name = "core_assignment_reasons", 
-		uniqueConstraints = @UniqueConstraint(
-				columnNames = {"id_company","code"}
-				)
-		)
+@Table(name = "core_assignment_reasons")
 public class AssignmentReason extends BaseEntity {
 	
 	@OneToOne
