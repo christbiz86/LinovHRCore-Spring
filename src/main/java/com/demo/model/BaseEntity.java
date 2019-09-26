@@ -37,20 +37,20 @@ public abstract class BaseEntity implements Serializable {
 		return version;
 	}
 
-	public void setVersion(Long version) {
-		if(version == null) {
-			version = new Long(0);
-		}else {
-			this.version = version;
-		}
-	}
-
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
+	}
+	
+	public void setVersion(Long version) {
+		if(version == null) {
+			version = new Long(0);
+		}else {
+			this.version = version;
+		}
 	}
 
 	public String getCreatedBy() {

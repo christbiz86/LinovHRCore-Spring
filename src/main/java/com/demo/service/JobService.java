@@ -91,7 +91,7 @@ public class JobService {
 		valBkNotNull(job);
 		valBkNotExist(job);
 		valNonBk(job);
-		jobDao.insertToDao(job);
+		jobDao.create(job);
 	}
 	
 	public void update(Job job) throws Exception {
@@ -102,7 +102,7 @@ public class JobService {
 		valBkNotChange(job);
 		valNonBk(job);
 //		valCreatedAtNotChange(job);
-		jobDao.updateToDao(job);
+		jobDao.update(job);
 	}
 	
 	public void delete(String id) throws Exception {
