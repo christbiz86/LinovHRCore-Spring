@@ -66,7 +66,6 @@ public class JobController {
 	@Transactional
 	public ResponseEntity<?> insert(@RequestBody Job job) throws Exception {
 		try {
-			System.err.println(job.id);
 			jobService.insert(job);
 			return ResponseEntity.ok("Insert success with Job name: "+job.getName());
 		} catch (Exception e) {
