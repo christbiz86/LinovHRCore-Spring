@@ -57,19 +57,24 @@ public class LovController {
     }
 
     @GetMapping(value = "/companies")
-    public ResponseEntity<?> getAllCompany(){
+    public ResponseEntity<?> getAllCompany() {
         List<Company> companyList = companyService.findAll();
         return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/costcenters")
-    public ResponseEntity<?> getAllCostcenters(){
-        List<Costcenter> costcenterList = costcenterService.findAll();
-        return new ResponseEntity<List<Costcenter>>(costcenterList,HttpStatus.OK);
-    }
+    @GetMapping(value = "/cost-centers")
+	@Transactional
+	public ResponseEntity<?> findAll() {
+		try {
+			List<Costcenter> list = costcenterService.findAll();
+			return new ResponseEntity<List<Costcenter>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
+	}
 
     @GetMapping(value = "/countries")
-    public ResponseEntity<?> getAllCountries() throws Exception {
+    public ResponseEntity<?> getAllCountries() {
     	try {
 			List<Country> list = countryService.findAll();
 			return new ResponseEntity<List<Country>>(list, HttpStatus.OK);
@@ -79,7 +84,7 @@ public class LovController {
     }
 
     @GetMapping(value = "/grades")
-    public ResponseEntity<?> getAllGrades(){
+    public ResponseEntity<?> getAllGrades() {
         List<Grade> gradeList = gradeService.findall();
         return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
     }

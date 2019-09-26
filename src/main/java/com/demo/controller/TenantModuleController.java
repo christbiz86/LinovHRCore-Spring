@@ -29,7 +29,7 @@ public class TenantModuleController {
 	@Autowired
 	private TenantModuleService tmService;
 	
-	@GetMapping(value = "/lov/tenant-modules")
+	@GetMapping(value = "/tenant-modules")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {

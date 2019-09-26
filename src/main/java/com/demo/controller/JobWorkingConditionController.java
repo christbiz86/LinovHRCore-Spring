@@ -29,7 +29,7 @@ public class JobWorkingConditionController {
 	@Autowired
 	private JobWorkingConditionService jwcService;
 	
-	@GetMapping(value = "/lov/job-working-conditions")
+	@GetMapping(value = "/job-working-conditions")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {

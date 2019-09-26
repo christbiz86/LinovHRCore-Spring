@@ -29,7 +29,7 @@ public class JobGradeController {
 	@Autowired
 	private JobGradeService jobGradeService;
 	
-	@GetMapping(value = "/lov/job-grades")
+	@GetMapping(value = "/job-grades")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {

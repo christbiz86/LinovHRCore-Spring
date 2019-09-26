@@ -29,7 +29,7 @@ public class JobController {
 	@Autowired
 	private JobService jobService;
 	
-	@GetMapping(value = "/lov/jobs")
+	@GetMapping(value = "/jobs")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {

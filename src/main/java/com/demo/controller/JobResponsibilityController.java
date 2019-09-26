@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
 import com.demo.model.JobResponsibility;
 import com.demo.service.JobResponsibilityService;
 
@@ -30,7 +29,7 @@ public class JobResponsibilityController {
 	@Autowired
 	private JobResponsibilityService jobRespService;
 	
-	@GetMapping(value = "/lov/job-responsibilities")
+	@GetMapping(value = "/job-responsibilities")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {

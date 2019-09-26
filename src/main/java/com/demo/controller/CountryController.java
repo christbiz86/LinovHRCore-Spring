@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,17 +27,6 @@ public class CountryController {
 
     @Autowired
     private CountryService countryService;
-
-//    @GetMapping(value = "/lov/countries")
-//	@Transactional
-//	public ResponseEntity<?> findAll() throws Exception {
-//		try {
-//			List<Country> list = countryService.findAll();
-//			return new ResponseEntity<List<Country>>(list, HttpStatus.OK);
-//		} catch (Exception e) {
-//			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
-//		}
-//	}
 
     @GetMapping(value = "/country/{id}")
     public ResponseEntity<?> getCountryById(@PathVariable String id) throws Exception {

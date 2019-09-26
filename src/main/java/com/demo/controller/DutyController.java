@@ -29,7 +29,7 @@ public class DutyController {
 	@Autowired
 	private DutyService dutyService;
 	
-	@GetMapping(value = "/lov/duties")
+	@GetMapping(value = "/duties")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {

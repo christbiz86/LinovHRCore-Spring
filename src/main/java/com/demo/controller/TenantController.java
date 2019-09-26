@@ -29,7 +29,7 @@ public class TenantController {
 	@Autowired
 	private TenantService tenantService;
 	
-	@GetMapping(value = "/lov/tenants")
+	@GetMapping(value = "/tenants")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {

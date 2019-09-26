@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,17 +27,6 @@ public class CostcenterController {
 
     @Autowired
     private CostcenterService costcenterService;
-    
-    @GetMapping(value = "/lov/cost-centers")
-	@Transactional
-	public ResponseEntity<?> findAll() throws Exception {
-		try {
-			List<Costcenter> list = costcenterService.findAll();
-			return new ResponseEntity<List<Costcenter>>(list, HttpStatus.OK);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
-		}
-	}
 
     @GetMapping(value = "/cost-center/{id}")
     @Transactional
