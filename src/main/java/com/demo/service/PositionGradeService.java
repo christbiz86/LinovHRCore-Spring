@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.PositionGradeDao;
 import com.demo.model.PositionGrade;
@@ -84,7 +83,6 @@ public class PositionGradeService {
 		return positionGradeDao.findOne(id);
 	}
 
-	@Transactional
 	public void save(PositionGrade positionGrade) throws Exception {
 //		positionGrade.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		valBkNotNull(positionGrade);

@@ -26,7 +26,11 @@ public class DataAccess extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;	
+		}
 	}
 
 	public String getCode() {
@@ -34,6 +38,10 @@ public class DataAccess extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if (code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;	
+		}
 	}
 }

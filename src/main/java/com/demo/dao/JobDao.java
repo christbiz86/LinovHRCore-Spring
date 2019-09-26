@@ -6,29 +6,32 @@ import org.springframework.stereotype.Repository;
 
 import com.demo.model.Job;
 
+import javax.transaction.Transactional;
+
 @Repository
 public class JobDao extends AbstractJpaDao<Job> {
 
-	public JobDao() {
+    public JobDao() {
         setClazz(Job.class);
     }
-	
-	@SuppressWarnings("unchecked")
+
+    @SuppressWarnings("unchecked")
+    @Transactional
 	public Job findByCode(String code) {
 		List<Job> list = super.entityManager
                 .createQuery("FROM Job WHERE code = :code")
                 .setParameter("code", code)
                 .getResultList();
+        if (list.size() == 0) {
+            return new Job();
+        }
+        else {
+            return list.get(0);
+        }
+    }
 
-		if (list.size() == 0) {
-			return new Job();
-		}
-		else {
-			return list.get(0);
-		}
-	}
-	
-	@SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
+    @Transactional
 	public Job findByBk(String code, String company) {
 		List<Job> list = super.entityManager
                 .createQuery("FROM Job WHERE code = :code AND company.id = :company")
@@ -36,28 +39,28 @@ public class JobDao extends AbstractJpaDao<Job> {
                 .setParameter("company", company)
                 .getResultList();
 
-		if (list.size() == 0) {
-			return new Job();
-		}
-		else {
-			return list.get(0);
-		}
-	}
-	
-	public boolean isCodeExist(String code) {
-		if(findByCode(code).getId() == null) {
-			return false;
-		}else {
-			return true;
-		}	 
-	}
-	
-	public boolean isBkExist(String code, String company) {
-		if(findByBk(code, company).getId() == null) {
-			return false;
-		}else {
-			return true;
-		}
-	}
+        if (list.size() == 0) {
+            return new Job();
+        }
+        else {
+            return list.get(0);
+        }
+    }
+
+    public boolean isCodeExist(String code) {
+        if(findByCode(code).getId() == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean isBkExist(String code, String company) {
+        if(findByBk(code, company).getId() == null) {
+            return false;
+        }else {
+            return true;
+        }
+    }
 
 }

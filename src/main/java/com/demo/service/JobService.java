@@ -84,7 +84,7 @@ public class JobService {
 	}
 	
 	public void insert(Job job) throws Exception {
-		job.setCreatedAt(getTime());
+//		job.setCreatedAt(getTime());
 		valBkNotNull(job);
 		valBkNotExist(job);
 		valNonBk(job);
@@ -92,13 +92,13 @@ public class JobService {
 	}
 	
 	public void update(Job job) throws Exception {
-		job.setUpdatedAt(getTime());
+//		job.setUpdatedAt(getTime());
 		valIdNotNull(job);
 		valIdExist(job.getId());
 		valBkNotNull(job);
 		valBkNotChange(job);
 		valNonBk(job);
-		valCreatedAtNotChange(job);
+//		valCreatedAtNotChange(job);
 		jobDao.update(job);
 	}
 	

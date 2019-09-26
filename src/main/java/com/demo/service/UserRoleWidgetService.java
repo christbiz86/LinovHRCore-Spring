@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.UserRoleWidgetDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.UserRole;
 import com.demo.model.UserRoleWidget;
 import com.demo.model.Widget;
@@ -40,14 +39,14 @@ public class UserRoleWidgetService {
 		return userRoleWidgetDao.findByBk(userRoleWidget);
     }
 	
-	public void save(UserRoleWidget userRoleWidget) throws ValidationException {
+	public void save(UserRoleWidget userRoleWidget) throws Exception {
 		valBkNotNull(userRoleWidget);
 		valBkNotExist(userRoleWidget);
 		valNonBk(userRoleWidget);
 		userRoleWidgetDao.create(userRoleWidget);
 	}
 	
-	public void update(UserRoleWidget userRoleWidget) throws ValidationException {
+	public void update(UserRoleWidget userRoleWidget) throws Exception {
 		valIdNotNull(userRoleWidget);
 		valIdExist(userRoleWidget.getId());
 		valBkNotNull(userRoleWidget);
@@ -55,44 +54,44 @@ public class UserRoleWidgetService {
 		userRoleWidgetDao.update(userRoleWidget);
 	}
 	
-	public void delete(String id) throws ValidationException {
+	public void delete(String id) throws Exception {
 		valIdExist(id);
 		userRoleWidgetDao.deleteById(id);
 	}
 	
-	private void valIdExist(String id)throws ValidationException{
+	private void valIdExist(String id)throws Exception{
 		if(!userRoleWidgetDao.isIdExist(id)) {
-			throw new ValidationException("Data tidak ada");
+			throw new Exception("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(UserRoleWidget userRoleWidget)throws ValidationException {
+	private void valIdNotNull(UserRoleWidget userRoleWidget)throws Exception {
 		if(userRoleWidget.getId().isEmpty()) {
-			throw new ValidationException("Id tidak boleh kosong");
+			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(UserRoleWidget userRoleWidget)throws ValidationException{
-
+	private void valNonBk(UserRoleWidget userRoleWidget)throws Exception{
+		
 	}
 	
-	private void valBkNotExist(UserRoleWidget userRoleWidget)throws ValidationException{
+	private void valBkNotExist(UserRoleWidget userRoleWidget)throws Exception{
 		if(userRoleWidgetDao.isBkExist(userRoleWidget)) {
-			throw new ValidationException("Data sudah ada");
+			throw new Exception("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(UserRoleWidget userRoleWidget)throws ValidationException{
+	private void valBkNotChange(UserRoleWidget userRoleWidget)throws Exception{
 		UserRoleWidget tempUserRoleWidget=findById(userRoleWidget.getId());
 
 		if(!tempUserRoleWidget.getUserRole().getId().equals(userRoleWidget.getUserRole().getId()) || !tempUserRoleWidget.getWidget().getId().equals(userRoleWidget.getWidget().getId())) {
-			throw new ValidationException("BK tidak boleh berubah");
+			throw new Exception("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(UserRoleWidget userRoleWidget) throws ValidationException{
+	private void valBkNotNull(UserRoleWidget userRoleWidget) throws Exception{
 		if(userRoleWidget.getUserRole().getId().isEmpty() || userRoleWidget.getWidget().getId().isEmpty()) {
-			throw new ValidationException("Bk tidak boleh kosong");
+			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
 	

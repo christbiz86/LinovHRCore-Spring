@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.UnitDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Unit;
 
 @Service
@@ -35,8 +33,8 @@ public class UnitService {
 	}
 	
 	private void valIdNotNull(Unit unit)throws Exception {
-		if(unit.getId() == null) {
-			throw new Exception("Cannot be empty");
+		if(unit.getId() == null || unit.getId().isEmpty()) {
+			throw new Exception("Id Cannot be empty");
 		}
 	}
 	
@@ -46,15 +44,6 @@ public class UnitService {
 		}
 		if(unit.getName() == null || unit.getName().isEmpty()) {
 			throw new Exception("Unit Name cannot be empty \n");
-		}
-		if(unit.getCreatedBy() == null || unit.getCreatedBy().isEmpty()) {
-			throw new Exception("Created By cannot be empty \n");
-		}
-		if(unit.getCreatedAt() == null) {
-			throw new Exception("Created At cannot be empty \n");
-		}
-		if(unit.getVersion() == null) {
-			throw new Exception("Version cannot be empty \n");
 		}
 	}
 	
@@ -87,14 +76,6 @@ public class UnitService {
 		
 	}
 	
-	private void valCreatedNotChange(Unit unit)throws Exception {
-		Unit tempUnit=findById(unit.getId());
-			
-		if(tempUnit.getCreatedAt() != unit.getCreatedAt() && !tempUnit.getCreatedBy().equals(unit.getCreatedBy())) {
-			throw new Exception("Created cannot be change");
-		}
-	}
-	
 	public void save(Unit unit) throws Exception {
 		unit.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -106,8 +87,6 @@ public class UnitService {
 	
 	public void update(Unit unit) throws Exception {
 		unit.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-		
-		valCreatedNotChange(unit);
 		
 		valIdNotNull(unit);
 		valIdExist(unit.getId());
