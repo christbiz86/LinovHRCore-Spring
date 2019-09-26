@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.PositionWorkingConditionDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.PositionWorkingCondition;
 
 @Service
@@ -49,8 +47,8 @@ public class PositionWorkingConditionService {
 	
 	public void valCreatedNotChange(PositionWorkingCondition positionWorkingCondition) throws Exception {
 		PositionWorkingCondition posDB = findById(positionWorkingCondition.getId());
-
-		if (posDB.getCreatedAt() != positionWorkingCondition.getCreatedAt() && posDB.getCreatedBy() != positionWorkingCondition.getCreatedBy()) {
+		
+		if (posDB.getCreatedAt() != positionWorkingCondition.getCreatedAt() || !posDB.getCreatedBy().equals(positionWorkingCondition.getCreatedBy())) {
 			throw new Exception("created at or created by cannot be changed");
 		}
 	}

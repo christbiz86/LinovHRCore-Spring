@@ -3,20 +3,22 @@ package com.demo.exception;
 import java.util.List;
 
 @SuppressWarnings("serial")
-
 public class ValidationException extends Exception {
+	private List<String> messages;
 
-	private String messages;
-
-	public ValidationException(String messages) {
+	public ValidationException(List<String> messages){
 		this.messages = messages;
 	}
-	
-	public String getMessages() {
+
+	public ValidationException(String message) {
+		super(message);
+	}
+
+	public List<String> getMessages() {
 		return messages;
 	}
 
-	public void setMessages(String messages) {
+	public void setMessages(List<String> messages) {
 		this.messages = messages;
 	}
 }

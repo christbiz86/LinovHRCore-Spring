@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import com.demo.model.City;
 import com.demo.model.Company;
 import com.demo.model.Costcenter;
@@ -23,6 +22,7 @@ import com.demo.service.CountryService;
 import com.demo.service.GradeService;
 import com.demo.service.LocationService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @Transactional
@@ -30,7 +30,6 @@ import com.demo.service.LocationService;
 public class LovController {
 
     @Autowired
-//    private CityComboBean cityComboBean;
     private CityService cityService;
 
     @Autowired
@@ -48,35 +47,43 @@ public class LovController {
     @Autowired
     private LocationService locationService;
 
-    @GetMapping(value = "/cities/{offset}/{limit}")
-    public ResponseEntity<?> getAllCity(
-        @PathVariable Integer offset,
-        @PathVariable Integer limit
-    ){
-        List<City> cityList = cityService.findAll(offset,limit);
+    @GetMapping(value = "/cities")
+    @Transactional
+    public ResponseEntity<?> getAllCity(){
+        List<City> cityList = cityService.findAll();
         return new ResponseEntity<List<City>>(cityList,HttpStatus.OK);
     }
 
     @GetMapping(value = "/companies")
+    @Transactional
     public ResponseEntity<?> getAllCompany(){
         List<Company> companyList = companyService.findAll();
         return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
     }
 
-    @GetMapping(value = "/costcenters")
-    public ResponseEntity<?> getAllCostcenters(){
-        List<Costcenter> costcenterList = costcenterService.findAll();
-        return new ResponseEntity<List<Costcenter>>(costcenterList,HttpStatus.OK);
-    }
+    @GetMapping(value = "/cost-centers")
+	@Transactional
+	public ResponseEntity<?> findAll() {
+		try {
+			List<Costcenter> list = costcenterService.findAll();
+			return new ResponseEntity<List<Costcenter>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
+	}
 
     @GetMapping(value = "/countries")
-    public ResponseEntity<?> getAllCountries(){
-        List<Country> countryList = countryService.findAll();
-        return new ResponseEntity<List<Country>>(countryList,HttpStatus.OK);
+    public ResponseEntity<?> getAllCountries() {
+    	try {
+			List<Country> list = countryService.findAll();
+			return new ResponseEntity<List<Country>>(list, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
     }
 
     @GetMapping(value = "/grades")
-    public ResponseEntity<?> getAllGrades(){
+    public ResponseEntity<?> getAllGrades() {
         List<Grade> gradeList = gradeService.findall();
         return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
     }

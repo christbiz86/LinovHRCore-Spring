@@ -58,8 +58,8 @@ public class GradeService {
     }
 
     private void gradeValidation(Grade grade) throws ValidationException{
-        List<Company> companyId = companyDao.findById(grade.getCompany().getId());
-        if(companyId.isEmpty()) {
+        Company companyId = companyDao.findOne(grade.getCompany().getId());
+        if(companyId == null) {
             throw new ValidationException("Company ID not found or empty!");
         }
         if(grade.getName() == null){
