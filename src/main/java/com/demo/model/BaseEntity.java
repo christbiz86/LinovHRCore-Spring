@@ -11,40 +11,40 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    public String id;
 
 	@Column(name = "created_by")
-	private String createdBy;
+	public String createdBy = "kosong";
 
 	@Column(name = "created_at")
-	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+	public Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "updated_by")
-	private String updatedBy;
+	public String updatedBy = "kosong";
 
 	@Column(name = "updated_at")
-	private Timestamp updatedAt;
+	public Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "version")
-	private Long version = 0L;
+	public Long version = new Long(0);
 
 	public Long getVersion() {
 		return version;
 	}
 
 	public void setVersion(Long version) {
-		if(version==null) {
+		if(version == null) {
 			version = new Long(0);
 		}else {
 			this.version = version;
 		}
 	}
-	    
+
 	public String getId() {
 		return id;
 	}

@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class MainSpringBoot extends SpringBootServletInitializer{
 
 	public static void main(String[] args) {
-//		TimeZone.setDefault(TimeZone.getTimeZone("ASIA/JAKARTA"));
+		TimeZone.setDefault(TimeZone.getTimeZone("ASIA/JAKARTA"));
 		SpringApplication.run(MainSpringBoot.class, args);
 	}
 }

@@ -1,16 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.PositionSlotDao;
-import com.demo.exception.ValidationException;
-import com.demo.model.Company;
-import com.demo.model.Position;
 import com.demo.model.PositionSlot;
 
 @Service
@@ -50,11 +46,11 @@ public class PositionSlotService {
 	}
 
 	public void valBkNotChange(PositionSlot positionSlot) throws Exception {
-		Company company = findById(positionSlot.getId()).getCompany();
-		Position position = findById(positionSlot.getId()).getPosition();
+		String company = findById(positionSlot.getId()).getCompany().getId();
+		String position = findById(positionSlot.getId()).getPosition().getId();
 		String code = findById(positionSlot.getId()).getCode();
 
-		if (!(positionSlot.getCompany() == company) && positionSlot.getPosition() == position && !positionSlot.getCode().equals(code)) {
+		if (!positionSlot.getCompany().getId().equals(company) || !positionSlot.getPosition().getId().equals(position) || !positionSlot.getCode().equals(code)) {
 			throw new Exception("company, position, or code cannot be changed");
 		}
 	}
@@ -73,8 +69,8 @@ public class PositionSlotService {
 	
 	public void valCreatedNotChange(PositionSlot positionSlot) throws Exception {
 		PositionSlot posDB = findById(positionSlot.getId());
-
-		if (posDB.getCreatedAt() != positionSlot.getCreatedAt() && !posDB.getCreatedBy().equals(positionSlot.getCreatedBy())) {
+		
+		if (posDB.getCreatedAt() != positionSlot.getCreatedAt() || !posDB.getCreatedBy().equals(positionSlot.getCreatedBy())) {
 			throw new Exception("created at or created by cannot be changed");
 		}
 	}
@@ -88,7 +84,7 @@ public class PositionSlotService {
 	}
 
 	public void save(PositionSlot positionSlot) throws Exception {
-		positionSlot.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+//		positionSlot.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		valBkNotNull(positionSlot);
 		valBkNotExist(positionSlot);
 		valNonBk(positionSlot);

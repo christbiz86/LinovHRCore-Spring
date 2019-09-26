@@ -1,14 +1,12 @@
 package com.demo.service;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.PositionDao;
-import com.demo.exception.ValidationException;
-import com.demo.model.Company;
 import com.demo.model.Position;
 
 @Service
@@ -60,27 +58,27 @@ public class PositionService {
 	}
 
 	public void valBkNotChange(Position position) throws Exception {
-		Company company = findById(position.getId()).getCompany();
+		String company = findById(position.getId()).getCompany().getId();
 		String code = findById(position.getId()).getCode();
 
-		if (!(position.getCompany() == company) && !position.getCode().equals(code)) {
+		if (!position.getCompany().getId().equals(company) || !position.getCode().equals(code)) {
 			throw new Exception("company or code cannot be changed");
 		}
 	}
 
 	public void valBkNotNull(Position position) throws Exception {
 		if (position.getCompany() == null) {
-			throw new Exception("company or code cannot be emptied");
+			throw new Exception("company cannot be emptied");
 		}
 		if (position.getCode().isEmpty()) {
-			throw new Exception("company or code cannot be emptied");
+			throw new Exception("code cannot be emptied");
 		}
 	}
 	
 	public void valCreatedNotChange(Position position) throws Exception {
 		Position posDB = findById(position.getId());
-
-		if (posDB.getCreatedAt() != position.getCreatedAt() && posDB.getCreatedBy().equals(position.getCreatedBy())) {
+		
+		if (posDB.getCreatedAt() != position.getCreatedAt() || !posDB.getCreatedBy().equals(position.getCreatedBy())) {
 			throw new Exception("created at or created by cannot be changed");
 		}
 	}
@@ -94,6 +92,7 @@ public class PositionService {
 	}
 
 	public void save(Position position) throws Exception {
+		position.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		valBkNotNull(position);
 		valBkNotExist(position);
 		valNonBk(position);
@@ -106,7 +105,8 @@ public class PositionService {
 		valIdExist(position.getId());
 		valBkNotNull(position);
 		valBkNotChange(position);
-		valCreatedNotChange(position);
+		position.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+//		valCreatedNotChange(position);
 		valNonBk(position);
 
 		positionDao.update(position);

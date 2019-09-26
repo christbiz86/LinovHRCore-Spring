@@ -1,6 +1,5 @@
 package com.demo.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Cacheable;
@@ -18,10 +17,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "core_persons")
-public class Person extends BaseEntity implements Serializable{
-	private static final long serialVersionUID = 1L;
+
+public class Person extends BaseEntity{
 	
-	@JoinColumn(name = "tenant_id",referencedColumnName = "id")
+	@JoinColumn(name = "tenant_id", referencedColumnName = "id")
 	@OneToOne
 	private Tenant tenant; 
 	
@@ -86,20 +85,6 @@ public class Person extends BaseEntity implements Serializable{
 	@OneToOne
 	private Lov lovMars;
 	
-	@Column(name = "created_by")
-	private String createdBy;
-	
-//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-//	@Column(name = "created_at")
-//	private Timestamp createdAt;
-//	
-//	@Column(name = "updated_by")
-//	private String updatedBy;
-//	
-//	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-//	@Column(name = "updated_at")
-//	private Timestamp updatedAt;
-	
 	@Column(name = "file_photo")
 	private String filePhoto;
 	
@@ -108,17 +93,6 @@ public class Person extends BaseEntity implements Serializable{
 	
 	@Column(name = "candidate_ready_to_hire_id")
 	private Integer candidateReadyToHireId;
-	
-//	@Column(name = "version")
-//	private Long version;
-
-//	public String getId() {
-//		return id;
-//	}
-//
-//	public void setId(String id) {
-//		this.id = id;
-//	}
 
 	public Tenant getTenant() {
 		return tenant;
@@ -295,4 +269,5 @@ public class Person extends BaseEntity implements Serializable{
 	public void setCandidateReadyToHireId(Integer candidateReadyToHireId) {
 		this.candidateReadyToHireId = candidateReadyToHireId;
 	}
+
 }

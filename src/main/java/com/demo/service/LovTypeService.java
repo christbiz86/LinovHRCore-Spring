@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.LovTypeDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.LovType;
 
 @Service
@@ -34,7 +33,7 @@ public class LovTypeService {
         return lovTypeDao.findByBk(lovType);
     }
 	
-    public void save(LovType lovType) throws ValidationException {
+    public void save(LovType lovType) throws Exception {
     	lovType.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(lovType);
 		valBkNotExist(lovType);
@@ -42,7 +41,7 @@ public class LovTypeService {
 		lovTypeDao.create(lovType);
     }
     
-    public void update(LovType lovType) throws ValidationException {
+    public void update(LovType lovType) throws Exception {
     	lovType.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
     	valIdNotNull(lovType);
 		valIdExist(lovType.getId());
@@ -53,65 +52,53 @@ public class LovTypeService {
 		lovTypeDao.update(lovType);
     }
 
-    public void delete(String id) throws ValidationException {
+    public void delete(String id) throws Exception {
 		valIdExist(id);
 		lovTypeDao.deleteById(id);
 	}
 
-	private void valIdExist(String id)throws ValidationException{
+	private void valIdExist(String id)throws Exception{
 		if(!lovTypeDao.isIdExist(id)) {
-			throw new ValidationException("Data tidak ada");
+			throw new Exception("Data tidak ada");
 		}
 	}
 	
-	private void valIdNotNull(LovType lovType)throws ValidationException {
+	private void valIdNotNull(LovType lovType)throws Exception {
 		if(lovType.getId().isEmpty()) {
-			throw new ValidationException("Id tidak boleh kosong");
+			throw new Exception("Id tidak boleh kosong");
 		}
 	}
 	
-	private void valNonBk(LovType lovType)throws ValidationException{
-		StringBuilder sb=new StringBuilder();
-		int error=0;
-
+	private void valNonBk(LovType lovType)throws Exception{
 		if(lovType.getName().isEmpty()) {
-			sb.append("City cannot be null !");
-			error++;
-		}
-		if(lovType.getVersion() == null) {
-			sb.append("Version cannot be null !");
-			error++;
-		}
-				
-		if(error>0) {
-			throw new ValidationException(sb.toString());
+			throw new Exception("City cannot be null !");
 		}
 	}
 	
-	private void valBkNotExist(LovType lovType)throws ValidationException{
+	private void valBkNotExist(LovType lovType)throws Exception{
 		if(lovTypeDao.isBkExist(lovType)) {
-			throw new ValidationException("Data sudah ada");
+			throw new Exception("Data sudah ada");
 		}
 	}	
 	
-	private void valBkNotChange(LovType lovType)throws ValidationException{
+	private void valBkNotChange(LovType lovType)throws Exception{
 		LovType tempLovType=findById(lovType.getId());
 		if(!tempLovType.getCode().equals(lovType.getCode())) {
-			throw new ValidationException("BK tidak boleh berubah");
+			throw new Exception("BK tidak boleh berubah");
 		}
 	}
 	
-	private void valBkNotNull(LovType lovType) throws ValidationException{
+	private void valBkNotNull(LovType lovType) throws Exception{
 		if(lovType.getCode().isEmpty()) {
-			throw new ValidationException("Bk tidak boleh kosong");
+			throw new Exception("Bk tidak boleh kosong");
 		}
 	}
 	
-	private void valCreatedNotChange(LovType lovType)throws ValidationException {
+	private void valCreatedNotChange(LovType lovType)throws Exception {
 		LovType tempLovType=findById(lovType.getId());
 		
 		if(tempLovType.getCreatedAt()!=lovType.getCreatedAt() || tempLovType.getCreatedBy()!=lovType.getCreatedBy()) {
-			throw new ValidationException("created tidak boleh berubah");
+			throw new Exception("created tidak boleh berubah");
 		}
 	}
 }

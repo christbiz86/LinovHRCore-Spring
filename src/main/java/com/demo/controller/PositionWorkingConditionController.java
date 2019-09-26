@@ -32,14 +32,14 @@ public class PositionWorkingConditionController {
 	
 	@GetMapping(value = "/position-working-conditions")
 	@Transactional
-	public ResponseEntity<?> getPositionSlots() {
+	public ResponseEntity<?> getPositionWorkConditions() {
 		List<PositionWorkingCondition> positionList = posWCSvc.findAll();
 		return ResponseEntity.ok(positionList);
 	}
 
 	@GetMapping(value = "/position-working-condition/{id}")
 	@Transactional
-	public ResponseEntity<?> getPositionSlotById(@PathVariable String id) {
+	public ResponseEntity<?> getPositionWorkConditionById(@PathVariable String id) {
 		PositionWorkingCondition position = posWCSvc.findById(id);
 		return ResponseEntity.ok(position);
 	}

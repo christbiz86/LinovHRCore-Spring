@@ -1,15 +1,12 @@
 package com.demo.service;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
 import java.util.List;
-
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.JobGradeDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.JobGrade;
 
 @Service
@@ -17,6 +14,10 @@ public class JobGradeService {
 	
 	@Autowired
 	private JobGradeDao jobGradeDao;
+	
+	private Timestamp getTime() {
+		return new Timestamp(System.currentTimeMillis());
+	}
 	
 	public void valIdExist(String id) throws Exception {
 		if (!jobGradeDao.isIdExist(id)) {
@@ -49,49 +50,51 @@ public class JobGradeService {
 	
 	public void valBkNotExist(JobGrade jobGrade) throws Exception {
 		if(jobGradeDao.isBkExist(jobGrade.getJob().getId(), jobGrade.getGrade().getId())) {
-			throw new Exception("Job already exists!");
+			throw new Exception("Job Grade already exists!");
 		}
 	}
 	
 	public void valBkNotChange(JobGrade jobGrade) throws Exception {
 		String job = findById(jobGrade.getId()).getJob().getId();
 		String grade = findById(jobGrade.getId()).getGrade().getId();
-		if(!(jobGrade.getJob().getId().equals(job.toString()) && jobGrade.getGrade().getId().equals(grade.toString()))) {
+		
+		if(!(jobGrade.getJob().getId().equals(job) && jobGrade.getGrade().getId().equals(grade))) {
 			throw new Exception("BK can't be changed!");
 		}
 	}
 	
 	public void valNonBk(JobGrade jobGrade) throws Exception {
-		if(jobGrade.getMidRate() == null) {
-			throw new Exception("Mid rate can't empty!\n");
-		}
-		if(jobGrade.getBottomRate() == null) {
-			throw new Exception("Bottom rate can't empty!\n");
-		}
-		if(jobGrade.getTopRate() == null) {
-			throw new Exception("Top rate can't empty!\n");
+		if(jobGrade.getCreatedBy() == null) {
+			throw new Exception("Created by can't empty!");
 		}
 	}
 	
-	@Transactional
+	public void valCreatedAtNotChange(JobGrade jobGrade) throws Exception {
+		Timestamp createdAt = findById(jobGrade.getId()).getCreatedAt();
+		if(!jobGrade.getCreatedAt().equals(createdAt)) {
+			throw new Exception("Created at can't be changed!");
+		}
+	}
+	
 	public void insert(JobGrade jobGrade) throws Exception {
+		jobGrade.setCreatedAt(getTime());
 		valBkNotNull(jobGrade);
 		valBkNotExist(jobGrade);
 		valNonBk(jobGrade);
 		jobGradeDao.create(jobGrade);
 	}
 	
-	@Transactional
 	public void update(JobGrade jobGrade) throws Exception {
+		jobGrade.setUpdatedAt(getTime());
 		valIdNotNull(jobGrade);
 		valIdExist(jobGrade.getId());
 		valBkNotNull(jobGrade);
 		valBkNotChange(jobGrade);
 		valNonBk(jobGrade);
+		valCreatedAtNotChange(jobGrade);
 		jobGradeDao.update(jobGrade);
 	}
 	
-	@Transactional
 	public void delete(String id) throws Exception {
 		valIdExist(id);
 		jobGradeDao.deleteById(id);
