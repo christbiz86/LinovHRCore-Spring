@@ -3,32 +3,18 @@ package com.demo.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.JobWorkingCondition;
 
 @Repository
-public class JobWorkingConditionDao extends ParentDao {
+public class JobWorkingConditionDao extends AbstractJpaDao<JobWorkingCondition> {
 	
-	@SuppressWarnings("unchecked")
-    @Transactional
-    public List<JobWorkingCondition> findAll(){
-        return super.entityManager.createQuery("FROM JobWorkingCondition").getResultList();
+	public JobWorkingConditionDao() {
+        setClazz(JobWorkingCondition.class);
     }
-    
-    @Transactional
-	public void save(JobWorkingCondition jobWorkingCond) {
-		super.entityManager.merge(jobWorkingCond);
-	}
 	
-	@Transactional
-	public void delete(String id) {
-		JobWorkingCondition jobWorkingCond = findById(id);
-		super.entityManager.remove(jobWorkingCond);
-	}
-	
-	public boolean isIdExist(String id) {
-		if(findById(id).getId() == null) {
+	public boolean isBkExist(String job) {
+		if(findByBk(job).getId() == null) {
 			return false;
 		}else {
 			return true;
@@ -36,11 +22,10 @@ public class JobWorkingConditionDao extends ParentDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
-	public JobWorkingCondition findById(String id) {	
+	public JobWorkingCondition findByBk(String job) {	
 		List<JobWorkingCondition> list = super.entityManager
-                .createQuery("FROM JobWorkingCondition WHERE id = :id")
-                .setParameter("id", id)
+                .createQuery("FROM JobWorkingCondition WHERE job.id = :job")
+                .setParameter("job", job)
                 .getResultList();
 
 		if (list.size() == 0) {

@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,69 +17,79 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.Costcenter;
-import com.demo.service.CostcenterService;
+import com.demo.model.WorkingCondition;
+import com.demo.service.WorkingConditionService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
-@Transactional
-@RequestMapping({"/api/v1"})
-public class CostcenterController {
-
-    @Autowired
-    private CostcenterService costcenterService;
-
-    @GetMapping(value = "/cost-center/{id}")
-    @Transactional
-    public ResponseEntity<?> getCostcenterById(@PathVariable String id) throws Exception {
-    	try {
-    		Costcenter companyId = costcenterService.findById(id);
-            return new ResponseEntity<Costcenter>(companyId, HttpStatus.OK);
+@RequestMapping(value = "/api/v1")
+public class WorkingConditionController {
+	
+	@Autowired
+	private WorkingConditionService wcService;
+	
+	@GetMapping(value = "/working-conditions")
+	@Transactional
+	public ResponseEntity<?> findAll() throws Exception {
+		try {
+			List<WorkingCondition> list = wcService.findAll();
+			return new ResponseEntity<List<WorkingCondition>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
-    }
-    
-    @GetMapping(value = "/cost-center/code/{code}")
+	}
+	
+	@GetMapping(value = "/working-condition/{id}")
+	@Transactional
+	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
+		try {
+			WorkingCondition wc = wcService.findById(id);
+			return new ResponseEntity<WorkingCondition>(wc, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
+	}
+	
+	@GetMapping(value = "/working-condition/code/{code}")
 	@Transactional
 	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
 		try {
-			Costcenter cc = costcenterService.findByCode(code);
-			return new ResponseEntity<Costcenter>(cc, HttpStatus.OK);
+			WorkingCondition wc = wcService.findByCode(code);
+			return new ResponseEntity<WorkingCondition>(wc, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/cost-center")
+	@PostMapping(value = "/working-condition")
 	@Transactional
-	public ResponseEntity<?> insert(@RequestBody Costcenter cc) throws Exception {
+	public ResponseEntity<?> insert(@RequestBody WorkingCondition wc) throws Exception {
 		try {
-			costcenterService.insert(cc);
-			return ResponseEntity.ok("Insert success with Cost Center name: "+cc.getName());
+			wcService.insert(wc);
+			return ResponseEntity.ok("Insert success with Working Condition name: "+wc.getName());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/cost-center")
+	@PutMapping(value = "/working-condition")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Costcenter cc) throws Exception {
+	public ResponseEntity<?> update(@RequestBody WorkingCondition wc) throws Exception {
 		try {
-			costcenterService.update(cc);
-			return ResponseEntity.ok("Update success with Cost Center ID: "+cc.getId());
+			wcService.update(wc);
+			return ResponseEntity.ok("Update success with Working Condition ID: "+wc.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/cost-center/{id}")
+	@DeleteMapping(value = "/working-condition/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			costcenterService.delete(id);
-			return ResponseEntity.ok("Delete success with Cost Center ID: "+id);
+			wcService.delete(id);
+			return ResponseEntity.ok("Delete success with Working Condition ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}

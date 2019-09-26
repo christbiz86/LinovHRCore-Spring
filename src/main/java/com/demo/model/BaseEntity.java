@@ -38,7 +38,7 @@ public abstract class BaseEntity implements Serializable {
 	}
 
 	public void setVersion(Long version) {
-		if(version==null) {
+		if(version == null) {
 			version = new Long(0);
 		}else {
 			this.version = version;

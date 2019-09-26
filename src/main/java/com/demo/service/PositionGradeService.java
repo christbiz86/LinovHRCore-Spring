@@ -1,7 +1,6 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.PositionGradeDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.PositionGrade;
 
 @Service
@@ -31,8 +29,6 @@ public class PositionGradeService {
 	}
 
 	public void valNonBk(PositionGrade positionGrade) throws Exception {
-		List<String> listErr = new ArrayList<String>();
-
 		if (positionGrade.getCreatedBy() == null || positionGrade.getCreatedBy().isEmpty()) {
 			throw new Exception("created by cannot be emptied");
 		}

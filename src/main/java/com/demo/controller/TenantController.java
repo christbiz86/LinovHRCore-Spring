@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,69 +17,79 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.Costcenter;
-import com.demo.service.CostcenterService;
+import com.demo.model.Tenant;
+import com.demo.service.TenantService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
-@Transactional
-@RequestMapping({"/api/v1"})
-public class CostcenterController {
-
-    @Autowired
-    private CostcenterService costcenterService;
-
-    @GetMapping(value = "/cost-center/{id}")
-    @Transactional
-    public ResponseEntity<?> getCostcenterById(@PathVariable String id) throws Exception {
-    	try {
-    		Costcenter companyId = costcenterService.findById(id);
-            return new ResponseEntity<Costcenter>(companyId, HttpStatus.OK);
+@RequestMapping(value = "/api/v1")
+public class TenantController {
+	
+	@Autowired
+	private TenantService tenantService;
+	
+	@GetMapping(value = "/tenants")
+	@Transactional
+	public ResponseEntity<?> findAll() throws Exception {
+		try {
+			List<Tenant> list = tenantService.findAll();
+			return new ResponseEntity<List<Tenant>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
-    }
-    
-    @GetMapping(value = "/cost-center/code/{code}")
+	}
+	
+	@GetMapping(value = "/tenant/{id}")
+	@Transactional
+	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
+		try {
+			Tenant tenant = tenantService.findById(id);
+			return new ResponseEntity<Tenant>(tenant, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
+	}
+	
+	@GetMapping(value = "/tenant/code/{code}")
 	@Transactional
 	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
 		try {
-			Costcenter cc = costcenterService.findByCode(code);
-			return new ResponseEntity<Costcenter>(cc, HttpStatus.OK);
+			Tenant tenant = tenantService.findByCode(code);
+			return new ResponseEntity<Tenant>(tenant, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/cost-center")
+	@PostMapping(value = "/tenant")
 	@Transactional
-	public ResponseEntity<?> insert(@RequestBody Costcenter cc) throws Exception {
+	public ResponseEntity<?> insert(@RequestBody Tenant tenant) throws Exception {
 		try {
-			costcenterService.insert(cc);
-			return ResponseEntity.ok("Insert success with Cost Center name: "+cc.getName());
+			tenantService.insert(tenant);
+			return ResponseEntity.ok("Insert success with Tenant name: "+tenant.getName());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/cost-center")
+	@PutMapping(value = "/tenant")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Costcenter cc) throws Exception {
+	public ResponseEntity<?> update(@RequestBody Tenant tenant) throws Exception {
 		try {
-			costcenterService.update(cc);
-			return ResponseEntity.ok("Update success with Cost Center ID: "+cc.getId());
+			tenantService.update(tenant);
+			return ResponseEntity.ok("Update success with Tenant ID: "+tenant.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/cost-center/{id}")
+	@DeleteMapping(value = "/tenant/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			costcenterService.delete(id);
-			return ResponseEntity.ok("Delete success with Cost Center ID: "+id);
+			tenantService.delete(id);
+			return ResponseEntity.ok("Delete success with Tenant ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}

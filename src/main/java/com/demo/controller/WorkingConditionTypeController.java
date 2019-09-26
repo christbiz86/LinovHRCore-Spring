@@ -17,67 +17,78 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.JobGrade;
-import com.demo.service.JobGradeService;
+import com.demo.model.WorkingConditionType;
+import com.demo.service.WorkingConditionTypeService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping(value = "/api/v1")
-public class JobGradeController {
+public class WorkingConditionTypeController {
 	
 	@Autowired
-	private JobGradeService jobGradeService;
+	private WorkingConditionTypeService wctService;
 	
-	@GetMapping(value = "/job-grades")
+	@GetMapping(value = "/working-condition-types")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
-			List<JobGrade> list = jobGradeService.findAll();
-			return new ResponseEntity<List<JobGrade>>(list, HttpStatus.OK);
+			List<WorkingConditionType> list = wctService.findAll();
+			return new ResponseEntity<List<WorkingConditionType>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@GetMapping(value = "/job-grade/{id}")
+	@GetMapping(value = "/working-condition-type/{id}")
 	@Transactional
 	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			JobGrade jobGrade = jobGradeService.findById(id);
-			return new ResponseEntity<JobGrade>(jobGrade, HttpStatus.OK);
+			WorkingConditionType wct = wctService.findById(id);
+			return new ResponseEntity<WorkingConditionType>(wct, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/job-grade")
+	@GetMapping(value = "/working-condition-type/code/{code}")
 	@Transactional
-	public ResponseEntity<?> insert(@RequestBody JobGrade jobGrade) throws Exception {
+	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
 		try {
-			jobGradeService.insert(jobGrade);
-			return ResponseEntity.ok("Insert success!");
+			WorkingConditionType wct = wctService.findByCode(code);
+			return new ResponseEntity<WorkingConditionType>(wct, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
+	}
+	
+	@PostMapping(value = "/working-condition-type")
+	@Transactional
+	public ResponseEntity<?> insert(@RequestBody WorkingConditionType wct) throws Exception {
+		try {
+			wctService.insert(wct);
+			return ResponseEntity.ok("Insert success with Working Condition name: "+wct.getName());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/job-grade")
+	@PutMapping(value = "/working-condition-type")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody JobGrade jobGrade) throws Exception {
+	public ResponseEntity<?> update(@RequestBody WorkingConditionType wct) throws Exception {
 		try {
-			jobGradeService.update(jobGrade);
-			return ResponseEntity.ok("Update success with job grade ID: "+jobGrade.getId());
+			wctService.update(wct);
+			return ResponseEntity.ok("Update success with Working Condition ID: "+wct.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/job-grade/{id}")
+	@DeleteMapping(value = "/working-condition-type/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			jobGradeService.delete(id);
+			wctService.delete(id);
 			return ResponseEntity.ok("Delete success with ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");

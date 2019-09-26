@@ -1,27 +1,27 @@
 package com.demo.dao;
 
-import com.demo.model.Costcenter;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.demo.model.WorkingConditionType;
 
 @Repository
-public class CostcenterDao extends AbstractJpaDao<Costcenter> {
+public class WorkingConditionTypeDao extends AbstractJpaDao<WorkingConditionType>{
 	
-	public CostcenterDao() {
-        setClazz(Costcenter.class);
+	public WorkingConditionTypeDao() {
+        setClazz(WorkingConditionType.class);
     }
 	
 	@SuppressWarnings("unchecked")
-	public Costcenter findByCode(String code) {
-		List<Costcenter> list = super.entityManager
-                .createQuery("FROM Costcenter WHERE code = :code")
+	public WorkingConditionType findByCode(String code) {
+		List<WorkingConditionType> list = super.entityManager
+                .createQuery("FROM WorkingConditionType WHERE code = :code")
                 .setParameter("code", code)
                 .getResultList();
 
 		if (list.size() == 0) {
-			return new Costcenter();
+			return new WorkingConditionType();
 		}
 		else {
 			return list.get(0);
@@ -29,15 +29,15 @@ public class CostcenterDao extends AbstractJpaDao<Costcenter> {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Costcenter findByBk(String code, String company) {
-		List<Costcenter> list = super.entityManager
-                .createQuery("FROM Job WHERE code = :code AND company.id = :company")
+	public WorkingConditionType findByBk(String code, String company) {
+		List<WorkingConditionType> list = super.entityManager
+                .createQuery("FROM WorkingConditionType WHERE code = :code AND company.id = :company")
                 .setParameter("code", code)
                 .setParameter("company", company)
                 .getResultList();
 
 		if (list.size() == 0) {
-			return new Costcenter();
+			return new WorkingConditionType();
 		}
 		else {
 			return list.get(0);
