@@ -16,7 +16,9 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     @PersistenceContext
     protected EntityManager entityManager;
-    
+    private String entityId;
+    private BaseEntity base;
+
     public final void setClazz(final Class<T> clazzToSet) {
         this.clazz = clazzToSet;
     }
@@ -32,13 +34,28 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     public void create(final T entity) {
     	try {
-			if(entity instanceof Object) {
-				BaseEntity insertBase = (BaseEntity) entity;
-				insertBase.setVersion(new Long(0));
-				insertBase.setCreatedBy("kosong");
-				insertBase.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-				entityManager.persist(entity);
-			}
+                int pointer = 0;
+                BaseEntity base = (BaseEntity)entity;
+                Field[] listField = entity.getClass().getFields();
+                System.err.println(listField.length);
+                for(Field updateField: listField) {
+                    if(updateField.getName().equals("createdAt")) {
+                        Object o2 = updateField.get(entity);
+                        updateField.set(base, new Timestamp(System.currentTimeMillis()));
+                        System.err.println(o2);
+                    }else if(updateField.getName().equals("createdBy")) {
+                        Object o3 = updateField.get(entity);
+                        updateField.set(base, "kosong");
+                        System.err.println(o3);
+                    }else if(updateField.getName().equals("version")) {
+                        Object o6 = updateField.get(entity);
+                        updateField.set(base, new Long(0));
+                        System.err.println(o6);
+                    }
+                    pointer++;
+                }
+                entityManager.persist(entity);
+            }
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
@@ -62,32 +79,33 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 //			System.err.println(e.getMessage());
 //		}
     	try {
-    		System.err.println(entity.toString());
     		if(entity instanceof Object) {
-    			
-    			Field[] listField = BaseEntity.class.getDeclaredFields();
-    			int pointer=0;
-    			for(Field f: listField) {
-    				System.out.println(pointer);
-    				if(f.get("updated_at").equals(null)) {
-    					f.set("updated_at", new Timestamp(System.currentTimeMillis()));
-    				}else if(f.get("updated_by").equals(null)) {
-    					f.set("updated_by", "kosong");
-    				}else if(!f.get("version").equals(null)) {
-    					f.set("version",f.getLong("version")+1);
+    			int pointer = 0;
+				BaseEntity base = (BaseEntity)entity;
+    			Field[] listField = entity.getClass().getFields();
+    			System.err.println(listField.length);
+    			for(Field updateField: listField) {
+    				if(updateField.getName().equals("updatedAt")) {
+    					Object o2 = updateField.get(entity);
+    					updateField.set(base, new Timestamp(System.currentTimeMillis()));
+    					System.err.println(o2);
+    				}else if(updateField.getName().equals("updatedBy")) {
+    					Object o3 = updateField.get(entity);
+    					updateField.set(base, "kosong");
+    					System.err.println(o3);
+    				}else if(updateField.getName().equals("version")) {
+    					Object o6 = updateField.get(entity);
+    					updateField.set(base, Long.parseLong(String.valueOf(o6)));
+    					System.err.println(o6);
     				}
     				pointer++;
     			}
-    			
-    		} 
-    		
-    		
+    		}
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println(e.getMessage());
 		}
-
-        return entityManager.merge(entity);
+    	return entityManager.merge(entity);
     }
 
     public void delete(final T entity) {
