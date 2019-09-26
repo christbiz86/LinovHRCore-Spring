@@ -94,5 +94,10 @@ public class JobController {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}
 	}
-
+	
+//    @PostConstruct
+//    public void doLog() {
+//    	System.out.println("Info message in Job Controller");
+//    }
+    
 }

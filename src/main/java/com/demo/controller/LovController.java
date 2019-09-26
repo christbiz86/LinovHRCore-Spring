@@ -2,13 +2,19 @@ package com.demo.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.combo.CountryComboBean;
 import com.demo.model.City;
 import com.demo.model.Company;
 import com.demo.model.Costcenter;
@@ -39,26 +45,34 @@ public class LovController {
     private CostcenterService costcenterService;
 
     @Autowired
-    private CountryService countryService;
-
-    @Autowired
     private GradeService gradeService;
     
     @Autowired
     private LocationService locationService;
+    
+    @Autowired
+	private CountryComboBean ccb;
 
     @GetMapping(value = "/cities")
     @Transactional
     public ResponseEntity<?> getAllCity(){
-        List<City> cityList = cityService.findAll();
-        return new ResponseEntity<List<City>>(cityList,HttpStatus.OK);
+        try {
+        	List<City> cityList = cityService.findAll();
+            return new ResponseEntity<List<City>>(cityList,HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
     }
 
     @GetMapping(value = "/companies")
     @Transactional
     public ResponseEntity<?> getAllCompany(){
-        List<Company> companyList = companyService.findAll();
-        return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
+        try {
+        	List<Company> companyList = companyService.findAll();
+            return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
+		}
     }
 
     @GetMapping(value = "/cost-centers")
@@ -73,9 +87,12 @@ public class LovController {
 	}
 
     @GetMapping(value = "/countries")
+    @PostConstruct
     public ResponseEntity<?> getAllCountries() {
     	try {
-			List<Country> list = countryService.findAll();
+//    		List<Country> list = countryService.findAll();
+    		List<Country> list = ccb.getList();
+    		System.out.println(list.get(0).getCode());
 			return new ResponseEntity<List<Country>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
@@ -83,6 +100,7 @@ public class LovController {
     }
 
     @GetMapping(value = "/grades")
+    @Transactional
     public ResponseEntity<?> getAllGrades() {
         List<Grade> gradeList = gradeService.findall();
         return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
@@ -96,8 +114,7 @@ public class LovController {
         	return new ResponseEntity<List<Location>>(locationList, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-    	
+		}	
     }
 
 }

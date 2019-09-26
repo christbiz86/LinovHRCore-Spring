@@ -3,6 +3,7 @@ package com.demo.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.Country;
 
@@ -34,6 +35,12 @@ public class CountryDao extends AbstractJpaDao<Country> {
 		}else {
 			return true;
 		}
+	}
+	
+	@Transactional
+	public List<Country> findCombo() {
+		System.out.println("Combo is running");
+		return findAll();
 	}
 
 }

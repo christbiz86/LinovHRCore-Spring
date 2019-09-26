@@ -3,6 +3,8 @@ package com.demo.service;
 import java.sql.Timestamp;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -106,5 +108,10 @@ public class JobService {
 		valIdExist(id);
 		jobDao.deleteById(id);
 	}
+	
+//	@PostConstruct
+//	public void doLog() {
+//        System.out.println("Info message in Job Service");
+//    }
 
 }

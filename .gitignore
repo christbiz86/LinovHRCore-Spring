@@ -1,9 +1,8 @@
-target/*
-src/main/resources/*
+target/
+src/main/resources/
 .dbeaver/
 .project
 *.xml
-.gitignore
 .classpath
 .project
 database.sql
@@ -12,4 +11,3 @@ modelReport.html
 modelReport.jasper
 mvnv
 mvnw.cmd
-/target/
