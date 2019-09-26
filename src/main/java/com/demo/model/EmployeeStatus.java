@@ -27,7 +27,7 @@ public class EmployeeStatus extends BaseEntity{
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="code")
+	@Column(name="working_month")
 	private Integer workingMonth;
 
 	@Column(name="payroll_group_code")
@@ -36,7 +36,7 @@ public class EmployeeStatus extends BaseEntity{
 	@Column(name="benefit_group_code")
 	private String benefitGroupCode;
 
-	@Column(name="code")
+	@Column(name="generate_paklaring")
 	private Boolean generatePaklaring;
 
 	@Column(name="paklaring_templates_id")

@@ -13,7 +13,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_projects", uniqueConstraints = @UniqueConstraint(columnNames = {"code"}))
+@Table(name = "core_projects", uniqueConstraints = @UniqueConstraint(columnNames = {"code", "supervisor_id", "projectmanager_id", "location_id"}))
 public class Project extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
@@ -62,7 +62,11 @@ public class Project extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if(name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -86,7 +90,11 @@ public class Project extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Employee getSupervisor() {

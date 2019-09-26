@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_assignment",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","position_slot_id"}))
+@Table(name = "core_assignments",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","position_slot_id"}))
 public class Assignment extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
@@ -31,8 +31,7 @@ public class Assignment extends BaseEntity{
 	@OneToOne
 	private Grade grade;
 	
-	@JoinColumn(name = "supervisor_id", referencedColumnName = "id")
-	@OneToOne
+	@Column(name = "supervisor_id")
 	private String supervisor;
 
 	@JoinColumn(name = "assignment_reason_id", referencedColumnName = "id")
@@ -91,8 +90,8 @@ public class Assignment extends BaseEntity{
 	}
 
 	public void setGrade(Grade grade) {
-		if(grade==null) {
-			this.grade = new Grade();
+		if(grade.getId().isEmpty()) {
+			this.grade=null;
 		}else {
 			this.grade = grade;			
 		}

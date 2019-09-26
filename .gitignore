@@ -1,5 +1,5 @@
-target/*
-src/main/resources/*
+target/
+src/main/resources/
 .dbeaver/
 .project
 *.xml
@@ -12,4 +12,3 @@ modelReport.html
 modelReport.jasper
 mvnv
 mvnw.cmd
-/target/
