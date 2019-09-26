@@ -95,7 +95,7 @@ public class JobService {
 		valBkNotNull(job);
 		valBkNotExist(job);
 		valNonBk(job);
-		jobDao.create(job);
+		jobDao.insertToAbstractJpaDao(job);
 	}
 	
 	@Transactional
@@ -107,7 +107,7 @@ public class JobService {
 		valBkNotChange(job);
 		valNonBk(job);
 //		valCreatedAtNotChange(job);
-		jobDao.update(job);
+		jobDao.updateToAbstractJpaDao(job);
 	}
 	
 	@Transactional
