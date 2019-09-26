@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package com.demo.model;
 
 import javax.persistence.Cacheable;
