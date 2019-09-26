@@ -27,7 +27,7 @@ public class EmployeeStatus extends BaseEntity{
 	@Column(name="name")
 	private String name;
 	
-	@Column(name="code")
+	@Column(name="working_month")
 	private Integer workingMonth;
 
 	@Column(name="payroll_group_code")
