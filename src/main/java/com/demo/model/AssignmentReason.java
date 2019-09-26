@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(
 		name = "core_assignment_reasons", 
 		uniqueConstraints = @UniqueConstraint(
-				columnNames = {"id_company","code"}
+				columnNames = {"company_id","code"}
 				)
 		)
 public class AssignmentReason extends BaseEntity {
@@ -40,7 +40,11 @@ public class AssignmentReason extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Lov getLov() {
@@ -48,7 +52,11 @@ public class AssignmentReason extends BaseEntity {
 	}
 
 	public void setLov(Lov lov) {
-		this.lov = lov;
+		if(lov == null) {
+			this.lov = new Lov();
+		} else {
+			this.lov = lov;
+		}
 	}
 
 	public String getCode() {
@@ -56,7 +64,11 @@ public class AssignmentReason extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if(code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;
+		}
 	}
 
 	public String getDescription() {
@@ -64,7 +76,11 @@ public class AssignmentReason extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if(description == null) {
+			this.description = new String();
+		} else {
+			this.description = description;
+		}
 	}
 
 }
