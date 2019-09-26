@@ -39,7 +39,11 @@ public class DataAccessUni extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if (company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Role getRole() {
@@ -47,7 +51,11 @@ public class DataAccessUni extends BaseEntity {
 	}
 
 	public void setRole(Role role) {
-		this.role = role;
+		if (role == null) {
+			this.role = new Role();
+		} else {
+			this.role = role;	
+		}
 	}
 
 	public String getMenuCode() {
@@ -55,7 +63,11 @@ public class DataAccessUni extends BaseEntity {
 	}
 
 	public void setMenuCode(String menuCode) {
-		this.menuCode = menuCode;
+		if (menuCode == null) {
+			this.menuCode = new String();
+		} else {
+			this.menuCode = menuCode;
+		}
 	}
 
 	public String getDataAccValue() {
@@ -63,7 +75,11 @@ public class DataAccessUni extends BaseEntity {
 	}
 
 	public void setDataAccValue(String dataAccValue) {
-		this.dataAccValue = dataAccValue;
+		if (dataAccValue == null) {
+			this.dataAccValue = new String();
+		} else {
+			this.dataAccValue = dataAccValue;	
+		}
 	}
 
 	public String getPrivilege() {
@@ -71,6 +87,10 @@ public class DataAccessUni extends BaseEntity {
 	}
 
 	public void setPrivilege(String privilege) {
-		this.privilege = privilege;
+		if (privilege == null) {
+			this.privilege = new String();
+		} else {
+			this.privilege = privilege;
+		}
 	}
 }

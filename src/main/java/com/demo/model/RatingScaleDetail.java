@@ -40,7 +40,11 @@ public class RatingScaleDetail extends BaseEntity {
 	}
 
 	public void setRatingScale(RatingScale ratingScale) {
-		this.ratingScale = ratingScale;
+		if (ratingScale == null) {
+			this.ratingScale = new RatingScale();
+		} else {
+			this.ratingScale = ratingScale;	
+		}
 	}
 
 	public Integer getLevel() {
@@ -48,7 +52,11 @@ public class RatingScaleDetail extends BaseEntity {
 	}
 
 	public void setLevel(Integer level) {
-		this.level = level;
+		if (level == null) {
+			this.level = new Integer(0);
+		} else {
+			this.level = level;	
+		}
 	}
 
 	public String getCode() {
@@ -56,7 +64,11 @@ public class RatingScaleDetail extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if (code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;	
+		}
 	}
 
 	public String getLabel() {
@@ -64,6 +76,10 @@ public class RatingScaleDetail extends BaseEntity {
 	}
 
 	public void setLabel(String label) {
-		this.label = label;
+		if (label == null) {
+			this.label = new String();
+		} else {
+			this.label = label;	
+		}
 	}
 }
