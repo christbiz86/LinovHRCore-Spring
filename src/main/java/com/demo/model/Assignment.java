@@ -90,8 +90,8 @@ public class Assignment extends BaseEntity{
 	}
 
 	public void setGrade(Grade grade) {
-		if(grade==null) {
-			this.grade = new Grade();
+		if(grade.getId().isEmpty()) {
+			this.grade=null;
 		}else {
 			this.grade = grade;			
 		}
