@@ -44,7 +44,11 @@ public class RatingScale extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if (company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public String getCode() {
@@ -52,7 +56,11 @@ public class RatingScale extends BaseEntity {
 	}
 
 	public void setCode(String code) {
-		this.code = code;
+		if (code == null) {
+			this.code = new String();
+		} else {
+			this.code = code;	
+		}
 	}
 
 	public String getName() {
@@ -60,7 +68,11 @@ public class RatingScale extends BaseEntity {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name == null) {
+			this.name = new String();
+		} else {
+			this.name = name;	
+		}
 	}
 
 	public String getDescription() {
@@ -68,7 +80,11 @@ public class RatingScale extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if (description == null) {
+			this.description = new String();
+		} else {
+			this.description = description;	
+		}
 	}
 
 	public List<RatingScaleDetail> getRatingScDet() {

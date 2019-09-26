@@ -40,7 +40,11 @@ public class RoleDataAccess extends BaseEntity {
 	}
 
 	public void setTenant(Tenant tenant) {
-		this.tenant = tenant;
+		if (tenant == null) {
+			this.tenant = new Tenant();
+		} else {
+			this.tenant = tenant;	
+		}
 	}
 
 	public Role getRole() {
@@ -48,7 +52,11 @@ public class RoleDataAccess extends BaseEntity {
 	}
 
 	public void setRole(Role role) {
-		this.role = role;
+		if (role == null) {
+			this.role = new Role();
+		} else {
+			this.role = role;	
+		}
 	}
 
 	public DataAccess getDataAccess() {
@@ -56,7 +64,11 @@ public class RoleDataAccess extends BaseEntity {
 	}
 
 	public void setDataAccess(DataAccess dataAccess) {
-		this.dataAccess = dataAccess;
+		if (dataAccess == null) {
+			this.dataAccess = new DataAccess();
+		} else {
+			this.dataAccess = dataAccess;	
+		}
 	}
 
 	public String getDataAccValue() {
@@ -64,7 +76,11 @@ public class RoleDataAccess extends BaseEntity {
 	}
 
 	public void setDataAccValue(String dataAccValue) {
-		this.dataAccValue = dataAccValue;
+		if (dataAccValue == null) {
+			this.dataAccValue = new String();
+		} else {
+			this.dataAccValue = dataAccValue;	
+		}
 	}
 
 	public String getPrivilege() {
@@ -72,6 +88,10 @@ public class RoleDataAccess extends BaseEntity {
 	}
 
 	public void setPrivilege(String privilege) {
-		this.privilege = privilege;
+		if (privilege == null) {
+			this.privilege = new String();
+		} else {
+			this.privilege = privilege;
+		}
 	}
 }
