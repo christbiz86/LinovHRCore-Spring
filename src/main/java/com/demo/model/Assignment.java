@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_assignment",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","position_slot_id"}))
+@Table(name = "core_assignments",uniqueConstraints = @UniqueConstraint(columnNames = {"company_id","position_slot_id"}))
 public class Assignment extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
