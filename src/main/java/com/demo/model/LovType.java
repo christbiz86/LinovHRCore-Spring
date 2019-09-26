@@ -3,15 +3,10 @@ package com.demo.model;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Cacheable
@@ -19,11 +14,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Table(name = "core_lov_types",uniqueConstraints = @UniqueConstraint(columnNames = {"code"}))
 public class LovType extends BaseEntity{
 	private static final long serialVersionUID = 1L;
-
-	@Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
 
     @Column(name = "code")
     private String code;
@@ -36,14 +26,6 @@ public class LovType extends BaseEntity{
     
     @Column(name = "version")
     private Long version;
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 
 	public String getCode() {
 		return code;
@@ -80,10 +62,5 @@ public class LovType extends BaseEntity{
 			this.arg1 = arg1;			
 		}
 	}
-
-	public void setVersion(Long version) {
-		this.version = version;
-	}
-
 }
 

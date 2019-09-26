@@ -18,52 +18,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.exception.ValidationException;
-import com.demo.model.PositionWorkingCondition;
-import com.demo.service.PositionWorkingConditionService;
+import com.demo.model.RoleDataAccess;
+import com.demo.service.RoleDataAccessService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({ "/api/v1" })
-public class PositionWorkingConditionController {
+public class RoleDataAccessController {
 
 	@Autowired
-	private PositionWorkingConditionService posWCSvc;
-	
-	@GetMapping(value = "/position-working-conditions")
+	private RoleDataAccessService roleDataAccessService;
+
+	@GetMapping(value = "/role-data-accesses")
 	@Transactional
-	public ResponseEntity<?> getPositionWorkConditions() {
-		List<PositionWorkingCondition> positionList = posWCSvc.findAll();
+	public ResponseEntity<?> getDataAccesses() {
+		List<RoleDataAccess> positionList = roleDataAccessService.findAll();
 		return ResponseEntity.ok(positionList);
 	}
 
-	@GetMapping(value = "/position-working-condition/{id}")
+	@GetMapping(value = "/role-data-access/{id}")
 	@Transactional
-	public ResponseEntity<?> getPositionWorkConditionById(@PathVariable String id) {
-		PositionWorkingCondition position = posWCSvc.findById(id);
-		return ResponseEntity.ok(position);
+	public ResponseEntity<?> getDataAccessById(@PathVariable String id) {
+		RoleDataAccess roleDataAccess = roleDataAccessService.findById(id);
+		return ResponseEntity.ok(roleDataAccess);
 	}
 
-	@PostMapping(value = "/position-working-condition")
+	@PostMapping(value = "/role-data-access")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody PositionWorkingCondition position) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody RoleDataAccess roleDataAccess) throws Exception {
 		try {
-			posWCSvc.save(position);
+			roleDataAccessService.save(roleDataAccess);
 			return ResponseEntity.ok(HttpStatus.CREATED);
 		} catch (ValidationException ex) {
 			System.out.println(ex);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
 		} catch (Exception e) {
 			System.out.println(e);
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insert Failed!");
-		}
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		} 
 	}
 	
-	@PutMapping(value = "/position-working-condition")
+	@PutMapping(value = "/role-data-access")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody PositionWorkingCondition position) throws Exception {
+	public ResponseEntity<?> update(@RequestBody RoleDataAccess roleDataAccess) throws Exception {
 		try {
-			posWCSvc.update(position);
+			roleDataAccessService.update(roleDataAccess);
 			return ResponseEntity.ok(HttpStatus.OK);
 		} catch (ValidationException ex) {
 			System.out.println(ex);
@@ -74,11 +74,11 @@ public class PositionWorkingConditionController {
 		}
 	}
 	
-	@DeleteMapping(value = "/position-working-condition/{id}")
+	@DeleteMapping(value = "/role-data-access/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			posWCSvc.delete(id);
+			roleDataAccessService.delete(id);
 			return ResponseEntity.ok(HttpStatus.OK);
 		} catch (ValidationException ex) {
 			System.out.println(ex);

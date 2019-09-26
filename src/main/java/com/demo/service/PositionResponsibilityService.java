@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.PositionResponsibilityDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.PositionResponsibility;
 
 @Service
@@ -51,7 +49,7 @@ public class PositionResponsibilityService {
 	public void valCreatedNotChange(PositionResponsibility positionResponsibility) throws Exception {
 		PositionResponsibility posDB = findById(positionResponsibility.getId());
 		
-		if (posDB.getCreatedAt() != positionResponsibility.getCreatedAt() && posDB.getCreatedBy() != positionResponsibility.getCreatedBy()) {
+		if (posDB.getCreatedAt() != positionResponsibility.getCreatedAt() || !posDB.getCreatedBy().equals(positionResponsibility.getCreatedBy())) {
 			throw new Exception("created at or created by cannot be changed");
 		}
 	}

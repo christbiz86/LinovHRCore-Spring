@@ -49,8 +49,8 @@ public class PositionWorkingConditionService {
 	
 	public void valCreatedNotChange(PositionWorkingCondition positionWorkingCondition) throws Exception {
 		PositionWorkingCondition posDB = findById(positionWorkingCondition.getId());
-
-		if (posDB.getCreatedAt() != positionWorkingCondition.getCreatedAt() && posDB.getCreatedBy() != positionWorkingCondition.getCreatedBy()) {
+		
+		if (posDB.getCreatedAt() != positionWorkingCondition.getCreatedAt() || !posDB.getCreatedBy().equals(positionWorkingCondition.getCreatedBy())) {
 			throw new Exception("created at or created by cannot be changed");
 		}
 	}

@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import com.demo.model.City;
 import com.demo.model.Company;
 import com.demo.model.Costcenter;
@@ -23,6 +22,7 @@ import com.demo.service.CountryService;
 import com.demo.service.GradeService;
 import com.demo.service.LocationService;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @Transactional
