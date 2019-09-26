@@ -31,8 +31,7 @@ public class Assignment extends BaseEntity{
 	@OneToOne
 	private Grade grade;
 	
-	@JoinColumn(name = "supervisor_id", referencedColumnName = "id")
-	@OneToOne
+	@Column(name = "supervisor_id")
 	private String supervisor;
 
 	@JoinColumn(name = "assignment_reason_id", referencedColumnName = "id")
