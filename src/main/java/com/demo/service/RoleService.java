@@ -1,6 +1,5 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,6 @@ public class RoleService {
     }
 	
 	public void save(Role role) throws Exception {
-		role.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(role);
 		valBkNotExist(role);
 		valNonBk(role);
@@ -41,13 +39,11 @@ public class RoleService {
 	}
 	
 	public void update(Role role) throws Exception {
-		role.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(role);
 		valIdExist(role.getId());
 		valBkNotNull(role);
 		valBkNotChange(role);
 		valNonBk(role);
-		valCreatedNotChange(role);
 		roleDao.update(role);
 	}
 		
@@ -71,9 +67,6 @@ public class RoleService {
 	private void valNonBk(Role role)throws Exception{
 		if(role.getIsDeleted() == null) {
 			throw new Exception("IsDeleted tidak boleh kosong");
-		}
-		if(role.getVersion() == null) {
-			throw new Exception("Version tidak boleh kosong");
 		}
 	}
 	

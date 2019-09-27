@@ -12,53 +12,52 @@ import com.demo.model.BaseEntity;
 
 public abstract class AbstractJpaDao<T extends Serializable> {
 
-	private Class<T> clazz;
+    private Class<T> clazz;
 
-	@PersistenceContext
-	protected EntityManager entityManager;
-	private String entityId;
-	private BaseEntity base;
+    @PersistenceContext
+    protected EntityManager entityManager;
+    private String entityId;
+    private BaseEntity base;
 
-	public final void setClazz(final Class<T> clazzToSet) {
-		this.clazz = clazzToSet;
-	}
+    public final void setClazz(final Class<T> clazzToSet) {
+        this.clazz = clazzToSet;
+    }
 
-	public T findOne(final String id) {
-		return entityManager.find(clazz, id);
-	}
+    public T findOne(final String id) {
+    	return entityManager.find(clazz, id);
+    }
 
-	@SuppressWarnings("unchecked")
-	public List<T> findAll() {
-		return entityManager.createQuery("from " + clazz.getName()).getResultList();
-	}
+    @SuppressWarnings("unchecked")
+    public List<T> findAll() {
+        return entityManager.createQuery("from " + clazz.getName()).getResultList();
+    }
 
-	public void create(final T entity) {
-		try {
-			int pointer = 0;
-			BaseEntity base = (BaseEntity) entity;
-			Field[] listField = entity.getClass().getFields();
-			System.err.println(listField.length);
-			for (Field updateField : listField) {
-				if (updateField.getName().equals("createdAt")) {
-					Object o2 = updateField.get(entity);
-					updateField.set(base, new Timestamp(System.currentTimeMillis()));
-					System.err.println(o2);
-				} else if (updateField.getName().equals("createdBy")) {
-					Object o3 = updateField.get(entity);
-					updateField.set(base, "kosong");
-					System.err.println(o3);
-				} else if (updateField.getName().equals("version")) {
-					Object o6 = updateField.get(entity);
-					updateField.set(base, new Long(0));
-					System.err.println(o6);
-				}
-				pointer++;
-			}
-			entityManager.persist(entity);
+    public void create(final T entity) {
+    	try {
+                int pointer = 0;
+                BaseEntity base = (BaseEntity)entity;
+                Field[] listField = entity.getClass().getFields();
+                System.err.println(listField.length);
+                for(Field updateField: listField) {
+                    if(updateField.getName().equals("createdAt")) {
+                        Object o2 = updateField.get(entity);
+                        updateField.set(base, new Timestamp(System.currentTimeMillis()));
+                        System.err.println(o2);
+                    }else if(updateField.getName().equals("createdBy")) {
+                        Object o3 = updateField.get(entity);
+                        updateField.set(base, "kosong");
+                        System.err.println(o3);
+                    }else if(updateField.getName().equals("version")) {
+                        Object o6 = updateField.get(entity);
+                        updateField.set(base, new Long(0));
+                        System.err.println(o6);
+                    }
+                    pointer++;
+                }
+                entityManager.persist(entity);
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-
 	}
 
 	public T update(final T entity) {

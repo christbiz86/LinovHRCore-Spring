@@ -16,7 +16,7 @@ public abstract class BaseEntity implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+    private String id;
 
 	@Column(name = "created_by")
 	private String createdBy = "kosong";
@@ -25,10 +25,10 @@ public abstract class BaseEntity implements Serializable {
 	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "updated_by")
-	private String updatedBy;
+	private String updatedBy = "kosong";
 
 	@Column(name = "updated_at")
-	private Timestamp updatedAt;
+	private Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "version")
 	private Long version = new Long(0);

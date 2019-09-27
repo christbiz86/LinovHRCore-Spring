@@ -15,15 +15,15 @@ import com.demo.model.CompanyLocation;
 public class CompanyLocationService {
 	@Autowired
 	private CompanyLocationDao companyLocationDao;
-	@Transactional
+
 	public List<CompanyLocation> findAll(){
 		return companyLocationDao.findAll();
 	}
-	@Transactional
+
 	public CompanyLocation findById(String id) {
 		return companyLocationDao.findOne(id);
 	}
-	@Transactional
+
 	public CompanyLocation findByCode(String locationId, String companyId) {
 		return companyLocationDao.findByBk(locationId, companyId);
 	}
@@ -68,7 +68,7 @@ public class CompanyLocationService {
 			throw new Exception("Location Company cannot be empty");
 		}
 	}
-	@Transactional
+
 	public void save(CompanyLocation companyLocation) throws Exception {
 		companyLocation.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -76,7 +76,7 @@ public class CompanyLocationService {
 		valBkNotExist(companyLocation);
 		companyLocationDao.create(companyLocation);
 	}
-	@Transactional
+
 	public void update(CompanyLocation companyLocation) throws Exception {
 		companyLocation.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -86,7 +86,7 @@ public class CompanyLocationService {
 		valBkNotChange(companyLocation);
 		companyLocationDao.update(companyLocation);
 	}
-	@Transactional
+
 	public void delete(String id) throws Exception {
 		companyLocationDao.deleteById(id);
 	}
