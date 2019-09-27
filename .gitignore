@@ -3,8 +3,9 @@ src/main/resources/
 .dbeaver/
 .project
 *.xml
-.gitignore
 .classpath
+.gitignore
+.settings/
 .project
 database.sql
 HELP.md
