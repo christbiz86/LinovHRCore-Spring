@@ -30,7 +30,7 @@ public class CompanyLocationController {
 	private CompanyLocationService companyLocationService;
 	
 	@GetMapping(value = "/company-locations")
-//	@Transactional
+	@Transactional
 	public ResponseEntity<?> getAll() {
 		try {
 			List<CompanyLocation> companyLocation = companyLocationService.findAll();
@@ -41,7 +41,7 @@ public class CompanyLocationController {
 	}
 	
 	@GetMapping(value = "/company-location/{id}")
-//	@Transactional
+	@Transactional
 	public ResponseEntity<?> getById(@PathVariable String id) {
 		try {
 			CompanyLocation companyLocation = companyLocationService.findById(id);
@@ -52,7 +52,7 @@ public class CompanyLocationController {
 	}
 	
 	@PostMapping(value = "/company-location")
-//	@Transactional
+	@Transactional
 	public ResponseEntity<?> submit(@RequestBody CompanyLocation compLocation) throws Exception {
 		try {
 			companyLocationService.save(compLocation);
@@ -63,7 +63,7 @@ public class CompanyLocationController {
 	}
 	
 	@PutMapping(value = "/company-location")
-//	@Transactional
+	@Transactional
 	public ResponseEntity<?> update(@RequestBody CompanyLocation compLocation) throws Exception {
 		try {
 			companyLocationService.update(compLocation);
@@ -74,7 +74,7 @@ public class CompanyLocationController {
 	}
 	
 	@DeleteMapping(value = "/company-location/{id}")
-//	@Transactional
+	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
 			companyLocationService.delete(id);
