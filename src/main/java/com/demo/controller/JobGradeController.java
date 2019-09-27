@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +29,8 @@ public class JobGradeController {
 	@Autowired
 	private JobGradeService jobGradeService;
 	
-	@GetMapping(value = "/lov/jobgrades")
+	@GetMapping(value = "/job-grades")
+	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
 			List<JobGrade> list = jobGradeService.findAll();
@@ -38,17 +40,19 @@ public class JobGradeController {
 		}
 	}
 	
-	@GetMapping(value = "/jobgrade/{uuid}")
-	public ResponseEntity<?> findById(@PathVariable String uuid) throws Exception {
+	@GetMapping(value = "/job-grade/{id}")
+	@Transactional
+	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			JobGrade jobGrade = jobGradeService.findById(uuid);
+			JobGrade jobGrade = jobGradeService.findById(id);
 			return new ResponseEntity<JobGrade>(jobGrade, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/jobgrade")
+	@PostMapping(value = "/job-grade")
+	@Transactional
 	public ResponseEntity<?> insert(@RequestBody JobGrade jobGrade) throws Exception {
 		try {
 			jobGradeService.insert(jobGrade);
@@ -58,7 +62,8 @@ public class JobGradeController {
 		}
 	}
 	
-	@PutMapping(value = "/jobgrade")
+	@PutMapping(value = "/job-grade")
+	@Transactional
 	public ResponseEntity<?> update(@RequestBody JobGrade jobGrade) throws Exception {
 		try {
 			jobGradeService.update(jobGrade);
@@ -68,11 +73,12 @@ public class JobGradeController {
 		}
 	}
 	
-	@DeleteMapping(value = "/jobgrade/{uuid}")
-	public ResponseEntity<?> delete(@PathVariable String uuid) throws Exception {
+	@DeleteMapping(value = "/job-grade/{id}")
+	@Transactional
+	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			jobGradeService.delete(uuid);
-			return ResponseEntity.ok("Delete success with ID: "+uuid);
+			jobGradeService.delete(id);
+			return ResponseEntity.ok("Delete success with ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}

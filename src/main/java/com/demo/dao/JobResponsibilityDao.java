@@ -3,32 +3,18 @@ package com.demo.dao;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.model.JobResponsibility;
 
 @Repository
-public class JobResponsibilityDao extends ParentDao {
+public class JobResponsibilityDao extends AbstractJpaDao<JobResponsibility> {
 	
-	@SuppressWarnings("unchecked")
-    @Transactional
-    public List<JobResponsibility> findAll(){
-        return super.entityManager.createQuery("FROM JobResponsibility").getResultList();
-    }
-    
-    @Transactional
-	public void save(JobResponsibility jobResponsibility) {
-		super.entityManager.merge(jobResponsibility);
+	public JobResponsibilityDao() {
+		setClazz(JobResponsibility.class);
 	}
 	
-	@Transactional
-	public void delete(String id) {
-		JobResponsibility jobResponsibility = findById(id);
-		super.entityManager.remove(jobResponsibility);
-	}
-	
-	public boolean isIdExist(String id) {
-		if(findById(id).getId() == null) {
+	public boolean isBkExist(String id) {
+		if(findByBk(id).getId() == null) {
 			return false;
 		}else {
 			return true;
@@ -36,11 +22,10 @@ public class JobResponsibilityDao extends ParentDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
-	public JobResponsibility findById(String id) {	
+	public JobResponsibility findByBk(String job) {
 		List<JobResponsibility> list = super.entityManager
-                .createQuery("FROM JobResponsibility WHERE id = :id")
-                .setParameter("id", id)
+                .createQuery("FROM JobResponsibility WHERE job.id = :job")
+                .setParameter("job", job)
                 .getResultList();
 
 		if (list.size() == 0) {

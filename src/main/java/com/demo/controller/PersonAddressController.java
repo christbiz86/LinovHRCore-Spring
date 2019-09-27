@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
 import com.demo.model.PersonAddress;
 import com.demo.service.PersonAddressService;
 
@@ -55,10 +54,6 @@ public class PersonAddressController {
 				personAddressService.save(personAddress);	
 				return ResponseEntity.ok("Save Success");
 		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
-		}
 		catch (Exception e) {
 			System.out.println(e);
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -67,16 +62,12 @@ public class PersonAddressController {
     }
 	
 	@Transactional
-	@PutMapping(value = "/person/{id}/address")
-    public ResponseEntity<?> putPersonAddress(@PathVariable String id,@RequestBody PersonAddress personAddress)
+	@PutMapping(value = "/person/address")
+    public ResponseEntity<?> putPersonAddress(@RequestBody PersonAddress personAddress)
 	{
 		try{	
 				personAddressService.update(personAddress);	
 				return ResponseEntity.ok("Put Success");
-		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -91,10 +82,6 @@ public class PersonAddressController {
 		try{	
 			personAddressService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
-		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

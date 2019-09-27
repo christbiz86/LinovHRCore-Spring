@@ -1,6 +1,5 @@
 package com.demo.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +60,6 @@ public class WidgetTypeService {
 	}
 	
 	private void valNonBk(WidgetType widgetType)throws Exception{
-		List<String> listErr = new ArrayList<String>();
 		if(widgetType.getColSize() == null) {
 			throw new Exception("Column tidak boleh kosong");
 		}

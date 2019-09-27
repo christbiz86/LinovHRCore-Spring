@@ -11,7 +11,7 @@ import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
+	public static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "id")
@@ -19,33 +19,32 @@ public abstract class BaseEntity implements Serializable {
     private String id;
 
 	@Column(name = "created_by")
-	private String createdBy;
+	private String createdBy = "kosong";
 
 	@Column(name = "created_at")
 	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "updated_by")
-	private String updatedBy;
+	private String updatedBy = "kosong";
 
 	@Column(name = "updated_at")
-	private Timestamp updatedAt;
+	private Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "version")
-	private Long version = 0L;
+	private Long version = new Long(0);
 
 	public Long getVersion() {
 		return version;
 	}
 
 	public void setVersion(Long version) {
-		if(version==null) {
+		if(version == null) {
 			version = new Long(0);
 		}else {
 			this.version = version;
 		}
-
 	}
-	    
+
 	public String getId() {
 		return id;
 	}

@@ -12,7 +12,7 @@ import com.demo.exception.ValidationException;
 import com.demo.model.Location;
 
 @Service
-public class 	LocationService {
+public class LocationService {
 	@Autowired
 	private LocationDao locationDao;
 	
@@ -36,8 +36,8 @@ public class 	LocationService {
 	
 	private void valIdNotNull(Location location)throws Exception {
 		
-		if(location.getId() == null) {
-			throw new Exception("Id Cannot be empty \n");
+		if(location.getId() == null || location.getId().isEmpty()) {
+			throw new Exception("Id Cannot be empty");
 		}
 	}
 	
@@ -55,17 +55,8 @@ public class 	LocationService {
 				throw new Exception("City cannot be empty");
 			}
 		}
-		if(location.getCreatedBy().isEmpty()) {
-			throw new Exception("Created By cannot be empty");
-		}
-		if(location.getCreatedAt() == null) {
-			throw new Exception("Created At cannot be empty");
-		}
 		if(location.getCode().isEmpty()) {
 			throw new Exception("Code cannot be empty");
-		}
-		if(location.getVersion() == null) {
-			throw new Exception("Version cannot be empty");
 		}
 	}
 	
@@ -97,15 +88,6 @@ public class 	LocationService {
 		}
 	}
 	
-	private void valCreatedNotChange(Location location)throws Exception {
-		Location tempLocation=findById(location.getId());
-			
-		if(tempLocation.getCreatedAt() != location.getCreatedAt() && !tempLocation.getCreatedBy().equals(location.getCreatedBy())) {
-			throw new Exception("Created cannot be changed");
-		}
-	
-	}
-	
 	public void save(Location location) throws Exception {
 		location.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		
@@ -117,8 +99,6 @@ public class 	LocationService {
 	
 	public void update(Location location) throws Exception {
 		location.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-		
-		valCreatedNotChange(location);
 		
 		valIdNotNull(location);
 		valIdExist(location.getId());
