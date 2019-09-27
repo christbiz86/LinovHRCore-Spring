@@ -14,19 +14,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.combo.CityComboBean;
+import com.demo.combo.CompanyComboBean;
+import com.demo.combo.CostcenterComboBean;
 import com.demo.combo.CountryComboBean;
+import com.demo.combo.GradeComboBean;
+import com.demo.combo.LocationComboBean;
 import com.demo.model.City;
 import com.demo.model.Company;
 import com.demo.model.Costcenter;
 import com.demo.model.Country;
 import com.demo.model.Grade;
 import com.demo.model.Location;
-import com.demo.service.CityService;
-import com.demo.service.CompanyService;
-import com.demo.service.CostcenterService;
-import com.demo.service.CountryService;
-import com.demo.service.GradeService;
-import com.demo.service.LocationService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -34,30 +33,30 @@ import com.demo.service.LocationService;
 @Transactional
 @RequestMapping({"/api/v1/lov"})
 public class LovController {
-
-    @Autowired
-    private CityService cityService;
-
-    @Autowired
-    private CompanyService companyService;
-
-    @Autowired
-    private CostcenterService costcenterService;
-
-    @Autowired
-    private GradeService gradeService;
     
     @Autowired
-    private LocationService locationService;
+	private CountryComboBean countryComboBean;
     
     @Autowired
-	private CountryComboBean ccb;
+    private CityComboBean cityComboBean;
+    
+    @Autowired
+    private CompanyComboBean companyComboBean;
+    
+    @Autowired
+    private CostcenterComboBean ccComboBean;
+    
+    @Autowired
+    private GradeComboBean gradeComboBean;
+    
+    @Autowired
+    private LocationComboBean locationComboBean;
 
     @GetMapping(value = "/cities")
     @Transactional
     public ResponseEntity<?> getAllCity(){
         try {
-        	List<City> cityList = cityService.findAll();
+        	List<City> cityList = cityComboBean.getList();
             return new ResponseEntity<List<City>>(cityList,HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
@@ -68,7 +67,7 @@ public class LovController {
     @Transactional
     public ResponseEntity<?> getAllCompany(){
         try {
-        	List<Company> companyList = companyService.findAll();
+        	List<Company> companyList = companyComboBean.getList();
             return new ResponseEntity<List<Company>>(companyList,HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
@@ -79,7 +78,7 @@ public class LovController {
 	@Transactional
 	public ResponseEntity<?> findAll() {
 		try {
-			List<Costcenter> list = costcenterService.findAll();
+			List<Costcenter> list = ccComboBean.getList();
 			return new ResponseEntity<List<Costcenter>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
@@ -90,9 +89,7 @@ public class LovController {
     @PostConstruct
     public ResponseEntity<?> getAllCountries() {
     	try {
-//    		List<Country> list = countryService.findAll();
-    		List<Country> list = ccb.getList();
-    		System.out.println(list.get(0).getCode());
+    		List<Country> list = countryComboBean.getList();
 			return new ResponseEntity<List<Country>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
@@ -102,7 +99,7 @@ public class LovController {
     @GetMapping(value = "/grades")
     @Transactional
     public ResponseEntity<?> getAllGrades() {
-        List<Grade> gradeList = gradeService.findall();
+        List<Grade> gradeList = gradeComboBean.getList();
         return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
     }
     
@@ -110,7 +107,7 @@ public class LovController {
     @Transactional
     public ResponseEntity<?> getAllLocation() {
     	try {
-    		List<Location> locationList = locationService.findAll();
+    		List<Location> locationList = locationComboBean.getList();
         	return new ResponseEntity<List<Location>>(locationList, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

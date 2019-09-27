@@ -18,66 +18,66 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.CompanyLocation;
-import com.demo.service.CompanyLocationService;
+import com.demo.model.Project;
+import com.demo.service.ProjectService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class CompanyLocationController {
+public class ProjectController {
 	@Autowired
-	private CompanyLocationService companyLocationService;
+	private ProjectService projectService;
 	
-	@GetMapping(value = "/company-locations")
+	@GetMapping(value = "/projects")
 	@Transactional
-	public ResponseEntity<?> getAll() {
+	public ResponseEntity<?> getAllProject() {
 		try {
-			List<CompanyLocation> companyLocation = companyLocationService.findAll();
-			return ResponseEntity.ok(companyLocation);
+			List<Project> list = projectService.findAll();
+			return ResponseEntity.ok(list);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@GetMapping(value = "/company-location/{id}")
+	@GetMapping(value = "/project/{id}")
 	@Transactional
-	public ResponseEntity<?> getById(@PathVariable String id) {
+	public ResponseEntity<?> getProjectById(@PathVariable String id) {
 		try {
-			CompanyLocation companyLocation = companyLocationService.findById(id);
-			return ResponseEntity.ok(companyLocation);
+			Project project = projectService.findById(id);
+			return ResponseEntity.ok(project);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PostMapping(value = "/company-location")
+	@PostMapping(value = "/project")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody CompanyLocation compLocation) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody Project project) throws Exception {
 		try {
-			companyLocationService.save(compLocation);
+			projectService.save(project);
 			return ResponseEntity.ok("Data Have Successfully Saved");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/company-location")
+	@PutMapping(value = "/project")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody CompanyLocation compLocation) throws Exception {
+	public ResponseEntity<?> update(@RequestBody Project project) throws Exception {
 		try {
-			companyLocationService.update(compLocation);
+			projectService.update(project);
 			return ResponseEntity.ok("Data Have Successfully Updated");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/company-location/{id}")
+	@DeleteMapping(value = "/project/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			companyLocationService.delete(id);
+			projectService.delete(id);
 			return ResponseEntity.ok("Data Have Successfully Deleted");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

@@ -1,9 +1,6 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.List;
-
-import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +13,6 @@ public class JobService {
 	
 	@Autowired
 	private JobDao jobDao;
-	
-	private Timestamp getTime() {
-		return new Timestamp(System.currentTimeMillis());
-	}
 	
 	public void valIdExist(String id) throws Exception {
 		if(!jobDao.isIdExist(id)) {
@@ -78,15 +71,7 @@ public class JobService {
 		}
 	}
 	
-	public void valCreatedAtNotChange(Job job) throws Exception {
-		Timestamp createdAt = findById(job.getId()).getCreatedAt();
-		if(!job.getCreatedAt().equals(createdAt)) {
-			throw new Exception("Created at can't be changed!");
-		}
-	}
-	
 	public void insert(Job job) throws Exception {
-//		job.setCreatedAt(getTime());
 		valBkNotNull(job);
 		valBkNotExist(job);
 		valNonBk(job);
@@ -94,13 +79,11 @@ public class JobService {
 	}
 	
 	public void update(Job job) throws Exception {
-//		job.setUpdatedAt(getTime());
 		valIdNotNull(job);
 		valIdExist(job.getId());
 		valBkNotNull(job);
 		valBkNotChange(job);
 		valNonBk(job);
-//		valCreatedAtNotChange(job);
 		jobDao.update(job);
 	}
 	
@@ -109,9 +92,4 @@ public class JobService {
 		jobDao.deleteById(id);
 	}
 	
-//	@PostConstruct
-//	public void doLog() {
-//        System.out.println("Info message in Job Service");
-//    }
-
 }

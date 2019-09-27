@@ -51,7 +51,11 @@ public class LocationGroupDetail implements Serializable{
 	}
 
 	public void setLocation(Location location) {
-		this.location = location;
+		if(location == null) {
+			this.location = new Location();
+		} else {
+			this.location = location;
+		}
 	}
 
 	public LocationGroup getLocationGroup() {
@@ -59,7 +63,11 @@ public class LocationGroupDetail implements Serializable{
 	}
 
 	public void setLocationGroup(LocationGroup locationGroup) {
-		this.locationGroup = locationGroup;
+		if(locationGroup == null) {
+			this.locationGroup = new LocationGroup();
+		} else {
+			this.locationGroup = locationGroup;
+		}
 	}
 
 	public Long getVersion() {

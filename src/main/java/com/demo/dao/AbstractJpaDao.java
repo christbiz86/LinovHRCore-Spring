@@ -27,7 +27,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     @SuppressWarnings("unchecked")
     public List<T> findAll() {
-    	System.out.println("query");
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
