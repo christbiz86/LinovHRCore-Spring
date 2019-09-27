@@ -2,16 +2,11 @@ package com.demo.dao;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.demo.helper.Encryption;
 import com.demo.model.User;
 
 @Repository
 public class UserDao extends AbstractJpaDao<User>{
-
-	@Autowired
-	private Encryption encryption;
 	
 	public UserDao() {
         setClazz(User.class);
@@ -37,6 +32,21 @@ public class UserDao extends AbstractJpaDao<User>{
 			return (User)list.get(0);
 		}
     }
+
+	@SuppressWarnings("unchecked")
+	public User findByLogin(String username, String password) {
+		List<User>list= super.entityManager.createQuery("FROM User WHERE username=:username AND password=:password")
+                .setParameter("username", username)
+                .setParameter("password", password)
+                .getResultList();
+ 
+        if (list.size() == 0) {
+			return null;
+		}
+		else {
+			return (User)list.get(0);
+		}
+	}
 	
 	public boolean isBkExist(User user) {
 		
@@ -45,24 +55,6 @@ public class UserDao extends AbstractJpaDao<User>{
 		}else {
 			return true;
 		}	 
-	}
-
-
-	public boolean checkAuthentication(String username, String password) {
-		Short count = (Short)this.entityManager.createNativeQuery(
-"SELECT COUNT(*)::::SMALLINT FROM users WHERE username = :username AND password = :password"
-		)
-		.setParameter("username", username)
-		.setParameter("password", encryption.encrypt(password))
-		.getSingleResult();
-
-		if(count == 1) {
-			return true;					
-		}
-		else {
-			return false;
-		}
-		
 	}
 	
 }

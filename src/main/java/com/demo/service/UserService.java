@@ -39,6 +39,10 @@ public class UserService {
 		return userDao.findByBk(user);
     }
 	
+	public User findByLogin(String username,String password){
+		return userDao.findByLogin(username, password);
+    }
+
 	public void save(User user) throws Exception {
 		user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(user);
