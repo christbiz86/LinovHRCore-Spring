@@ -6,12 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
-import com.demo.helper.JwtAuth;
+//import com.demo.helper.JwtAuth;
 
 public class SecurityFilter extends OncePerRequestFilter {
 
 
-	private void authentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+/*
+	private void checkAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
     	try {
     		String token = request.getHeader("Authorization").replace("Bearer ", "");
@@ -33,6 +34,7 @@ public class SecurityFilter extends OncePerRequestFilter {
     	}
 		
 	}
+*/
 
 
 	@Override
@@ -40,7 +42,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		final String uri = request.getRequestURI();
-		System.out.println(uri);
 		filterChain.doFilter(request, response);
 	}
 
