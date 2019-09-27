@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @Table(
 		name = "core_assignment_reasons", 
 		uniqueConstraints = @UniqueConstraint(
-				columnNames = {"id_company","code"}
+				columnNames = {"company_id","code"}
 				)
 		)
 public class AssignmentReason extends BaseEntity {
