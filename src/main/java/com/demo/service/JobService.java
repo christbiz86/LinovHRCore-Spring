@@ -74,9 +74,6 @@ public class JobService {
 		if(job.getOrdinal() == null) {
 			throw new Exception("Ordinal can't empty!");
 		}
-		if(job.getCreatedBy().isEmpty()) {
-			throw new Exception("Created by can't empty!");
-		}
 	}
 	
 	public void valCreatedAtNotChange(Job job) throws Exception {
