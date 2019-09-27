@@ -10,13 +10,11 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import java.sql.Timestamp;
-
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@Table(name = "core_units", uniqueConstraints = @UniqueConstraint(columnNames = {"code", "company_id"}))
-public class Unit extends BaseEntity {
+@Table(name = "core_projects", uniqueConstraints = @UniqueConstraint(columnNames = {"code", "supervisor_id", "projectmanager_id", "location_id"}))
+public class Project extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "code")
@@ -25,17 +23,23 @@ public class Unit extends BaseEntity {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "description")
+	private String description;
+	
+	@Column(name = "quota")
+	private Integer quota;
+	
 	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	@OneToOne
 	private Company company;
 	
-	@JoinColumn(name = "unit_type_id", referencedColumnName = "id")
+	@JoinColumn(name = "supervisor_id", referencedColumnName = "id")
 	@OneToOne
-	private UnitType unitType;
+	private Employee supervisor;
 	
-	@JoinColumn(name = "cost_center_id", referencedColumnName = "id")
+	@JoinColumn(name = "projectmanager_id", referencedColumnName = "id")
 	@OneToOne
-	private Costcenter costCenter;
+	private Employee projectManager;
 	
 	@JoinColumn(name = "location_id", referencedColumnName = "id")
 	@OneToOne
@@ -65,6 +69,22 @@ public class Unit extends BaseEntity {
 		}
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getQuota() {
+		return quota;
+	}
+
+	public void setQuota(Integer quota) {
+		this.quota = quota;
+	}
+
 	public Company getCompany() {
 		return company;
 	}
@@ -77,20 +97,20 @@ public class Unit extends BaseEntity {
 		}
 	}
 
-	public UnitType getUnitType() {
-		return unitType;
+	public Employee getSupervisor() {
+		return supervisor;
 	}
 
-	public void setUnitType(UnitType unitType) {
-		this.unitType = unitType;
+	public void setSupervisor(Employee supervisor) {
+		this.supervisor = supervisor;
 	}
 
-	public Costcenter getCostCenter() {
-		return costCenter;
+	public Employee getProjectManager() {
+		return projectManager;
 	}
 
-	public void setCostCenter(Costcenter costCenter) {
-		this.costCenter = costCenter;
+	public void setProjectManager(Employee projectManager) {
+		this.projectManager = projectManager;
 	}
 
 	public Location getLocation() {
