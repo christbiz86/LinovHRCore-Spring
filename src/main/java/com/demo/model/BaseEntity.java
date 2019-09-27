@@ -16,22 +16,22 @@ public abstract class BaseEntity implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String id;
+    private String id;
 
 	@Column(name = "created_by")
-	public String createdBy = "kosong";
+	private String createdBy = "kosong";
 
 	@Column(name = "created_at")
-	public Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "updated_by")
-	public String updatedBy = "kosong";
+	private String updatedBy = "kosong";
 
 	@Column(name = "updated_at")
-	public Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
+	private Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
 
 	@Column(name = "version")
-	public Long version = new Long(0);
+	private Long version = new Long(0);
 
 	public Long getVersion() {
 		return version;
