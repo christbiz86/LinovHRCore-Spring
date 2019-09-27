@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
 import com.demo.model.User;
 import com.demo.service.UserService;
 
@@ -69,10 +68,6 @@ public class UserController {
 			userService.save(user);	
 			return ResponseEntity.ok("Save Success");
 		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
-		}
 		catch (Exception e) {
 
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -87,10 +82,6 @@ public class UserController {
 			userService.update(user);	
 			return ResponseEntity.ok("Put Success");
 		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
-		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
@@ -104,10 +95,6 @@ public class UserController {
 		try{	
 			userService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
-		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
