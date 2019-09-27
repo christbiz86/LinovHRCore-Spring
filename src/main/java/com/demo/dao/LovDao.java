@@ -21,7 +21,7 @@ public class LovDao extends AbstractJpaDao<Lov>{
 		
 	@SuppressWarnings("unchecked")
     public Lov findByBk(Lov lov){
-		List<Lov>list= super.entityManager.createQuery("FROM Lov WHERE lovType.id.=:loveTypeId AND keyData=:keydata ")
+		List<Lov>list= super.entityManager.createQuery("FROM Lov WHERE lovType.id=:loveTypeId AND keyData=:keydata ")
                 .setParameter("loveTypeId", lov.getLovType().getId())
                 .setParameter("keyData", lov.getKeyData())
                 .getResultList();
@@ -41,5 +41,13 @@ public class LovDao extends AbstractJpaDao<Lov>{
 		}else {
 			return true;
 		}	 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Lov> findByType(String code){
+		List<Lov> list = super.entityManager.createQuery("FROM Lov WHERE lovType.code=:code")
+				.setParameter("code", code).getResultList();
+		
+		return list;
 	}
 }

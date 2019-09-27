@@ -14,18 +14,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.combo.ActionTypeComboBean;
 import com.demo.combo.CityComboBean;
 import com.demo.combo.CompanyComboBean;
 import com.demo.combo.CostcenterComboBean;
 import com.demo.combo.CountryComboBean;
+import com.demo.combo.GenderComboBean;
 import com.demo.combo.GradeComboBean;
 import com.demo.combo.LocationComboBean;
+import com.demo.combo.MaritalComboBean;
 import com.demo.model.City;
 import com.demo.model.Company;
 import com.demo.model.Costcenter;
 import com.demo.model.Country;
 import com.demo.model.Grade;
 import com.demo.model.Location;
+import com.demo.model.Lov;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -51,6 +55,15 @@ public class LovController {
     
     @Autowired
     private LocationComboBean locationComboBean;
+    
+    @Autowired
+    private GenderComboBean genderComboBean;
+    
+    @Autowired
+    private MaritalComboBean maritalComboBean;
+    
+    @Autowired
+    private ActionTypeComboBean actionTypeComboBean;
 
     @GetMapping(value = "/cities")
     @Transactional
@@ -113,5 +126,37 @@ public class LovController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}	
     }
-
+    
+    @GetMapping(value = "/genders")
+    @Transactional
+    public ResponseEntity<?> getAllGender() {
+    	try {
+    		List<Lov> genderList = genderComboBean.getList();
+        	return ResponseEntity.ok(genderList);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+    
+    @GetMapping(value = "/maritals")
+    @Transactional
+    public ResponseEntity<?> getAllMaritals() {
+    	try {
+    		List<Lov> maritalList = maritalComboBean.getList();
+        	return ResponseEntity.ok(maritalList);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+    
+    @GetMapping(value = "/action-types")
+    @Transactional
+    public ResponseEntity<?> getAllActionType() {
+    	try {
+    		List<Lov> actionTypeList = actionTypeComboBean.getList();
+        	return ResponseEntity.ok(actionTypeList);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
 }

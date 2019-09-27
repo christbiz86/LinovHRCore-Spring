@@ -1,6 +1,3 @@
 eclipse.preferences.version=1
-<<<<<<< HEAD
 org.eclipse.jpt.core.platform=generic2_0
-=======
->>>>>>> 0f4de20fcf1447fd54c2c76d6bec351ac25200dc
 org.eclipse.jpt.jpa.core.discoverAnnotatedClasses=true
