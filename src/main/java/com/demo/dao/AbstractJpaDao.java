@@ -73,30 +73,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 		}
 		return entityManager.merge(entity);
 	}
-=======
-        entityManager.persist(entity);
-    }
-    
-    public T update(final T entity) throws Exception {
-		Field[] listField = entity.getClass().getSuperclass().getDeclaredFields();
-		String entityId = null;
-		for(Field field: listField) {
-			field.setAccessible(true);
-			if(field.getName().equals("id")) {
-				entityId = (String)field.get(entity);
-			}else if(field.getName().equals("updatedAt")) {
-				field.set(entity, new Timestamp(System.currentTimeMillis()));
-			}else if(field.getName().equals("updatedBy")) {
-				field.set(entity, "kosong");
-			}else if(field.getName().equals("version")) {
-				Long version = (Long) field.get(entity);
-				valVersion(entityId, version);
-				version++;
-				field.set(entity, version);
-			}
-		}
-		return entityManager.merge(entity);
-    }
 
 	public void delete(final T entity) {
 		entityManager.remove(entity);
@@ -133,14 +109,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	version++;
     	field.set(originalEntity, version);
     	entityManager.merge(originalEntity);
-    }
-    
-    public boolean isIdExist(final String entityId) {
-        if(findOne(entityId) == null) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
 }

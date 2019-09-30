@@ -217,12 +217,13 @@ public class LovController {
     @GetMapping(value = "/employee-types")
     @Transactional
     public ResponseEntity<?> getAllEmployeeType() {
-    	try {
-    		List<Lov> empTypeList = employeeTypeComboBean.getList();
-        	return ResponseEntity.ok(empTypeList);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
+        try {
+            List<Lov> empTypeList = employeeTypeComboBean.getList();
+            return ResponseEntity.ok(empTypeList);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
     @GetMapping(value = "/units")
     @Transactional
