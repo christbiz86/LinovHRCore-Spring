@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,22 @@ public class UserRoleController {
 	private UserRoleService userRoleService;
 	
 	@Transactional
-	@GetMapping(value = "user/role/{id}")
+	@GetMapping(value = "user-roles")
+    public ResponseEntity<?> getAllUserRole()
+	{
+		try{
+				List<UserRole> listUserRole = userRoleService.findAll();
+
+				return ResponseEntity.ok(listUserRole);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@GetMapping(value = "user-role/{id}")
     public ResponseEntity<?> getUserRole(@PathVariable String id)
 	{
 		try{
@@ -44,7 +61,7 @@ public class UserRoleController {
     }
 	
 	@Transactional
-	@PostMapping("/user/role")
+	@PostMapping("/user-role")
     public ResponseEntity<?> postUserRole(@RequestBody UserRole userRole)
 	{
 		try{	
@@ -58,7 +75,7 @@ public class UserRoleController {
     }
 	
 	@Transactional
-	@PutMapping("/user/role")
+	@PutMapping("/user-role")
     public ResponseEntity<?> putUserRole(@RequestBody UserRole userRole)
 	{
 		try{	
@@ -72,7 +89,7 @@ public class UserRoleController {
     }
 	
 	@Transactional
-	@DeleteMapping("/user/role/{id}")
+	@DeleteMapping("/user-role/{id}")
     public ResponseEntity<?> deleteUserRole(@PathVariable String id)
 	{
 		try{	

@@ -31,7 +31,7 @@ public class MenuActionController {
 	private MenuActionService menuActionService;
 	
 	@Transactional
-	@GetMapping(value = "/menu/actions")
+	@GetMapping(value = "/menu-actions")
     public ResponseEntity<?> getAllMenuAction()
 	{
 		try{
@@ -46,7 +46,7 @@ public class MenuActionController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/menu/action/{id}")
+	@GetMapping(value = "/menu-action/{id}")
     public ResponseEntity<?> getMenuAction(@PathVariable String id)
 	{
 		try{
@@ -61,7 +61,7 @@ public class MenuActionController {
     }
 	
 	@Transactional
-	@PostMapping("/menu/action")
+	@PostMapping("/menu-action")
     public ResponseEntity<?> postMenuAction(@RequestBody MenuAction menuAction)
 	{
 		try{	
@@ -75,7 +75,7 @@ public class MenuActionController {
     }
 	
 	@Transactional
-	@PutMapping("/menu/action")
+	@PutMapping("/menu-action")
     public ResponseEntity<?> putMenuAction(@RequestBody MenuAction menuAction)
 	{
 		try{	
@@ -89,7 +89,7 @@ public class MenuActionController {
     }
 	
 	@Transactional
-	@DeleteMapping("/menu/action/{id}")
+	@DeleteMapping("/menu-action/{id}")
     public ResponseEntity<?> deleteMenuAction(@PathVariable String id)
 	{
 		try{	

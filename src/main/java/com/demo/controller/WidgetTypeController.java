@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +31,22 @@ public class WidgetTypeController {
 	private WidgetTypeService widgetTypeService;
 	
 	@Transactional
-	@GetMapping(value = "/widget/type/{id}")
+	@GetMapping(value = "/widget-types")
+    public ResponseEntity<?> getAllWidgetType()
+	{
+		try{
+				List<WidgetType> listWidgetType = widgetTypeService.findAll();
+
+				return ResponseEntity.ok(listWidgetType);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@GetMapping(value = "/widget-type/{id}")
     public ResponseEntity<?> getWidgetType(@PathVariable String id)
 	{
 		try{
@@ -44,7 +61,7 @@ public class WidgetTypeController {
     }
 	
 	@Transactional
-	@PostMapping("/widget/type")
+	@PostMapping("/widget-type")
     public ResponseEntity<?> postWidgetType(@RequestBody WidgetType widgetType)
 	{
 		try{	
@@ -58,7 +75,7 @@ public class WidgetTypeController {
     }
 	
 	@Transactional
-	@PutMapping("/widget/type")
+	@PutMapping("/widget-type")
     public ResponseEntity<?> putWidgetType(@RequestBody WidgetType widgetType)
 	{
 		try{	
@@ -72,7 +89,7 @@ public class WidgetTypeController {
     }
 	
 	@Transactional
-	@DeleteMapping("/widget/type/{id}")
+	@DeleteMapping("/widget-type/{id}")
     public ResponseEntity<?> deleteWidgetType(@PathVariable String id)
 	{
 		try{	

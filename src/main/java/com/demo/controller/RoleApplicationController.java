@@ -31,7 +31,7 @@ public class RoleApplicationController {
 	private RoleApplicationService roleApplicationService;
 	
 	@Transactional
-	@GetMapping(value = "/role/applications")
+	@GetMapping(value = "/role-applications")
     public ResponseEntity<?> getAllRoleApplication()
 	{
 		try{
@@ -46,7 +46,7 @@ public class RoleApplicationController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/role/application/{id}")
+	@GetMapping(value = "/role-application/{id}")
     public ResponseEntity<?> getRoleApplication(@PathVariable String id)
 	{
 		try{
@@ -60,7 +60,7 @@ public class RoleApplicationController {
 		}
     }
 
-	@PostMapping(value = "/role/application")
+	@PostMapping(value = "/role-application")
 	@Transactional
     public ResponseEntity<?> postRoleApplication(@RequestBody RoleApplication roleApplication)
 	{
@@ -76,7 +76,7 @@ public class RoleApplicationController {
     }
 	
 	@Transactional
-	@PutMapping(value = "/role/application")
+	@PutMapping(value = "/role-application")
     public ResponseEntity<?> putRoleApplication(@RequestBody RoleApplication roleApplication)
 	{
 		try{	
@@ -90,7 +90,7 @@ public class RoleApplicationController {
     }
 	
 	@Transactional
-	@DeleteMapping("/role/application/{id}")
+	@DeleteMapping("/role-application/{id}")
     public ResponseEntity<?> deleteRoleApplication(@PathVariable String id)
 	{
 		try{	

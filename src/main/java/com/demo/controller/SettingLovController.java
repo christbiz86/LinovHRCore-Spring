@@ -31,7 +31,7 @@ public class SettingLovController {
 	private SettingLovService settingLovService;
 	
 	@Transactional
-	@GetMapping(value = "/setting/lovs")
+	@GetMapping(value = "/setting-lovs")
     public ResponseEntity<?> getAllSettingLov()
 	{
 		try{
@@ -46,7 +46,7 @@ public class SettingLovController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/setting/lov/{id}")
+	@GetMapping(value = "/setting-lov/{id}")
     public ResponseEntity<?> getSettingLov(@PathVariable String id)
 	{
 		try{
@@ -61,7 +61,7 @@ public class SettingLovController {
     }
 	
 	@Transactional
-	@PostMapping("/setting/lov")
+	@PostMapping("/setting-lov")
     public ResponseEntity<?> postSettingLov(@RequestBody SettingLov settingLov)
 	{
 		try{	
@@ -75,7 +75,7 @@ public class SettingLovController {
     }
 	
 	@Transactional
-	@PutMapping("/setting/lov")
+	@PutMapping("/setting-lov")
     public ResponseEntity<?> putRole(@RequestBody SettingLov settingLov)
 	{
 		try{	
@@ -89,7 +89,7 @@ public class SettingLovController {
     }
 	
 	@Transactional
-	@DeleteMapping("/setting/lov/{id}")
+	@DeleteMapping("/setting-lov/{id}")
     public ResponseEntity<?> deleteRole(@PathVariable String id)
 	{
 		try{	

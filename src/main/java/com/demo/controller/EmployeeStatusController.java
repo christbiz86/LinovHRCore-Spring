@@ -31,7 +31,7 @@ public class EmployeeStatusController {
 	private EmployeeStatusService employeeStatusService;
 	
 	@Transactional
-	@GetMapping(value = "/employee/statuses")
+	@GetMapping(value = "/employee-statuses")
     public ResponseEntity<?> getAllEmployeeStatus()
 	{
 		try{
@@ -46,7 +46,7 @@ public class EmployeeStatusController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/employee/status/{id}")
+	@GetMapping(value = "/employee-status/{id}")
     public ResponseEntity<?> getEmployeeStatus(@PathVariable String id)
 	{
 		try{
@@ -61,7 +61,7 @@ public class EmployeeStatusController {
     }
 	
 	@Transactional
-	@PostMapping("/employee/status")
+	@PostMapping("/employee-status")
     public ResponseEntity<?> postEmployeeStatus(@RequestBody EmployeeStatus employeeStatus)
 	{
 		try{	
@@ -75,7 +75,7 @@ public class EmployeeStatusController {
     }
 	
 	@Transactional
-	@PutMapping("/employee/status")
+	@PutMapping("/employee-status")
     public ResponseEntity<?> putEmployeeStatus(@RequestBody EmployeeStatus employeeStatus)
 	{
 		try{	
@@ -89,7 +89,7 @@ public class EmployeeStatusController {
     }
 	
 	@Transactional
-	@DeleteMapping("/employee/status/{id}")
+	@DeleteMapping("/employee-status/{id}")
     public ResponseEntity<?> deleteEmployeeStatus(@PathVariable String id)
 	{
 		try{	

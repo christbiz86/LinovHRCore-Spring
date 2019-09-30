@@ -31,7 +31,7 @@ public class UserRoleWidgetController {
 	private UserRoleWidgetService userRoleWidgetService;
 	
 	@Transactional
-	@GetMapping(value = "/userrole/widgets")
+	@GetMapping(value = "/user-role-widgets")
     public ResponseEntity<?> getAllUserRoleWidget()
 	{
 		try{
@@ -46,7 +46,7 @@ public class UserRoleWidgetController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/userrole/widget/{id}")
+	@GetMapping(value = "/user-role-widget/{id}")
     public ResponseEntity<?> getUserRoleWidget(@PathVariable String id)
 	{
 		try{
@@ -61,7 +61,7 @@ public class UserRoleWidgetController {
     }
 	
 	@Transactional
-	@PostMapping("/userrole/widget")
+	@PostMapping("/user-role-widget")
     public ResponseEntity<?> postUserRoleWidget(@RequestBody UserRoleWidget userRoleWidget)
 	{
 		try{	
@@ -75,7 +75,7 @@ public class UserRoleWidgetController {
     }
 	
 	@Transactional
-	@PutMapping("/userrole/widget")
+	@PutMapping("/user-role-widget")
     public ResponseEntity<?> putUserRoleWidget(@RequestBody UserRoleWidget userRoleWidget)
 	{
 		try{	
@@ -89,7 +89,7 @@ public class UserRoleWidgetController {
     }
 	
 	@Transactional
-	@DeleteMapping("/userrole/widget/{id}")
+	@DeleteMapping("/user-role-widget/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable String id)
 	{
 		try{	

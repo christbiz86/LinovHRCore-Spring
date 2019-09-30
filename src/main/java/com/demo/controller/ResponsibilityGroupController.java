@@ -31,7 +31,7 @@ public class ResponsibilityGroupController {
 	private ResponsibilityGroupService responsibilityGroupService;
 
 	@Transactional
-	@GetMapping(value = "/responsibility/groups")
+	@GetMapping(value = "/responsibility-groups")
     public ResponseEntity<?> getAllResponsibilityGroup()
 	{
 		try{
@@ -46,7 +46,7 @@ public class ResponsibilityGroupController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/responsibility/group/{id}")
+	@GetMapping(value = "/responsibility-group/{id}")
     public ResponseEntity<?> getResponsibilityGroup(@PathVariable String id)
 	{
 		try{
@@ -61,7 +61,7 @@ public class ResponsibilityGroupController {
     }
 	
 	@Transactional
-	@PostMapping("/responsibility/group")
+	@PostMapping("/responsibility-group")
     public ResponseEntity<?> postResponsibilityGroup(@RequestBody ResponsibilityGroup responsibilityGroup)
 	{
 		try{	
@@ -75,7 +75,7 @@ public class ResponsibilityGroupController {
     }
 	
 	@Transactional
-	@PutMapping("/responsibility/group")
+	@PutMapping("/responsibility-group")
     public ResponseEntity<?> putResponsibilityGroup(@RequestBody ResponsibilityGroup responsibilityGroup)
 	{
 		try{	
@@ -89,7 +89,7 @@ public class ResponsibilityGroupController {
     }
 	
 	@Transactional
-	@DeleteMapping("/responsibility/group/{id}")
+	@DeleteMapping("/responsibility-group/{id}")
     public ResponseEntity<?> deleteResponsibilityGroup(@PathVariable String id)
 	{
 		try{	

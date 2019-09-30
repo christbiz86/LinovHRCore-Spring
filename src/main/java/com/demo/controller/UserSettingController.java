@@ -31,7 +31,7 @@ public class UserSettingController {
 	private UserSettingService userSettingService;
 	
 	@Transactional
-	@GetMapping(value = "/user/settings")
+	@GetMapping(value = "/user-settings")
     public ResponseEntity<?> getAllUserSetting()
 	{
 		try{
@@ -46,7 +46,7 @@ public class UserSettingController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/user/setting/{id}")
+	@GetMapping(value = "/user-setting/{id}")
     public ResponseEntity<?> getUserSetting(@PathVariable String id)
 	{
 		try{
@@ -61,7 +61,7 @@ public class UserSettingController {
     }
 	
 	@Transactional
-	@PostMapping("/user/setting")
+	@PostMapping("/user-setting")
     public ResponseEntity<?> postUserSetting(@RequestBody UserSetting userSetting)
 	{
 		try{	
@@ -75,7 +75,7 @@ public class UserSettingController {
     }
 	
 	@Transactional
-	@PutMapping("/user/setting")
+	@PutMapping("/user-setting")
     public ResponseEntity<?> putUserSetting(@RequestBody UserSetting userSetting)
 	{
 		try{	
@@ -89,7 +89,7 @@ public class UserSettingController {
     }
 	
 	@Transactional
-	@DeleteMapping("/user/setting/{id}")
+	@DeleteMapping("/user-setting/{id}")
     public ResponseEntity<?> deleteUserSetting(@PathVariable String id)
 	{
 		try{	
