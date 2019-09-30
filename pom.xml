@@ -12,9 +12,9 @@
 	<groupId>com.demo</groupId>
 	<artifactId>linov</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Linov</name>
+	<name>LinovHR - Core Module</name>
 	<packaging>war</packaging>
-	<description>LinovHR - Core Module</description>
+	<description>LinovHR - Core Module.</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -58,7 +58,15 @@
 		    <artifactId>jasperreports</artifactId>
 		    <version>6.4.0</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -80,8 +88,8 @@
 					<username>admin</username>
 					<password>password</password>
 				</configuration>
-				
 			</plugin>
+			
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>

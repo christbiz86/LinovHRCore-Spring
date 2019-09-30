@@ -8,24 +8,23 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.dao.CountryDao;
-import com.demo.model.Country;
+import com.demo.dao.EmployeeDao;
+import com.demo.model.Employee;
 
 @Service
-public class CountryComboBean {
-	
+public class EmployeeComboBean {
+
 	@Autowired
-	private CountryDao countryDao;
+	private EmployeeDao employeeDao;
 	
-	List<Country> list = new ArrayList<Country>();
+	List<Employee> list = new ArrayList<Employee>();
 	
 	@PostConstruct
-	private List<Country> init() {
-		return list = countryDao.findAll();
+	public List<Employee> init() {
+		return list = employeeDao.findAll();
 	}
 
-	public List<Country> getList() {
+	public List<Employee> getList() {
 		return list;
 	}
-	
 }

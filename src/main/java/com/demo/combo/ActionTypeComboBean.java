@@ -8,24 +8,22 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.dao.GradeDao;
-import com.demo.model.Grade;
+import com.demo.dao.LovDao;
+import com.demo.model.Lov;
 
-@Service
-public class GradeComboBean {
-	
+@Service	
+public class ActionTypeComboBean {
 	@Autowired
-	private GradeDao gradeDao;
+	private LovDao lovDao;
 	
-	List<Grade> list = new ArrayList<Grade>();
+	List<Lov> list = new ArrayList<Lov>();
 	
 	@PostConstruct
-	private List<Grade> init() {
-		return list = gradeDao.findAll();
+	private List<Lov> init() {
+		return list = lovDao.findByType("ACTY");
 	}
-
-	public List<Grade> getList() {
+	
+	public List<Lov> getList(){
 		return list;
 	}
-
 }

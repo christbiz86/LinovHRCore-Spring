@@ -8,24 +8,23 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.dao.CountryDao;
-import com.demo.model.Country;
+import com.demo.dao.LovDao;
+import com.demo.model.Lov;
 
 @Service
-public class CountryComboBean {
-	
+public class BloodTypeComboBean {
+
 	@Autowired
-	private CountryDao countryDao;
+	private LovDao lovDao;
 	
-	List<Country> list = new ArrayList<Country>();
+	List<Lov> list = new ArrayList<Lov>();
 	
 	@PostConstruct
-	private List<Country> init() {
-		return list = countryDao.findAll();
+	private List<Lov> init() {
+		return list = lovDao.findByType("BLOD");
 	}
 
-	public List<Country> getList() {
+	public List<Lov> getList() {
 		return list;
 	}
-	
 }

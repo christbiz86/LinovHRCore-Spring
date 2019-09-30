@@ -27,5 +27,5 @@ public class JobComboBean {
 	public List<Job> getList() {
 		return list;
 	}
-
+	
 }
