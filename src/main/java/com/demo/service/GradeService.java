@@ -1,16 +1,17 @@
 package com.demo.service;
 
+import java.sql.Timestamp;
+import java.util.List;
+
+import javax.xml.bind.ValidationException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.demo.dao.CompanyDao;
 import com.demo.dao.GradeDao;
 import com.demo.model.Company;
 import com.demo.model.Grade;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.xml.bind.ValidationException;
-import java.sql.Timestamp;
-import java.util.List;
 
 @Service
 public class GradeService {
@@ -21,7 +22,7 @@ public class GradeService {
     @Autowired
     private CompanyDao companyDao;
 
-    public List<Grade> findall(){
+    public List<Grade> findAll(){
         return gradeDao.findAll();
     }
 

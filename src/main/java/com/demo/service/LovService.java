@@ -107,4 +107,8 @@ public class LovService {
 			throw new Exception("created tidak boleh berubah");
 		}
 	}
+	
+	public List<Lov> findByType(String code) {
+		return lovDao.findByType(code);
+	}
 }

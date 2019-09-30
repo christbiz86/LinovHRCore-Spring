@@ -30,6 +30,13 @@ public class GradeController {
 
     @Autowired
     private GradeService gradeService;
+    
+    @GetMapping(value = "/grades")
+    @Transactional
+    public ResponseEntity<?> getAllGrades() throws Exception {
+        List<Grade> gradeList = gradeService.findAll();
+        return new ResponseEntity<List<Grade>>(gradeList,HttpStatus.OK);
+    }
 
     @GetMapping(value = "/grade/{id}")
     public ResponseEntity<?> getGradeById(
@@ -39,7 +46,7 @@ public class GradeController {
         return new ResponseEntity<Grade>(gradeList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/grade/code/{id}")
+    @GetMapping(value = "/grade/code/{code}")
     public ResponseEntity<?> getGradeByCode(
             @PathVariable String code
     ){
@@ -73,6 +80,5 @@ public class GradeController {
             return ResponseEntity.status(HttpStatus.OK).body(msg);
         }
     }
-
-
+    
 }

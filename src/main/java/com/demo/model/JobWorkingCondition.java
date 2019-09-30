@@ -20,6 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 				)
 		)
 public class JobWorkingCondition extends BaseEntity {
+	public static final long serialVersionUID = 1L;
 	
 	@OneToOne
     @JoinColumn(name = "job_id", referencedColumnName = "id")

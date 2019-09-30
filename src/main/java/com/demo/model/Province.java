@@ -20,6 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 				)
 		)
 public class Province extends BaseEntity {
+	public static final long serialVersionUID = 1L;
 	
     @Column(name = "code")
     private String code;
@@ -30,8 +31,16 @@ public class Province extends BaseEntity {
     @JoinColumn(name = "country_id", referencedColumnName = "id")
     @OneToOne
     private Country country;
+    
+    public String getCode() {
+		return code;
+	}
 
-    public String getName(){
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	public String getName(){
         return name;
     }
 
@@ -39,11 +48,12 @@ public class Province extends BaseEntity {
         this.name = name;
     }
 
-    public void setCountryId(Country country) {
-        this.country = country;
-    }
-
     public Country getCountry() {
         return country;
     }
+    
+    public void setCountry(Country country) {
+		this.country = country;
+	}
+    
 }
