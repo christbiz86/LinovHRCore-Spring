@@ -50,4 +50,5 @@ public class LovDao extends AbstractJpaDao<Lov>{
 		
 		return list;
 	}
+
 }
