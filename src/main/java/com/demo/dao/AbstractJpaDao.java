@@ -42,6 +42,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
                 field.set(entity, 0L);
             }
 		}
+    	entityManager.persist(entity);
 	}
     
     public T update(final T entity) throws Exception {
