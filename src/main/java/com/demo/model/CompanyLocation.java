@@ -29,7 +29,11 @@ public class CompanyLocation extends BaseEntity {
 	}
 
 	public void setCompany(Company company) {
-		this.company = company;
+		if(company == null) {
+			this.company = new Company();
+		} else {
+			this.company = company;
+		}
 	}
 
 	public Location getLocation() {
@@ -37,6 +41,10 @@ public class CompanyLocation extends BaseEntity {
 	}
 
 	public void setLocation(Location location) {
-		this.location = location;
+		if(location == null) {
+			this.location = new Location();
+		} else {
+			this.location = location;
+		}
 	}
 }

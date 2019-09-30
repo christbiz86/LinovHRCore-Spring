@@ -1,6 +1,9 @@
 package com.demo.service;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,9 +77,6 @@ public class JobService {
 		if(job.getOrdinal() == null) {
 			throw new Exception("Ordinal can't empty!");
 		}
-		if(job.getCreatedBy().isEmpty()) {
-			throw new Exception("Created by can't empty!");
-		}
 	}
 	
 	public void valCreatedAtNotChange(Job job) throws Exception {
@@ -87,7 +87,6 @@ public class JobService {
 	}
 	
 	public void insert(Job job) throws Exception {
-//		job.setCreatedAt(getTime());
 		valBkNotNull(job);
 		valBkNotExist(job);
 		valNonBk(job);
@@ -102,6 +101,7 @@ public class JobService {
 		valBkNotChange(job);
 		valNonBk(job);
 //		valCreatedAtNotChange(job);
+		System.out.println("Validasi selesai");
 		jobDao.update(job);
 	}
 	

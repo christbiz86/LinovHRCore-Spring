@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,94 +17,79 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.dao.JobDao;
-import com.demo.model.Job;
-import com.demo.service.JobService;
+import com.demo.model.AssignmentReason;
+import com.demo.service.AssignmentReasonService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping(value = "/api/v1")
-public class JobController {
+public class AssignmentReasonController {
 	
 	@Autowired
-	private JobService jobService;
+	private AssignmentReasonService arService;
 	
-	@GetMapping(value = "/jobs")
+	@GetMapping(value = "/assignment-reasons")
 	@Transactional
 	public ResponseEntity<?> findAll() throws Exception {
 		try {
-			List<Job> list = jobService.findAll();
-			return new ResponseEntity<List<Job>>(list, HttpStatus.OK);
+			List<AssignmentReason> list = arService.findAll();
+			return new ResponseEntity<List<AssignmentReason>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@GetMapping(value = "/job/{id}")
+	@GetMapping(value = "/assignment-reason/{id}")
 	@Transactional
 	public ResponseEntity<?> findById(@PathVariable String id) throws Exception {
 		try {
-			Job job = jobService.findById(id);
-			return new ResponseEntity<Job>(job, HttpStatus.OK);
+			AssignmentReason ar = arService.findById(id);
+			return new ResponseEntity<AssignmentReason>(ar, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@GetMapping(value = "/job/code/{code}")
+	@GetMapping(value = "/assignment-reason/code/{code}")
 	@Transactional
 	public ResponseEntity<?> findByCode(@PathVariable String code) throws Exception {
 		try {
-			Job job = jobService.findByCode(code);
-			return new ResponseEntity<Job>(job, HttpStatus.OK);
+			AssignmentReason ar = arService.findByCode(code);
+			return new ResponseEntity<AssignmentReason>(ar, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Retrieve failed!");
 		}
 	}
 	
-	@PostMapping(value = "/job")
+	@PostMapping(value = "/assignment-reason")
 	@Transactional
-	public ResponseEntity<?> insert(@RequestBody Job job) throws Exception {
+	public ResponseEntity<?> insert(@RequestBody AssignmentReason ar) throws Exception {
 		try {
-			jobService.insert(job);
-			return ResponseEntity.ok("Insert success with Job name: "+job.getName());
+			arService.insert(ar);
+			return ResponseEntity.ok("Insert success with Assignment Reason code: "+ar.getCode());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@Autowired
-	JobDao jdo;
-	
-	@PatchMapping(value = "/job")
+	@PutMapping(value = "/assignment-reason")
 	@Transactional
-	public ResponseEntity<?> upupup(@RequestBody Job job) {
+	public ResponseEntity<?> update(@RequestBody AssignmentReason ar) throws Exception {
 		try {
-			jdo.versionUp(job);
-			return ResponseEntity.ok("Berhasil nambah versi");
+			arService.update(ar);
+			return ResponseEntity.ok("Update success with Assignment Reason ID: "+ar.getId());
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/job")
-	@Transactional
-	public ResponseEntity<?> update(@RequestBody Job job) throws Exception {
-		try {
-			jobService.update(job);
-			return ResponseEntity.ok("Update success with Job ID: "+job.getId());
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-	}
-	
-	@DeleteMapping(value = "/job/{id}")
+	@DeleteMapping(value = "/assignment-reason/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			jobService.delete(id);
-			return ResponseEntity.ok("Delete success with Job ID: "+id);
+			arService.delete(id);
+			return ResponseEntity.ok("Delete success with Assignment Reason ID: "+id);
 		} catch (Exception e) {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}
