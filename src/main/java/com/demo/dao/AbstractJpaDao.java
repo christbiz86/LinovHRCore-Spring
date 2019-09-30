@@ -101,5 +101,4 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	field.set(originalEntity, version);
     	entityManager.merge(originalEntity);
     }
-    
 }
