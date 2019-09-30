@@ -1,6 +1,5 @@
 package com.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -125,16 +123,24 @@ public class LovController {
 		}	
     }
     
-    @GetMapping(value = "/{typecode}")
+    @GetMapping(value = "/religions")
     @Transactional
-    public ResponseEntity<?> getByTypeCode(@PathVariable String typecode) {
+    public ResponseEntity<?> getReligions() {
     	try {
-    		List<Lov> lovList=new ArrayList<Lov>();
-    		if(typecode.equals("RLGN")) {
-        		lovList = religionComboBean.getListReligion();
-    		}else if(typecode.equals("PYMTMETHOD")) {
-        		lovList = paymentMethodComboBean.getListPaymentMethod();   			
-    		}
+    		List<Lov> lovList= religionComboBean.getListReligion();
+
+    		return new ResponseEntity<List<Lov>>(lovList, HttpStatus.OK); 
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+    
+    @GetMapping(value = "/payment-methods")
+    @Transactional
+    public ResponseEntity<?> getPaymentMethods() {
+    	try {
+    		List<Lov> lovList= paymentMethodComboBean.getListPaymentMethod();   			
+
     		return new ResponseEntity<List<Lov>>(lovList, HttpStatus.OK); 
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
