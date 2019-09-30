@@ -1,8 +1,12 @@
 Manifest-Version: 1.0
 Implementation-Title: Linov
 Implementation-Version: 0.0.1-SNAPSHOT
+<<<<<<< HEAD
 Built-By: asus
+=======
+Built-By: User
+>>>>>>> develop
 Implementation-Vendor-Id: com.demo
-Build-Jdk: 1.8.0_31
+Build-Jdk: 1.8.0_121
 Created-By: Maven Integration for Eclipse
 

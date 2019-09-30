@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,6 +27,8 @@ import com.demo.combo.JobComboBean;
 import com.demo.combo.LocationComboBean;
 import com.demo.combo.PositionComboBean;
 import com.demo.combo.UnitComboBean;
+import com.demo.combo.PaymentMethodComboBean;
+import com.demo.combo.ReligionComboBean;
 import com.demo.model.City;
 import com.demo.model.Company;
 import com.demo.model.Costcenter;
@@ -76,6 +80,12 @@ public class LovController {
     
     @Autowired
     private EmployeeComboBean employeeComboBean;
+
+    @Autowired
+    private ReligionComboBean religionComboBean;
+    
+    @Autowired
+    private PaymentMethodComboBean paymentMethodComboBean;
 
     @GetMapping(value = "/cities")
     @Transactional
@@ -137,6 +147,22 @@ public class LovController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}	
+    }
+    
+    @GetMapping(value = "/{typecode}")
+    @Transactional
+    public ResponseEntity<?> getByTypeCode(@PathVariable String typecode) {
+    	try {
+    		List<Lov> lovList=new ArrayList<Lov>();
+    		if(typecode.equals("RLGN")) {
+        		lovList = religionComboBean.getListReligion();
+    		}else if(typecode.equals("PYMTMETHOD")) {
+        		lovList = paymentMethodComboBean.getListPaymentMethod();   			
+    		}
+    		return new ResponseEntity<List<Lov>>(lovList, HttpStatus.OK); 
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
     }
 
     @GetMapping(value = "/units")
