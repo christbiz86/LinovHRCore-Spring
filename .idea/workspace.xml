@@ -1,10 +1,591 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6e7ffb05-b3db-4414-b0c8-4426bc7cd7a8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.jpt.core.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.validation.prefs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/CityComboBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/CompanyComboBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/CostcenterComboBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/CountryComboBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/GradeComboBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/LocationComboBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/PaymentMethodComboBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/combo/ReligionComboBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.component" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com.linovhr.core.iml" beforeDir="false" afterPath="$PROJECT_DIR$/com.linovhr.core.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/MainSpringBoot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/MainSpringBoot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/controller/JobController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/controller/JobController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/controller/LovController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/controller/LovController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/dao/LovDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/dao/LovDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/model/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/model/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/model/Job.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/model/Job.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/model/Province.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/model/Province.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/service/CountryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/service/CountryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/service/JobService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/service/JobService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/main.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/MainSpringBoot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/MainSpringBoot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/common/SimpleReportExporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/common/SimpleReportExporter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/common/SimpleReportFiller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/common/SimpleReportFiller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/ApplicationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/ApplicationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/CityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/CityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/CompanyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/CompanyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/CostcenterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/CostcenterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/CountryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/CountryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/DataAccessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/DataAccessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/GradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/GradeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/JobController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/JobController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/JobGradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/JobGradeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/JobResponsibilityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/JobResponsibilityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/JobWorkingConditionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/JobWorkingConditionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/LocationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/LocationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/LocationGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/LocationGroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/LocationGroupDetailController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/LocationGroupDetailController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/LovController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/LovController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/LovTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/LovTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/ModuleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/ModuleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/PersonAddressController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/PersonAddressController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/PersonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionGradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionGradeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionResponsibilityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionResponsibilityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionSlotController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionSlotController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionWorkingConditionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/PositionWorkingConditionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/ProvinceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/ProvinceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/ResponsibilityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/ResponsibilityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/ResponsibilityGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/ResponsibilityGroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/RoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/RoleDataAccessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/RoleDataAccessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/SessionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/SessionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/UnitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/UnitController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/UnitTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/UnitTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/UserRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/UserRoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/UserRoleWidgetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/UserRoleWidgetController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/WidgetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/WidgetController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/WidgetTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/WidgetTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/controller/WorkListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/controller/WorkListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/AbstractJpaDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/AbstractJpaDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/ApplicationDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/ApplicationDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/CityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/CityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/CommonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/CommonDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/CompanyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/CompanyDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/CostcenterDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/CostcenterDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/CountryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/CountryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/DataAccessDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/DataAccessDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/GradeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/GradeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/JobDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/JobDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/JobGradeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/JobGradeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/JobResponsibilityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/JobResponsibilityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/JobWorkingConditionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/JobWorkingConditionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/LocationDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/LocationDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/LocationGroupDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/LocationGroupDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/LocationGroupDetailDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/LocationGroupDetailDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/LovDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/LovDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/LovTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/LovTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/ModuleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/ModuleDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/ParentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/ParentDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/PersonAddressDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/PersonAddressDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/PersonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/PersonDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionGradeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionGradeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionResponsibilityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionResponsibilityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionSlotDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionSlotDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionWorkingConditionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/PositionWorkingConditionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/ProvinceDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/ProvinceDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/ResponsibilityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/ResponsibilityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/ResponsibilityGroupDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/ResponsibilityGroupDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/RoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/RoleDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/RoleDataAccessDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/RoleDataAccessDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/SessionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/SessionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/UnitDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/UnitDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/UnitTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/UnitTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/UserRoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/UserRoleDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/UserRoleWidgetDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/UserRoleWidgetDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/WidgetDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/WidgetDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/WidgetTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/WidgetTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/dao/WorkListDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/dao/WorkListDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/ErrorException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/exception/ErrorException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/MessageResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/exception/MessageResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/exception/ValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/exception/ValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/BaseEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/City.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/City.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Company.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Costcenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Costcenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Country.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Country.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/DataAccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/DataAccess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Grade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Grade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Job.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Job.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/JobGrade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/JobGrade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/JobResponsibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/JobResponsibility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/JobWorkingCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/JobWorkingCondition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/LocationGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/LocationGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/LocationGroupDetail.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/LocationGroupDetail.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Lov.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Lov.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/LovType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/LovType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Module.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Module.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/PersonAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/PersonAddress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Position.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/PositionGrade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/PositionGrade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/PositionResponsibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/PositionResponsibility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/PositionSlot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/PositionSlot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/PositionWorkingCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/PositionWorkingCondition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Province.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Province.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Responsibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Responsibility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/ResponsibilityGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/ResponsibilityGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/RoleDataAccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/RoleDataAccess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Session.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/TaxOffice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/TaxOffice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Tenant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Tenant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Unit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/UnitType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/UnitType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/UserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/UserRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/UserRoleWidget.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/UserRoleWidget.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/Widget.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/Widget.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/WidgetType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/WidgetType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/model/WorkList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/model/WorkList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/ApplicationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/ApplicationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/CityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/CityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/CompanyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/CompanyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/CostcenterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/CostcenterService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/CountryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/CountryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/DataAccessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/DataAccessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/GradeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/GradeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/JobGradeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/JobGradeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/JobResponsibilityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/JobResponsibilityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/JobService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/JobService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/JobWorkingConditionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/JobWorkingConditionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/LocationGroupDetailService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/LocationGroupDetailService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/LocationGroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/LocationGroupService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/LocationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/LocationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/LovService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/LovService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/LovTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/LovTypeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/ModuleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/ModuleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/PersonAddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/PersonAddressService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/PersonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/PositionGradeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/PositionGradeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/PositionResponsibilityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/PositionResponsibilityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/PositionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/PositionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/PositionSlotService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/PositionSlotService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/PositionWorkingConditionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/PositionWorkingConditionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/ProvinceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/ProvinceService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/ResponsibilityGroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/ResponsibilityGroupService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/ResponsibilityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/ResponsibilityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/RoleDataAccessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/RoleDataAccessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/SessionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/SessionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/UnitService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/UnitService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/UnitTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/UnitTypeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/UserRoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/UserRoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/UserRoleWidgetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/UserRoleWidgetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/WidgetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/WidgetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/WidgetTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/WidgetTypeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/demo/service/WorkListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/demo/service/WorkListService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/modelReport.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/modelReport.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT.war.original" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT.war.original" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/MainSpringBoot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/MainSpringBoot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/common/SimpleReportExporter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/common/SimpleReportExporter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/common/SimpleReportFiller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/common/SimpleReportFiller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ApplicationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ApplicationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CompanyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CompanyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CostcenterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CostcenterController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CountryController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/CountryController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/DataAccessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/DataAccessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/GradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/GradeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobGradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobGradeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobResponsibilityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobResponsibilityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobWorkingConditionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/JobWorkingConditionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LocationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LocationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LocationGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LocationGroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LovController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LovController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LovTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/LovTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ModuleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ModuleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PersonAddressController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PersonAddressController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PersonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionGradeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionGradeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionResponsibilityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionResponsibilityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionSlotController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionSlotController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionWorkingConditionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/PositionWorkingConditionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ProvinceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ProvinceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ResponsibilityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ResponsibilityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ResponsibilityGroupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/ResponsibilityGroupController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/RoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/RoleDataAccessController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/RoleDataAccessController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/SessionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/SessionController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UnitController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UnitController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UnitTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UnitTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UserRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UserRoleController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UserRoleWidgetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/UserRoleWidgetController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/WidgetController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/WidgetController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/WidgetTypeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/WidgetTypeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/WorkListController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/controller/WorkListController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/AbstractJpaDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/AbstractJpaDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ApplicationDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ApplicationDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CommonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CommonDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CompanyDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CompanyDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CostcenterDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CostcenterDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CountryDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/CountryDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/DataAccessDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/DataAccessDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/GradeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/GradeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobGradeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobGradeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobResponsibilityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobResponsibilityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobWorkingConditionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/JobWorkingConditionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LocationDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LocationDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LocationGroupDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LocationGroupDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LovDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LovDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LovTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/LovTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ModuleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ModuleDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ParentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ParentDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PersonAddressDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PersonAddressDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PersonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PersonDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionGradeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionGradeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionResponsibilityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionResponsibilityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionSlotDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionSlotDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionWorkingConditionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/PositionWorkingConditionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ProvinceDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ProvinceDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ResponsibilityDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ResponsibilityDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ResponsibilityGroupDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/ResponsibilityGroupDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/RoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/RoleDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/RoleDataAccessDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/RoleDataAccessDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/SessionDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/SessionDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UnitDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UnitDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UnitTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UnitTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UserRoleDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UserRoleDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UserRoleWidgetDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/UserRoleWidgetDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/WidgetDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/WidgetDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/WidgetTypeDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/WidgetTypeDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/WorkListDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/dao/WorkListDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/exception/ErrorException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/exception/ErrorException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/exception/MessageResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/exception/MessageResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/exception/ValidationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/exception/ValidationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Application.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/BaseEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/BaseEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/City.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/City.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Company.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Company.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Costcenter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Costcenter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Country.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Country.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/DataAccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/DataAccess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Grade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Grade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Job.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Job.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/JobGrade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/JobGrade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/JobResponsibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/JobResponsibility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/JobWorkingCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/JobWorkingCondition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Location.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Location.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/LocationGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/LocationGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Lov.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Lov.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/LovType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/LovType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Module.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Module.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PersonAddress.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PersonAddress.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Position.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Position.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionGrade.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionGrade.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionResponsibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionResponsibility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionSlot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionSlot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionWorkingCondition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/PositionWorkingCondition.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Province.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Province.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Responsibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Responsibility.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/ResponsibilityGroup.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/ResponsibilityGroup.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Role.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/RoleDataAccess.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/RoleDataAccess.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Session.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Session.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/TaxOffice.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/TaxOffice.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Tenant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Tenant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Unit.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Unit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/UnitType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/UnitType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/UserRole.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/UserRole.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/UserRoleWidget.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/UserRoleWidget.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Widget.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/Widget.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/WidgetType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/WidgetType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/WorkList.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/model/WorkList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ApplicationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ApplicationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CompanyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CompanyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CostcenterService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CostcenterService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CountryService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/CountryService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/DataAccessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/DataAccessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/GradeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/GradeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobGradeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobGradeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobResponsibilityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobResponsibilityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobWorkingConditionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/JobWorkingConditionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LocationGroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LocationGroupService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LocationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LocationService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LovService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LovService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LovTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/LovTypeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ModuleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ModuleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PersonAddressService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PersonAddressService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PersonService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PersonService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionGradeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionGradeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionResponsibilityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionResponsibilityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionSlotService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionSlotService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionWorkingConditionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/PositionWorkingConditionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ProvinceService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ProvinceService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ResponsibilityGroupService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ResponsibilityGroupService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ResponsibilityService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/ResponsibilityService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/RoleDataAccessService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/RoleDataAccessService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/RoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/RoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/SessionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/SessionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UnitService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UnitService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UnitTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UnitTypeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UserRoleService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UserRoleService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UserRoleWidgetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UserRoleWidgetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/WidgetService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/WidgetService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/WidgetTypeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/WidgetTypeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/WorkListService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/com/demo/service/WorkListService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/modelReport.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/classes/modelReport.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/FastInfoset-1.2.15.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/FastInfoset-1.2.15.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/HikariCP-3.2.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/HikariCP-3.2.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/activation-1.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/activation-1.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/antlr-2.7.7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/antlr-2.7.7.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/aspectjweaver-1.9.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/aspectjweaver-1.9.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/attoparser-2.0.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/attoparser-2.0.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcmail-jdk14-1.38.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcmail-jdk14-1.38.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcmail-jdk14-138.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcmail-jdk14-138.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcprov-jdk14-1.38.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcprov-jdk14-1.38.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcprov-jdk14-138.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bcprov-jdk14-138.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bctsp-jdk14-1.38.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/bctsp-jdk14-1.38.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/byte-buddy-1.9.10.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/byte-buddy-1.9.10.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/castor-core-1.3.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/castor-core-1.3.3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/castor-xml-1.3.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/castor-xml-1.3.3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/classmate-1.4.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/classmate-1.4.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.9.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.9.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-digester-2.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-digester-2.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-lang-2.6.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-lang-2.6.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-logging-1.1.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/commons-logging-1.1.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/core-3.2.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/core-3.2.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/dom4j-2.1.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/dom4j-2.1.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/ecj-4.3.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/ecj-4.3.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/hibernate-commons-annotations-5.1.0.Final.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/hibernate-commons-annotations-5.1.0.Final.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/hibernate-core-5.4.2.Final.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/hibernate-core-5.4.2.Final.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/hibernate-validator-6.0.14.Final.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/hibernate-validator-6.0.14.Final.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/icu4j-57.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/icu4j-57.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/istack-commons-runtime-3.0.7.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/istack-commons-runtime-3.0.7.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/itext-2.1.7.js5.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/itext-2.1.7.js5.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-annotations-2.9.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-annotations-2.9.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-core-2.9.8.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-core-2.9.8.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-databind-2.9.8.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-databind-2.9.8.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jdk8-2.9.8.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jdk8-2.9.8.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jsr310-2.9.8.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jsr310-2.9.8.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-module-parameter-names-2.9.8.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-module-parameter-names-2.9.8.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jakarta-regexp-1.4.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jakarta-regexp-1.4.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jandex-2.0.5.Final.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jandex-2.0.5.Final.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jasperreports-6.4.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jasperreports-6.4.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javassist-3.24.0-GA.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javassist-3.24.0-GA.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.activation-api-1.2.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.activation-api-1.2.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.annotation-api-1.3.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.annotation-api-1.3.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.inject-1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.inject-1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.mail-1.6.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.mail-1.6.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.persistence-api-2.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.persistence-api-2.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.transaction-api-1.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/javax.transaction-api-1.3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jaxb-api-2.3.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jaxb-api-2.3.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jaxb-runtime-2.3.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jaxb-runtime-2.3.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jboss-logging-3.3.2.Final.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jboss-logging-3.3.2.Final.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jcommon-1.0.23.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jcommon-1.0.23.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jfreechart-1.0.19.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jfreechart-1.0.19.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jul-to-slf4j-1.7.25.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/jul-to-slf4j-1.7.25.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-api-2.11.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-api-2.11.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-to-slf4j-2.11.2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-to-slf4j-2.11.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/logback-classic-1.2.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/logback-classic-1.2.3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/logback-core-1.2.3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/logback-core-1.2.3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-analyzers-common-4.5.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-analyzers-common-4.5.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-core-4.5.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-core-4.5.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-queries-4.5.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-queries-4.5.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-queryparser-4.5.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-queryparser-4.5.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-sandbox-4.5.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/lucene-sandbox-4.5.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/olap4j-0.9.7.309-JS-3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/olap4j-0.9.7.309-JS-3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/postgresql-42.2.5.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/postgresql-42.2.5.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.25.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.25.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/snakeyaml-1.23.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/snakeyaml-1.23.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-aop-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-aspects-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-aspects-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-beans-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-autoconfigure-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-autoconfigure-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-aop-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-aop-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-data-jpa-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-data-jpa-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-jdbc-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-jdbc-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-json-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-json-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-logging-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-logging-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-mail-2.0.1.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-mail-2.0.1.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-thymeleaf-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-thymeleaf-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-tomcat-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-tomcat-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-web-2.1.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-web-2.1.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-context-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-context-support-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-context-support-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-core-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-data-commons-2.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-data-commons-2.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-data-jpa-2.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-data-jpa-2.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-expression-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-jcl-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-jcl-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-jdbc-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-jdbc-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-orm-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-orm-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-tx-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-tx-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-web-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-web-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-webmvc-5.1.5.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/spring-webmvc-5.1.5.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-1.2.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-1.2.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-api-1.0-2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-api-1.0-2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-api-1.0.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-api-1.0.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-ex-1.8.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/stax-ex-1.8.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-3.0.11.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-3.0.11.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-extras-java8time-3.0.3.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-extras-java8time-3.0.3.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-spring5-3.0.11.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-spring5-3.0.11.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-core-9.0.16.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-core-9.0.16.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-el-9.0.16.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-el-9.0.16.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-websocket-9.0.16.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-websocket-9.0.16.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/txw2-2.3.1.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/txw2-2.3.1.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/unbescape-1.1.6.RELEASE.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/unbescape-1.1.6.RELEASE.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/validation-api-2.0.1.Final.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/lib/validation-api-2.0.1.Final.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/com.linovhr.core-0.0.1-SNAPSHOT/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.demo/linov/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/m2e-wtp/web-resources/META-INF/maven/com.demo/linov/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.progamer.minimarket.AppTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.progamer.minimarket.AppTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.progamer.minimarket.AppTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.progamer.minimarket.AppTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/progamer/minimarket/AppTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/progamer/minimarket/AppTest.class" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/MainSpringBoot.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/service/JobService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="85" selection-start-line="85" selection-end-line="85" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/model/BaseEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret lean-forward="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>&lt;&lt;&lt;</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/demo/service/JobService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/demo/model/BaseEntity.java" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="10" />
     <option name="y" value="47" />
     <option name="width" value="1346" />
     <option name="height" value="701" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="core" type="b2602c69:ProjectViewProjectNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -13,6 +594,105 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e7ffb05-b3db-4414-b0c8-4426bc7cd7a8" name="Default Changelist" comment="" />
+      <created>1569809900886</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1569809900886</updated>
+      <workItem from="1569809912829" duration="235000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="235000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="25" width="1366" height="743" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Persistence" side_tool="true" />
+      <window_info id="Designer" />
+      <window_info id="Image Layers" />
+      <window_info id="UI Designer" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Capture Tool" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Spring" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="bottom" id="Database Changes" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Maven" />
+      <window_info anchor="right" id="Database" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/MainSpringBoot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="20" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/service/JobService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/model/BaseEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret lean-forward="true" />
+        </state>
+      </provider>
+    </entry>
   </component>
   <component name="masterDetails">
     <states>

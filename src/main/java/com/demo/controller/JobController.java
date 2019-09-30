@@ -110,5 +110,5 @@ public class JobController {
 		    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed!");
 		}
 	}
-
+    
 }

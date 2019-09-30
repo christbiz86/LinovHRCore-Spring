@@ -18,10 +18,6 @@ public class JobService {
 	@Autowired
 	private JobDao jobDao;
 	
-	private Timestamp getTime() {
-		return new Timestamp(System.currentTimeMillis());
-	}
-	
 	public void valIdExist(String id) throws Exception {
 		if(!jobDao.isIdExist(id)) {
 			throw new Exception("Job not found!");
@@ -79,13 +75,6 @@ public class JobService {
 		}
 	}
 	
-	public void valCreatedAtNotChange(Job job) throws Exception {
-		Timestamp createdAt = findById(job.getId()).getCreatedAt();
-		if(!job.getCreatedAt().equals(createdAt)) {
-			throw new Exception("Created at can't be changed!");
-		}
-	}
-	
 	public void insert(Job job) throws Exception {
 		valBkNotNull(job);
 		valBkNotExist(job);
@@ -94,7 +83,6 @@ public class JobService {
 	}
 	
 	public void update(Job job) throws Exception {
-//		job.setUpdatedAt(getTime());
 		valIdNotNull(job);
 		valIdExist(job.getId());
 		valBkNotNull(job);
@@ -109,5 +97,5 @@ public class JobService {
 		valIdExist(id);
 		jobDao.deleteById(id);
 	}
-
+	
 }
