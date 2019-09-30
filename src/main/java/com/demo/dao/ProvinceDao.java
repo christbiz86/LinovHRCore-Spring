@@ -33,7 +33,7 @@ public class ProvinceDao extends AbstractJpaDao<Province> {
     @Transactional
 	public Province findByBk(String code, String country) {
 		List<Province> list = super.entityManager
-                .createQuery("FROM Province WHERE code = :code AND company.id = :country")
+                .createQuery("FROM Province WHERE code = :code AND country.id = :country")
                 .setParameter("code", code)
                 .setParameter("country", country)
                 .getResultList();
