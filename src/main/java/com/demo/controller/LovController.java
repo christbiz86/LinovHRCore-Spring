@@ -19,6 +19,7 @@ import com.demo.combo.CityComboBean;
 import com.demo.combo.CompanyComboBean;
 import com.demo.combo.CostcenterComboBean;
 import com.demo.combo.CountryComboBean;
+import com.demo.combo.EmployeeTypeComboBean;
 import com.demo.combo.GenderComboBean;
 import com.demo.combo.GradeComboBean;
 import com.demo.combo.LocationComboBean;
@@ -64,6 +65,9 @@ public class LovController {
     
     @Autowired
     private ActionTypeComboBean actionTypeComboBean;
+    
+    @Autowired
+    private EmployeeTypeComboBean employeeTypeComboBean;
 
     @GetMapping(value = "/cities")
     @Transactional
@@ -155,6 +159,17 @@ public class LovController {
     	try {
     		List<Lov> actionTypeList = actionTypeComboBean.getList();
         	return ResponseEntity.ok(actionTypeList);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+    
+    @GetMapping(value = "/employee-types")
+    @Transactional
+    public ResponseEntity<?> getAllEmployeeType() {
+    	try {
+    		List<Lov> empTypeList = employeeTypeComboBean.getList();
+        	return ResponseEntity.ok(empTypeList);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
