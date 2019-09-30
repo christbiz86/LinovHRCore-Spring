@@ -162,11 +162,7 @@ public class LovController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}	
     }
-<<<<<<< HEAD
     
-    @GetMapping(value = "/religions")
-=======
-
     @GetMapping(value = "/genders")
     @Transactional
     public ResponseEntity<?> getAllGender() {
@@ -176,31 +172,6 @@ public class LovController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
-    }
-
-    @GetMapping(value = "/{typecode}")
->>>>>>> 34e7ae402cd032e1ae946b1606a6f7504fc28e42
-    @Transactional
-    public ResponseEntity<?> getReligions() {
-    	try {
-    		List<Lov> lovList= religionComboBean.getListReligion();
-
-    		return new ResponseEntity<List<Lov>>(lovList, HttpStatus.OK); 
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-    }
-    
-    @GetMapping(value = "/payment-methods")
-    @Transactional
-    public ResponseEntity<?> getPaymentMethods() {
-    	try {
-    		List<Lov> lovList= paymentMethodComboBean.getListPaymentMethod();   			
-
-    		return new ResponseEntity<List<Lov>>(lovList, HttpStatus.OK); 
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
     }
 
     @GetMapping(value = "/maritals")
@@ -234,6 +205,7 @@ public class LovController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
+    }
 
     @GetMapping(value = "/units")
     @Transactional
@@ -289,4 +261,30 @@ public class LovController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}	
     }
+    
+
+    @GetMapping(value = "/religions")
+    @Transactional
+    public ResponseEntity<?> getReligions() {
+    	try {
+    		List<Lov> lovList= religionComboBean.getListReligion();
+
+    		return new ResponseEntity<List<Lov>>(lovList, HttpStatus.OK); 
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+    
+    @GetMapping(value = "/payment-methods")
+    @Transactional
+    public ResponseEntity<?> getPaymentMethods() {
+    	try {
+    		List<Lov> lovList= paymentMethodComboBean.getListPaymentMethod();   			
+
+    		return new ResponseEntity<List<Lov>>(lovList, HttpStatus.OK); 
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+
 }
