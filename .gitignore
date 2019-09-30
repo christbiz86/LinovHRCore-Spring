@@ -4,6 +4,8 @@ src/main/resources/
 .project
 *.xml
 .classpath
+.gitignore
+.settings/
 .project
 database.sql
 HELP.md
