@@ -19,30 +19,26 @@ public abstract class BaseEntity implements Serializable {
     private String id;
 
 	@Column(name = "created_by")
-	private String createdBy = "kosong";
+	private String createdBy;
 
 	@Column(name = "created_at")
-	private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+	private Timestamp createdAt;
 
 	@Column(name = "updated_by")
-	private String updatedBy = "kosong";
+	private String updatedBy;
 
 	@Column(name = "updated_at")
-	private Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
+	private Timestamp updatedAt;
 
 	@Column(name = "version")
-	private Long version = new Long(0);
+	private Long version;
 
 	public Long getVersion() {
 		return version;
 	}
 
 	public void setVersion(Long version) {
-		if(version == null) {
-			version = new Long(0);
-		}else {
-			this.version = version;
-		}
+		this.version = version;
 	}
 
 	public String getId() {
@@ -84,5 +80,4 @@ public abstract class BaseEntity implements Serializable {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
 }
