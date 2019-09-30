@@ -43,39 +43,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
             }
 		}
 	}
-
-	public T update(final T entity) {
-		try {
-			if (entity instanceof Object) {
-				int pointer = 0;
-				BaseEntity base = (BaseEntity) entity;
-				Field[] listField = entity.getClass().getFields();
-				System.err.println(listField.length);
-				for (Field updateField : listField) {
-					if (updateField.getName().equals("updatedAt")) {
-						Object o2 = updateField.get(entity);
-						updateField.set(base, new Timestamp(System.currentTimeMillis()));
-						System.err.println(o2);
-					} else if (updateField.getName().equals("updatedBy")) {
-						Object o3 = updateField.get(entity);
-						updateField.set(base, "kosong");
-						System.err.println(o3);
-					} else if (updateField.getName().equals("version")) {
-						Object o6 = updateField.get(entity);
-						updateField.set(base, Long.parseLong(String.valueOf(o6)) + 1);
-						System.err.println(o6);
-					}
-					pointer++;
-				}
-			}
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return entityManager.merge(entity);
-	}
-=======
-        entityManager.persist(entity);
-    }
     
     public T update(final T entity) throws Exception {
 		Field[] listField = entity.getClass().getSuperclass().getDeclaredFields();
@@ -105,14 +72,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 	public void deleteById(final String entityId) {
 		final T entity = findOne(entityId);
 		delete(entity);
-	}
-
-	public boolean isIdExist(final String entityId) {
-		if (findOne(entityId) == null) {
-			return false;
-		} else {
-			return true;
-		}
 	}
     
     private void valVersion(final String entityId, Long versionUp) throws Exception {

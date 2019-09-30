@@ -223,6 +223,7 @@ public class LovController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
+    }
 
     @GetMapping(value = "/units")
     @Transactional
