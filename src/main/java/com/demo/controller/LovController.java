@@ -74,8 +74,8 @@ public class LovController {
     @Autowired
     private BloodTypeComboBean bloodTypeComboBean;
     
-//    @Autowired
-//    private EmployeeComboBean employeeComboBean;
+    @Autowired
+    private EmployeeComboBean employeeComboBean;
 
     @GetMapping(value = "/cities")
     @Transactional
@@ -183,14 +183,14 @@ public class LovController {
 		}	
     }
     
-//    @GetMapping(value = "/employees")
-//    @Transactional
-//    public ResponseEntity<?> getAllEmployees() {
-//    	try {
-//    		List<Employee> empList = employeeComboBean.getList();
-//        	return new ResponseEntity<List<Employee>>(empList, HttpStatus.OK);
-//		} catch (Exception e) {
-//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-//		}	
-//    }
+    @GetMapping(value = "/employees")
+    @Transactional
+    public ResponseEntity<?> getAllEmployees() {
+    	try {
+    		List<Employee> empList = employeeComboBean.getList();
+        	return new ResponseEntity<List<Employee>>(empList, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}	
+    }
 }
