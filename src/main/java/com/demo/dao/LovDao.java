@@ -42,4 +42,10 @@ public class LovDao extends AbstractJpaDao<Lov>{
 			return true;
 		}	 
 	}
+	
+	@SuppressWarnings("unchecked")
+    public List<Lov> findByType(String code){
+        return super.entityManager.createQuery("FROM Lov where lovType.code like :code")
+        		.setParameter("code", code).getResultList();
+    }
 }
