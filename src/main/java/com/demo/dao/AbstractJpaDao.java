@@ -61,6 +61,10 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 				valVersion(entityId, version);
 				version++;
 				field.set(entity, version);
+			}else if(field.getName().equals("createdBy")) {
+				String createdBy = (String) field.get(entity);
+				valCreatedBy(entityId, createdBy);
+				field.set(entity, createdBy);
 			}
 		}
 		return entityManager.merge(entity);
@@ -101,5 +105,12 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	version++;
     	field.set(originalEntity, version);
     	entityManager.merge(originalEntity);
+    }
+    
+    private void valCreatedBy(final String entityId, String createdBy) throws Exception {
+    	BaseEntity base = (BaseEntity) findOne(entityId);
+    	if(!base.getCreatedBy().equals(createdBy)) {
+    		throw new Exception("Created By doesn't match!");
+    	}
     }
 }
