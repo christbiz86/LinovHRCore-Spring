@@ -1,33 +1,14 @@
 package com.demo.model;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Cacheable
@@ -39,8 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 				)
 		)
 public class Job extends BaseEntity {
-	
-
 
     @Column(name = "name")
     private String name;
@@ -54,18 +33,16 @@ public class Job extends BaseEntity {
     @Column(name = "ordinal")
     private Integer ordinal;
 
-      @OneToOne
+    @OneToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
-
-    
 
     public String getName(){
         return name;
     }
 
     public void setName(String name) {
-    	if(name == null) {
+    	if(name.isEmpty()) {
     		this.name = new String();
     	} else {
     		this.name = name;
@@ -77,7 +54,7 @@ public class Job extends BaseEntity {
     }
 
 	public void setCode(String code) {
-		if(code == null) {
+		if(code.isEmpty()) {
 			this.code = new String();
 		} else {
 			this.code = code;
@@ -89,7 +66,7 @@ public class Job extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		if(description == null) {
+		if(description.isEmpty()) {
 			this.description = new String();
     	} else {
     		this.description = description;
@@ -107,7 +84,6 @@ public class Job extends BaseEntity {
     		this.ordinal = ordinal;
     	}
 	}
-	
 
 	public Company getCompany() {
         return company;

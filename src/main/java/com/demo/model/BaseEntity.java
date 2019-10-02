@@ -16,31 +16,35 @@ public abstract class BaseEntity implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    public String id;
+    private String id;
 
 	@Column(name = "created_by")
-	public String createdBy = "kosong";
+	private String createdBy;
 
 	@Column(name = "created_at")
-	public Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+	private Timestamp createdAt;
 
 	@Column(name = "updated_by")
-	public String updatedBy = "kosong";
+	private String updatedBy;
 
 	@Column(name = "updated_at")
-	public Timestamp updatedAt = new Timestamp(System.currentTimeMillis());
+	private Timestamp updatedAt;
 
 	@Column(name = "version")
-	public Long version = new Long(0);
+	private Long version;
 
 	public Long getVersion() {
 		return version;
 	}
 
 	public void setVersion(Long version) {
+		if (version == null) {
+			this.version = new Long(0);
+		} else {
 			this.version = version;
+		}
 	}
-	    
+
 	public String getId() {
 		return id;
 	}
@@ -80,5 +84,4 @@ public abstract class BaseEntity implements Serializable {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
 }

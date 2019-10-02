@@ -14,7 +14,7 @@ public class LocationGroupDao extends AbstractJpaDao<LocationGroup> {
 	
 	@SuppressWarnings("unchecked")
 	public LocationGroup findByBk(String code, String companyId) {
-		List<LocationGroup> list = super.entityManager.createQuery("FROM LocationGroup WHERE code=:code AND company=:companyId")
+		List<LocationGroup> list = super.entityManager.createQuery("FROM LocationGroup WHERE code=:code AND company.id=:companyId")
 				.setParameter("code", code)
 				.setParameter("companyId", companyId)
 				.getResultList();

@@ -106,7 +106,7 @@ public class PositionService {
 		valBkNotNull(position);
 		valBkNotChange(position);
 		position.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-		valCreatedNotChange(position);
+//		valCreatedNotChange(position);
 		valNonBk(position);
 
 		positionDao.update(position);

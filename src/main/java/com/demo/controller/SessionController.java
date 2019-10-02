@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.exception.ValidationException;
 import com.demo.model.Session;
 import com.demo.service.SessionService;
 
@@ -69,9 +68,6 @@ public class SessionController {
 			sessionService.save(session);	
 			return ResponseEntity.ok("Save Success");
 		}
-		catch (ValidationException ex) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessages());
-		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insert Failed");
 		}
@@ -84,10 +80,6 @@ public class SessionController {
 		try{	
 			sessionService.update(session);	
 			return ResponseEntity.ok("Put Success");
-		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -102,10 +94,6 @@ public class SessionController {
 		try{	
 			sessionService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
-		}
-		catch(ValidationException val){
-			 
-		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(val.getMessage());
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
