@@ -13,6 +13,7 @@ import com.demo.model.BaseEntity;
 public abstract class AbstractJpaDao<T extends Serializable> {
 
     private Class<T> clazz;
+    private T data;
 
     @PersistenceContext
     protected EntityManager entityManager;
@@ -38,7 +39,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     			if(field.getName().equals("createdAt")) {
                 	field.set(entity, new Timestamp(System.currentTimeMillis()));
                 }else if(field.getName().equals("createdBy")) {
-                	field.set(entity, "kosong");
+                	field.set(entity, "cek");
                 }else if(field.getName().equals("version")) {
                     field.set(entity, 0L);
                 }
@@ -47,33 +48,32 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 			// TODO: handle exception
 			System.err.println(e.getMessage());
 		}
-    	
+    	entityManager.persist(entity);
 	}
 
 	public T update(final T entity) {
 		try {
-			if (entity instanceof Object) {
 				int pointer = 0;
-				BaseEntity base = (BaseEntity) entity;
-				Field[] listField = entity.getClass().getFields();
+				Field[] listField = entity.getClass().getSuperclass().getFields();
+				data = findOne(String.valueOf(entity.getClass().getSuperclass().getField("id").get(entity)));
+				System.err.println(data.getClass().getSuperclass().getField("createdBy").get(entity));
 				System.err.println(listField.length);
 				for (Field updateField : listField) {
 					if (updateField.getName().equals("updatedAt")) {
-						Object o2 = updateField.get(entity);
-						updateField.set(base, new Timestamp(System.currentTimeMillis()));
+						Object o2 = updateField.get(data);
+						updateField.set(data, new Timestamp(System.currentTimeMillis()));
 						System.err.println(o2);
 					} else if (updateField.getName().equals("updatedBy")) {
-						Object o3 = updateField.get(entity);
-						updateField.set(base, "kosong");
+						Object o3 = updateField.get(data);
+						updateField.set(data, "kosong");
 						System.err.println(o3);
 					} else if (updateField.getName().equals("version")) {
-						Object o6 = updateField.get(entity);
-						updateField.set(base, Long.parseLong(String.valueOf(o6)) + 1);
+						Object o6 = updateField.get(data);
+						updateField.set(data, Long.parseLong(String.valueOf(o6)) + 1);
 						System.err.println(o6);
 					}
 					pointer++;
 				}
-			}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
