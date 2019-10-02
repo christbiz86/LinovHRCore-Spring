@@ -20,6 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 				)
 		)
 public class Duty extends BaseEntity {
+	private static final long serialVersionUID = 1L;
 	
 	@OneToOne
     @JoinColumn(name = "company_id", referencedColumnName = "id")

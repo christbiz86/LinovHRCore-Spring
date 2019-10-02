@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.combo.ActionTypeComboBean;
 import com.demo.combo.AssignmentReasonComboBean;
+import com.demo.combo.AssignmentStatusComboBean;
 import com.demo.combo.BloodTypeComboBean;
 import com.demo.combo.CityComboBean;
 import com.demo.combo.CompanyComboBean;
@@ -33,6 +34,7 @@ import com.demo.combo.LocationComboBean;
 import com.demo.combo.MaritalComboBean;
 import com.demo.combo.PaymentMethodComboBean;
 import com.demo.combo.PositionComboBean;
+import com.demo.combo.ProjectComboBean;
 import com.demo.combo.ProvinceComboBean;
 import com.demo.combo.ReligionComboBean;
 import com.demo.combo.UnitComboBean;
@@ -48,9 +50,9 @@ import com.demo.model.Job;
 import com.demo.model.Location;
 import com.demo.model.Lov;
 import com.demo.model.Position;
+import com.demo.model.Project;
 import com.demo.model.Province;
 import com.demo.model.Unit;
-import com.demo.service.LovService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -81,7 +83,7 @@ public class LovController {
 	private JobComboBean jobComboBean;
 
 	@Autowired
-	private LovService lovService;
+	private AssignmentStatusComboBean asComboBean;
 	
 	@Autowired
 	private EmployeeStatusComboBean esComboBean;
@@ -91,21 +93,6 @@ public class LovController {
 	
 	@Autowired
 	private ProvinceComboBean provinceComboBean;
-	
-    @Autowired
-    private CityComboBean cityComboBean;
-    
-    @Autowired
-    private CompanyComboBean companyComboBean;
-    
-    @Autowired
-    private CostcenterComboBean ccComboBean;
-    
-    @Autowired
-    private GradeComboBean gradeComboBean;
-    
-    @Autowired
-    private LocationComboBean locationComboBean;
     
     @Autowired
     private GenderComboBean genderComboBean;
@@ -123,9 +110,6 @@ public class LovController {
     private UnitComboBean unitComboBean;
     
     @Autowired
-    private JobComboBean jobComboBean;
-    
-    @Autowired
     private PositionComboBean posComboBean;
     
     @Autowired
@@ -139,6 +123,9 @@ public class LovController {
     
     @Autowired
     private PaymentMethodComboBean paymentMethodComboBean;
+    
+    @Autowired
+    private ProjectComboBean projectComboBean;
 
     @GetMapping(value = "/cities")
     @Transactional
@@ -206,22 +193,11 @@ public class LovController {
 		}
 	}
 
-	@GetMapping(value = "/jobs")
-	@Transactional
-	public ResponseEntity<?> getAllJobsLov(String code) throws Exception {
-		try {
-			List<Job> list = jobComboBean.getList();
-			return new ResponseEntity<List<Job>>(list, HttpStatus.OK);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
-	}
-
 	@GetMapping(value = "/assignment-statuses")
 	@Transactional
 	public ResponseEntity<?> getAllAssignmentStatusLov(String code) throws Exception {
 		try {
-			List<Lov> list = lovService.findByType("ASTA");
+			List<Lov> list = asComboBean.getList();
 			return new ResponseEntity<List<Lov>>(list, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -313,12 +289,13 @@ public class LovController {
     @GetMapping(value = "/employee-types")
     @Transactional
     public ResponseEntity<?> getAllEmployeeType() {
-    	try {
-    		List<Lov> empTypeList = employeeTypeComboBean.getList();
-        	return ResponseEntity.ok(empTypeList);
-		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}
+        try {
+            List<Lov> empTypeList = employeeTypeComboBean.getList();
+            return ResponseEntity.ok(empTypeList);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
 
     @GetMapping(value = "/units")
     @Transactional
@@ -372,6 +349,18 @@ public class LovController {
         	return new ResponseEntity<List<Employee>>(empList, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-		}	
+		}
     }
+    
+    @GetMapping(value = "/projects")
+	@Transactional
+	public ResponseEntity<?> getAllProject() {
+		try {
+			List<Project> projectList = projectComboBean.getList();
+			return new ResponseEntity<List<Project>>(projectList, HttpStatus.OK);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+	}
+    
 }

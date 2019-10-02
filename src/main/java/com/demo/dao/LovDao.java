@@ -43,7 +43,6 @@ public class LovDao extends AbstractJpaDao<Lov>{
 	}
 	
 	@SuppressWarnings("unchecked")
-<<<<<<< HEAD
 	public List<Lov> findByType(String code) {
 		List<Lov> list = super.entityManager.createQuery("FROM Lov WHERE lovType.code = :code")
 				.setParameter("code", code)
@@ -51,14 +50,5 @@ public class LovDao extends AbstractJpaDao<Lov>{
 		
 		return list;
 	}
-	
-=======
-	public List<Lov> findByType(String code){
-		List<Lov> list = super.entityManager.createQuery("FROM Lov WHERE lovType.code=:code")
-				.setParameter("code", code).getResultList();
-		
-		return list;
-	}
 
->>>>>>> 65488c60adddca5fa961d41b823353e8c7138d2b
 }
