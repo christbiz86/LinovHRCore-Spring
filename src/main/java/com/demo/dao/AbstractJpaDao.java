@@ -30,18 +30,24 @@ public abstract class AbstractJpaDao<T extends Serializable> {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
-    public void create(final T entity) throws IllegalArgumentException, IllegalAccessException {
-    	Field[] listField = entity.getClass().getSuperclass().getDeclaredFields();
-    	for (Field field : listField) {
-			field.setAccessible(true);
-			if(field.getName().equals("createdAt")) {
-            	field.set(entity, new Timestamp(System.currentTimeMillis()));
-            }else if(field.getName().equals("createdBy")) {
-            	field.set(entity, "kosong");
-            }else if(field.getName().equals("version")) {
-                field.set(entity, 0L);
-            }
+    public void create(final T entity)  {
+    	try {
+    		Field[] listField = entity.getClass().getSuperclass().getDeclaredFields();
+        	for (Field field : listField) {
+    			field.setAccessible(true);
+    			if(field.getName().equals("createdAt")) {
+                	field.set(entity, new Timestamp(System.currentTimeMillis()));
+                }else if(field.getName().equals("createdBy")) {
+                	field.set(entity, "kosong");
+                }else if(field.getName().equals("version")) {
+                    field.set(entity, 0L);
+                }
+    		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e.getMessage());
 		}
+    	
 	}
 
 	public T update(final T entity) {
