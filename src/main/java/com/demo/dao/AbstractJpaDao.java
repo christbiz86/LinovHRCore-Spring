@@ -33,7 +33,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     public void create(final T entity)  {
     	try {
-    		Field[] listField = entity.getClass().getSuperclass().getDeclaredFields();
+    		Field[] listField = entity.getClass().getSuperclass().getFields();
         	for (Field field : listField) {
     			field.setAccessible(true);
     			if(field.getName().equals("createdAt")) {
@@ -54,9 +54,9 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 	public T update(final T entity) {
 		try {
 				int pointer = 0;
-				Field[] listField = entity.getClass().getSuperclass().getFields();
 				data = findOne(String.valueOf(entity.getClass().getSuperclass().getField("id").get(entity)));
-				System.err.println(data.getClass().getSuperclass().getField("createdBy").get(entity));
+				Field[] listField = data.getClass().getSuperclass().getFields();
+				System.err.println(data.getClass().getSuperclass().getField("createdBy").get(data));
 				System.err.println(listField.length);
 				for (Field updateField : listField) {
 					if (updateField.getName().equals("updatedAt")) {
@@ -77,7 +77,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		return entityManager.merge(entity);
+		return entityManager.merge(data);
 	}
 
 	public void delete(final T entity) {
