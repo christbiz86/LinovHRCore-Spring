@@ -71,6 +71,7 @@ public class JobController {
 			jobService.insert(job);
 			return ResponseEntity.ok("Insert success with Job name: "+job.getName());
 		} catch (Exception e) {
+			System.err.println(e.getMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
