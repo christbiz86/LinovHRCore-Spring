@@ -51,6 +51,10 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	entityManager.persist(entity);
 	}
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 	public T update(final T entity) {
 		try {
 				int pointer = 0;
@@ -74,6 +78,36 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 					}
 					pointer++;
 				}
+<<<<<<< HEAD
+			}
+=======
+    public T update(final T entity) {
+    	try {
+    		if(entity instanceof Object) {
+    			int pointer = 0;
+				BaseEntity base = (BaseEntity)entity;
+    			Field[] listField = entity.getClass().getFields();
+    			System.err.println(listField.length);
+    			for(Field updateField: listField) {
+    				if(updateField.getName().equals("updatedAt")) {
+    					Object o2 = updateField.get(entity);
+    					updateField.set(base, new Timestamp(System.currentTimeMillis()));
+    					System.err.println(o2);
+    				}else if(updateField.getName().equals("updatedBy")) {
+    					Object o3 = updateField.get(entity);
+    					updateField.set(base, "kosong");
+    					System.err.println(o3);
+    				}else if(updateField.getName().equals("version")) {
+    					Object o6 = updateField.get(entity);
+    					updateField.set(base, Long.parseLong(String.valueOf(o6)));
+    					System.err.println(o6);
+    				}
+    				pointer++;
+    			}
+    		}
+>>>>>>> b6d514d2fb14597636240c5bd37c26eeeea69139
+=======
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
