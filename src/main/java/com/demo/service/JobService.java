@@ -86,7 +86,7 @@ public class JobService {
 		valIdNotNull(job);
 		valIdExist(job.getId());
 		valBkNotNull(job);
-//		valBkNotChange(job);
+		valBkNotChange(job);
 		valNonBk(job);
 //		valCreatedAtNotChange(job);
 		System.out.println("Validasi selesai");
