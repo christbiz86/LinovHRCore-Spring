@@ -16,11 +16,15 @@ public abstract class BaseEntity implements Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    public String id;
 
 	@Column(name = "created_by")
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private String createdBy;
+=======
+	public String createdBy;
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 
 	@Column(name = "created_at")
 	private Timestamp createdAt;
@@ -32,6 +36,7 @@ public abstract class BaseEntity implements Serializable {
 	private Timestamp updatedAt;
 
 	@Column(name = "version")
+<<<<<<< HEAD
 	private Long version;
 =======
 	public String createdBy;
@@ -50,11 +55,18 @@ public abstract class BaseEntity implements Serializable {
 
 >>>>>>> b6d514d2fb14597636240c5bd37c26eeeea69139
 
+=======
+	public Long version;
+
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 	public Long getVersion() {
 		return version;
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 	public void setVersion(Long version) {
 		if (version == null) {
 			this.version = new Long(0);
@@ -63,20 +75,17 @@ public abstract class BaseEntity implements Serializable {
 		}
 	}
 
+<<<<<<< HEAD
 =======
 >>>>>>> b6d514d2fb14597636240c5bd37c26eeeea69139
+=======
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 	public String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
 		this.id = id;
-	}
-	
-	public void setVersion(Long version) {
-		
-			this.version = version;
-		
 	}
 
 	public String getCreatedBy() {

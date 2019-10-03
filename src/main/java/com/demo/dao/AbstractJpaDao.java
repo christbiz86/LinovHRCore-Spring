@@ -13,6 +13,7 @@ import com.demo.model.BaseEntity;
 public abstract class AbstractJpaDao<T extends Serializable> {
 
     private Class<T> clazz;
+    private T data;
 
     @PersistenceContext
     protected EntityManager entityManager;
@@ -30,44 +31,54 @@ public abstract class AbstractJpaDao<T extends Serializable> {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
-    public void create(final T entity) throws IllegalArgumentException, IllegalAccessException {
-    	Field[] listField = entity.getClass().getSuperclass().getDeclaredFields();
-    	for (Field field : listField) {
-			field.setAccessible(true);
-			if(field.getName().equals("createdAt")) {
-            	field.set(entity, new Timestamp(System.currentTimeMillis()));
-            }else if(field.getName().equals("createdBy")) {
-            	field.set(entity, "kosong");
-            }else if(field.getName().equals("version")) {
-                field.set(entity, 0L);
-            }
+    public void create(final T entity)  {
+    	try {
+    		Field[] listField = entity.getClass().getSuperclass().getFields();
+        	for (Field field : listField) {
+    			field.setAccessible(true);
+    			if(field.getName().equals("createdAt")) {
+                	field.set(entity, new Timestamp(System.currentTimeMillis()));
+                }else if(field.getName().equals("createdBy")) {
+                	field.set(entity, "cek");
+                }else if(field.getName().equals("version")) {
+                    field.set(entity, 0L);
+                }
+    		}
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e.getMessage());
 		}
+    	entityManager.persist(entity);
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 	public T update(final T entity) {
 		try {
-			if (entity instanceof Object) {
 				int pointer = 0;
-				BaseEntity base = (BaseEntity) entity;
-				Field[] listField = entity.getClass().getFields();
+				data = findOne(String.valueOf(entity.getClass().getSuperclass().getField("id").get(entity)));
+				Field[] listField = data.getClass().getSuperclass().getFields();
+				System.err.println(data.getClass().getSuperclass().getField("createdBy").get(data));
 				System.err.println(listField.length);
 				for (Field updateField : listField) {
 					if (updateField.getName().equals("updatedAt")) {
-						Object o2 = updateField.get(entity);
-						updateField.set(base, new Timestamp(System.currentTimeMillis()));
+						Object o2 = updateField.get(data);
+						updateField.set(data, new Timestamp(System.currentTimeMillis()));
 						System.err.println(o2);
 					} else if (updateField.getName().equals("updatedBy")) {
-						Object o3 = updateField.get(entity);
-						updateField.set(base, "kosong");
+						Object o3 = updateField.get(data);
+						updateField.set(data, "kosong");
 						System.err.println(o3);
 					} else if (updateField.getName().equals("version")) {
-						Object o6 = updateField.get(entity);
-						updateField.set(base, Long.parseLong(String.valueOf(o6)) + 1);
+						Object o6 = updateField.get(data);
+						updateField.set(data, Long.parseLong(String.valueOf(o6)) + 1);
 						System.err.println(o6);
 					}
 					pointer++;
 				}
+<<<<<<< HEAD
 			}
 =======
     public T update(final T entity) {
@@ -95,10 +106,12 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     			}
     		}
 >>>>>>> b6d514d2fb14597636240c5bd37c26eeeea69139
+=======
+>>>>>>> 85da6922f232db42890b09d001086627a861c740
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		return entityManager.merge(entity);
+		return entityManager.merge(data);
 	}
 
 	public void delete(final T entity) {
