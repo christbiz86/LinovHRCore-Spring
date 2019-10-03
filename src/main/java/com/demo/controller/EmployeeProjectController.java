@@ -51,6 +51,17 @@ public class EmployeeProjectController {
 		}
 	}
 	
+	@GetMapping(value = "/employee/{id}/project")
+	@Transactional
+	public ResponseEntity<?> getProjectEmpByEmpId(@PathVariable String id) {
+		try {
+			List<EmployeeProject> empPro = employeeProjectService.findProjectByEmpId(id);
+			return ResponseEntity.ok(empPro);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+	}
+	
 	@PostMapping(value = "/employee-project")
 	@Transactional
 	public ResponseEntity<?> submit(@RequestBody EmployeeProject employeeProject) throws Exception {

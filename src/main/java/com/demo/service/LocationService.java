@@ -1,14 +1,12 @@
 package com.demo.service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.LocationDao;
-import com.demo.exception.ValidationException;
 import com.demo.model.Location;
 
 @Service
@@ -89,8 +87,6 @@ public class LocationService {
 	}
 	
 	public void save(Location location) throws Exception {
-		location.setCreatedAt(new Timestamp(System.currentTimeMillis()));
-		
 		valBkNotNull(location);
 		valNonBk(location);
 		valBkNotExist(location);
@@ -98,8 +94,6 @@ public class LocationService {
 	}
 	
 	public void update(Location location) throws Exception {
-		location.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
-		
 		valIdNotNull(location);
 		valIdExist(location.getId());
 		valBkNotNull(location);

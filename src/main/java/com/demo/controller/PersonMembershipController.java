@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,56 +18,67 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.Location;
-import com.demo.service.LocationService;
+import com.demo.model.PersonMembership;
+import com.demo.service.PersonMembershipService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class LocationController {
+public class PersonMembershipController {
 	@Autowired
-	private LocationService locationService;
+	private PersonMembershipService personMembershipService;
 	
-	@GetMapping(value = "/location/{id}")
+	@GetMapping(value = "person-memberships")
 	@Transactional
-	public ResponseEntity<?> getLocationById(@PathVariable String id) {
+	public ResponseEntity<?> getAllPersonMember() {
 		try {
-			Location location = locationService.findById(id);
-			return ResponseEntity.ok(location);
+			List<PersonMembership> persMemList = personMembershipService.findAll();
+			return ResponseEntity.ok(persMemList);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+	}
+	
+	@GetMapping(value = "/person-membership/{id}")
+	@Transactional
+	public ResponseEntity<?> getPersMemberById(@PathVariable String id) {
+		try {
+			PersonMembership persMem = personMembershipService.findById(id);
+			return ResponseEntity.ok(persMem);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 		
 	}
 	
-	@PostMapping(value = "/location")
+	@PostMapping(value = "/person-membership")
 	@Transactional
-	public ResponseEntity<?> submit(@RequestBody Location location) throws Exception {
+	public ResponseEntity<?> submit(@RequestBody PersonMembership personMembership) throws Exception {
 		try {
-			locationService.save(location);
+			personMembershipService.save(personMembership);
 			return ResponseEntity.ok("Data Have Successfully Saved");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@PutMapping(value = "/location")
+	@PutMapping(value = "/person-membership")
 	@Transactional
-	public ResponseEntity<?> update(@RequestBody Location location) throws Exception {
+	public ResponseEntity<?> update(@RequestBody PersonMembership personMembership) throws Exception {
 		try {
-			locationService.update(location);
+			personMembershipService.update(personMembership);
 			return ResponseEntity.ok("Data Have Successfully Updated");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
 	}
 	
-	@DeleteMapping(value = "/location/{id}")
+	@DeleteMapping(value = "/person-membership/{id}")
 	@Transactional
 	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		try {
-			locationService.delete(id);
+			personMembershipService.delete(id);
 			return ResponseEntity.ok("Data Have Successfully Deleted");
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
