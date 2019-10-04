@@ -20,7 +20,7 @@ public class CityComboBean {
 	List<City> list = new ArrayList<City>();
 	
 	@PostConstruct
-	public List<City> init() {
+	private List<City> init() {
 		return list = cityDao.findAll();
 	}
 

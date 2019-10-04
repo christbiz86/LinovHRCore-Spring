@@ -1,28 +1,30 @@
 package com.demo.model;
 
-import java.sql.Timestamp;
-
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
-@Table(name = "core_grades")
-public class Grade {
-
-	@Id
-    @Column(name = "id")
-    @GenericGenerator(name="UUID", strategy="org.hibernate.id.UUIDGenerator")
-    private String id;
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@Table(
+		name = "core_grades", 
+		uniqueConstraints = @UniqueConstraint(
+				columnNames = {"company_id", "code"}
+				)
+		)
+public class Grade extends BaseEntity {
+	public static final long serialVersionUID = 1L;
+	
+	@OneToOne
+    @JoinColumn(name="company_id", referencedColumnName = "id")
+    private Company company;
 
     @Column(name = "name")
     private String name;
@@ -32,29 +34,21 @@ public class Grade {
 
     @Column(name = "ordinal")
     private Integer ordinal;
-
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @Column(name = "updated_by")
-    private String updatedBy;
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+7")
-    @Column(name = "updated_at")
-    private Timestamp updatedAt;
-
-    @JsonIgnoreProperties(value = {"grades"})
-    @ManyToOne(optional = false,fetch = FetchType.EAGER)
-    @JoinColumn(name="company_id", referencedColumnName = "id")
-    private Company company;
-
-    public String getId(){
-        return id;
-    }
-
-    public void setId(String id){
-        this.id = id;
-    }
+    
+    @Column(name = "work_month")
+    private Integer workMonth;
+    
+    @Column(name = "bottom_rate")
+	private Integer bottomRate;
+	
+	@Column(name = "mid_rate")
+	private Integer midRate;
+	
+	@Column(name = "top_rate")
+	private Integer topRate;
+	
+	@Column(name = "version")
+	private Long version;
 
     public String getName(){
         return name;
@@ -80,30 +74,6 @@ public class Grade {
         this.ordinal = ordinal;
     }
 
-    public String getCreatedBy(){
-        return createdBy;
-    }
-
-    public void setCreatedBy(){
-        this.createdBy = createdBy;
-    }
-
-    public String getUpdatedBy(){
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(){
-        this.updatedBy = updatedBy;
-    }
-
-    public Timestamp getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     public Company getCompany() {
         return company;
     }
@@ -111,5 +81,45 @@ public class Grade {
     public void setCompany(Company company) {
         this.company = company;
     }
+
+	public Integer getWorkMonth() {
+		return workMonth;
+	}
+
+	public void setWorkMonth(Integer workMonth) {
+		this.workMonth = workMonth;
+	}
+
+	public Integer getBottomRate() {
+		return bottomRate;
+	}
+
+	public void setBottomRate(Integer bottomRate) {
+		this.bottomRate = bottomRate;
+	}
+
+	public Integer getMidRate() {
+		return midRate;
+	}
+
+	public void setMidRate(Integer midRate) {
+		this.midRate = midRate;
+	}
+
+	public Integer getTopRate() {
+		return topRate;
+	}
+
+	public void setTopRate(Integer topRate) {
+		this.topRate = topRate;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
 
 }

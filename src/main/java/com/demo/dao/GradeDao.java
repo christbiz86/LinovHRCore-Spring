@@ -8,10 +8,12 @@ import java.util.List;
 @Repository
 public class GradeDao extends ParentDao {
 
+	@SuppressWarnings("unchecked")
     public List<Grade> findAll(){
         return super.entityManager.createQuery("FROM Grade").getResultList();
     }
 
+    @SuppressWarnings("unchecked")
     public Grade findById(String id){
         List<Grade> grade = super.entityManager.createQuery("FROM Grade where id=:id").setParameter("id",id)
             .getResultList();
@@ -22,6 +24,7 @@ public class GradeDao extends ParentDao {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public List<Grade> findByCode(String code){
         return super.entityManager.createQuery("FROM Grade where code=:code").setParameter("code",code)
                 .getResultList();

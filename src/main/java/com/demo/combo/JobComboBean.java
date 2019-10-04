@@ -13,7 +13,7 @@ import com.demo.model.Job;
 
 @Service
 public class JobComboBean {
-
+	
 	@Autowired
 	private JobDao jobDao;
 	
@@ -27,4 +27,5 @@ public class JobComboBean {
 	public List<Job> getList() {
 		return list;
 	}
+	
 }

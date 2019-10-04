@@ -20,6 +20,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 				)
 		)
 public class Job extends BaseEntity {
+	public static final long serialVersionUID = 1L;
 
     @Column(name = "name")
     private String name;

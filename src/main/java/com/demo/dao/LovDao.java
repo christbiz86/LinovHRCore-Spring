@@ -30,23 +30,23 @@ public class LovDao extends AbstractJpaDao<Lov>{
 			return new Lov();
 		}
 		else {
-			return (Lov)list.get(0);
+			return list.get(0);
 		}
     }
 		
 	public boolean isBkExist(Lov lov) {
-		
 		if(findByBk(lov).getId()==null) {
 			return false;
 		}else {
 			return true;
-		}	 
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Lov> findByType(String code){
-		List<Lov> list = super.entityManager.createQuery("FROM Lov WHERE lovType.code=:code")
-				.setParameter("code", code).getResultList();
+	public List<Lov> findByType(String code) {
+		List<Lov> list = super.entityManager.createQuery("FROM Lov WHERE lovType.code = :code")
+				.setParameter("code", code)
+				.getResultList();
 		
 		return list;
 	}

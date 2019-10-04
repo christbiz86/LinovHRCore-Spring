@@ -19,6 +19,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 				)
 		)
 public class TenantModule extends BaseEntity {
+	public static final long serialVersionUID = 1L;
 	
 	@OneToOne
     @JoinColumn(name = "tenant_id", referencedColumnName = "id")

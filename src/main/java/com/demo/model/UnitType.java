@@ -1,8 +1,5 @@
 package com.demo.model;
 
-import java.io.Serializable;
-import java.sql.Timestamp;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 				)
 		)
 public class Tenant extends BaseEntity {
+	public static final long serialVersionUID = 1L;
 
     @Column(name = "name")
     private String name;
