@@ -23,10 +23,7 @@ import com.demo.combo.CompanyComboBean;
 import com.demo.combo.CostcenterComboBean;
 import com.demo.combo.CountryComboBean;
 import com.demo.combo.EmployeeComboBean;
-<<<<<<< HEAD
-=======
 import com.demo.combo.EmployeeStatusComboBean;
->>>>>>> rei
 import com.demo.combo.EmployeeTypeComboBean;
 import com.demo.combo.GenderComboBean;
 import com.demo.combo.GradeComboBean;
@@ -35,16 +32,13 @@ import com.demo.combo.LocationComboBean;
 import com.demo.combo.MaritalComboBean;
 import com.demo.combo.PaymentMethodComboBean;
 import com.demo.combo.PositionComboBean;
-<<<<<<< HEAD
 import com.demo.combo.ReligionComboBean;
 import com.demo.combo.UnitComboBean;
-=======
 import com.demo.combo.ProjectComboBean;
 import com.demo.combo.ProvinceComboBean;
 import com.demo.combo.ReligionComboBean;
 import com.demo.combo.UnitComboBean;
 import com.demo.model.AssignmentReason;
->>>>>>> rei
 import com.demo.model.City;
 import com.demo.model.Company;
 import com.demo.model.Costcenter;
@@ -196,11 +190,6 @@ public class LovController {
 			return new ResponseEntity<List<Location>>(locationList, HttpStatus.OK);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-<<<<<<< HEAD
-		}	
-    }
-    
-=======
 		}
 	}
 
@@ -248,7 +237,6 @@ public class LovController {
 		}
 	}
 
->>>>>>> rei
     @GetMapping(value = "/genders")
     @Transactional
     public ResponseEntity<?> getAllGender() {
@@ -347,8 +335,6 @@ public class LovController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
     }
-    
-<<<<<<< HEAD
 
     @GetMapping(value = "/religions")
     @Transactional
@@ -374,7 +360,6 @@ public class LovController {
 		}
     }
 
-=======
     @GetMapping(value = "/projects")
 	@Transactional
 	public ResponseEntity<?> getAllProject() {
@@ -386,5 +371,4 @@ public class LovController {
 		}
 	}
     
->>>>>>> rei
 }

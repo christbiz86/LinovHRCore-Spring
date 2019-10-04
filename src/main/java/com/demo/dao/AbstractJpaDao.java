@@ -95,7 +95,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	entityManager.merge(originalEntity);
     }
     
-<<<<<<< HEAD
     public boolean isIdExist(final String entityId) {
         if(findOne(entityId) == null) {
             return false;
@@ -104,6 +103,4 @@ public abstract class AbstractJpaDao<T extends Serializable> {
         }
     }
 
-=======
->>>>>>> rei
 }
