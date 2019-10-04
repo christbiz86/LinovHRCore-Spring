@@ -32,4 +32,10 @@ public class EmployeeProjectDao extends AbstractJpaDao<EmployeeProject> {
 			return true;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<EmployeeProject> findByEmpId(String employeeId) {
+		return super.entityManager.createQuery("FROM EmployeeProject WHERE employee.id=:employeeId")
+				.setParameter("employeeId", employeeId).getResultList();
+	}
 }

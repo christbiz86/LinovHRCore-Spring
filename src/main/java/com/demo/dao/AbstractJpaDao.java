@@ -74,14 +74,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 		final T entity = findOne(entityId);
 		delete(entity);
 	}
-
-	public boolean isIdExist(final String entityId) {
-		if (findOne(entityId) == null) {
-			return false;
-		} else {
-			return true;
-		}
-	}
     
     private void valVersion(final String entityId, Long versionUp) throws Exception {
     	BaseEntity base = (BaseEntity) findOne(entityId);
@@ -102,4 +94,13 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	field.set(originalEntity, version);
     	entityManager.merge(originalEntity);
     }
+    
+    public boolean isIdExist(final String entityId) {
+        if(findOne(entityId) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }

@@ -26,6 +26,10 @@ public class EmployeeProjectService {
 		return employeeProjectDao.findByBk(projectId, employeeId);
 	}
 	
+	public List<EmployeeProject> findProjectByEmpId(String employeeId) {
+		return employeeProjectDao.findByEmpId(employeeId);
+	}
+	
 	private void valIdExist(String id)throws Exception{
 		if(!employeeProjectDao.isIdExist(id)) {
 			throw new Exception("Data is Not Found");
