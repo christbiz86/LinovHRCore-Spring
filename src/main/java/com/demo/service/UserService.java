@@ -1,9 +1,10 @@
 package com.demo.service;
 
-import java.sql.Timestamp;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.demo.dao.UserDao;
 import com.demo.helper.Encryption;
 import com.demo.model.Tenant;
@@ -40,7 +41,6 @@ public class UserService {
     }
 	
 	public void save(User user) throws Exception {
-		user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(user);
 		valBkNotExist(user);
 		valNonBk(user);
@@ -49,13 +49,11 @@ public class UserService {
 	}
 	
 	public void update(User user) throws Exception {
-		user.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		valIdNotNull(user);
 		valIdExist(user.getId());
 		valBkNotNull(user);
 		valBkNotChange(user);
 		valNonBk(user);
-		valCreatedNotChange(user);
 		userDao.update(user);
 	}
 	
@@ -112,11 +110,4 @@ public class UserService {
 		}
 	}
 	
-	private void valCreatedNotChange(User user)throws Exception {
-		User tempUser=findById(user.getId());
-		
-		if(!tempUser.getCreatedAt().equals(user.getCreatedAt()) || !tempUser.getCreatedBy().equals(user.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
-		}
-	}
 }

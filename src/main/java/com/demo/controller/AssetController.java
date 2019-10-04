@@ -18,26 +18,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.demo.model.RoleApplication;
-import com.demo.service.RoleApplicationService;
+import com.demo.model.Asset;
+import com.demo.service.AssetService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @Controller
 @RequestMapping({"/api/v1"})
-public class RoleApplicationController {
+public class AssetController {
 
 	@Autowired
-	private RoleApplicationService roleApplicationService;
+	private AssetService assetService;
 	
 	@Transactional
-	@GetMapping(value = "/role-applications")
-    public ResponseEntity<?> getAllRoleApplication()
+	@GetMapping(value = "/assets")
+    public ResponseEntity<?> getAllAsset()
 	{
 		try{
-				List<RoleApplication> listRoleApplication = roleApplicationService.findAll();
+				List<Asset> listAsset = assetService.findAll();
 
-				return ResponseEntity.ok(listRoleApplication);
+				return ResponseEntity.ok(listAsset);
 		}
 		catch(Exception e){
 			 
@@ -46,41 +46,40 @@ public class RoleApplicationController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/role-application/{id}")
-    public ResponseEntity<?> getRoleApplication(@PathVariable String id)
+	@GetMapping(value = "/asset/{id}")
+    public ResponseEntity<?> getAsset(@PathVariable String id)
 	{
 		try{
-			RoleApplication roleApplication = roleApplicationService.findById(id);
+			Asset asset = assetService.findById(id);
 
-			return ResponseEntity.ok(roleApplication);
+			return ResponseEntity.ok(asset);
 		}
 		catch(Exception e){
 			 
 		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
     }
-
-	@PostMapping(value = "/role-application")
+	
 	@Transactional
-    public ResponseEntity<?> postRoleApplication(@RequestBody RoleApplication roleApplication)
+	@PostMapping("/asset")
+    public ResponseEntity<?> postAsset(@RequestBody Asset asset)
 	{
 		try{	
-			roleApplicationService.save(roleApplication);	
+			assetService.save(asset);	
 			return ResponseEntity.ok("Save Success");
 		}
 		catch (Exception e) {
-			System.out.println(e);
+
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 		}
-
     }
 	
 	@Transactional
-	@PutMapping(value = "/role-application")
-    public ResponseEntity<?> putRoleApplication(@RequestBody RoleApplication roleApplication)
+	@PutMapping("/asset")
+    public ResponseEntity<?> putAsset(@RequestBody Asset asset)
 	{
 		try{	
-			roleApplicationService.update(roleApplication);	
+			assetService.update(asset);	
 			return ResponseEntity.ok("Put Success");
 		}
 		catch (Exception e) {
@@ -90,11 +89,11 @@ public class RoleApplicationController {
     }
 	
 	@Transactional
-	@DeleteMapping("/role-application/{id}")
-    public ResponseEntity<?> deleteRoleApplication(@PathVariable String id)
+	@DeleteMapping("/asset//{id}")
+    public ResponseEntity<?> deleteAsset(@PathVariable String id)
 	{
 		try{	
-			roleApplicationService.delete(id);	
+			assetService.delete(id);	
 			return ResponseEntity.ok("Delete Success");
 		}
 		catch (Exception e) {

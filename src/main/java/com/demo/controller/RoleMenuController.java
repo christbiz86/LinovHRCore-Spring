@@ -31,7 +31,7 @@ public class RoleMenuController {
 	private RoleMenuService roleMenuService;
 
 	@Transactional
-	@GetMapping(value = "/role/menus")
+	@GetMapping(value = "/role-menus")
     public ResponseEntity<?> getAllRoleMenu()
 	{
 		try{
@@ -46,7 +46,7 @@ public class RoleMenuController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/role/menu/{id}")
+	@GetMapping(value = "/role-menu/{id}")
     public ResponseEntity<?> getRoleMenu(@PathVariable String id)
 	{
 		try{
@@ -61,7 +61,7 @@ public class RoleMenuController {
     }
 	
 	@Transactional
-	@PostMapping("/role/menu")
+	@PostMapping("/role-menu")
     public ResponseEntity<?> postRoleMenu(@RequestBody RoleMenu roleMenu)
 	{
 		try{	
@@ -75,7 +75,7 @@ public class RoleMenuController {
     }
 	
 	@Transactional
-	@PutMapping("/role/menu")
+	@PutMapping("/role-menu")
     public ResponseEntity<?> putRoleMenu(@RequestBody RoleMenu roleMenu)
 	{
 		try{	
@@ -89,7 +89,7 @@ public class RoleMenuController {
     }
 	
 	@Transactional
-	@DeleteMapping("/role/menu/{id}")
+	@DeleteMapping("/role-menu/{id}")
     public ResponseEntity<?> deleteRoleMenu(@PathVariable String id)
 	{
 		try{	

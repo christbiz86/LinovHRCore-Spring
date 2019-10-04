@@ -61,6 +61,36 @@ public class EmployeeController {
     }
 	
 	@Transactional
+	@GetMapping(value = "/employee/person/{personId}/assignment/{assignmentId}")
+    public ResponseEntity<?> getEmployeeByPersonAndAssignment(@PathVariable String personId,@PathVariable String assignmentId)
+	{
+		try{
+			Employee employee = employeeService.findByBk(personId, assignmentId);
+
+			return ResponseEntity.ok(employee);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
+	@GetMapping(value = "/employee/person/{personId}")
+    public ResponseEntity<?> getEmployeeByPerson(@PathVariable String personId)
+	{
+		try{
+			List<Employee> listEmployee = employeeService.findByPerson(personId);
+
+			return ResponseEntity.ok(listEmployee);
+		}
+		catch(Exception e){
+			 
+		     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+		}
+    }
+	
+	@Transactional
 	@PostMapping("/employee")
     public ResponseEntity<?> postEmployee(@RequestBody Employee employee)
 	{

@@ -10,6 +10,9 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@EnableSwagger2
 @SpringBootApplication
 @EnableAutoConfiguration
 @ComponentScan(basePackages = { "com.demo.dao", "com.demo.service", "com.demo.controller", "com.demo.combo", "com.demo.helper", "com.demo.core" })

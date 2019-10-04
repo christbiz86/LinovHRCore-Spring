@@ -26,9 +26,14 @@ public class EmployeeService {
         return employeeDao.findOne(id);
     }
 	
-	public Employee findByBk(String companyId,String name){
+	public Employee findByBk(String personId,String assignmentId){
 		
-		return employeeDao.findByBk(companyId, name);
+		return employeeDao.findByBk(personId, assignmentId);
+    }
+	
+	public List<Employee> findByPerson(String personId){
+		
+		return employeeDao.findByPerson(personId);
     }
 	
 	public void save(Employee employee) throws Exception {
@@ -88,11 +93,4 @@ public class EmployeeService {
 		}
 	}
 	
-	private void valCreatedNotChange(Employee employee)throws Exception {
-		Employee tempEmployee=findById(employee.getId());
-		
-		if(!tempEmployee.getCreatedAt().equals(employee.getCreatedAt()) || !tempEmployee.getCreatedBy().equals(employee.getCreatedBy())) {
-			throw new Exception("created tidak boleh berubah");
-		}
-	}
 }

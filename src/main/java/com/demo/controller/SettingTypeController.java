@@ -31,7 +31,7 @@ public class SettingTypeController {
 	private SettingTypeService settingTypeService;
 
 	@Transactional
-	@GetMapping(value = "/setting/types")
+	@GetMapping(value = "/setting-types")
     public ResponseEntity<?> getAllSettingType()
 	{
 		try{
@@ -46,7 +46,7 @@ public class SettingTypeController {
     }
 	
 	@Transactional
-	@GetMapping(value = "/setting/type/{id}")
+	@GetMapping(value = "/setting-type/{id}")
     public ResponseEntity<?> getSettingType(@PathVariable String id)
 	{
 		try{
@@ -60,7 +60,7 @@ public class SettingTypeController {
 		}
     }
 	
-	@PostMapping(value = "/setting/type")
+	@PostMapping(value = "/setting-type")
 	@Transactional
     public ResponseEntity<?> postSettingType(@RequestBody SettingType settingType)
 	{
@@ -76,7 +76,7 @@ public class SettingTypeController {
     }
 	
 	@Transactional
-	@PutMapping(value = "/setting/type")
+	@PutMapping(value = "/setting-type")
     public ResponseEntity<?> putSettingType(@RequestBody SettingType settingType)
 	{
 		try{	
@@ -90,7 +90,7 @@ public class SettingTypeController {
     }
 	
 	@Transactional
-	@DeleteMapping("/setting/type/{id}")
+	@DeleteMapping("/setting-type/{id}")
     public ResponseEntity<?> deleteSettingType(@PathVariable String id)
 	{
 		try{	

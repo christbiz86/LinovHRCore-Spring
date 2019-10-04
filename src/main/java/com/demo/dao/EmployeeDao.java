@@ -41,4 +41,13 @@ public class EmployeeDao extends AbstractJpaDao<Employee>{
 			return true;
 		}
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Employee> findByPerson(String personId) {
+		List<Employee> list= super.entityManager.createQuery("FROM Employee WHERE person.id=:personId ")
+				.setParameter("personId", personId)
+				.getResultList();
+		
+			return list;
+	}
 }
