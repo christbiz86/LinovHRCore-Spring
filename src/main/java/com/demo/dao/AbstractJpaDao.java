@@ -16,7 +16,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     private Class<T> clazz;
     private T data;
-    private User u;
+    
 
     @PersistenceContext
     protected EntityManager entityManager;
