@@ -43,7 +43,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     			if(field.getName().equals("createdAt")) {
                 	field.set(entity, new Timestamp(System.currentTimeMillis()));
                 }else if(field.getName().equals("createdBy")) {
-                	field.set(entity, u.getUsername());
+                	field.set(entity, "insert");
                 }else if(field.getName().equals("version")) {
                     field.set(entity, new Long(0));
                 }
@@ -69,7 +69,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 						System.err.println(o2);
 					} else if (updateField.getName().equals("updatedBy")) {
 						Object o3 = updateField.get(data);
-						updateField.set(data, u.getUsername());
+						updateField.set(data, "update");
 						System.err.println(o3);
 					} else if (updateField.getName().equals("version")) {
 						Object o6 = updateField.get(data);
