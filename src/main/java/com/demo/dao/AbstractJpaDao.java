@@ -50,7 +50,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     		}
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.err.println(e.getMessage());
+			System.err.println(e.getMessage()); 
 		}
     	entityManager.persist(entity);
 	}
