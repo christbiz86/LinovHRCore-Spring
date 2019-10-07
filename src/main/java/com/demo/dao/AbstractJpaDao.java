@@ -1,6 +1,7 @@
 package com.demo.dao;
 
 import java.io.Serializable;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.sql.Timestamp;
 import java.util.List;
@@ -28,6 +29,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     @SuppressWarnings("unchecked")
     public List<T> findAll() {
+    	
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
@@ -41,7 +43,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
                 }else if(field.getName().equals("createdBy")) {
                 	field.set(entity, "cek");
                 }else if(field.getName().equals("version")) {
-                    field.set(entity, 0L);
+                    field.set(entity, new Long(0));
                 }
     		}
 		} catch (Exception e) {
