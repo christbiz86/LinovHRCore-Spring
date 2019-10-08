@@ -12,6 +12,8 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -32,7 +34,8 @@ public class Tenant extends BaseEntity {
     @Column(name = "is_deleted")
     private Boolean isDeleted = false;
 
-    @OneToMany(mappedBy = "tenant",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = {"tenant"})
+    @OneToMany(mappedBy = "tenant",fetch = FetchType.EAGER)
     private List<Company> companies;
 
     public String getName(){

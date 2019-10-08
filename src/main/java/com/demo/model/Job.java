@@ -42,7 +42,7 @@ public class Job extends BaseEntity {
     }
 
     public void setName(String name) {
-    	if(name == null) {
+    	if(name.isEmpty()) {
     		this.name = new String();
     	} else {
     		this.name = name;
@@ -54,7 +54,7 @@ public class Job extends BaseEntity {
     }
 
 	public void setCode(String code) {
-		if(code == null) {
+		if(code.isEmpty()) {
 			this.code = new String();
 		} else {
 			this.code = code;
@@ -66,7 +66,7 @@ public class Job extends BaseEntity {
 	}
 
 	public void setDescription(String description) {
-		if(description == null) {
+		if(description.isEmpty()) {
 			this.description = new String();
     	} else {
     		this.description = description;

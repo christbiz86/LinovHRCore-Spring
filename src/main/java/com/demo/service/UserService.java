@@ -2,11 +2,10 @@ package com.demo.service;
 
 import java.sql.Timestamp;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.demo.dao.UserDao;
+import com.demo.helper.Encryption;
 import com.demo.model.Tenant;
 import com.demo.model.User;
 
@@ -15,6 +14,9 @@ public class UserService {
 
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private Encryption encryption;
 	
 	public List<User> findAll(){
         return userDao.findAll();
@@ -42,6 +44,7 @@ public class UserService {
     	valBkNotNull(user);
 		valBkNotExist(user);
 		valNonBk(user);
+		user.setPassword(encryption.encrypt(user.getPassword()));
 		userDao.create(user);
 	}
 	
