@@ -7,7 +7,6 @@ src/main/resources/
 .gitignore
 .settings/
 .project
-.settings
 database.sql
 HELP.md
 modelReport.html

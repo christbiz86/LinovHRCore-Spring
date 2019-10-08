@@ -21,7 +21,8 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 		)
 public class Job extends BaseEntity {
 
-    @Column(name = "name")
+
+	@Column(name = "name")
     private String name;
 
     @Column(name = "code")

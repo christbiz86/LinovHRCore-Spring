@@ -1,4 +1,16 @@
+
 package com.demo.service;
+
+import java.sql.Timestamp;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.demo.dao.UserDao;
+import com.demo.helper.Encryption;
+import com.demo.model.Tenant;
+import com.demo.model.User;
+
+
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -39,6 +51,10 @@ public class UserService {
 		return userDao.findByBk(user);
     }
 	
+	public User findByLogin(String username,String password){
+		return userDao.findByLogin(username, password);
+    }
+
 	public void save(User user) throws Exception {
 		user.setCreatedAt(new Timestamp(System.currentTimeMillis()));
     	valBkNotNull(user);
@@ -120,3 +136,4 @@ public class UserService {
 		}
 	}
 }
+

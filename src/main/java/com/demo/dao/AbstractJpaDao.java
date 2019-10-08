@@ -1,3 +1,4 @@
+
 package com.demo.dao;
 
 import java.io.Serializable;
@@ -8,11 +9,30 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import com.demo.model.BaseEntity;
+import com.demo.model.User;
 
 public abstract class AbstractJpaDao<T extends Serializable> {
 
     private Class<T> clazz;
+    private T data;
+    private User u;
+    
+    @Value("spring.datasource.url")
+	private String datasourceUrl;
+	
+	@Value("spring.datasource.username")
+	private String datasourceUsername;
+	
+	@Value("spring.datasource.password")
+	private String datasourcePassword;
+	
+	@Value("spring.jpa.properties.hibernate.default_schema")
+	private String defaultSchema;
 
     @PersistenceContext
     protected EntityManager entityManager;
@@ -30,48 +50,83 @@ public abstract class AbstractJpaDao<T extends Serializable> {
         return entityManager.createQuery("from " + clazz.getName()).getResultList();
     }
 
-    public void create(final T entity) throws IllegalArgumentException, IllegalAccessException {
-    	Field[] listField = entity.getClass().getSuperclass().getDeclaredFields();
-    	for (Field field : listField) {
-			field.setAccessible(true);
-			if(field.getName().equals("createdAt")) {
-            	field.set(entity, new Timestamp(System.currentTimeMillis()));
-            }else if(field.getName().equals("createdBy")) {
-            	field.set(entity, "kosong");
-            }else if(field.getName().equals("version")) {
-                field.set(entity, 0L);
-            }
+    public void create(final T entity)  {
+    	try {
+    		System.out.println(datasourceUrl.length());
+    		String cmd = "pg_dump -U "+datasourceUrl+" -h "+datasourceUrl+"-p "+datasourceUrl; 
+    				cmd+="-F t -f "+System.getProperty("user.dir");
+    				cmd+=datasourceUrl;
+    		Process p = Runtime.getRuntime().exec(cmd);
+    		int result = p.waitFor();
+    		System.err.println("backup table "+entity.getClass().getSimpleName()+" success");
+    		if(result==0) {
+    			Field[] listField = entity.getClass().getSuperclass().getFields();
+        		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        		String username = String.valueOf(auth.getPrincipal());
+            	for (Field field : listField) {
+        			field.setAccessible(true);
+        			if(field.getName().equals("createdAt")) {
+                    	field.set(entity, new Timestamp(System.currentTimeMillis()));
+                    }else if(field.getName().equals("createdBy")) {
+                    	field.set(entity, username);
+                    }else if(field.getName().equals("version")) {
+                        field.set(entity, new Long(0));
+                    }
+        		}
+            	entityManager.persist(entity);
+
+    		}else {
+    			System.err.println("backup table "+entity.getClass().getSimpleName()+" failed");
+    		}
+    		
+    		        	
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.err.println(e.getMessage()); 
 		}
+    	
 	}
 
 	public T update(final T entity) {
 		try {
-			if (entity instanceof Object) {
+			System.out.println(datasourceUrl.length());
+    		String cmd = "pg_dump -U "+datasourceUrl+" -h "+datasourceUrl+"-p "+datasourceUrl; 
+    				cmd+="-F t -f "+System.getProperty("user.dir");
+    				cmd+=datasourceUrl;
+    		Process p = Runtime.getRuntime().exec(cmd);
+    		int result = p.waitFor();
+    		System.err.println("backup table "+entity.getClass().getSimpleName()+" success");
+    		if(result==0) {
 				int pointer = 0;
-				BaseEntity base = (BaseEntity) entity;
-				Field[] listField = entity.getClass().getFields();
+				data = findOne(String.valueOf(entity.getClass().getSuperclass().getField("id").get(entity)));
+				Field[] listField = data.getClass().getSuperclass().getFields();
 				System.err.println(listField.length);
+				Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    		String username = String.valueOf(auth.getPrincipal());
+	        	
 				for (Field updateField : listField) {
 					if (updateField.getName().equals("updatedAt")) {
-						Object o2 = updateField.get(entity);
-						updateField.set(base, new Timestamp(System.currentTimeMillis()));
+						Object o2 = updateField.get(data);
+						updateField.set(data, new Timestamp(System.currentTimeMillis()));
 						System.err.println(o2);
 					} else if (updateField.getName().equals("updatedBy")) {
-						Object o3 = updateField.get(entity);
-						updateField.set(base, "kosong");
+						Object o3 = updateField.get(data);
+						updateField.set(data, username);
 						System.err.println(o3);
 					} else if (updateField.getName().equals("version")) {
-						Object o6 = updateField.get(entity);
-						updateField.set(base, Long.parseLong(String.valueOf(o6)) + 1);
+						Object o6 = updateField.get(data);
+						updateField.set(data, Long.parseLong(String.valueOf(o6)) + 1);
 						System.err.println(o6);
 					}
 					pointer++;
 				}
-			}
+    		}else {
+    			System.err.println("backup table "+entity.getClass().getSimpleName()+" failed");
+    		}
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		return entityManager.merge(entity);
+		return entityManager.merge(data);
 	}
 
 	public void delete(final T entity) {
@@ -110,5 +165,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
     	field.set(originalEntity, version);
     	entityManager.merge(originalEntity);
     }
+
 
 }
