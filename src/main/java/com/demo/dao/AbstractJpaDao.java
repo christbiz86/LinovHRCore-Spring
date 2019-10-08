@@ -52,14 +52,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
     public void create(final T entity)  {
     	try {
-    		System.out.println(datasourceUrl.length());
-    		String cmd = "pg_dump -U "+datasourceUrl+" -h "+datasourceUrl+"-p "+datasourceUrl; 
-    				cmd+="-F t -f "+System.getProperty("user.dir");
-    				cmd+=datasourceUrl;
-    		Process p = Runtime.getRuntime().exec(cmd);
-    		int result = p.waitFor();
-    		System.err.println("backup table "+entity.getClass().getSimpleName()+" success");
-    		if(result==0) {
+    		
     			Field[] listField = entity.getClass().getSuperclass().getFields();
         		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         		String username = String.valueOf(auth.getPrincipal());
@@ -75,11 +68,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
         		}
             	entityManager.persist(entity);
 
-    		}else {
-    			System.err.println("backup table "+entity.getClass().getSimpleName()+" failed");
-    		}
-    		
-    		        	
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.err.println(e.getMessage()); 
@@ -89,14 +77,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 
 	public T update(final T entity) {
 		try {
-			System.out.println(datasourceUrl.length());
-    		String cmd = "pg_dump -U "+datasourceUrl+" -h "+datasourceUrl+"-p "+datasourceUrl; 
-    				cmd+="-F t -f "+System.getProperty("user.dir");
-    				cmd+=datasourceUrl;
-    		Process p = Runtime.getRuntime().exec(cmd);
-    		int result = p.waitFor();
-    		System.err.println("backup table "+entity.getClass().getSimpleName()+" success");
-    		if(result==0) {
+			
 				int pointer = 0;
 				data = findOne(String.valueOf(entity.getClass().getSuperclass().getField("id").get(entity)));
 				Field[] listField = data.getClass().getSuperclass().getFields();
@@ -120,9 +101,7 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 					}
 					pointer++;
 				}
-    		}else {
-    			System.err.println("backup table "+entity.getClass().getSimpleName()+" failed");
-    		}
+    		
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
