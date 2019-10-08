@@ -23,10 +23,6 @@ public class Location extends BaseEntity {
     @Column(name = "description")
     private String description;
 
-    @JoinColumn(name = "tax_office_id", referencedColumnName = "id")
-    @OneToOne
-    private TaxOffice taxOffice;
-
     @Column(name = "calendar_id")
     private Integer calendar;
 
@@ -77,14 +73,6 @@ public class Location extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public TaxOffice getTaxOffice() {
-        return taxOffice;
-    }
-
-    public void setTaxOffice(TaxOffice taxOffice) {
-        this.taxOffice = taxOffice;
     }
 
     public String getAddress() {
