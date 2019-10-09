@@ -96,10 +96,6 @@ public abstract class AbstractJpaDao<T extends Serializable> {
 					Field createdBy = data.getClass().getSuperclass().getDeclaredField("createdBy");
 					createdBy.setAccessible(true);
 					updateField.set(entity, createdBy.get(data));
-				} else if (updateField.getName().equals("isActive")) {
-					Field isActive = data.getClass().getSuperclass().getDeclaredField("isActive");
-					isActive.setAccessible(true);
-					updateField.set(entity, isActive.get(data));
 				}
 			}
 		} catch (Exception e) {
