@@ -3,6 +3,7 @@ package com.demo.model;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -10,8 +11,11 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import com.demo.dao.JobDao;
+
 @Entity
 @Cacheable
+@EntityListeners(JobDao.class)
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(
 		name = "core_jobs", 
@@ -19,9 +23,10 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 				columnNames = {"company_id", "code"}
 				)
 		)
-public class Job extends BaseEntity {
+public class Job extends BaseMaster {
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "name")
+	@Column(name = "name")
     private String name;
 
     @Column(name = "code")

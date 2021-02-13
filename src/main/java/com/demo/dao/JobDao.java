@@ -1,6 +1,9 @@
+
 package com.demo.dao;
 
 import java.util.List;
+
+import javax.persistence.PostPersist;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,11 @@ public class JobDao extends AbstractJpaDao<Job> {
 
     public JobDao() {
         setClazz(Job.class);
+    }
+    
+    @PostPersist
+    private void test(Job job) {
+    	System.out.println("berhasil save : "+job.getName());
     }
 
     @SuppressWarnings("unchecked")
@@ -61,5 +69,5 @@ public class JobDao extends AbstractJpaDao<Job> {
             return true;
         }
     }
-
 }
+

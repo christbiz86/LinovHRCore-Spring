@@ -1,9 +1,5 @@
 package com.demo.service;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,7 +82,7 @@ public class JobService {
 		valIdNotNull(job);
 		valIdExist(job.getId());
 		valBkNotNull(job);
-		valBkNotChange(job);
+//		valBkNotChange(job);
 		valNonBk(job);
 //		valCreatedAtNotChange(job);
 		System.out.println("Validasi selesai");

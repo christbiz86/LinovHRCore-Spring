@@ -1,3 +1,4 @@
+
 package com.demo.model;
 
 public class LoginSession {
@@ -7,7 +8,7 @@ public class LoginSession {
 	public String getToken() {
 		return token;
 	}
-	public void setToken(String token) {
+	private void setToken(String token) {
 		this.token = token;
 	}
 
@@ -16,9 +17,16 @@ public class LoginSession {
 	public User getUser() {
 		return user;
 	}
-	public void setUser(User user) {
+	private void setUser(User user) {
 		this.user = user;
 	}
 
 
+	public LoginSession(String token, User user) {
+		this.setToken(token);
+		this.setUser(user);
+	}
+
+
 }
+

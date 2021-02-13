@@ -1,3 +1,4 @@
+
 package com.demo.model;
 
 import java.io.Serializable;
@@ -39,7 +40,7 @@ public abstract class BaseEntity implements Serializable {
 
 	public void setVersion(Long version) {
 		if (version == null) {
-			this.version = new Long(0);
+			this.version = 0L;
 		} else {
 			this.version = version;
 		}
@@ -84,4 +85,5 @@ public abstract class BaseEntity implements Serializable {
 	public void setUpdatedAt(Timestamp updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+
 }

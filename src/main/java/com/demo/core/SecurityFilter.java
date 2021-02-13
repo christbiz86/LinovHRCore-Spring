@@ -1,3 +1,4 @@
+
 package com.demo.core;
 
 import java.io.IOException;
@@ -8,11 +9,20 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.filter.OncePerRequestFilter;
 //import com.demo.helper.JwtAuth;
 
+
+import java.io.IOException;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.web.filter.OncePerRequestFilter;
+import com.demo.helper.JwtAuth;
+
 public class SecurityFilter extends OncePerRequestFilter {
 
 
-/*
-	private void checkAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+
+	private void authenticationProcess(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
     	try {
     		String token = request.getHeader("Authorization").replace("Bearer ", "");
@@ -34,7 +44,6 @@ public class SecurityFilter extends OncePerRequestFilter {
     	}
 		
 	}
-*/
 
 
 	@Override
@@ -42,8 +51,14 @@ public class SecurityFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		final String uri = request.getRequestURI();
-		filterChain.doFilter(request, response);
+		if( uri.equals("/login") ) {
+			filterChain.doFilter(request, response);
+		}
+		else {
+			authenticationProcess(request, response, filterChain);
+		}
 	}
 
 
 }
+
